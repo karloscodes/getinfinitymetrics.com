@@ -39,27 +39,34 @@ const features = [
 ---
 
 <section id="features" class="py-16 md:py-24 bg-gray-50">
-  <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Simple yet powerful</h2>
-      <p class="text-lg text-gray-600">
+  <div class="container">
+    <div class="max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl font-bold mb-4 text-center">Simple yet powerful</h2>
+      <p class="text-gray-600 text-center">
         Everything you need to understand your audience without invading their
         privacy
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         features.map((feature) => (
-          <div class="feature-card">
-            <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center text-xl mb-4">
-              {feature.icon}
+          <div class="card hover:shadow-md transition-shadow">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-black rounded-md flex items-center justify-center text-white text-xl mr-3">
+                {feature.icon}
+              </div>
+              <h3 class="text-xl font-semibold">{feature.title}</h3>
             </div>
-            <h3 class="text-xl font-semibold mb-3">{feature.title}</h3>
             <p class="text-gray-600">{feature.description}</p>
           </div>
         ))
       }
+    </div>
+    <div class="mt-12 text-center">
+      <a href="#beta-form" class="btn-secondary inline-block"
+        >Join the Beta Program</a
+      >
     </div>
   </div>
 </section>

@@ -1,44 +1,51 @@
 ---
+
 ---
-<header class="relative py-6">
-  <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <nav class="flex items-center justify-between">
-      <div class="flex items-center">
-        <a href="/" class="font-bold text-2xl">Fusion Analytics</a>
-      </div>
-      
-      <div class="hidden md:flex items-center space-x-10">
-        <a href="#features" class="text-sm font-medium text-gray-700 hover:text-black">Features</a>
-        <a href="#how-it-works" class="text-sm font-medium text-gray-700 hover:text-black">How It Works</a>
-        <a href="#pricing" class="text-sm font-medium text-gray-700 hover:text-black">Pricing</a>
-        <a href="#faq" class="text-sm font-medium text-gray-700 hover:text-black">FAQ</a>
-      </div>
-      
-      <div class="hidden md:flex">
-        <a href="#pricing" class="btn-primary">Get Started</a>
-      </div>
-      
-      <div class="md:hidden">
-        <button
-          id="mobile-menu-button"
-          class="text-gray-500 hover:text-gray-700 focus:outline-none"
-          aria-label="Toggle menu"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
+
+<header class="py-4 border-b border-gray-200">
+  <div class="container flex items-center justify-between">
+    <a href="/" class="font-bold text-xl">Fusion Analytics</a>
+
+    <nav class="hidden md:flex items-center space-x-8">
+      <a href="#features" class="text-sm">Features</a>
+      <a href="#how-it-works" class="text-sm">How It Works</a>
+      <a href="#pricing" class="text-sm">Pricing</a>
+      <a href="#faq" class="text-sm">FAQ</a>
     </nav>
-    
-    <div id="mobile-menu" class="md:hidden absolute top-20 left-0 right-0 z-50 bg-white py-4 px-4 shadow-lg rounded-b-lg hidden">
-      <div class="flex flex-col space-y-3">
-        <a href="#features" class="text-base font-medium text-gray-700 hover:text-black">Features</a>
-        <a href="#how-it-works" class="text-base font-medium text-gray-700 hover:text-black">How It Works</a>
-        <a href="#pricing" class="text-base font-medium text-gray-700 hover:text-black">Pricing</a>
-        <a href="#faq" class="text-base font-medium text-gray-700 hover:text-black">FAQ</a>
-        <a href="#pricing" class="btn-primary w-full text-center">Get Started</a>
-      </div>
+
+    <div class="hidden md:block">
+      <a href="#pricing" class="btn-primary py-2 px-4 text-sm">Get Started</a>
+    </div>
+
+    <button id="mobile-menu-button" class="md:hidden" aria-label="Menu">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="md:hidden absolute left-0 right-0 z-50 bg-white py-4 px-4 border-b border-gray-200 shadow-sm hidden"
+  >
+    <div class="flex flex-col space-y-4">
+      <a href="#features" class="text-sm">Features</a>
+      <a href="#how-it-works" class="text-sm">How It Works</a>
+      <a href="#pricing" class="text-sm">Pricing</a>
+      <a href="#faq" class="text-sm">FAQ</a>
+      <a href="#pricing" class="btn-primary py-2 px-4 text-sm text-center"
+        >Get Started</a
+      >
     </div>
   </div>
 </header>
