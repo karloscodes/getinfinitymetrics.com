@@ -1,0 +1,65 @@
+---
+const features = [
+  {
+    icon: "🚀",
+    title: "Self-hosted",
+    description:
+      "Keep your data under your control. Deploy on your own infrastructure with a single command.",
+  },
+  {
+    icon: "🍪",
+    title: "Cookieless",
+    description:
+      "No cookies, no consent banners needed. GDPR compliant by default.",
+  },
+  {
+    icon: "🔒",
+    title: "Privacy-First",
+    description: "No personal information stored. Just the metrics you need.",
+  },
+  {
+    icon: "🌐",
+    title: "Multi-website",
+    description:
+      "Track multiple websites from a single installation. Separate or aggregate your data.",
+  },
+  {
+    icon: "🤖",
+    title: "Ask with AI",
+    description:
+      "Query your analytics using natural language and get instant insights.",
+  },
+  {
+    icon: "⚡",
+    title: "Lightning Fast",
+    description:
+      "Minimal impact on your site's performance. Blazing fast dashboard.",
+  },
+];
+---
+
+<section id="features" class="py-16 md:py-24 bg-gray-50">
+  <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Simple yet powerful</h2>
+      <p class="text-lg text-gray-600">
+        Everything you need to understand your audience without invading their
+        privacy
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        features.map((feature) => (
+          <div class="feature-card">
+            <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center text-xl mb-4">
+              {feature.icon}
+            </div>
+            <h3 class="text-xl font-semibold mb-3">{feature.title}</h3>
+            <p class="text-gray-600">{feature.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
