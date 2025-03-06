@@ -15,9 +15,11 @@
 
     <div class="max-w-3xl mx-auto">
       <div class="terminal mb-12">
-        <span class="text-gray-400">$</span> docker run -p 8080:8080 getfusionanalytics/fusion
+        <span class="text-gray-400">$</span> curl -fsSL https://fusionanalytics.io/install
+        | sh
         <br /><br />
-        <span class="text-green-400">✓</span> Fusion Analytics is running at http://localhost:8080
+        <span class="text-green-400">✓</span> Fusion Analytics server is running
+        at https://yourdomain.com
       </div>
 
       <div class="grid gap-8">
