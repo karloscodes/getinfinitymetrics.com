@@ -1,0 +1,315 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="GDPR Compliance | Fusion Analytics">
+  <Header />
+
+  <div class="container mx-auto px-4 py-12 max-w-4xl">
+    <h1 class="text-3xl font-bold mb-8">GDPR Compliance</h1>
+
+    <div class="prose prose-lg max-w-none">
+      <section class="mb-8">
+        <p class="text-lg">
+          Fusion Analytics is designed with privacy at its core, making GDPR
+          compliance simple and straightforward for website owners.
+        </p>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">
+          No Cookies, No Consent Banners Needed
+        </h2>
+        <p>
+          Traditional analytics tools use cookies to track users across
+          sessions, requiring consent banners under GDPR. Fusion Analytics is
+          different:
+        </p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>
+            <strong>Zero cookies used</strong> - We don't set any cookies on your
+            visitors' browsers
+          </li>
+          <li>
+            <strong>No consent banners required</strong> - Since we don't use cookies
+            or collect personal data, you don't need cookie consent banners
+          </li>
+          <li>
+            <strong>Better user experience</strong> - Your visitors can enjoy your
+            site without intrusive consent popups
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">
+          How We Protect Personal Data
+        </h2>
+        <p>
+          Under GDPR, personal data is any information relating to an identified
+          or identifiable natural person. Here's how Fusion Analytics ensures
+          compliance:
+        </p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>
+            <strong>No personal data collection</strong> - We don't collect names,
+            email addresses, or other directly identifiable information
+          </li>
+          <li>
+            <strong>IP address protection</strong> - IP addresses are considered
+            personal data under GDPR. We hash and salt IP addresses immediately upon
+            collection and then discard the original IP, making identification impossible
+          </li>
+          <li>
+            <strong>No cross-site tracking</strong> - Unlike other analytics tools,
+            we don't track users across different websites
+          </li>
+          <li>
+            <strong>No persistent identifiers</strong> - We don't use any persistent
+            identifiers that could track users over time
+          </li>
+          <li>
+            <strong>Anonymized metrics only</strong> - We only provide aggregated,
+            anonymized metrics that cannot be used to identify individuals
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">
+          Our Technical Approach to Privacy
+        </h2>
+        <div class="bg-gray-100 p-6 rounded-lg mb-6">
+          <h3 class="text-xl font-medium mb-3">
+            How Fusion Analytics Works Without Cookies
+          </h3>
+          <p class="mb-4">
+            Instead of cookies, we use a sophisticated but privacy-preserving
+            method to generate anonymous session IDs:
+          </p>
+          <ol class="list-decimal pl-6 mb-4">
+            <li>
+              <strong>Session-based tracking</strong> - We generate a temporary session
+              ID that exists only in memory and expires when the user closes their
+              browser
+            </li>
+            <li>
+              <strong>One-way hashing</strong> - When a page is loaded, we take anonymous
+              browser characteristics and apply a one-way hash function with site-specific
+              salt
+            </li>
+            <li>
+              <strong>Never stored on device</strong> - Unlike cookies, no identifiers
+              are stored on the user's device
+            </li>
+            <li>
+              <strong>Mathematically non-reversible</strong> - Our hashing algorithm
+              makes it mathematically impossible to derive the original information
+            </li>
+          </ol>
+        </div>
+
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <h3 class="text-xl font-medium mb-3">How We Handle IP Addresses</h3>
+          <p class="mb-4">
+            IP addresses must be handled carefully under GDPR. Here's our
+            process:
+          </p>
+          <ol class="list-decimal pl-6 mb-4">
+            <li>
+              IP address is briefly used to determine country (for geographic
+              stats)
+            </li>
+            <li>
+              IP is immediately hashed using a secure one-way algorithm with a
+              unique salt for your website
+            </li>
+            <li>Original IP address is discarded completely</li>
+            <li>
+              The hash cannot be reversed to reveal the original IP address
+            </li>
+            <li>Even we cannot access or reconstruct the original IP</li>
+          </ol>
+          <p class="text-sm text-gray-600 mt-4">
+            <strong>Technical note:</strong> We use SHA-256 with a site-specific
+            salt, ensuring that even if two websites use Fusion Analytics, the same
+            visitor would generate different hash values, preventing cross-site tracking.
+          </p>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">
+          Data Processed by Fusion Analytics
+        </h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white border border-gray-200">
+            <thead>
+              <tr>
+                <th class="py-2 px-4 border-b text-left">Data Type</th>
+                <th class="py-2 px-4 border-b text-left">How It's Processed</th>
+                <th class="py-2 px-4 border-b text-left">GDPR Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="py-2 px-4 border-b">Page Views</td>
+                <td class="py-2 px-4 border-b"
+                  >URL path is recorded without query parameters that might
+                  contain personal data</td
+                >
+                <td class="py-2 px-4 border-b">No personal data processed</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b">Referrer Source</td>
+                <td class="py-2 px-4 border-b"
+                  >Recorded as domain only, with any user-specific parameters
+                  removed</td
+                >
+                <td class="py-2 px-4 border-b">No personal data processed</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b">Country</td>
+                <td class="py-2 px-4 border-b"
+                  >Derived from IP, then IP is discarded</td
+                >
+                <td class="py-2 px-4 border-b">No personal data retained</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b">Browser & OS</td>
+                <td class="py-2 px-4 border-b"
+                  >Recorded as generic category (e.g., "Chrome", "Windows")</td
+                >
+                <td class="py-2 px-4 border-b">No personal data processed</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b">Screen Size</td>
+                <td class="py-2 px-4 border-b">Recorded as dimensions only</td>
+                <td class="py-2 px-4 border-b">No personal data processed</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b">Session Duration</td>
+                <td class="py-2 px-4 border-b"
+                  >Tracked via anonymous session ID, no cookies</td
+                >
+                <td class="py-2 px-4 border-b">No personal data processed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">
+          GDPR Rights and Your Visitors
+        </h2>
+        <p class="mb-4">
+          GDPR provides various rights to individuals, including access,
+          rectification, erasure, and objection. Since Fusion Analytics doesn't
+          collect or store any personal data, these rights are automatically
+          respected:
+        </p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>
+            <strong>Right to access</strong> - No personal data is collected, so
+            there's nothing to access
+          </li>
+          <li>
+            <strong>Right to be forgotten</strong> - No personal data is stored,
+            so there's nothing to forget
+          </li>
+          <li>
+            <strong>Right to data portability</strong> - No personal profiles are
+            created, so there's nothing to port
+          </li>
+          <li>
+            <strong>Right to object to processing</strong> - Processing is anonymous
+            and statistical only
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">
+          Your Responsibility as a Website Owner
+        </h2>
+        <p>
+          While Fusion Analytics is designed to be GDPR-compliant by default, as
+          a website owner you should:
+        </p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>
+            Mention in your privacy policy that you use analytics tools to
+            collect anonymous usage statistics
+          </li>
+          <li>
+            Make it clear that you don't track individual users or collect
+            personal data for analytics purposes
+          </li>
+          <li>
+            Include Fusion Analytics in your data processing records (though no
+            DPA is required as no personal data is processed)
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">
+          Sample Privacy Policy Statement
+        </h2>
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <p class="mb-4">
+            You can use the following text in your website's privacy policy:
+          </p>
+          <div class="border-l-4 border-gray-500 pl-4 italic">
+            <p>
+              "We use Fusion Analytics to collect anonymous statistics about how
+              visitors use our website. This analytics service does not use
+              cookies and does not collect, store, or process any personal data.
+              The analytics data we collect includes anonymous information such
+              as page views, referrer sources, browser types, device types, and
+              country-level location. We cannot identify you or your browsing
+              habits from this data."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Legal Basis for Processing</h2>
+        <p>
+          Under GDPR, any data processing requires a legal basis. Since Fusion
+          Analytics doesn't process personal data, this requirement is not
+          applicable. However, your website might use the following legal basis
+          for general analytics:
+        </p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>
+            <strong>Legitimate Interest</strong> - As you don't process personal
+            data for analytics, you can rely on your legitimate interest to understand
+            website usage patterns
+          </li>
+          <li>
+            <strong>No Consent Required</strong> - Since no cookies or personal data
+            processing is involved, you don't need to obtain consent for analytics
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Conclusion</h2>
+        <p>
+          Fusion Analytics was built from the ground up to be GDPR-compliant by
+          design. By not collecting personal data and not using cookies, we
+          eliminate most GDPR concerns for website analytics. This privacy-first
+          approach gives you valuable insights into your website performance
+          without compromising your visitors' privacy or your legal compliance.
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>
