@@ -92,8 +92,7 @@ import Footer from "../components/Footer.astro";
           <ol class="list-decimal pl-6 mb-4">
             <li>
               <strong>Session-based tracking</strong> - We generate a temporary session
-              ID that exists only in memory and expires when the user closes their
-              browser
+              ID that exists only in memory and expires after a short period of inactivity
             </li>
             <li>
               <strong>One-way hashing</strong> - When a page is loaded, we take anonymous
@@ -132,11 +131,6 @@ import Footer from "../components/Footer.astro";
             </li>
             <li>Even we cannot access or reconstruct the original IP</li>
           </ol>
-          <p class="text-sm text-gray-600 mt-4">
-            <strong>Technical note:</strong> We use SHA-256 with a site-specific
-            salt, ensuring that even if two websites use Fusion Analytics, the same
-            visitor would generate different hash values, preventing cross-site tracking.
-          </p>
         </div>
       </section>
 
@@ -155,22 +149,6 @@ import Footer from "../components/Footer.astro";
             </thead>
             <tbody>
               <tr>
-                <td class="py-2 px-4 border-b">Page Views</td>
-                <td class="py-2 px-4 border-b"
-                  >URL path is recorded without query parameters that might
-                  contain personal data</td
-                >
-                <td class="py-2 px-4 border-b">No personal data processed</td>
-              </tr>
-              <tr>
-                <td class="py-2 px-4 border-b">Referrer Source</td>
-                <td class="py-2 px-4 border-b"
-                  >Recorded as domain only, with any user-specific parameters
-                  removed</td
-                >
-                <td class="py-2 px-4 border-b">No personal data processed</td>
-              </tr>
-              <tr>
                 <td class="py-2 px-4 border-b">Country</td>
                 <td class="py-2 px-4 border-b"
                   >Derived from IP, then IP is discarded</td
@@ -185,8 +163,20 @@ import Footer from "../components/Footer.astro";
                 <td class="py-2 px-4 border-b">No personal data processed</td>
               </tr>
               <tr>
-                <td class="py-2 px-4 border-b">Screen Size</td>
-                <td class="py-2 px-4 border-b">Recorded as dimensions only</td>
+                <td class="py-2 px-4 border-b">Page Views</td>
+                <td class="py-2 px-4 border-b">Counted anonymously by URL</td>
+                <td class="py-2 px-4 border-b">No personal data processed</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b">Referrer Source</td>
+                <td class="py-2 px-4 border-b">Recorded as domain only</td>
+                <td class="py-2 px-4 border-b">No personal data processed</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b">Device Type</td>
+                <td class="py-2 px-4 border-b"
+                  >Categorized as mobile, tablet, or desktop</td
+                >
                 <td class="py-2 px-4 border-b">No personal data processed</td>
               </tr>
               <tr>
