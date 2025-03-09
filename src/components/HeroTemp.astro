@@ -1,37 +1,102 @@
----
-
----
-
-<section class="py-16 md:py-24">
+<section class="py-16 md:py-24 bg-white">
   <div class="container">
     <div class="lg:flex lg:items-center lg:gap-16">
-      <div class="lg:w-1/2 mb-10 lg:mb-0">
+      <div class="lg:w-1/2 mb-10 lg:mb-0 text-center lg:text-left">
         <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
-          Self-hosted, AI powered Web Analytics
+          Self-Hosted, AI-Powered Web Analytics
         </h1>
-        <p class="text-gray-600 mb-8 max-w-xl">
-          One time purchase, self-hosted, one click install, web analytics with
-          AI capabilities that scale to millions of pageviews.
+        <p class="text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0">
+          One-time purchase to <strong class="text-black"
+            >scale to Infinity</strong
+          > with no further payments as you grow.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4">
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+        >
           <a
-            href="#tally-open=wdv04D&tally-layout=modal&tally-width=400&tally-hide-title=1&tally-emoji-animation=wave"
-            class="btn-primary text-center"
+            href="#tally-open=wdv04D&tally-hide-title=1"
+            class="btn-primary inline-block px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
           >
-            Join the Waitlist Now
+            Apply to the Beta Program
           </a>
-          <a href="#features" class="btn-secondary text-center"> Learn More </a>
+          <a
+            href="#features"
+            class="btn-secondary inline-block px-6 py-3 bg-white border border-gray-300 text-black rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            Learn More
+          </a>
         </div>
       </div>
       <div class="lg:w-1/2">
-        <div class="card p-0 overflow-hidden shadow-sm">
-          <img
-            src="/dashboard-preview.png"
-            alt="Infinity Metrics Dashboard"
-            class="w-full h-auto"
-          />
+        <div class="card p-0 overflow-hidden shadow-sm rounded-lg">
+          <div class="relative w-full">
+            <div class="slideshow-container relative h-[500px]">
+              <div
+                class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out"
+              >
+                <img
+                  src="/dashboard-preview.png"
+                  alt="Infinity Metrics Dashboard"
+                  class="w-full h-full object-contain"
+                />
+              </div>
+              <div
+                class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out"
+              >
+                <img
+                  src="/ask-ai-preview.png"
+                  alt="Infinity Metrics Second View"
+                  class="w-full h-full object-contain"
+                />
+              </div>
+            </div>
+            <div class="flex justify-center gap-2 py-2">
+              <span
+                class="dot w-2 h-2 bg-gray-400 rounded-full cursor-pointer hover:bg-gray-600"
+                onclick="currentSlide(1)"></span>
+              <span
+                class="dot w-2 h-2 bg-gray-400 rounded-full cursor-pointer hover:bg-gray-600"
+                onclick="currentSlide(2)"></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  let slideIndex = 1;
+  showSlides(slideIndex);
+
+  function plusSlides(n) {
+    showSlides((slideIndex += n));
+  }
+
+  function currentSlide(n) {
+    showSlides((slideIndex = n));
+  }
+
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("slide");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {
+      slideIndex = 1;
+    }
+    if (n < 1) {
+      slideIndex = slides.length;
+    }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.opacity = "0";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].classList.remove("bg-gray-600");
+    }
+    slides[slideIndex - 1].style.opacity = "1";
+    dots[slideIndex - 1].classList.add("bg-gray-600");
+  }
+
+  // Auto-advance slideshow
+  setInterval(() => plusSlides(1), 5000);
+</script>

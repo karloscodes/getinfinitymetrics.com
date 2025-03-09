@@ -2,71 +2,75 @@
 const features = [
   {
     icon: "🚀",
-    title: "Self-hosted",
+    title: "Self-Hosted, One-Click Install",
     description:
-      "Keep your data under your control. Deploy on your own infrastructure with a single command. Automatic updates.",
-  },
-  {
-    icon: "🍪",
-    title: "Cookieless",
-    description:
-      "No cookies, no consent banners needed. GDPR compliant by default.",
-  },
-  {
-    icon: "🔒",
-    title: "Privacy-First",
-    description: "No personal information stored. Just the metrics you need.",
-  },
-  {
-    icon: "🌐",
-    title: "Multi-website",
-    description:
-      "Track multiple websites from a single installation. Separate or aggregate your data.",
+      "Deploy on your infrastructure with a single command. No database to manage, Infinity Metrics comes with its own embedded database.",
   },
   {
     icon: "🤖",
-    title: "Ask with AI",
+    title: "AI-Driven Insights",
     description:
-      "Query your analytics using natural language and get instant insights.",
+      "Ask anything about your data in natural language and get instant, actionable insights.",
+  },
+  {
+    icon: "💸",
+    title: "Pay Once, Scale Forever",
+    description:
+      "One-time payment for unlimited scaling. No recurring fees or volume-based price hikes.",
+  },
+  {
+    icon: "🔐",
+    title: "Own Your Data",
+    description:
+      "Your data, your rules. Explore, query, export, or use it anywhere, complete control is yours.",
+  },
+  {
+    icon: "🍪",
+    title: "Cookieless & Privacy-First",
+    description:
+      "No cookies, no consent banners. GDPR-compliant by default with no personal data stored.",
   },
   {
     icon: "⚡",
-    title: "Hosted on your domain",
-    description: "Zero impact of AdBlockers. Real signal from your users.",
+    title: "Hosted on Your Domain",
+    description:
+      "Bypass AdBlockers and get accurate user signals by hosting on your own domain.",
   },
 ];
 ---
 
-<section id="features" class="py-16 md:py-24 bg-gray-50">
+<section id="features" class="py-20 md:py-28 bg-gray-50">
   <div class="container">
-    <div class="max-w-3xl mx-auto mb-16">
-      <h2 class="text-3xl font-bold mb-4 text-center">Simple yet powerful</h2>
-      <p class="text-gray-600 text-center">
-        Everything you need to understand your audience without invading their
-        privacy
+    <div class="max-w-4xl mx-auto mb-20 text-center">
+      <h2 class="text-4xl font-bold mb-6">Powerful Features, Simplified</h2>
+      <p class="text-gray-600 text-lg">
+        Understand your audience with ease while keeping full control and
+        privacy.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         features.map((feature) => (
-          <div class="card hover:shadow-md transition-shadow">
-            <div class="flex items-center mb-4">
-              <div class="w-10 h-10 bg-black rounded-md flex items-center justify-center text-white text-xl mr-3">
+          <div class="card p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-center mb-5">
+              <div class="w-12 h-12 bg-black rounded-md flex items-center justify-center text-white text-2xl mr-4">
                 {feature.icon}
               </div>
               <h3 class="text-xl font-semibold">{feature.title}</h3>
             </div>
-            <p class="text-gray-600">{feature.description}</p>
+            <p class="text-gray-600 text-base">{feature.description}</p>
           </div>
         ))
       }
     </div>
-    <div class="mt-12 text-center">
+    <div class="mt-16 text-center">
       <a
-        href="#tally-open=wdv04D&tally-layout=modal&tally-width=400&tally-hide-title=1&tally-emoji-animation=wave"
-        class="btn-secondary inline-block">Join the Waitlist</a
+        href="#tally-open=wdv04D&tally-hide-title=1"
+        class="btn-secondary inline-block px-8 py-3 text-lg font-medium bg-white border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
       >
+        Apply to the Beta Program
+      </a>
     </div>
   </div>
 </section>

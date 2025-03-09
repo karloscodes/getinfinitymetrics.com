@@ -1,39 +1,44 @@
 ---
 const faqs = [
   {
+    question: "What's self-hosting like?",
+    answer:
+      "You own your data, fully. It's lightweight, runs on Docker with just 512MB RAM on any VPS. Plus, it supports multiple websites out of the box.",
+  },
+  {
+    question: "How easy is the setup?",
+    answer:
+      "One command, done. Installs in seconds via Docker, no fuss. Updates? They're automated, zero-downtime, and always backward-compatible.",
+  },
+  {
+    question: "Can I manage my data?",
+    answer:
+      "Totally. It's yours in a SQLite database, query it, export it, or plug it into your tools anytime.",
+  },
+  {
+    question: "What's the deal with AI support?",
+    answer:
+      "Ask AI anything about your analytics, anytime. It's built in, ready to help you dig deeper into your data.",
+  },
+  {
+    question: "How does pricing work?",
+    answer:
+      "One-time payment, lifetime access, no subscriptions. Not happy? We've got a 30-day money-back guarantee.",
+  },
+  {
+    question: "Do updates cost extra?",
+    answer:
+      "Updates within the same major version (1.0 to 1.1) are free. Regarding major version upgrades (1.x to 2.x), I'm still determining the pricing structure. Since this is a new product, I want to be honest that I haven't finalized how future major version upgrades will be handled yet. You'll always have the choice whether to upgrade to a new major version when the time comes.",
+  },
+  {
     question: "How does privacy-first tracking work?",
     answer:
       "Infinity Metrics ditches cookies for fingerprinting and session-based analytics, no personal data stored. You get accurate insights while keeping user privacy intact.",
   },
   {
-    question: "What’s self-hosting like?",
-    answer:
-      "You own your data, fully. It’s lightweight—runs on Docker with just 512MB RAM on any VPS. Plus, it supports multiple websites out of the box.",
-  },
-  {
-    question: "How easy is the setup?",
-    answer:
-      "One command, done. Installs in seconds via Docker, no fuss. Updates? They’re automated, zero-downtime, and always backward-compatible.",
-  },
-  {
     question: "Is it really GDPR compliant?",
     answer:
-      "Yes—100%. No cookies, no personal data, no consent banners needed. Just anonymous stats, privacy-first by design.",
-  },
-  {
-    question: "Can I manage my data?",
-    answer:
-      "Totally. It’s yours in a SQLite database, query it, export it, or plug it into your tools anytime.",
-  },
-  {
-    question: "What’s the deal with AI support?",
-    answer:
-      "Ask AI anything about your analytics, anytime. It’s built in, ready to help you dig deeper into your data.",
-  },
-  {
-    question: "How does pricing work?",
-    answer:
-      "One-time payment, lifetime access, no subscriptions. Not happy? We’ve got a 30-day money-back guarantee.",
+      "Yes —100%. No cookies, no personal data, no consent banners needed. Just anonymous stats, privacy-first by design.",
   },
 ];
 ---
@@ -51,7 +56,7 @@ const faqs = [
         {
           faqs.map((faq, index) => (
             <div class="faq-item card">
-              <button class="w-full flex justify-between items-center text-left font-medium">
+              <button class="w-full flex justify-between items-center text-left font-bold">
                 <span>{faq.question}</span>
                 <svg
                   class="faq-icon h-5 w-5 transform transition-transform"
