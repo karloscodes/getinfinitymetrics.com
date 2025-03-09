@@ -10,5 +10,5 @@ export default defineConfig({
     react(),
     sitemap(),
   ],
-  site: 'https://getfusionanalytics.com'
+  site: 'https://getinfinitymetrics.com'
 });
