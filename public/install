@@ -1,29 +1,38 @@
 #!/bin/bash
 
-# Script to install infinity-metrics-installer
-# Run as: curl -fsSL https://getinfinitymetrics.com/install | bash
-
-set -e
+# Script to install infinity-metrics-installer from GitHub releases
+# Run as: sudo bash <(curl -fsSL https://getinfinitymetrics.com/install)
 
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
-# Create a temporary script that will be executed directly
-TMP_SCRIPT=$(mktemp)
-cat > "$TMP_SCRIPT" << 'EOF'
-#!/bin/bash
+# Check if running in a non-interactive context (no TTY)
+if ! tty >/dev/null 2>&1; then
+    echo "No TTY detected, attempting to re-execute in an interactive context..."
+    TMP_SCRIPT=$(mktemp)
+    curl -fsSL "https://getinfinitymetrics.com/install" -o "$TMP_SCRIPT" || {
+        echo -e "${RED}Error: Failed to download installation script.${NC}"
+        rm -f "$TMP_SCRIPT"
+        exit 1
+    }
+    chmod +x "$TMP_SCRIPT"
+    echo "Starting installation..."
+    sudo bash "$TMP_SCRIPT"
+    rm -f "$TMP_SCRIPT"
+    exit 0
+fi
+
+# Running interactively, proceed with installation
+set -e
 
 # Verify running as root
 if [ "$(id -u)" -ne 0 ]; then
-    echo -e "${RED}Error: This script requires root privileges.${NC}"
-    echo "Running with sudo..."
-    exec sudo "$0" "$@"
+    echo -e "${RED}Error: This script requires root privileges. Use 'sudo bash' to execute it.${NC}"
     exit 1
 fi
 
-# Rest of your installation logic
 # Detect architecture
 ARCH=$(uname -m)
 case "$ARCH" in
@@ -47,11 +56,11 @@ TEMP_FILE="/tmp/infinity-metrics-$ARCH"
 # GitHub repository info
 GITHUB_REPO="karloscodes/infinity-metrics-installer"
 
-# Install jq if not present
+# Install jq if not present (Ubuntu-specific, quietly, without updating)
 if ! command -v jq >/dev/null 2>&1; then
     echo "Installing jq for JSON parsing..."
     apt-get install -y -qq jq || {
-        echo -e "${RED}Error: Failed to install jq.${NC}"
+        echo -e "${RED}Error: Failed to install jq. This script requires jq to parse GitHub API responses.${NC}"
         exit 1
     }
 fi
@@ -60,28 +69,31 @@ fi
 echo "Fetching latest release information..."
 RELEASE_INFO=$(curl -fsSL "https://api.github.com/repos/$GITHUB_REPO/releases/latest")
 
-# Error handling
+# Check for rate limit or other API errors
 if echo "$RELEASE_INFO" | grep -q "API rate limit exceeded"; then
-    echo -e "${RED}Error: GitHub API rate limit exceeded.${NC}"
+    echo -e "${RED}Error: GitHub API rate limit exceeded. Please try again later or use a GitHub token for authentication.${NC}"
+    echo "See https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting for more info."
     exit 1
 fi
 
 if echo "$RELEASE_INFO" | grep -q "Not Found"; then
-    echo -e "${RED}Error: No releases found in $GITHUB_REPO.${NC}"
+    echo -e "${RED}Error: No releases found in $GITHUB_REPO. Please check the repository for releases.${NC}"
     exit 1
 fi
 
-# Extract the latest version
+# Extract the latest version using jq
 LATEST_VERSION=$(echo "$RELEASE_INFO" | jq -r '.tag_name' | sed 's/^v//')
 
 if [ -z "$LATEST_VERSION" ]; then
-    echo -e "${RED}Error: Could not determine latest version.${NC}"
+    echo -e "${RED}Error: Could not determine latest version. API response may be malformed.${NC}"
+    echo "Raw API response (first 500 chars):"
+    echo "${RELEASE_INFO:0:500}"
     exit 1
 fi
 
 echo "Latest version: $LATEST_VERSION"
 
-# Find the correct asset
+# Look for the correct asset name
 echo "Finding asset for architecture ($ARCH)..."
 ASSET_NAMES=$(echo "$RELEASE_INFO" | jq -r '.assets[].name')
 ASSET_NAME=""
@@ -95,6 +107,8 @@ done
 
 if [ -z "$ASSET_NAME" ]; then
     echo -e "${RED}Error: No binary found for $ARCH in release v$LATEST_VERSION.${NC}"
+    echo "Available assets:"
+    echo "$ASSET_NAMES"
     exit 1
 fi
 
@@ -117,8 +131,8 @@ if [ ! -s "$TEMP_FILE" ]; then
     exit 1
 fi
 
-# Check file type
-FILE_TYPE=$(file "$TEMP_FILE")
+# Check file type (simplify output)
+FILE_TYPE=$(file -b "$TEMP_FILE" | cut -d',' -f1-2)
 echo "Verifying file: $FILE_TYPE"
 if ! echo "$FILE_TYPE" | grep -q "ELF"; then
     echo -e "${RED}Error: Downloaded file is not a valid binary.${NC}"
@@ -134,25 +148,8 @@ mv "$TEMP_FILE" "$BINARY_PATH" && chmod +x "$BINARY_PATH" || {
     exit 1
 }
 
-# Run the installer with interactive terminal
+# Run the installer interactively
 echo -e "${GREEN}Running Infinity Metrics installer...${NC}"
 "$BINARY_PATH" install
 
 echo -e "${GREEN}Installation complete!${NC}"
-EOF
-
-# Make the temporary script executable
-chmod +x "$TMP_SCRIPT"
-
-# Inform the user what's happening
-echo -e "${GREEN}Infinity Metrics Installer${NC}"
-echo "Setting up installation script..."
-echo "This will download and run the interactive installer."
-echo ""
-
-# Execute the temporary script in a new terminal session
-echo "Starting installation..."
-exec "$TMP_SCRIPT"
-
-# Clean up (this won't execute due to exec above, but included for clarity)
-rm -f "$TMP_SCRIPT"
