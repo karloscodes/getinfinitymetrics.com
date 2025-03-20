@@ -133,4 +133,4 @@ mv "$TEMP_FILE" "$BINARY_PATH" && chmod +x "$BINARY_PATH" || {
 
 # Run the installer
 echo "Running installation..."
-exec "$BINARY_PATH" install
+exec script -q -c "sudo $BINARY_PATH install" /dev/null
