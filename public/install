@@ -42,10 +42,25 @@ GITHUB_REPO="karloscodes/infinity-metrics-installer"
 # Fetch the latest release information
 echo "Fetching latest release information..."
 RELEASE_INFO=$(curl -sL "https://api.github.com/repos/$GITHUB_REPO/releases/latest")
-LATEST_VERSION=$(echo "$RELEASE_INFO" | grep -o '"tag_name":"[^"]*' | cut -d'"' -f4 | sed 's/^v//')
 
+# Check for rate limit or other API errors
+if echo "$RELEASE_INFO" | grep -q "API rate limit exceeded"; then
+    echo -e "${RED}Error: GitHub API rate limit exceeded. Please try again later or use a GitHub token for authentication.${NC}"
+    echo "See https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting for more info."
+    exit 1
+fi
+
+if echo "$RELEASE_INFO" | grep -q "Not Found"; then
+    echo -e "${RED}Error: No releases found in $GITHUB_REPO. Please check the repository for releases.${NC}"
+    exit 1
+fi
+
+# Extract the latest version
+LATEST_VERSION=$(echo "$RELEASE_INFO" | grep -o '"tag_name":"[^"]*' | cut -d'"' -f4 | sed 's/^v//')
 if [ -z "$LATEST_VERSION" ]; then
-    echo -e "${RED}Error: Could not determine latest version. No releases found in $GITHUB_REPO.${NC}"
+    echo -e "${RED}Error: Could not determine latest version. API response may be malformed.${NC}"
+    echo "Raw API response (first 500 chars):"
+    echo "${RELEASE_INFO:0:500}"
     exit 1
 fi
 
@@ -57,7 +72,7 @@ ASSET_NAMES=$(echo "$RELEASE_INFO" | grep -o '"name":"[^"]*"' | cut -d'"' -f4)
 ASSET_NAME=""
 
 for name in $ASSET_NAMES; do
-    if echo "$name" | grep -qi "infinity-metrics.*$ARCH"; then  # Match 'infinity-metrics.*arm64' or 'infinity-metrics.*amd64'
+    if echo "$name" | grep -qi "infinity-metrics.*$ARCH"; then
         ASSET_NAME="$name"
         break
     fi
