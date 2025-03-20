@@ -39,9 +39,18 @@ TEMP_FILE="/tmp/infinity-metrics-$ARCH"
 # GitHub repository info
 GITHUB_REPO="karloscodes/infinity-metrics-installer"
 
+# Install jq if not present (Ubuntu-specific)
+if ! command -v jq >/dev/null 2>&1; then
+    echo "Installing jq for JSON parsing..."
+    apt-get update && apt-get install -y jq || {
+        echo -e "${RED}Error: Failed to install jq. This script requires jq to parse GitHub API responses.${NC}"
+        exit 1
+    }
+fi
+
 # Fetch the latest release information
 echo "Fetching latest release information..."
-RELEASE_INFO=$(curl -sL "https://api.github.com/repos/$GITHUB_REPO/releases/latest")
+RELEASE_INFO=$(curl -fsSL "https://api.github.com/repos/$GITHUB_REPO/releases/latest")
 
 # Check for rate limit or other API errors
 if echo "$RELEASE_INFO" | grep -q "API rate limit exceeded"; then
@@ -55,12 +64,8 @@ if echo "$RELEASE_INFO" | grep -q "Not Found"; then
     exit 1
 fi
 
-# Extract the latest version with debugging
-echo "Parsing tag_name from API response..."
-TAG_NAME=$(echo "$RELEASE_INFO" | grep -o '"tag_name":"[^"]*' | cut -d'"' -f4)
-echo "Extracted tag_name: $TAG_NAME"
-LATEST_VERSION=$(echo "$TAG_NAME" | sed 's/^v//')
-echo "Parsed version: $LATEST_VERSION"
+# Extract the latest version using jq
+LATEST_VERSION=$(echo "$RELEASE_INFO" | jq -r '.tag_name' | sed 's/^v//')
 
 if [ -z "$LATEST_VERSION" ]; then
     echo -e "${RED}Error: Could not determine latest version. API response may be malformed.${NC}"
@@ -73,7 +78,7 @@ echo "Latest version: $LATEST_VERSION"
 
 # Look for the correct asset name
 echo "Finding asset for architecture ($ARCH)..."
-ASSET_NAMES=$(echo "$RELEASE_INFO" | grep -o '"name":"[^"]*"' | cut -d'"' -f4)
+ASSET_NAMES=$(echo "$RELEASE_INFO" | jq -r '.assets[].name')
 ASSET_NAME=""
 
 for name in $ASSET_NAMES; do
