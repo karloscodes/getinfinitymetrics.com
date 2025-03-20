@@ -1,35 +1,16 @@
 #!/bin/bash
 
 # Script to install infinity-metrics-installer from GitHub releases
-# Run as: sudo bash <(curl -fsSL https://getinfinitymetrics.com/install)
+# Run as: curl -fsSL https://getinfinitymetrics.com/install -o infinity-install.sh && chmod +x infinity-install.sh && sudo ./infinity-install.sh
 
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
-# Check if running in a non-interactive context (no TTY)
-if ! tty >/dev/null 2>&1; then
-    echo "No TTY detected, attempting to re-execute in an interactive context..."
-    TMP_SCRIPT=$(mktemp)
-    curl -fsSL "https://getinfinitymetrics.com/install" -o "$TMP_SCRIPT" || {
-        echo -e "${RED}Error: Failed to download installation script.${NC}"
-        rm -f "$TMP_SCRIPT"
-        exit 1
-    }
-    chmod +x "$TMP_SCRIPT"
-    echo "Starting installation..."
-    sudo bash "$TMP_SCRIPT"
-    rm -f "$TMP_SCRIPT"
-    exit 0
-fi
-
-# Running interactively, proceed with installation
-set -e
-
 # Verify running as root
 if [ "$(id -u)" -ne 0 ]; then
-    echo -e "${RED}Error: This script requires root privileges. Use 'sudo bash' to execute it.${NC}"
+    echo -e "${RED}Error: This script requires root privileges. Use 'sudo' to execute it.${NC}"
     exit 1
 fi
 
@@ -153,3 +134,7 @@ echo -e "${GREEN}Running Infinity Metrics installer...${NC}"
 "$BINARY_PATH" install
 
 echo -e "${GREEN}Installation complete!${NC}"
+
+# Optional: Clean up the script file
+echo "Cleaning up..."
+rm -f "$0"
