@@ -133,4 +133,4 @@ mv "$TEMP_FILE" "$BINARY_PATH" && chmod +x "$BINARY_PATH" || {
 
 # Run the installer
 echo "Running installation..."
-exec sudo -i "$BINARY_PATH" install
+setsid sudo "$BINARY_PATH" install
