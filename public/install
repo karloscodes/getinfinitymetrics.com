@@ -39,10 +39,10 @@ TEMP_FILE="/tmp/infinity-metrics-$ARCH"
 # GitHub repository info
 GITHUB_REPO="karloscodes/infinity-metrics-installer"
 
-# Install jq if not present (Ubuntu-specific)
+# Install jq if not present (Ubuntu-specific, quietly, without updating)
 if ! command -v jq >/dev/null 2>&1; then
     echo "Installing jq for JSON parsing..."
-    apt-get update && apt-get install -y jq || {
+    apt-get install -y -qq jq || {
         echo -e "${RED}Error: Failed to install jq. This script requires jq to parse GitHub API responses.${NC}"
         exit 1
     }
@@ -133,4 +133,4 @@ mv "$TEMP_FILE" "$BINARY_PATH" && chmod +x "$BINARY_PATH" || {
 
 # Run the installer
 echo "Running installation..."
-"$BINARY_PATH" install
+exec "$BINARY_PATH" install
