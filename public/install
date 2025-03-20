@@ -1,12 +1,28 @@
 #!/bin/bash
 
-# Ensure the script runs with root privileges
-if [ "$(id -u)" -ne 0 ]; then
-    echo "Escalating privileges..."
-    exec sudo bash "$0" "$@"
-fi
+# Script to install infinity-metrics-installer from GitHub releases
+# Designed to be run as: curl -fsSL https://getinfinitymetrics.com/install | sudo bash
 
 set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+# Check for required tools
+for cmd in curl file; do
+    if ! command -v "$cmd" &> /dev/null; then
+        echo -e "${RED}Error: $cmd is required but not installed.${NC}"
+        exit 1
+    fi
+done
+
+# Verify running as root
+if [ "$(id -u)" -ne 0 ]; then
+    echo -e "${RED}Error: This script must be run as root. Use 'curl -fsSL https://getinfinitymetrics.com/install | sudo bash'${NC}"
+    exit 1
+fi
 
 # Detect architecture
 ARCH=$(uname -m)
@@ -14,24 +30,27 @@ case "$ARCH" in
     x86_64)
         ARCH="amd64"
         ;;
-    aarch64)
+    aarch64|arm64)
         ARCH="arm64"
         ;;
     *)
-        echo "Unsupported architecture: $ARCH. Only amd64 and arm64 are supported."
+        echo -e "${RED}Unsupported architecture: $ARCH. Only amd64 and arm64 are supported.${NC}"
         exit 1
         ;;
 esac
 
-# Define installation directory
-INSTALL_DIR="/opt/infinity-metrics"
+# Define installation directory (in PATH)
+INSTALL_DIR="/usr/local/bin"
+BINARY_PATH="$INSTALL_DIR/infinity-metrics"
+TEMP_FILE="/tmp/infinity-metrics-$ARCH"
 
 # GitHub repository info
 GITHUB_REPO="karloscodes/infinity-metrics-installer"
 
-# Fetch the latest release version
+# Fetch the latest release information
 echo "Fetching latest release information..."
-LATEST_VERSION=$(curl -s "https://api.github.com/repos/$GITHUB_REPO/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+RELEASE_INFO=$(curl -sL "https://api.github.com/repos/$GITHUB_REPO/releases/latest")
+LATEST_VERSION=$(echo "$RELEASE_INFO" | grep -o '"tag_name":"[^"]*' | cut -d'"' -f4 | sed 's/^v//')
 
 if [ -z "$LATEST_VERSION" ]; then
     echo "Could not determine latest version. Using default v1.0.0."
@@ -40,19 +59,98 @@ fi
 
 echo "Latest version: $LATEST_VERSION"
 
+# Look for the correct asset name (assuming names like 'infinity-metrics-vX.Y.Z-linux-amd64')
+echo "Finding the appropriate asset for your architecture ($ARCH)..."
+ASSET_NAMES=$(echo "$RELEASE_INFO" | grep -o '"name":"[^"]*"' | cut -d'"' -f4)
+ASSET_NAME=""
+
+for name in $ASSET_NAMES; do
+    if echo "$name" | grep -qi "linux.*$ARCH"; then  # Case-insensitive, flexible match
+        ASSET_NAME="$name"
+        break
+    fi
+done
+
+if [ -z "$ASSET_NAME" ]; then
+    echo -e "${RED}Error: Could not find a binary for your architecture ($ARCH) in the latest release.${NC}"
+    echo "Available assets:"
+    echo "$ASSET_NAMES"
+    exit 1
+fi
+
 # Construct the download URL for the binary
-BINARY_URL="https://github.com/$GITHUB_REPO/releases/download/v$LATEST_VERSION/infinity-metrics-v$LATEST_VERSION-$ARCH"
+BINARY_URL="https://github.com/$GITHUB_REPO/releases/download/v$LATEST_VERSION/$ASSET_NAME"
+echo "Download URL: $BINARY_URL"
 
-# Create installation directory
-mkdir -p "$INSTALL_DIR"
+# Check for existing installation
+if [ -f "$BINARY_PATH" ]; then
+    echo "Existing installation found at $BINARY_PATH. Backing up..."
+    cp "$BINARY_PATH" "${BINARY_PATH}.bak" || {
+        echo -e "${RED}Error: Failed to create backup.${NC}"
+        exit 1
+    }
+fi
 
-# Download the binary
+# Create temp directory if it doesn't exist
+mkdir -p "$(dirname "$TEMP_FILE")" || {
+    echo -e "${RED}Error: Failed to create temp directory.${NC}"
+    exit 1
+}
+
+# Download the binary with progress bar
 echo "Downloading Infinity Metrics v$LATEST_VERSION for $ARCH..."
-curl -sSL -o "$INSTALL_DIR/infinity-metrics" "$BINARY_URL"
-chmod +x "$INSTALL_DIR/infinity-metrics"
+if ! curl -L --fail --progress-bar -o "$TEMP_FILE" "$BINARY_URL"; then
+    echo -e "${RED}Error: Failed to download binary. Check your internet connection.${NC}"
+    if [ -f "${BINARY_PATH}.bak" ]; then
+        echo "Restoring previous version..."
+        mv "${BINARY_PATH}.bak" "$BINARY_PATH" || echo -e "${RED}Warning: Failed to restore backup.${NC}"
+    fi
+    rm -f "$TEMP_FILE"
+    exit 1
+fi
 
-# Run the install command
+# Verify the download
+if [ ! -s "$TEMP_FILE" ]; then
+    echo -e "${RED}Error: Downloaded file is empty.${NC}"
+    if [ -f "${BINARY_PATH}.bak" ]; then
+        echo "Restoring previous version..."
+        mv "${BINARY_PATH}.bak" "$BINARY_PATH" || echo -e "${RED}Warning: Failed to restore backup.${NC}"
+    fi
+    rm -f "$TEMP_FILE"
+    exit 1
+fi
+
+# Check file type
+FILE_TYPE=$(file "$TEMP_FILE")
+echo "Verifying downloaded file: $FILE_TYPE"
+
+if echo "$FILE_TYPE" | grep -q "ELF"; then
+    # It's a binary, install it
+    echo "Valid binary verified. Installing to $BINARY_PATH..."
+    mv "$TEMP_FILE" "$BINARY_PATH" && chmod +x "$BINARY_PATH" || {
+        echo -e "${RED}Error: Failed to install binary.${NC}"
+        if [ -f "${BINARY_PATH}.bak" ]; then
+            echo "Restoring previous version..."
+            mv "${BINARY_PATH}.bak" "$BINARY_PATH" || echo -e "${RED}Warning: Failed to restore backup.${NC}"
+        fi
+        rm -f "$TEMP_FILE"
+        exit 1
+    }
+else
+    echo -e "${RED}Error: Downloaded file is not a valid binary.${NC}"
+    echo "File content (first 10 lines):"
+    head -10 "$TEMP_FILE"
+    if [ -f "${BINARY_PATH}.bak" ]; then
+        echo "Restoring previous version..."
+        mv "${BINARY_PATH}.bak" "$BINARY_PATH" || echo -e "${RED}Warning: Failed to restore backup.${NC}"
+    fi
+    rm -f "$TEMP_FILE"
+    exit 1
+fi
+
+# Clean up backup
+rm -f "${BINARY_PATH}.bak"
+
+# Run the install command with default inputs
 echo "Running installation..."
-"$INSTALL_DIR/infinity-metrics" install
-
-echo "Installation complete! You can now update with: sudo $INSTALL_DIR/infinity-metrics update"
+"$BINARY_PATH" install
