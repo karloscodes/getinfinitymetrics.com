@@ -28,10 +28,13 @@ const {
 			rel="stylesheet"
 		/>
 		<script async src="https://tally.so/widgets/embed.js"></script>
+		<script src="https://t.getinfinitymetrics.com/x/api/v1/sdk.js"></script>
 	</head>
 	<body>
 		<slot />
 		<script>
+			InfinityMetrics.sendPageView();
+
 			// Simple JavaScript for mobile menu toggle
 			document.addEventListener("DOMContentLoaded", () => {
 				const mobileMenuButton = document.getElementById("mobile-menu-button");
