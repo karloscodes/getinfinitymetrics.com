@@ -10,13 +10,18 @@ import HeroTemp from "../components/HeroTemp.astro";
 import CTATemp from "../components/CTATemp.astro";
 ---
 
-<Layout title="Infinity Metrics - Self-Hosted, AI-Powered Web Analytics">
+<Layout 
+	title="Infinity Metrics - Privacy-First Self-Hosted Web Analytics Platform" 
+	description="Deploy your own privacy-focused web analytics with Infinity Metrics. Self-hosted, AI-powered insights with zero compromises on data ownership and GDPR compliance."
+>
 	<Header />
-	<HeroTemp />
-	<Features />
-	<HowItWorks />
-	<PricingTemp />
-	<FAQ />
-	<CTATemp />
+	<main>
+		<HeroTemp />
+		<Features />
+		<HowItWorks />
+		<PricingTemp />
+		<FAQ />
+		<CTATemp />
+	</main>
 	<Footer />
 </Layout>

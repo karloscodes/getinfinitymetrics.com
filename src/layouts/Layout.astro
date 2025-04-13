@@ -4,11 +4,15 @@ import "../styles/global.css";
 interface Props {
 	title: string;
 	description?: string;
+	image?: string;
+	canonical?: string;
 }
 
 const {
 	title,
 	description = "Self-hosted, ai-powered web analytics with zero compromises on privacy. Own your data, protect your users.",
+	image = "/images/social-share.png",
+	canonical = Astro.url.href,
 } = Astro.props;
 ---
 
@@ -17,19 +21,56 @@ const {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
+		
+		<!-- Primary Meta Tags -->
 		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url.href} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.url)} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url.href} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(image, Astro.url)} />
+		
+		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
+		
+		<!-- Structured Data -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "SoftwareApplication",
+				"name": "Infinity Metrics",
+				"description": "Self-hosted, AI-powered web analytics with zero compromises on privacy",
+				"applicationCategory": "WebApplication",
+				"operatingSystem": "All",
+				"offers": {
+					"@type": "Offer",
+					"price": "0",
+					"priceCurrency": "USD"
+				}
+			}
+		</script>
+		
 		<script async src="https://tally.so/widgets/embed.js"></script>
-		<script defer src="https://t.getinfinitymetrics.com/y/api/v1/sdk.js"
-		></script>
+		<script defer src="https://t.getinfinitymetrics.com/y/api/v1/sdk.js"></script>
 	</head>
 	<body>
 		<slot />

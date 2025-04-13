@@ -56,24 +56,31 @@ const faqs = [
         {
           faqs.map((faq, index) => (
             <div class="faq-item card">
-              <button class="w-full flex justify-between items-center text-left font-bold">
-                <span>{faq.question}</span>
-                <svg
-                  class="faq-icon h-5 w-5 transform transition-transform"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+              <h3>
+                <button 
+                  class="w-full flex justify-between items-center text-left font-bold" 
+                  aria-expanded="false"
+                  aria-controls={`faq-content-${index}`}
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
+                  <span>{faq.question}</span>
+                  <svg
+                    class="faq-icon h-5 w-5 transform transition-transform"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+              </h3>
 
-              <div class="faq-content mt-4 text-gray-600 hidden">
+              <div id={`faq-content-${index}`} class="faq-content mt-4 text-gray-600 hidden">
                 <p>{faq.answer}</p>
               </div>
             </div>
@@ -83,3 +90,109 @@ const faqs = [
     </div>
   </div>
 </section>
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What's self-hosting like?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You own your data, fully. It's lightweight, runs on Docker with just 512MB RAM on any VPS. Plus, it supports multiple websites out of the box."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How easy is the setup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "One command, done. Installs in seconds via Docker, no fuss. Updates? They're automated, zero-downtime, and always backward-compatible."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I manage my data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Totally. It's yours in a SQLite database, query it, export it, or plug it into your tools anytime."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the deal with AI support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ask AI anything about your analytics, anytime. It's built in, ready to help you dig deeper into your data."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does pricing work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "One-time payment, lifetime access, no subscriptions. Not happy? We've got a 30-day money-back guarantee."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do updates cost extra?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Updates within the same major version (1.0 to 1.1) are free. Regarding major version upgrades (1.x to 2.x), I'm still determining the pricing structure. Since this is a new product, I want to be honest that I haven't finalized how future major version upgrades will be handled yet. You'll always have the choice whether to upgrade to a new major version when the time comes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does privacy-first tracking work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Infinity Metrics ditches cookies for fingerprinting and session-based analytics, no personal data stored. You get accurate insights while keeping user privacy intact."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it really GDPR compliant?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes —100%. No cookies, no personal data, no consent banners needed. Just anonymous stats, privacy-first by design."
+        }
+      }
+    ]
+  }
+</script>
+
+<script>
+  // Update the FAQ toggle script to handle aria attributes
+  document.addEventListener("DOMContentLoaded", () => {
+    const faqButtons = document.querySelectorAll('.faq-item button');
+    
+    faqButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        const contentId = button.getAttribute('aria-controls');
+        const content = document.getElementById(contentId);
+        
+        // Close all FAQs
+        document.querySelectorAll('.faq-item button').forEach(btn => {
+          btn.setAttribute('aria-expanded', 'false');
+        });
+        document.querySelectorAll('.faq-content').forEach(el => {
+          el.classList.add('hidden');
+        });
+        document.querySelectorAll('.faq-icon').forEach(el => {
+          el.classList.remove('rotate-180');
+        });
+        
+        // Toggle current one
+        if (!expanded) {
+          button.setAttribute('aria-expanded', 'true');
+          content.classList.remove('hidden');
+          button.querySelector('.faq-icon').classList.add('rotate-180');
+        }
+      });
+    });
+  });
+</script>
