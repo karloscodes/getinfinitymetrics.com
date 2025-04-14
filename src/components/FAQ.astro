@@ -215,28 +215,28 @@ const faqs = [
     // Event Delegation for Accordion toggle
     const faqContainer = document.getElementById('faq-container');
     if (faqContainer) {
-      console.log('FAQ container found, attaching listener.'); // Log 1
+      // console.log('FAQ container found, attaching listener.'); // Log 1 - REMOVED
       faqContainer.addEventListener('click', (event) => {
-        console.log('Click detected inside FAQ container.'); // Log 2
+        // console.log('Click detected inside FAQ container.'); // Log 2 - REMOVED
         // Find the button that was clicked (or check if the click was inside a button)
         const button = event.target.closest('[data-faq-toggle]');
         
         if (!button) {
-          console.log('Click was not on a toggle button.'); // Log 3
+          // console.log('Click was not on a toggle button.'); // Log 3 - REMOVED
           return; 
         }
-        console.log('Toggle button clicked:', button); // Log 4
+        // console.log('Toggle button clicked:', button); // Log 4 - REMOVED
 
         const contentId = button.getAttribute('aria-controls');
-        console.log('Target content ID:', contentId); // Log 5
+        // console.log('Target content ID:', contentId); // Log 5 - REMOVED
         if (!contentId) return;
         const content = document.getElementById(contentId);
-        console.log('Target content element:', content); // Log 6
+        // console.log('Target content element:', content); // Log 6 - REMOVED
         if (!content) return;
         const isExpanded = button.getAttribute('aria-expanded') === 'true';
         const currentIcon = button.querySelector('.faq-icon');
 
-        console.log(`Toggling item ${contentId}. Currently expanded: ${isExpanded}`); // Log 7
+        // console.log(`Toggling item ${contentId}. Currently expanded: ${isExpanded}`); // Log 7 - REMOVED
         // Toggle current FAQ
         button.setAttribute('aria-expanded', String(!isExpanded));
         if (currentIcon) {
@@ -244,10 +244,10 @@ const faqs = [
         }
         content.classList.remove('hidden'); // Explicitly remove hidden
         content.classList.toggle('open');
-        console.log(`Item ${contentId} toggled. New expanded state: ${!isExpanded}. Hidden class removed.`); // Log 8 updated
+        // console.log(`Item ${contentId} toggled. New expanded state: ${!isExpanded}. Hidden class removed.`); // Log 8 updated - REMOVED
       });
     } else {
-      console.error('FAQ container #faq-container not found!'); // Log Error
+      console.error('FAQ container #faq-container not found!'); // Log Error - REMOVED
     }
   });
 </script>
