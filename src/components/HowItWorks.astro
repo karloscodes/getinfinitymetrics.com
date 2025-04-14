@@ -1,33 +1,44 @@
-<section id="how-it-works" class="py-16 md:py-24">
+<section id="how-it-works" class="py-20 md:py-32 hero-gradient">
   <div class="container">
     <div class="max-w-3xl mx-auto mb-16">
       <div class="flex justify-center items-start">
-        <h2 class="text-3xl font-bold">Simple Setup In Minutes</h2>
+        <span class="inline-block px-3 py-1 bg-black bg-opacity-5 rounded-full text-sm font-medium mb-4">
+          Installation
+        </span>
       </div>
-      <p class="text-gray-600 text-center mt-4">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700">Simple Setup In Minutes</h2>
+      <p class="text-gray-600 text-center mt-4 text-lg max-w-2xl mx-auto">
         Get your privacy-focused analytics running in seconds, not hours.
       </p>
     </div>
 
     <div class="max-w-3xl mx-auto">
-      <div class="terminal mb-12" aria-label="Installation command example">
-        <span class="text-gray-400">$</span> curl -fsSL https://getinfinitymetrics.com/install
-        -o install.sh && sudo bash install.sh
-        <br /><br />
-        <span class="text-green-400">✓</span> Infinity Metrics server is running
-        at https://your-domain.com
+      <div class="terminal mb-16 shadow-lg rounded-xl overflow-hidden transform hover:scale-101 transition-all duration-300" aria-label="Installation command example">
+        <div class="flex items-center gap-2 p-3 bg-gray-900 border-b border-gray-700">
+          <span class="w-3 h-3 rounded-full bg-red-500"></span>
+          <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+          <span class="w-3 h-3 rounded-full bg-green-500"></span>
+          <span class="text-gray-400 text-xs ml-2">Terminal</span>
+        </div>
+        <div class="p-6 pb-10 leading-loose">
+          <span class="text-gray-400 inline-block mb-1">$</span> curl -fsSL https://getinfinitymetrics.com/install
+          -o install.sh && sudo bash install.sh
+          <br /><br />
+          <span class="text-green-400">✓</span> Infinity Metrics server is running
+          at https://your-domain.com/y
+        </div>
       </div>
 
       <div class="grid gap-8">
-        <article class="card flex gap-4 items-start">
+        <article class="card flex gap-6 items-start p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
           <div
-            class="w-10 h-10 rounded-md bg-black text-white flex items-center justify-center font-semibold flex-shrink-0"
+            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md"
             aria-hidden="true"
           >
             1
           </div>
-          <div>
-            <h3 class="text-xl font-semibold mb-2">
+          <div class="leading-relaxed">
+            <h3 class="text-xl font-semibold mb-3">
               Install with a single command
             </h3>
             <p class="text-gray-600">
@@ -36,33 +47,35 @@
           </div>
         </article>
 
-        <article class="card flex gap-4 items-start">
+        <article class="card flex gap-6 items-start p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
           <div
-            class="w-10 h-10 rounded-md bg-black text-white flex items-center justify-center font-semibold flex-shrink-0"
+            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md"
             aria-hidden="true"
           >
             2
           </div>
-          <div>
-            <h3 class="text-xl font-semibold mb-2">Add the tracking script</h3>
-            <p class="text-gray-600">
-              Copy our lightweight tracking script to your website for instant data collection.<br>
-              <code>&lt;script defer src="https://your-domain.com/y/api/v1/sdk.js"&gt;&lt;/script&gt;</code>
+          <div class="leading-relaxed">
+            <h3 class="text-xl font-semibold mb-3">Add the tracking script</h3>
+            <p class="text-gray-600 mb-4">
+              Copy our lightweight tracking script to your website for instant data collection.
             </p>
+            <div class="bg-gray-100 p-3 rounded-md font-mono text-sm overflow-x-auto">
+              <code>&lt;script defer src="https://your-domain.com/y/api/v1/sdk.js"&gt;&lt;/script&gt;</code>
+            </div>
           </div>
         </article>
 
-        <article class="card flex gap-4 items-start">
+        <article class="card flex gap-6 items-start p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
           <div
-            class="w-10 h-10 rounded-md bg-black text-white flex items-center justify-center font-semibold flex-shrink-0"
+            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md"
             aria-hidden="true"
           >
             3
           </div>
-          <div>
-            <h3 class="text-xl font-semibold mb-2">Start capturing insights</h3>
+          <div class="leading-relaxed">
+            <h3 class="text-xl font-semibold mb-3">Start capturing insights</h3>
             <p class="text-gray-600">
-              All set! Access your privacy-focused analytics dashboard at https://your-domain.com
+              All set! Access your privacy-focused analytics dashboard at https://your-domain.com/y
             </p>
           </div>
         </article>
@@ -70,3 +83,30 @@
     </div>
   </div>
 </section>
+
+<style>
+  /* Fix line height issues for terminal text */
+  .terminal {
+    line-height: 1.8;
+  }
+  
+  .terminal div {
+    overflow: visible;
+  }
+  
+  article .leading-relaxed {
+    line-height: 1.7;
+  }
+</style>
+
+<script>
+  // Initialize animation on scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const steps = document.querySelectorAll('#how-it-works article');
+    steps.forEach((step, index) => {
+      setTimeout(() => {
+        step.classList.add('slide-in');
+      }, 300 + index * 150);
+    });
+  });
+</script>
