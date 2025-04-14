@@ -8,12 +8,12 @@ import Footer from "../components/Footer.astro";
 import PricingTemp from "../components/PricingTemp.astro";
 import HeroTemp from "../components/HeroTemp.astro";
 import CTATemp from "../components/CTATemp.astro";
+
+const pageTitle = "Infinity Metrics | Self-Hosted, AI-Powered Web Analytics";
+const pageDescription = "Get powerful AI-driven web analytics you can self-host. Infinity Metrics offers a one-time purchase, privacy-first solution. Own your data.";
 ---
 
-<Layout 
-	title="Infinity Metrics - AI-Powered Self-Hosted Analytics with Zero Maintenance" 
-	description="Deploy your own AI-powered web analytics with near-zero maintenance. Self-hosted platform providing privacy-focused insights with complete data ownership and GDPR compliance."
->
+<Layout title={pageTitle} description={pageDescription}>
 	<Header />
 	<main>
 		<HeroTemp />

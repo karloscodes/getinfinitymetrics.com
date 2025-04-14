@@ -2,9 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+const pageTitle = "GDPR Compliance | Infinity Metrics";
+const pageDescription = "Learn how Infinity Metrics achieves GDPR compliance by design. Our self-hosted, cookieless analytics ensures user privacy without consent banners.";
 ---
 
-<Layout title="GDPR Compliance | Infinity Metrics">
+<Layout title={pageTitle} description={pageDescription}>
   <Header />
 
   <div class="container mx-auto px-4 py-12 max-w-4xl">
