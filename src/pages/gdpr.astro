@@ -134,7 +134,7 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
         <div class="bg-gray-100 p-6 rounded-lg">
           <h3 class="text-xl font-medium mb-3">How the Software Handles IP Addresses</h3>
           <p class="mb-4">
-            IP addresses must be handled carefully under GDPR. Here's our
+            IP addresses must be handled carefully under GDPR. Here's the software's
             process:
           </p>
           <ol class="list-decimal pl-6 mb-4">
@@ -148,6 +148,9 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
             <li>Original IP address is permanently discarded and never stored on disk.</li>
             <li>
               The hash cannot be reversed to reveal the original IP address.
+            </li>
+            <li>
+              The use of a unique, daily-rotating salt for each installation makes pre-computed attack methods like rainbow tables infeasible. Recovering the original IP from the hash is computationally impractical with current technology, estimated to take decades or longer.
             </li>
             <li>Neither you nor we can access the original visitor IP addresses from the stored data.</li>
           </ol>
