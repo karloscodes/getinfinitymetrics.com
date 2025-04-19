@@ -4,7 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const pageTitle = "Privacy Policy | Infinity Metrics";
-const pageDescription = "Read the Infinity Metrics privacy policy. Learn how our self-hosted, cookieless analytics protects user data and ensures compliance (GDPR, CCPA).";
+const pageDescription = "Read the Infinity Metrics privacy policy. Learn how we handle customer data and how our self-hosted, cookieless analytics software helps protect end-user privacy.";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
@@ -17,184 +17,170 @@ const pageDescription = "Read the Infinity Metrics privacy policy. Learn how our
       <p class="text-lg mb-8">Last updated: March 8, 2025</p>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">Why We're Different</h2>
+        <h2 class="text-2xl font-semibold mb-4">Introduction: Our Commitment & Your Role</h2>
         <p>
-          At Infinity Metrics ("we", "us", or "our"), privacy isn't an
-          afterthought—it's the foundation. This policy covers how we handle
-          data for both website owners (our customers) and their visitors
-          (end-users). Here's the short version:
+          At Infinity Metrics ("we", "us", or "our"), privacy is fundamental. This policy explains how we handle data related to our website (`getinfinitymetrics.com`) and the services we provide to you, our customer ("Customer", "you").
+        </p>
+        <p>
+          Crucially, Infinity Metrics is <strong>self-hosted software</strong>. You install and run it on your own servers. This means:
         </p>
         <ul class="list-disc pl-6 mb-4">
-          <li>No cookies. Ever.</li>
-          <li>No personal data from visitors.</li>
-          <li>No cross-site tracking.</li>
-          <li>Self-hosted—you control everything.</li>
-          <li>GDPR, CCPA, and privacy-law friendly by design.</li>
+          <li><strong>You control the analytics data</strong> collected from visitors ("End Users") to your website(s) using the software.</li>
+          <li><strong>We do not collect, access, or process your End Users' data.</strong> That data resides entirely on your infrastructure.</li>
+          <li>This policy primarily covers the data <strong>we collect directly from you</strong> (our Customer) and visitors to <strong>our website</strong> (`getinfinitymetrics.com`).</li>
         </ul>
         <p>
-          We built Infinity Metrics to give you powerful insights without
-          compromising anyone's privacy.
+          We've designed the Infinity Metrics software to help you collect analytics data in a privacy-respecting manner (no cookies, IP anonymization by default) to aid your compliance with regulations like GDPR and CCPA. However, you remain the Data Controller for your End Users' data.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">What We Collect</h2>
+        <h2 class="text-2xl font-semibold mb-4">Data We Collect (About You, Our Customer, and Our Website Visitors)</h2>
 
-        <h3 class="text-xl font-medium mb-3">From You (Website Owners)</h3>
-        <p>When you use Infinity Metrics, we collect:</p>
+        <p>We collect the following types of information directly:</p>
         <ul class="list-disc pl-6 mb-4">
-          <li>Your basics: name, email.</li>
           <li>
-            Billing info (if applicable, handled by our secure payment
-            processor).
-          </li>
-          <li>Website details where you install Infinity Metrics.</li>
-          <li>Messages you send us.</li>
-        </ul>
-
-        <h3 class="text-xl font-medium mb-3">From Visitors (End-Users)</h3>
-        <p>The Infinity Metrics software collects:</p>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Anonymous stats: page views, referrers, browser type.</li>
-          <li>Device info: type (mobile, tablet, desktop), OS, browser.</li>
-          <li>Rough location: country only, nothing pinpoint.</li>
-          <li>Session data: duration, pages visited, navigation paths.</li>
-        </ul>
-        <p>
-          <strong>Important:</strong> Since Infinity Metrics is self-hosted, all
-          visitor data is collected and stored on <em>your</em> servers, not ours.
-          We never have access to this data unless you explicitly share it with us
-          for support purposes.
-        </p>
-
-        <h3 class="text-xl font-medium mb-3">What We Skip</h3>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Personal info from visitors.</li>
-          <li>Visitor IP addresses (hashed immediately and discarded).</li>
-          <li>Fingerprinting that IDs individuals.</li>
-          <li>Form inputs or content interactions.</li>
-          <li>Anything from password-protected pages.</li>
-          <li>Cross-site tracking.</li>
-          <li>Persistent identifiers.</li>
-        </ul>
-      </section>
-
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">How We Use It</h2>
-
-        <h3 class="text-xl font-medium mb-3">For Website Owners</h3>
-        <p>We use your info to:</p>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Manage your license and release updates.</li>
-          <li>Handle payments.</li>
-          <li>Answer your questions and provide support.</li>
-          <li>Build better features.</li>
-          <li>Send occasional product updates and announcements.</li>
-        </ul>
-
-        <h3 class="text-xl font-medium mb-3">For Visitors</h3>
-        <p>Anonymous data helps website owners:</p>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Understand site traffic and usage patterns.</li>
-          <li>Identify popular content and referral sources.</li>
-          <li>Optimize site performance and user experience.</li>
-          <li><strong>Never</strong>: profile individuals or target ads.</li>
-        </ul>
-      </section>
-
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">Where Your Data Lives</h2>
-        <p>
-          Infinity Metrics is self-hosted, all visitor analytics data is stored
-          on your own servers. That means:
-        </p>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Visitor data stays with you, not us.</li>
-          <li>It's in a database you control.</li>
-          <li>
-            We never see or access your analytics data unless you explicitly
-            share it for support purposes.
+            <strong>Account Information:</strong> When you purchase a license or sign up, we collect information like your name, email address, and potentially company name. This is necessary to provide the service and manage your license.
           </li>
           <li>
-            We secure data in transit; you're responsible for securing your
-            server and database.
+            <strong>Payment Information:</strong> If you purchase a license, payments are processed by our third-party payment processor, <strong>Stripe</strong>. We do not store your full credit card details ourselves. Stripe handles this data according to their <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">privacy policy</a>.
           </li>
-          <li>You control data retention policies and backups.</li>
-        </ul>
-        <p>
-          Your account information (name, email, etc.) is stored securely on our
-          servers to manage your subscription and provide customer service.
-        </p>
-      </section>
-
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">Who Sees Your Data</h2>
-        <p>We don't sell or share your info, period. Exceptions:</p>
-        <ul class="list-disc pl-6 mb-4">
           <li>
-            Trusted partners (like payment processors) who help us run things.
+            <strong>Website Usage Data (`getinfinitymetrics.com`):</strong> We use our own Infinity Metrics software on our website (`getinfinitymetrics.com`) to understand how visitors use it. This includes anonymous, aggregated data like page views, referral sources, device type, browser type, and country-level location. We use this data to improve our website and services. This collection follows the privacy-preserving principles of our software (no cookies, IP anonymization).
           </li>
-          <li>Legal requirements or to protect our rights.</li>
-          <li>A business sale (with your okay).</li>
-        </ul>
-        <p>
-          Visitor analytics data is stored exclusively on your servers. We don't
-          have access to it unless you explicitly share it with us for support
-          purposes.
-        </p>
-      </section>
-
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">Your Control</h2>
-        <p>As a website owner, you can:</p>
-        <ul class="list-disc pl-6 mb-4">
-          <li>Edit or delete your account info, just ask.</li>
-          <li>Skip marketing emails (service updates stay).</li>
-          <li>Request what data we have on you.</li>
-          <li>Delete all analytics data from your servers at any time.</li>
-          <li>Configure data retention policies however you prefer.</li>
-        </ul>
-        <p>As a visitor to a site using Infinity Metrics:</p>
-        <ul class="list-disc pl-6 mb-4">
-          <li>No personal data is collected = nothing to delete.</li>
-          <li>No cookies = no cookie consent banners needed.</li>
-          <li>Block JavaScript or use privacy tools if you want.</li>
           <li>
-            Contact the site owner with privacy concerns about their analytics
-            practices.
+            <strong>Communications:</strong> If you contact us for support or inquiries, we collect the information you provide in your messages (e.g., email address, content of the message).
+          </li>
+          <li>
+            <strong>License Activation/Verification Data:</strong> We may collect minimal technical data necessary to verify your license status when the software checks for updates or validates the license key.
           </li>
         </ul>
       </section>
 
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">GDPR & Global Privacy</h2>
+       <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Data Collected by the Software (On Your Servers, About Your End Users)</h2>
+         <p>
+          When you install and run the Infinity Metrics software on your servers, it is designed to collect the following types of <strong>anonymous, aggregated data</strong> about your End Users by default:
+        </p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Page URLs visited</li>
+          <li>Referrer URLs (where visitors came from)</li>
+          <li>Browser type (e.g., Chrome, Firefox)</li>
+          <li>Operating System (e.g., Windows, macOS)</li>
+          <li>Device type (e.g., Desktop, Mobile)</li>
+          <li>Country derived from anonymized IP address</li>
+          <li>UTM parameters (if present in URLs)</li>
+          <li>Custom event data (if you configure it)</li>
+        </ul>
         <p>
-          We've designed Infinity Metrics to help website owners stay compliant
-          with privacy laws worldwide. Read more in <a
-            href="/gdpr"
-            class="text-blue-600 hover:underline">our GDPR guide</a
-          >
+          <strong>Key Privacy Features of the Software:</strong>
+        </p>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>No Cookies:</strong> The software does not use browser cookies for tracking.</li>
+          <li><strong>IP Anonymization:</strong> IP addresses are immediately hashed with a daily rotating salt and discarded; the original IP is never stored.</li>
+          <li><strong>No Persistent Identifiers:</strong> Daily unique signatures prevent long-term individual tracking.</li>
+        </ul>
+        <p>
+          <strong>Important:</strong> All this End User data is stored <strong>exclusively on your servers</strong>. We never receive or access it unless you explicitly share specific logs or database excerpts with us for technical support purposes, under your control.
+          You are responsible for securing this data and ensuring your use (including any custom event tracking) complies with all applicable privacy laws.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">
-          Self-Hosted Privacy Responsibilities
-        </h2>
+        <h2 class="text-2xl font-semibold mb-4">How We Use Your Information (Customer and Website Data)</h2>
+        <p>We use the information we collect directly from you and our website visitors to:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Provide, maintain, and improve our Service (including software updates).</li>
+          <li>Process payments and manage your license subscription.</li>
+          <li>Communicate with you, including responding to support requests and sending important service updates or security notices.</li>
+          <li>Analyze usage trends on `getinfinitymetrics.com` to improve our website and marketing efforts.</li>
+          <li>Prevent fraud and enforce our Terms of Service.</li>
+          <li>Comply with legal obligations.</li>
+        </ul>
+         <p>We do <strong>not</strong> use the analytics data collected by your self-hosted instance for any purpose, as we do not have access to it.</p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Data Sharing and Disclosure (Customer and Website Data)</h2>
+        <p>We do not sell your personal information. We may share the information we collect directly from you in limited circumstances:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>
+            <strong>Service Providers:</strong> With trusted third-party vendors who need access to perform services on our behalf (e.g., Stripe for payment processing, potentially email providers for communications). These providers are obligated to protect your data and use it only for the services requested.
+          </li>
+          <li>
+            <strong>Legal Requirements:</strong> If required by law, subpoena, or other legal process, or if we believe in good faith that disclosure is necessary to protect our rights, protect your safety or the safety of others, investigate fraud, or respond to a government request.
+          </li>
+          <li>
+            <strong>Business Transfers:</strong> In connection with a merger, acquisition, financing, or sale of assets, your information may be transferred as part of that transaction. We will notify you via email and/or a prominent notice on our website of any change in ownership or uses of your personal information.
+          </li>
+          <li>
+            <strong>With Your Consent:</strong> We may share your information with third parties when we have your explicit consent to do so.
+          </li>
+        </ul>
+         <p>We do <strong>not</strong> share any End User analytics data collected by your self-hosted instance, as we do not possess it.</p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Data Storage and Security</h2>
+
+        <h3 class="text-xl font-medium mb-3">Our Data (Customer Accounts, Website Analytics)</h3>
         <p>
-          Please refer to our <a
-            href="/terms"
-            class="text-blue-600 hover:underline">Terms of Service</a
-          >
+          We store your account information and our website analytics data on secure servers, employing appropriate technical and organizational measures to protect against unauthorized access, alteration, disclosure, or destruction. We use HTTPS for data transmission.
+        </p>
+
+        <h3 class="text-xl font-medium mb-3">Your Data (End User Analytics on Your Servers)</h3>
+        <p>
+          As the Infinity Metrics software is self-hosted, the security and storage of the analytics data collected from your End Users are <strong>your responsibility</strong>. This includes:
+        </p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Securing the server environment where the software and database reside.</li>
+          <li>Implementing access controls and monitoring.</li>
+          <li>Managing data backups and retention policies.</li>
+          <li>Complying with any security requirements under applicable laws (like GDPR).</li>
+        </ul>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Your Rights and Choices</h2>
+
+        <h3 class="text-xl font-medium mb-3">Regarding Information We Hold About You (Our Customer)</h3>
+        <p>Depending on your location, you may have rights regarding your personal information, such as:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>Access:</strong> Request access to the personal data we hold about you.</li>
+          <li><strong>Correction:</strong> Request correction of inaccurate personal data.</li>
+          <li><strong>Deletion:</strong> Request deletion of your personal data, subject to legal and contractual restrictions.</li>
+          <li><strong>Objection/Restriction:</strong> Object to or request restriction of certain processing activities.</li>
+          <li><strong>Marketing Opt-Out:</strong> You can opt out of receiving promotional emails from us by using the unsubscribe link within each email or by contacting us. You will still receive essential service-related communications.</li>
+        </ul>
+        <p>To exercise these rights, please contact us using the details provided below.</p>
+
+        <h3 class="text-xl font-medium mb-3">Regarding Your End Users' Data (On Your Servers)</h3>
+        <p>
+          As the Data Controller for your End Users' data, you are responsible for handling their privacy rights requests (access, deletion, etc.) concerning the data collected by your Infinity Metrics instance. Since the default software configuration does not store identifiable personal data, fulfilling such requests often involves explaining that no personal data is held.
+        </p>
+        <p>Visitors to your website can often limit tracking by using browser settings (e.g., Do Not Track) or privacy-enhancing browser extensions.</p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">GDPR, CCPA & Global Privacy Compliance</h2>
+        <p>
+          We are committed to complying with applicable privacy laws. For GDPR specifics related to the software's design and your responsibilities, please see our <a href="/gdpr" class="text-blue-600 hover:underline">GDPR Compliance page</a>.
+          The self-hosted nature and privacy-preserving design of Infinity Metrics are intended to help you meet your obligations under various global privacy regulations when configured and used appropriately.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">Updates to This Policy</h2>
+        <h2 class="text-2xl font-semibold mb-4">Changes to This Policy</h2>
         <p>
-          We might update this policy periodically. Check the "Last updated"
-          date at the top. For significant changes, we'll notify you via email
-          or through our website.
+          We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the new policy on this page and updating the "Last updated" date. We encourage you to review this policy periodically.
+        </p>
+      </section>
+
+       <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Contact Us</h2>
+        <p>
+          If you have any questions about this Privacy Policy or our data practices, please contact us at:
+          privacy@getinfinitymetrics.com
         </p>
       </section>
     </div>
