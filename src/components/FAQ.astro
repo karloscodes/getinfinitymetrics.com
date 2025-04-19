@@ -16,9 +16,9 @@ const faqs = [
       "Totally. It's yours in a SQLite database, query it, export it, or plug it into your tools anytime.",
   },
   {
-    question: "What's the deal with AI support?",
+    question: "How does the AI Query feature work? Is my data sent externally?",
     answer:
-      "Ask AI anything about your analytics, anytime. It's built in, ready to help you dig deeper into your data.",
+      "No, your analytics data is never sent externally. When you ask a question in plain English (e.g., \"Show me page views per day for the last week\"), the AI model (running via an API like OpenAI, which requires your own API key configured in the settings) translates your question into an SQL query. This SQL query is then executed *locally* against your own database on your server to retrieve the results. Only the natural language question itself is sent to the AI API for translation, not your underlying visitor data.",
   },
   {
     question: "How does pricing work?",
@@ -39,6 +39,11 @@ const faqs = [
     question: "Is it really GDPR compliant?",
     answer:
       "Yes —100%. No cookies, no personal data, no consent banners needed. Just anonymous stats, privacy-first by design.",
+  },
+  {
+    question: "What metrics does Infinity Metrics track?",
+    answer:
+      "Infinity Metrics tracks a wide range of aggregated metrics including: Pageviews, Unique Visitors (daily fingerprint), Sessions, Bounce Rate, Avg. Session Duration, Page-specific views/entrances/exits, Referrer Sources, UTM Campaign parameters (source, medium, campaign, term, content), Browser types, Operating Systems, Device Types (desktop, mobile, tablet), Visitor Country, and any Custom Events you define.",
   },
 ];
 ---
@@ -132,10 +137,10 @@ const faqs = [
       },
       {
         "@type": "Question",
-        "name": "What's the deal with AI support?",
+        "name": "How does the AI Query feature work? Is my data sent externally?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ask AI anything about your analytics, anytime. It's built in, ready to help you dig deeper into your data."
+          "text": "No, your analytics data is never sent externally. When you ask a question in plain English (e.g., \"Show me page views per day for the last week\"), the AI model (running via an API like OpenAI, which requires your own API key configured in the settings) translates your question into an SQL query. This SQL query is then executed *locally* against your own database on your server to retrieve the results. Only the natural language question itself is sent to the AI API for translation, not your underlying visitor data."
         }
       },
       {
@@ -168,6 +173,14 @@ const faqs = [
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Yes —100%. No cookies, no personal data, no consent banners needed. Just anonymous stats, privacy-first by design."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What metrics does Infinity Metrics track?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Infinity Metrics tracks a wide range of aggregated metrics including: Pageviews, Unique Visitors (daily fingerprint), Sessions, Bounce Rate, Avg. Session Duration, Page-specific views/entrances/exits, Referrer Sources, UTM Campaign parameters (source, medium, campaign, term, content), Browser types, Operating Systems, Device Types (desktop, mobile, tablet), Visitor Country, and any Custom Events you define."
         }
       }
     ]
