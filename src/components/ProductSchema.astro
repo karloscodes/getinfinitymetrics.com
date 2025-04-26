@@ -1,32 +1,97 @@
 ---
 // ProductSchema for structured data
----
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Infinity Metrics",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Cloud",
-  "author": {
-    "@type": "Person",
-    "name": "Karlos Vincius"
-  },
-  "description": "Self-hosted, AI-powered web analytics with near-zero maintenance and complete privacy compliance",
-  "offers": {
-    "@type": "Offer",
-    "price": "199.00",
-    "priceCurrency": "USD"
-  },
-  "keywords": [
-    "web analytics",
-    "self-hosted analytics",
-    "GDPR compliant analytics",
-    "privacy-first analytics",
-    "cookie-free analytics",
-    "AI-powered analytics insights",
-    "website statistics",
-    "traffic analytics"
-  ]
+import { formatPrice } from "./FAQ.astro";
+import { getFaqSchema } from '../data/faqs';
+
+interface Props {
+  productName: string;
+  description: string;
+  basePrice: number;
+  salePrice?: number;
+  imageUrl: string;
+  brand?: string;
+  categoryPath?: string[];
+  sku: string;
+  availability?: "InStock" | "OutOfStock" | "PreOrder";
+  ratingValue?: number;
+  reviewCount?: number;
 }
-</script> 
+
+const {
+  productName,
+  description,
+  basePrice,
+  salePrice,
+  imageUrl,
+  brand = "Infinity Metrics",
+  categoryPath = ["Software", "Analytics", "Self-hosted"],
+  sku,
+  availability = "InStock",
+  ratingValue = 5,
+  reviewCount = 5,
+} = Astro.props as Props;
+
+// Create breadcrumb list for Schema
+const breadcrumbList = [];
+for (let i = 0; i < categoryPath.length; i++) {
+  const category = categoryPath[i];
+  const slug = category.toLowerCase().replace(/\s+/g, '-');
+  breadcrumbList.push({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": category,
+    "item": "https://infinitymetrics.com/category/" + slug
+  });
+}
+
+// Format prices for schema
+const priceForSchema = formatPrice(salePrice || basePrice, false);
+const highPriceForSchema = salePrice ? formatPrice(basePrice, false) : undefined;
+
+// Get FAQ schema
+const faqSchema = getFaqSchema();
+
+// Combined schema
+const productSchema = {
+  "@context": "https://schema.org/",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": productName,
+      "description": description,
+      "image": imageUrl,
+      "sku": sku,
+      "brand": {
+        "@type": "Brand",
+        "name": brand
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://infinitymetrics.com",
+        "priceCurrency": "USD",
+        "price": priceForSchema,
+        ...(highPriceForSchema ? { "highPrice": highPriceForSchema } : {}),
+        "availability": `https://schema.org/${availability}`,
+        "seller": {
+          "@type": "Organization",
+          "name": brand
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": ratingValue.toString(),
+        "reviewCount": reviewCount.toString()
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbList
+    },
+    faqSchema
+  ]
+};
+
+const schemaString = JSON.stringify(productSchema);
+---
+
+<script type="application/ld+json" set:html={schemaString} /> 
