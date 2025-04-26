@@ -1,13 +1,15 @@
 ---
 import "../styles/global.css";
 import DynamicFont from "astro-dynamic-font";
+import SEO from "../components/SEO.astro";
+import ProductSchema from "../components/ProductSchema.astro";
+import PreloadAssets from "../components/PreloadAssets.astro";
 
 interface Props {
 	title: string;
 	description?: string;
 	image?: string;
 	canonical?: string;
-	structuredData?: any;
 }
 
 const {
@@ -15,33 +17,6 @@ const {
 	description = "Self-hosted, AI-powered web analytics with zero compromises on privacy. Own your data, protect your users.",
 	image = "/images/social-share.png",
 	canonical = Astro.url.href,
-	structuredData = {
-		"@context": "https://schema.org",
-		"@type": "SoftwareApplication",
-		"name": "Infinity Metrics",
-		"applicationCategory": "BusinessApplication",
-		"operatingSystem": "Cloud",
-		"author": {
-			"@type": "Person",
-			"name": "Karlos Vincius"
-		},
-		"description": "Self-hosted, AI-powered web analytics with near-zero maintenance and complete privacy compliance",
-		"offers": {
-			"@type": "Offer",
-			"price": "249.00",
-			"priceCurrency": "USD"
-		},
-		"keywords": [
-			"web analytics",
-			"self-hosted analytics",
-			"GDPR compliant analytics",
-			"privacy-first analytics",
-			"cookie-free analytics",
-			"AI-powered analytics insights",
-			"website statistics",
-			"traffic analytics"
-		]
-	}
 } = Astro.props;
 ---
 
@@ -56,38 +31,20 @@ const {
 		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		
-		<!-- Primary Meta Tags -->
-		<title>{title}</title>
-		<meta name="title" content={title} />
-		<meta name="description" content={description} />
-		<link rel="canonical" href={canonical} />
-
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url.href} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={new URL(image, Astro.url)} />
-
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={Astro.url.href} />
-		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={new URL(image, Astro.url)} />
+		<!-- SEO -->
+		<SEO title={title} description={description} image={image} canonical={canonical} />
+		
+		<!-- Preload Assets -->
+		<PreloadAssets />
+		
+		<!-- Structured Data -->
+		<ProductSchema />
 		
 		<!-- Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
-		
-		<!-- Structured Data -->
-		<script type="application/ld+json">
-			{structuredData}
-		</script>
 		
 		<script async src="https://tally.so/widgets/embed.js"></script>
 		<script defer src="https://t.getinfinitymetrics.com/y/api/v1/sdk.js"></script>

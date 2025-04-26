@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SEO from '../components/SEO.astro';
+---
+
+<Layout title="Page Not Found">
+  <SEO 
+    title="Page Not Found | Infinity Metrics" 
+    description="The page you're looking for cannot be found."
+  />
+  
+  <section class="py-20 md:py-32 hero-gradient">
+    <div class="container text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700">404</h1>
+      <p class="text-xl mb-8 text-gray-600">The page you're looking for couldn't be found.</p>
+      <a href="/" class="btn-primary py-3 px-6 inline-block rounded-lg">Back to Home</a>
+    </div>
+  </section>
+</Layout> 

@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://getinfinitymetrics.com/sitemap-index.xml 
+Sitemap: https://getinfinitymetrics.com/sitemap.xml 
