@@ -1,5 +1,5 @@
 <section id="how-it-works" class="py-20 md:py-32 hero-gradient">
-  <div class="container">
+  <div class="container px-4 md:px-6">
     <div class="max-w-3xl mx-auto mb-16">
       <div class="flex justify-center items-start">
         <span class="inline-block px-3 py-1 bg-black bg-opacity-5 rounded-full text-sm font-medium mb-4">
@@ -20,7 +20,7 @@
           <span class="w-3 h-3 rounded-full bg-green-500"></span>
           <span class="text-gray-400 text-xs ml-2">Terminal</span>
         </div>
-        <div class="p-6 pb-10 leading-loose overflow-x-auto">
+        <div class="p-4 md:p-6 pb-10 leading-loose overflow-x-auto text-sm md:text-base">
           <span class="text-gray-400 inline-block mb-1">$</span> curl -fsSL https://getinfinitymetrics.com/install
           -o install.sh && sudo bash install.sh
           <br /><br />
@@ -30,9 +30,9 @@
       </div>
 
       <div class="grid gap-8">
-        <article class="card flex gap-6 items-start p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
+        <article class="card flex flex-col md:flex-row gap-4 md:gap-6 items-start p-6 md:p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
           <div
-            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md"
+            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md mb-2 md:mb-0"
             aria-hidden="true"
           >
             1
@@ -47,48 +47,47 @@
           </div>
         </article>
 
-        <article class="card flex gap-6 items-start p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
+        <article class="card flex flex-col md:flex-row gap-4 md:gap-6 items-start p-6 md:p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
           <div
-            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md"
+            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md mb-2 md:mb-0"
             aria-hidden="true"
           >
             2
           </div>
-          <div class="leading-relaxed">
+          <div class="leading-relaxed w-full">
             <h3 class="text-xl font-semibold mb-3">
               Install with a single command
             </h3>
             <p class="text-gray-600">
               Run our streamlined installer and follow the simple setup instructions.
             </p>
-             <div class="bg-gray-100 p-3 rounded-md font-mono text-sm overflow-x-auto">
-              <code style="white-space: pre-wrap;">
-              curl -fsSL https://getinfinitymetrics.com/install -o install.sh && sudo bash install.sh</code>
+             <div class="bg-gray-100 p-3 rounded-md font-mono text-sm overflow-x-auto mt-3">
+              <code style="white-space: pre-wrap; word-break: break-all;">curl -fsSL https://getinfinitymetrics.com/install -o install.sh && sudo bash install.sh</code>
             </div>
           </div>
         </article>
 
-        <article class="card flex gap-6 items-start p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
+        <article class="card flex flex-col md:flex-row gap-4 md:gap-6 items-start p-6 md:p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
           <div
-            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md"
+            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md mb-2 md:mb-0"
             aria-hidden="true"
           >
             3
           </div>
-          <div class="leading-relaxed">
+          <div class="leading-relaxed w-full">
             <h3 class="text-xl font-semibold mb-3">Add the tracking script</h3>
             <p class="text-gray-600 mb-4">
               Copy our lightweight tracking script to your website(s) for instant data collection.
             </p>
             <div class="bg-gray-100 p-3 rounded-md font-mono text-sm overflow-x-auto">
-              <code style="white-space: pre-wrap;">&lt;script defer src="https://your-domain.com/y/api/v1/sdk.js"&gt;&lt;/script&gt;</code>
+              <code style="white-space: pre-wrap; word-break: break-all;">&lt;script defer src="https://your-domain.com/y/api/v1/sdk.js"&gt;&lt;/script&gt;</code>
             </div>
           </div>
         </article>
 
-        <article class="card flex gap-6 items-start p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
+        <article class="card flex flex-col md:flex-row gap-4 md:gap-6 items-start p-6 md:p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
           <div
-            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md"
+            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md mb-2 md:mb-0"
             aria-hidden="true"
           >
             4
@@ -117,6 +116,17 @@
   
   article .leading-relaxed {
     line-height: 1.7;
+  }
+  
+  @media (max-width: 768px) {
+    .terminal div.p-4 {
+      word-break: break-all;
+      white-space: normal;
+    }
+    
+    #how-it-works code {
+      font-size: 0.8rem;
+    }
   }
 </style>
 
