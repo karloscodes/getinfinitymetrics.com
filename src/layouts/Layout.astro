@@ -1,18 +1,47 @@
 ---
 import "../styles/global.css";
+import DynamicFont from "astro-dynamic-font";
 
 interface Props {
 	title: string;
 	description?: string;
 	image?: string;
 	canonical?: string;
+	structuredData?: any;
 }
 
 const {
 	title,
-	description = "Self-hosted, ai-powered web analytics with zero compromises on privacy. Own your data, protect your users.",
+	description = "Self-hosted, AI-powered web analytics with zero compromises on privacy. Own your data, protect your users.",
 	image = "/images/social-share.png",
 	canonical = Astro.url.href,
+	structuredData = {
+		"@context": "https://schema.org",
+		"@type": "SoftwareApplication",
+		"name": "Infinity Metrics",
+		"applicationCategory": "BusinessApplication",
+		"operatingSystem": "Cloud",
+		"author": {
+			"@type": "Person",
+			"name": "Karlos Vincius"
+		},
+		"description": "Self-hosted, AI-powered web analytics with near-zero maintenance and complete privacy compliance",
+		"offers": {
+			"@type": "Offer",
+			"price": "249.00",
+			"priceCurrency": "USD"
+		},
+		"keywords": [
+			"web analytics",
+			"self-hosted analytics",
+			"GDPR compliant analytics",
+			"privacy-first analytics",
+			"cookie-free analytics",
+			"AI-powered analytics insights",
+			"website statistics",
+			"traffic analytics"
+		]
+	}
 } = Astro.props;
 ---
 
@@ -57,28 +86,7 @@ const {
 		
 		<!-- Structured Data -->
 		<script type="application/ld+json">
-			{
-				"@context": "https://schema.org",
-				"@type": "SoftwareApplication",
-				"name": "Infinity Metrics",
-				"description": "Self-hosted, AI-powered web analytics with near-zero maintenance and complete privacy compliance",
-				"applicationCategory": "WebApplication",
-				"operatingSystem": "All",
-				"keywords": "web analytics, self-hosted analytics, AI analytics, privacy-focused analytics, GDPR compliant, zero maintenance analytics",
-				"offers": {
-					"@type": "Offer",
-					"price": "199",
-					"priceCurrency": "USD"
-				},
-				"featureList": [
-					"AI-powered analytics insights",
-					"Self-hosted deployment",
-					"Near-zero maintenance setup",
-					"Privacy-first analytics with GDPR compliance", 
-					"No cookie consent banners needed",
-					"Complete data ownership"
-				]
-			}
+			{structuredData}
 		</script>
 		
 		<script async src="https://tally.so/widgets/embed.js"></script>
