@@ -17,6 +17,7 @@ export default defineConfig({
 				"https://getinfinitymetrics.com/terms",
 				"https://getinfinitymetrics.com/gdpr",
 				"https://getinfinitymetrics.com/thank-you",
+				"https://getinfinitymetrics.com/docs",
 			],
 		}),
 	],
