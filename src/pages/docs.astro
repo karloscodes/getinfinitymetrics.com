@@ -43,6 +43,10 @@ const dockerRunCommand = `docker run -d \\
   -e INFINITY_METRICS_PRIVATE_KEY=your-private-key \\
   --restart unless-stopped \\
   infinitymetrics/app:latest`;
+
+// Administrative Operations: Commands
+const changeAdminPasswordCommand = "sudo infinity-metrics change-admin-password";
+const forceUpdateCommand = "sudo infinity-metrics update";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
@@ -70,6 +74,7 @@ const dockerRunCommand = `docker run -d \\
 						</li>
 						<li><a href="#integrating-tracking-script" class="text-blue-600 hover:underline">Integrating the Tracking Script</a></li>
 						<li><a href="#accessing-dashboard" class="text-blue-600 hover:underline">Accessing the Dashboard</a></li>
+						<li><a href="#administrative-operations" class="text-blue-600 hover:underline">Administrative Operations</a></li>
 						<li><a href="#server-requirements" class="text-blue-600 hover:underline">Server Requirements</a></li>
 						<li><a href="#sdk-usage" class="text-blue-600 hover:underline">SDK Usage</a>
 							<ul class="ml-6 mt-2 space-y-2">
@@ -186,6 +191,38 @@ const dockerRunCommand = `docker run -d \\
 					<p class="text-black font-semibold">
 						Once installed, access the analytics dashboard at <a href="https://your-domain.com/" class="text-blue-600 hover:underline">https://your-domain.com/</a>. This step applies to both installation methods.
 					</p>
+				</section>
+
+				<!-- Administrative Operations Section -->
+				<section id="administrative-operations" class="mb-16">
+					<div class="flex items-start mb-4">
+						<h2 class="text-3xl font-bold text-black">Administrative Operations</h2>
+					</div>
+					<p class="text-black font-semibold mb-6">
+						Manage your Infinity Metrics installation with the following administrative commands.
+					</p>
+
+					<div class="space-y-6">
+						<div>
+							<h3 class="text-xl font-semibold mb-3 text-black">Forgot Your Password? / Change Your Password?</h3>
+							<p class="text-black mb-4">
+								To reset or change the admin password, run the following command with sudo privileges:
+							</p>
+							<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs">
+								<pre><code class="text-white">{changeAdminPasswordCommand}</code></pre>
+							</div>
+						</div>
+
+						<div>
+							<h3 class="text-xl font-semibold mb-3 text-black">Force an Update</h3>
+							<p class="text-black mb-4">
+								To manually force an update of Infinity Metrics, run the following command with sudo privileges:
+							</p>
+							<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs">
+								<pre><code class="text-white">{forceUpdateCommand}</code></pre>
+							</div>
+						</div>
+					</div>
 				</section>
 				
 				<!-- Server Requirements Section -->
