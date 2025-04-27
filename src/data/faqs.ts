@@ -22,7 +22,7 @@ export const faqs = [
   {
     question: "How does pricing work?",
     answer:
-      "One-time payment, lifetime access, no subscriptions. Not happy? We've got a 30-day money-back guarantee.",
+      "One-time payment, lcifetime access, no subscriptions. Not happy? We've got a 30-day money-back guarantee.",
   },
   {
     question: "Do updates cost extra?",
