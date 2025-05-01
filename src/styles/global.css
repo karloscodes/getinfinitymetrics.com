@@ -192,4 +192,14 @@
   a:not(.btn-primary):not(.btn-secondary) {
     @apply text-black hover:text-gray-700 font-bold;
   }
+
+  .highlight {
+    background-color: #00D1FF;
+    padding: 0.01em 0.08em;
+    margin: 0 0.1em;
+    border-radius: 0.03em;
+    display: inline-block;
+    transform: rotate(-1deg);
+  }
+  
 }
