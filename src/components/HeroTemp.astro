@@ -28,21 +28,64 @@
           <div class="relative w-full">
             <div class="slideshow-container relative h-[500px]">
               <div class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out">
-                <img src="/dashboard-preview.png" alt="Infinity Metrics AI-Powered Analytics Dashboard" class="w-full h-full object-contain" />
+                <img src="/dashboard-preview.png" alt="Infinity Metrics AI-Powered Analytics Dashboard" class="w-full h-full object-contain cursor-zoom-in" />
                 <div class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center">
                   <p class="text-sm font-bold">Simple, effective analytics dashboard</p>
                 </div>
               </div>
               <div class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out">
-                <img src="/ask-ai-preview.png" alt="Infinity Metrics AI Assistant Analytics Interface" class="w-full h-full object-contain" />
+                <img src="/ask-ai-1.png" alt="Infinity Metrics AI Assistant Analytics Interface" class="w-full h-full object-contain cursor-zoom-in" />
                 <div class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center">
                   <p class="text-sm font-bold">Ask your data questions using natural language</p>
                 </div>
               </div>
+              <div class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out">
+                <img src="/ask-ai-2.png" alt="Infinity Metrics AI Assistant Analytics Interface" class="w-full h-full object-contain cursor-zoom-in" />
+                <div class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center">
+                  <p class="text-sm font-bold">Ask your data questions using natural language</p>
+                </div>
+              </div>
+              <div class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out">
+                <img src="/ask-ai-3.png" alt="Infinity Metrics AI Assistant Analytics Interface" class="w-full h-full object-contain cursor-zoom-in" />
+                <div class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center">
+                  <p class="text-sm font-bold">Ask your data questions using natural language</p>
+                </div>
+              </div>
+              <div class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out">
+                <img src="/ask-ai-4.png" alt="Infinity Metrics AI Assistant Analytics Interface" class="w-full h-full object-contain cursor-zoom-in" />
+                <div class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center">
+                  <p class="text-sm font-bold">Ask your data questions using natural language</p>
+                </div>
+              </div>
+              
+              <!-- Navigation arrows -->
+              <button class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-30 hover:bg-opacity-50 text-white rounded-full w-8 h-8 flex items-center justify-center z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-30 hover:bg-opacity-50 text-white rounded-full w-8 h-8 flex items-center justify-center z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
+
+            <!-- Image zoom modal -->
+            <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden">
+              <div class="relative max-w-[90%] max-h-[90%]">
+                <img id="zoomedImage" src="" alt="Zoomed image" class="max-w-full max-h-[90vh] object-contain" />
+                <button class="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            
             <div class="flex justify-center gap-3 py-3 absolute bottom-14 left-0 right-0 z-10">
-              <span class="dot w-3 h-3 bg-white bg-opacity-50 rounded-full cursor-pointer hover:bg-white transition-all" onclick="currentSlide(1)"></span>
-              <span class="dot w-3 h-3 bg-white bg-opacity-50 rounded-full cursor-pointer hover:bg-white transition-all" onclick="currentSlide(2)"></span>
+              <span class="dot w-3 h-3 bg-white bg-opacity-50 rounded-full cursor-pointer hover:bg-white transition-all"></span>
+              <span class="dot w-3 h-3 bg-white bg-opacity-50 rounded-full cursor-pointer hover:bg-white transition-all"></span>
             </div>
           </div>
         </div>
@@ -66,38 +109,140 @@
   }
 </style>
 
-<script>
+<script is:inline>
   let slideIndex = 1;
-  showSlides(slideIndex);
+  let slideInterval;
+  let isHovering = false;
+  
+  // Initialize the slideshow
+  document.addEventListener('DOMContentLoaded', () => {
+    showSlides(slideIndex);
+    startSlideInterval();
+    setupImageZoom();
+    setupHoverPause();
 
-  function plusSlides(n: number): void {
-    showSlides((slideIndex += n));
+    // Attach click handlers to navigation buttons
+    document.querySelectorAll('.slideshow-container button').forEach(button => {
+      if (button.innerHTML.includes('M15 19l-7-7 7-7')) {
+        button.addEventListener('click', () => plusSlides(-1));
+      } else if (button.innerHTML.includes('M9 5l7 7-7 7')) {
+        button.addEventListener('click', () => plusSlides(1));
+      }
+    });
+
+    // Attach click handlers to dots
+    document.querySelectorAll('.dot').forEach((dot, index) => {
+      dot.addEventListener('click', () => currentSlide(index + 1));
+    });
+  });
+  
+  // Start the auto-slide interval
+  function startSlideInterval() {
+    slideInterval = setInterval(() => {
+      if (!isHovering) {
+        plusSlides(1);
+      }
+    }, 15000); // Change slides every 15 seconds
+  }
+  
+  // Setup zoom functionality
+  function setupImageZoom() {
+    const slides = document.querySelectorAll('.slide');
+    const modal = document.getElementById('imageModal');
+    const zoomedImage = document.getElementById('zoomedImage');
+    
+    slides.forEach((slide, index) => {
+      const img = slide.querySelector('img');
+      if (img) {
+        img.addEventListener('click', () => {
+          if (zoomedImage && modal && img instanceof HTMLImageElement) {
+            // Make sure we're showing the currently visible slide's image
+            const visibleSlide = document.querySelector('.slide[style*="opacity: 1"]');
+            const visibleImg = visibleSlide ? visibleSlide.querySelector('img') : null;
+            
+            if (visibleImg instanceof HTMLImageElement) {
+              zoomedImage.src = visibleImg.src;
+              zoomedImage.alt = visibleImg.alt;
+              modal.classList.remove('hidden');
+              document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+          }
+        });
+      }
+    });
+
+    // Add event listener for the close button
+    const closeButton = document.querySelector('#imageModal button');
+    if (closeButton) {
+      closeButton.addEventListener('click', closeModal);
+    }
+  }
+  
+  // Setup pause on hover
+  function setupHoverPause() {
+    const slideshowContainer = document.querySelector('.slideshow-container');
+    
+    if (slideshowContainer) {
+      slideshowContainer.addEventListener('mouseenter', () => {
+        isHovering = true;
+      });
+      
+      slideshowContainer.addEventListener('mouseleave', () => {
+        isHovering = false;
+      });
+    }
+  }
+  
+  // Close the modal
+  function closeModal() {
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.style.overflow = ''; // Re-enable scrolling
+    }
+  }
+  
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
   }
 
-  function currentSlide(n: number): void {
-    showSlides((slideIndex = n));
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
   }
 
-  function showSlides(n: number): void {
-    let i: number;
-    const slides = document.getElementsByClassName("slide") as HTMLCollectionOf<HTMLElement>;
-    const dots = document.getElementsByClassName("dot") as HTMLCollectionOf<HTMLElement>;
+  function showSlides(n) {
+    let i;
+    const slides = document.getElementsByClassName("slide");
+    const dots = document.getElementsByClassName("dot");
+    
     if (n > slides.length) {
       slideIndex = 1;
     }
     if (n < 1) {
       slideIndex = slides.length;
     }
+    
+    // Hide all slides
     for (i = 0; i < slides.length; i++) {
-      slides[i].style.opacity = "0";
+      const slide = slides[i];
+      if (slide) {
+        slide.style.opacity = "0";
+      }
     }
+    
+    // Reset all dots
     for (i = 0; i < dots.length; i++) {
       dots[i].classList.remove("bg-gray-600");
     }
-    slides[slideIndex - 1].style.opacity = "1";
-    dots[slideIndex - 1].classList.add("bg-gray-600");
+    
+    // Show the current slide and highlight its dot
+    const currentSlide = slides[slideIndex - 1];
+    if (currentSlide) {
+      currentSlide.style.opacity = "1";
+    }
+    
+    if (dots[slideIndex - 1]) {
+      dots[slideIndex - 1].classList.add("bg-gray-600");
+    }
   }
-
-  // Auto-advance slideshow
-  setInterval(() => plusSlides(1), 5000);
 </script>
