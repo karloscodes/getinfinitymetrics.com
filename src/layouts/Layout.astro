@@ -14,7 +14,7 @@ interface Props {
 const {
 	title,
 	description = "Self-hosted, AI-powered web analytics with zero compromises on privacy. Own your data, protect your users.",
-	image = "/images/social-share.png",
+	image = "/InfinityMetrics 128x720.png",
 	canonical = Astro.url.href,
 } = Astro.props;
 ---
@@ -37,7 +37,13 @@ const {
 		<PreloadAssets />
 		
 		<!-- Structured Data -->
-		<ProductSchema />
+		<ProductSchema 
+			productName="Infinity Metrics"
+			description={description}
+			basePrice={349}
+			imageUrl={image}
+			sku="infinity-metrics-app"
+		/>
 		
 		<!-- Fonts -->
 		<link
