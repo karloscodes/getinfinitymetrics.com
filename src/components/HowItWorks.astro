@@ -1,4 +1,8 @@
-<section id="how-it-works" class="py-20 md:py-32 hero-gradient">
+---
+const { class: className } = Astro.props;
+---
+
+<section id="how-it-works" class={`py-20 md:py-28 bg-white ${className}`}>
   <div class="container px-4 md:px-6">
     <div class="max-w-3xl mx-auto mb-16">
       <div class="flex justify-center items-start">
@@ -6,14 +10,14 @@
           Installation
         </span>
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700">Simple Setup In Minutes</h2>
-      <p class="text-gray-600 text-center mt-4 text-lg max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-black text-center mb-6 text-black">Simple Setup In Minutes</h2>
+      <p class="text-gray-600 text-center mt-4 text-base max-w-2xl mx-auto font-medium">
         Get your privacy-focused analytics running in seconds, not hours.
       </p>
     </div>
 
     <div class="max-w-3xl mx-auto">
-      <div class="terminal mb-16 shadow-lg rounded-xl overflow-hidden transform hover:scale-101 transition-all duration-300" aria-label="Installation command example">
+      <div class="terminal mb-16 shadow-lg rounded-xl overflow-hidden transition-all duration-300 border border-black" aria-label="Installation command example">
         <div class="flex items-center gap-2 p-3 bg-gray-900 border-b border-gray-700">
           <span class="w-3 h-3 rounded-full bg-red-500"></span>
           <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
@@ -30,71 +34,71 @@
       </div>
 
       <div class="grid gap-8">
-        <article class="card flex flex-col md:flex-row gap-4 md:gap-6 items-start p-6 md:p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
+        <article class="bg-white border border-black flex flex-col md:flex-row gap-4 md:gap-6 items-start p-6 md:p-8 rounded-lg shadow-md slide-in">
           <div
-            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md mb-2 md:mb-0"
+            class="w-12 h-12 rounded-md bg-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-sm mb-2 md:mb-0"
             aria-hidden="true"
           >
             1
           </div>
           <div class="leading-relaxed">
-            <h3 class="text-xl font-semibold mb-3">
+            <h3 class="text-xl font-black mb-3">
               Get your license
             </h3>
-            <p class="text-gray-600">
+            <p class="text-gray-600 font-medium">
               Purchase your Infinity Metrics license from our <a href="#pricing" class="text-blue-600 hover:underline">pricing section</a> to get started.
             </p>
           </div>
         </article>
 
-        <article class="card flex flex-col md:flex-row gap-4 md:gap-6 items-start p-6 md:p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
+        <article class="bg-white border border-black flex flex-col md:flex-row gap-4 md:gap-6 items-start p-6 md:p-8 rounded-lg shadow-md slide-in">
           <div
-            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md mb-2 md:mb-0"
+            class="w-12 h-12 rounded-md bg-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-sm mb-2 md:mb-0"
             aria-hidden="true"
           >
             2
           </div>
           <div class="leading-relaxed w-full">
-            <h3 class="text-xl font-semibold mb-3">
+            <h3 class="text-xl font-black mb-3">
               Install with a single command
             </h3>
-            <p class="text-gray-600">
+            <p class="text-gray-600 font-medium">
               Run our streamlined installer and follow the simple setup instructions.
             </p>
-             <div class="bg-gray-100 p-3 rounded-md font-mono text-sm overflow-x-auto mt-3">
+             <div class="bg-gray-100 p-3 rounded-md font-mono text-sm overflow-x-auto mt-3 border border-gray-300">
               <code style="white-space: pre-wrap; word-break: break-all;">curl -fsSL https://getinfinitymetrics.com/install -o install.sh && sudo bash install.sh</code>
             </div>
           </div>
         </article>
 
-        <article class="card flex flex-col md:flex-row gap-4 md:gap-6 items-start p-6 md:p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
+        <article class="bg-white border border-black flex flex-col md:flex-row gap-4 md:gap-6 items-start p-6 md:p-8 rounded-lg shadow-md slide-in">
           <div
-            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md mb-2 md:mb-0"
+            class="w-12 h-12 rounded-md bg-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-sm mb-2 md:mb-0"
             aria-hidden="true"
           >
             3
           </div>
           <div class="leading-relaxed w-full">
-            <h3 class="text-xl font-semibold mb-3">Add the tracking script</h3>
-            <p class="text-gray-600 mb-4">
+            <h3 class="text-xl font-black mb-3">Add the tracking script</h3>
+            <p class="text-gray-600 font-medium mb-4">
               Copy our lightweight tracking script to your website(s) for instant data collection.
             </p>
-            <div class="bg-gray-100 p-3 rounded-md font-mono text-sm overflow-x-auto">
+            <div class="bg-gray-100 p-3 rounded-md font-mono text-sm overflow-x-auto border border-gray-300">
               <code style="white-space: pre-wrap; word-break: break-all;">&lt;script defer src="https://your-domain.com/y/api/v1/sdk.js"&gt;&lt;/script&gt;</code>
             </div>
           </div>
         </article>
 
-        <article class="card flex flex-col md:flex-row gap-4 md:gap-6 items-start p-6 md:p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 slide-in">
+        <article class="bg-white border border-black flex flex-col md:flex-row gap-4 md:gap-6 items-start p-6 md:p-8 rounded-lg shadow-md slide-in">
           <div
-            class="w-12 h-12 rounded-md bg-gradient-to-br from-gray-900 to-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-md mb-2 md:mb-0"
+            class="w-12 h-12 rounded-md bg-black text-white flex items-center justify-center font-semibold flex-shrink-0 shadow-sm mb-2 md:mb-0"
             aria-hidden="true"
           >
             4
           </div>
           <div class="leading-relaxed">
-            <h3 class="text-xl font-semibold mb-3">Start capturing insights</h3>
-            <p class="text-gray-600">
+            <h3 class="text-xl font-black mb-3">Start capturing insights</h3>
+            <p class="text-gray-600 font-medium">
               All set! Access the analytics dashboard at https://your-domain.com/
             </p>
           </div>
@@ -102,11 +106,11 @@
       </div>
       
       <div class="mt-12 text-center">
-        <p class="text-gray-600 mb-4">Need more detailed instructions?</p>
+        <p class="text-gray-600 font-medium mb-4">Need more detailed instructions?</p>
         <a href="/docs" class="btn-primary py-2 px-6 inline-flex items-center justify-center">
           View Documentation
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </a>
       </div>

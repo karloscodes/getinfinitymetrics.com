@@ -18,10 +18,10 @@ const sdkIncludeScript = `<script defer src="https://your-domain.com/api/v1/sdk.
 const sdkConfigCode = `// Modify configuration before the SDK loads
 window.InfinityMetrics = window.InfinityMetrics || {};
 window.InfinityMetrics.config = {
-  respectDoNotTrack: true,            // Honor browser's Do Not Track setting
-  autoInstrumentButtons: true,        // Auto-track button clicks
+	respectDoNotTrack: true,            // Honor browser's Do Not Track setting
+	autoInstrumentButtons: true,        // Auto-track button clicks
 	autoSendPageViews: true,            // Automatically send page views
-  debug: false                        // Enable debug logging
+	debug: false                        // Enable debug logging
 };`;
 
 // SDK Usage: Manual Tracking

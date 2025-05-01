@@ -1,22 +1,24 @@
-<section id="pricing" class="py-24 md:py-32 gradient-bg">
+---
+const { class: className } = Astro.props;
+---
+
+<section id="pricing" class={`py-20 bg-white ${className}`}>
   <div class="container">
     <div class="text-center mb-12">
       <span class="inline-block px-3 py-1 bg-black bg-opacity-5 rounded-full text-sm font-medium mb-4">
         Pricing
       </span>
-      <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700">Join the Beta Program</h2>
+      <h2 class="text-3xl md:text-4xl font-black mb-6 text-black">Join the Beta Program</h2>
     </div>
     
     <div class="max-w-lg mx-auto slide-in">
-      <div class="card border-2 border-black rounded-2xl p-8 shadow-xl bg-white hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+      <div class="bg-white border border-black rounded-lg p-6 shadow-md">
         <div class="text-center">
           <div class="inline-block px-4 py-1 bg-black text-white rounded-full text-sm font-medium mb-4">Limited Time Offer</div>
-          <h3 class="text-2xl font-bold mb-2">Join the Beta Program</h3>
+          <h3 class="text-2xl font-black mb-2">Join the Beta Program</h3>
           <div class="mt-6 mb-6">
-            <span class="text-5xl font-bold line-through text-gray-400"
-              >$199</span
-            >
-            <span class="text-5xl font-bold ml-2 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-800">Free</span>
+            <span class="text-4xl font-black line-through text-gray-400">$199</span>
+            <span class="text-4xl font-black ml-2 text-black">Free</span>
           </div>
           <p class="text-gray-600 mb-8">
             For a limited time: Get your Beta license with lifetime access
@@ -25,7 +27,7 @@
           <div class="flex justify-center mb-8">
             <a
               href="https://karloscodes.gumroad.com/l/infinity-metrics-beta-ab99a87c-747c-449c-b3ab-8666c9389359?wanted=true&price=0"
-              class="btn-primary w-full max-w-xs py-4 text-lg shadow-md hover:shadow-lg transition-all">
+              class="btn-primary w-full max-w-xs py-3 text-base">
               Join the Beta Program
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 inline-block" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -34,12 +36,12 @@
           </div>
         </div>
 
-        <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-6"></div>
+        <div class="h-px bg-gray-200 my-6"></div>
 
         <ul class="space-y-4 mt-8">
           <li class="flex items-start">
             <svg
-              class="h-6 w-6 text-black flex-shrink-0 mr-3"
+              class="h-5 w-5 text-black flex-shrink-0 mr-3"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -47,14 +49,14 @@
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
+                stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-lg"><strong>Free updates</strong> to any 1.x version</span>
+            <span class="text-base"><strong>Free updates</strong> to any 1.x version</span>
           </li>
           <li class="flex items-start">
             <svg
-              class="h-6 w-6 text-black flex-shrink-0 mr-3"
+              class="h-5 w-5 text-black flex-shrink-0 mr-3"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -62,14 +64,14 @@
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
+                stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-lg">Up to <strong>10 websites</strong></span>
+            <span class="text-base">Up to <strong>10 websites</strong></span>
           </li>
           <li class="flex items-start">
             <svg
-              class="h-6 w-6 text-black flex-shrink-0 mr-3"
+              class="h-5 w-5 text-black flex-shrink-0 mr-3"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -77,14 +79,14 @@
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
+                stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-lg"><strong>Near-zero maintenance</strong> - set up once and forget</span>
+            <span class="text-base"><strong>Near-zero maintenance</strong> - set up once and forget</span>
           </li>
           <li class="flex items-start">
             <svg
-              class="h-6 w-6 text-black flex-shrink-0 mr-3"
+              class="h-5 w-5 text-black flex-shrink-0 mr-3"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -92,15 +94,14 @@
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
+                stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-lg"><strong>Shape the product</strong> with insider feedback</span
-            >
+            <span class="text-base"><strong>Shape the product</strong> with insider feedback</span>
           </li>
           <li class="flex items-start">
             <svg
-              class="h-6 w-6 text-black flex-shrink-0 mr-3"
+              class="h-5 w-5 text-black flex-shrink-0 mr-3"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -108,14 +109,14 @@
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
+                stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-lg"><strong>Early access</strong> to all new features</span>
+            <span class="text-base"><strong>Early access</strong> to all new features</span>
           </li>
           <li class="flex items-start">
             <svg
-              class="h-6 w-6 text-black flex-shrink-0 mr-3"
+              class="h-5 w-5 text-black flex-shrink-0 mr-3"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -123,14 +124,14 @@
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
+                stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-lg"><strong>Few spots available</strong> - Join now</span>
+            <span class="text-base"><strong>Few spots available</strong> - Join now</span>
           </li>
         </ul>
 
-        <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-6"></div>
+        <div class="h-px bg-gray-200 my-6"></div>
 
         <p class="text-gray-600 text-center mt-8 text-sm">
           Beta access is limited. Only certain applicants will get in.

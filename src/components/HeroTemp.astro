@@ -1,43 +1,43 @@
-<section class="py-16 md:py-28 hero-gradient">
+<section class="py-16 md:py-24 bg-white">
   <div class="container">
-    <div class="lg:flex lg:items-center lg:gap-16">
+    <div class="lg:flex lg:items-center lg:gap-12">
       <div class="lg:w-1/2 mb-10 lg:mb-0 text-center lg:text-left slide-in">
-        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4">
+        <span class="inline-block px-3 py-1 bg-black bg-opacity-5 rounded-full text-sm font-medium mb-4">
           Pay Once - Own Forever
         </span>
-        <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700">
+        <h1 class="text-4xl md:text-5xl font-black mb-6 text-black">
           Self-Hosted, AI-Powered Web Analytics
         </h1>
-        <p class="text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0 text-lg leading-relaxed">
-          <strong class="text-black">One-time purchase</strong><strong class="text-black">, scale to Infinity.</strong>
+        <p class="text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0 text-base">
+          <strong class="text-black">One-time purchase</strong>, scale to Infinity.
           Embedded fast database & near zero maintenance effort.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-          <a href="#pricing" class="btn-primary inline-flex items-center px-7 py-4 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors">
+          <a href="#pricing" class="btn-primary inline-flex items-center px-6 py-3 text-white rounded-md hover:bg-gray-800 transition-colors font-bold">
             Join the Beta Program 
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
             </svg>
           </a>
-          <a href="#features" class="btn-secondary inline-block px-7 py-4 bg-white border border-gray-300 text-black rounded-lg hover:bg-gray-100 transition-colors">
+          <a href="#features" class="btn-secondary inline-block px-6 py-3 bg-white border border-black text-black rounded-md hover:bg-gray-50 transition-colors font-bold">
             Learn More
           </a>
         </div>
       </div>
       <div class="lg:w-1/2">
-        <div class="card p-0 overflow-hidden shadow-lg rounded-lg border-0">
+        <div class="bg-white rounded-lg border border-black shadow-md overflow-hidden">
           <div class="relative w-full">
             <div class="slideshow-container relative h-[500px]">
               <div class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out">
                 <img src="/dashboard-preview.png" alt="Infinity Metrics AI-Powered Analytics Dashboard" class="w-full h-full object-contain" />
-                <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent text-white text-center opacity-90">
-                  <p class="text-sm font-medium leading-relaxed">Simple, effective analytics dashboard</p>
+                <div class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center">
+                  <p class="text-sm font-bold">Simple, effective analytics dashboard</p>
                 </div>
               </div>
               <div class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out">
                 <img src="/ask-ai-preview.png" alt="Infinity Metrics AI Assistant Analytics Interface" class="w-full h-full object-contain" />
-                <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent text-white text-center opacity-90">
-                  <p class="text-sm font-medium leading-relaxed">Ask your data questions using natural language</p>
+                <div class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center">
+                  <p class="text-sm font-bold">Ask your data questions using natural language</p>
                 </div>
               </div>
             </div>
@@ -71,18 +71,18 @@
   let slideIndex = 1;
   showSlides(slideIndex);
 
-  function plusSlides(n) {
+  function plusSlides(n: number): void {
     showSlides((slideIndex += n));
   }
 
-  function currentSlide(n) {
+  function currentSlide(n: number): void {
     showSlides((slideIndex = n));
   }
 
-  function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("slide");
-    let dots = document.getElementsByClassName("dot");
+  function showSlides(n: number): void {
+    let i: number;
+    const slides = document.getElementsByClassName("slide") as HTMLCollectionOf<HTMLElement>;
+    const dots = document.getElementsByClassName("dot") as HTMLCollectionOf<HTMLElement>;
     if (n > slides.length) {
       slideIndex = 1;
     }

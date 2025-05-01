@@ -9,16 +9,21 @@
 
   body {
     @apply font-sans text-black antialiased bg-white;
-    line-height: 1.7;
+    line-height: 1.5;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight;
-    line-height: 1.3;
+    @apply tracking-tight font-black;
+    line-height: 1.2;
   }
   
   p, span, a, li, button {
-    line-height: 1.7;
+    @apply font-medium;
+    line-height: 1.5;
+  }
+  
+  a {
+    @apply font-semibold;
   }
   
   /* Ensure text renders with sufficient height for descenders */
@@ -33,20 +38,20 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 border font-medium rounded-md transition-all duration-300;
+    @apply inline-flex items-center justify-center px-6 py-3 border font-bold rounded-md transition-all duration-300;
     line-height: 1.5;
   }
 
   .btn-primary {
-    @apply btn bg-black text-white border-transparent hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+    @apply btn bg-black text-white border-transparent hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900;
   }
 
   .btn-secondary {
-    @apply btn bg-white text-black border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transform hover:-translate-y-0.5;
+    @apply btn bg-white text-black border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black;
   }
 
   .card {
-    @apply bg-white border border-gray-200 rounded-lg p-6 transition-all duration-300;
+    @apply bg-white border border-black rounded-lg p-6 transition-all duration-300 shadow-md;
   }
 
   .terminal {
@@ -55,11 +60,11 @@
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-gray-50 to-gray-100;
+    @apply bg-white;
   }
   
   .hero-gradient {
-    @apply bg-gradient-to-br from-white to-gray-50;
+    @apply bg-white;
   }
   
   .feature-icon {
@@ -67,8 +72,8 @@
   }
   
   .feature-card {
-    @apply card p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-gray-100;
-    line-height: 1.7;
+    @apply card p-6 bg-white rounded-lg shadow-md transition-all duration-300 border-black;
+    line-height: 1.5;
   }
 
   .slide-in {
@@ -87,19 +92,19 @@
   }
   
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700;
+    @apply text-black font-black;
   }
   
   .light-text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300;
+    @apply text-white font-black;
   }
   
   .hover-lift {
-    @apply transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg;
+    @apply transition-all duration-300;
   }
   
   .subtle-shadow {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
   }
   
   .card-hover-effect {
@@ -108,7 +113,6 @@
   
   .card-hover-effect:hover {
     @apply shadow-lg;
-    transform: translateY(-4px);
   }
   
   .fade-in {
@@ -124,22 +128,9 @@
     }
   }
   
-  .pulse-slow {
-    animation: pulseSlow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-  
-  @keyframes pulseSlow {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.8;
-    }
-  }
-  
   /* Modern Form Styles */
   .modern-input {
-    @apply w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-200;
+    @apply w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-200;
   }
 
   .slide-in-1 {
@@ -162,19 +153,43 @@
     opacity: 0;
   }
 
-  .fade-in-scale {
-    animation: fadeInScale 0.7s ease-out forwards;
-    opacity: 0;
+  .stats-value {
+    @apply text-3xl font-black text-black;
   }
-
-  @keyframes fadeInScale {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+  
+  .stats-label {
+    @apply text-sm text-gray-600 font-semibold;
+  }
+  
+  .data-card {
+    @apply bg-white border border-black rounded-lg p-5 shadow-md;
+  }
+  
+  .tab-active {
+    @apply bg-black text-white;
+  }
+  
+  /* Section separations */
+  section {
+    @apply relative;
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  section:last-of-type {
+    border-bottom: none;
+  }
+  
+  section.alt-bg {
+    @apply bg-gray-50;
+  }
+  
+  /* Data box styles */
+  .data-box {
+    @apply bg-white border border-black rounded-lg p-5 shadow-md;
+  }
+  
+  /* Link styles */
+  a:not(.btn-primary):not(.btn-secondary) {
+    @apply text-black hover:text-gray-700 font-bold;
   }
 }
