@@ -248,8 +248,8 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 						<div class="card p-6 rounded-xl shadow-sm">
 							<h3 class="text-xl font-semibold mb-4 text-black">Network Requirements</h3>
 							<ul class="space-y-3 text-black">
-								<li><strong>Inbound Ports:</strong> HTTPS (443) - Required for event registration and dashboard access</li>
-								<li><strong>Inbound Ports:</strong> HTTP (80) - Required for Let's Encrypt certificate setup and verification</li>
+								<li><strong>Inbound:</strong> Ports 80 (HTTP) and 443 (HTTPS) must be open for Let's Encrypt certificate setup, verification, and normal operations</li>
+								<li><strong>Outbound:</strong> General internet access required for Let's Encrypt certificate renewal and OpenAI API communication</li>
 								<li><strong>SSL Certificate:</strong> Automatically provisioned during installation with Let's Encrypt (for automated installer) or configured manually</li>
 							</ul>
 						</div>
