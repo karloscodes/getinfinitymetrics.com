@@ -49,9 +49,9 @@ const highPriceForSchema = salePrice ? formatPrice(basePrice, false) : undefined
 // Get FAQ schema
 const faqSchema = getFaqSchema();
 
-// Calculate priceValidUntil date (one year from now)
+// Calculate priceValidUntil date (30 days from now)
 const today = new Date();
-const priceValidUntilDate = new Date(today.setFullYear(today.getFullYear() + 1));
+const priceValidUntilDate = new Date(new Date().setDate(new Date().getDate() + 30));
 const priceValidUntil = priceValidUntilDate.toISOString().split('T')[0];
 
 // Hardcoded image URL - PLEASE UPDATE

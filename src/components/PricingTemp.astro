@@ -5,34 +5,61 @@ const { class: className } = Astro.props;
 <section id="pricing" class={`py-20 bg-white ${className}`}>
   <div class="container">
     <div class="text-center mb-12">
-      <span class="inline-block px-3 py-1 bg-black bg-opacity-5 rounded-full text-sm font-medium mb-4">
+      <span
+        class="inline-block px-3 py-1 bg-black bg-opacity-5 rounded-full text-sm font-medium mb-4"
+      >
         Pricing
       </span>
-      <h2 class="text-3xl md:text-4xl font-black mb-6 text-black">Join the Beta Program</h2>
+      <h2 class="text-3xl md:text-4xl font-black mb-6 text-black">
+        Limited Time Offer
+      </h2>
     </div>
-    
+
     <div class="max-w-lg mx-auto slide-in">
       <div class="bg-white border border-black rounded-lg p-6 shadow-md">
         <div class="text-center">
-          <div class="inline-block px-4 py-1 bg-black text-white rounded-full text-sm font-medium mb-4">Limited Time Offer</div>
-          <h3 class="text-2xl font-black mb-2">Join the Beta Program</h3>
-          <div class="mt-6 mb-6">
-            <span class="text-4xl font-black line-through text-gray-400">$199</span>
-            <span class="text-4xl font-black ml-2 text-black">Free</span>
+          <div
+            class="inline-block px-4 py-1 bg-black text-white rounded-full text-sm font-medium mb-4"
+          >
+            Limited Time Offer
           </div>
-          <p class="text-gray-600 mb-8">
-            For a limited time: Get your Beta license with lifetime access
-          </p>
+          <h3 class="text-2xl font-black mb-2">
+            Get it Now at a Special Price
+          </h3>
+          <div class="mt-6 mb-6">
+            <span class="text-4xl font-black line-through text-gray-400"
+              >$199.99</span
+            >
+            <span class="text-4xl font-black ml-2 text-black">$49.99</span>
+            <p class="text-xs text-gray-500 mt-1">(plus applicable taxes)</p>
+          </div>
 
-          <div class="flex justify-center mb-8">
+          <div class="flex flex-col items-center mb-8">
+            {/* TODO: Update this Gumroad link to the $49.99 product */}
             <a
-              href="https://karloscodes.gumroad.com/l/infinity-metrics-beta-ab99a87c-747c-449c-b3ab-8666c9389359?wanted=true&price=0"
-              class="btn-primary w-full max-w-xs py-3 text-base">
-              Join the Beta Program
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 inline-block" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              href="https://karloscodes.gumroad.com/l/infinity-metrics/INITIALPRICE?wanted=true"
+              class="btn-primary w-full max-w-xs py-3 text-base"
+            >
+              Get it now
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 ml-2 inline-block"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
               </svg>
             </a>
+            <p class="mt-3 text-sm">
+              <a
+                href="https://karloscodes.gumroad.com/l/infinity-metrics-30-days-free-trial?wanted=true"
+                class="text-gray-600 hover:text-gray-900 underline"
+                >Or try our free trial for (Free for 1 website for 30 days)</a
+              >
+            </p>
           </div>
         </div>
 
@@ -52,7 +79,9 @@ const { class: className } = Astro.props;
                 stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-base"><strong>Free updates</strong> to any 1.x version</span>
+            <span class="text-base"
+              ><strong>Free updates</strong> to any 1.x version</span
+            >
           </li>
           <li class="flex items-start">
             <svg
@@ -67,7 +96,7 @@ const { class: className } = Astro.props;
                 stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-base">Up to <strong>10 websites</strong></span>
+            <span class="text-base">Up to <strong>50 websites</strong></span>
           </li>
           <li class="flex items-start">
             <svg
@@ -82,7 +111,9 @@ const { class: className } = Astro.props;
                 stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-base"><strong>Near-zero maintenance</strong> - set up once and forget</span>
+            <span class="text-base"
+              ><strong>Near-zero maintenance</strong> - set up once and forget</span
+            >
           </li>
           <li class="flex items-start">
             <svg
@@ -97,7 +128,9 @@ const { class: className } = Astro.props;
                 stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-base"><strong>Shape the product</strong> with insider feedback</span>
+            <span class="text-base"
+              ><strong>Shape the product</strong> with insider feedback</span
+            >
           </li>
           <li class="flex items-start">
             <svg
@@ -112,7 +145,9 @@ const { class: className } = Astro.props;
                 stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-base"><strong>Early access</strong> to all new features</span>
+            <span class="text-base"
+              ><strong>Early access</strong> to all new features</span
+            >
           </li>
           <li class="flex items-start">
             <svg
@@ -127,7 +162,9 @@ const { class: className } = Astro.props;
                 stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-base"><strong>Few spots available</strong> - Join now</span>
+            <span class="text-base"
+              ><strong>Limited time offer</strong> - Get it now!</span
+            >
           </li>
         </ul>
 
