@@ -8,7 +8,6 @@ interface Props {
   description: string;
   basePrice: number;
   salePrice?: number;
-  imageUrl: string;
   brand?: string;
   categoryPath?: string[];
   sku: string;
@@ -22,7 +21,6 @@ const {
   description,
   basePrice,
   salePrice,
-  imageUrl,
   brand = "Infinity Metrics",
   categoryPath = ["Software", "Analytics", "Self-hosted"],
   sku,
@@ -51,6 +49,14 @@ const highPriceForSchema = salePrice ? formatPrice(basePrice, false) : undefined
 // Get FAQ schema
 const faqSchema = getFaqSchema();
 
+// Calculate priceValidUntil date (one year from now)
+const today = new Date();
+const priceValidUntilDate = new Date(today.setFullYear(today.getFullYear() + 1));
+const priceValidUntil = priceValidUntilDate.toISOString().split('T')[0];
+
+// Hardcoded image URL - PLEASE UPDATE
+const absoluteImageUrl = "https://infinitymetrics.com/InfinityMetrics%20128x720.png"; // Updated with user-provided image path
+
 // Combined schema
 const productSchema = {
   "@context": "https://schema.org/",
@@ -59,7 +65,7 @@ const productSchema = {
       "@type": "Product",
       "name": productName,
       "description": description,
-      "image": imageUrl,
+      "image": absoluteImageUrl,
       "sku": sku,
       "brand": {
         "@type": "Brand",
@@ -71,7 +77,27 @@ const productSchema = {
         "priceCurrency": "USD",
         "price": priceForSchema,
         ...(highPriceForSchema ? { "highPrice": highPriceForSchema } : {}),
+        "priceValidUntil": priceValidUntil,
         "availability": `https://schema.org/${availability}`,
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "US",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnMoneyBackGuarantee",
+          "merchantReturnDays": 30,
+          "itemCondition": "https://schema.org/NewCondition"
+        },
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {
+            "@type": "MonetaryAmount",
+            "value": "0",
+            "currency": "USD"
+          },
+          "shippingDestination": {
+            "@type": "DefinedRegion",
+            "addressCountry": "US"
+          }
+        },
         "seller": {
           "@type": "Organization",
           "name": brand
