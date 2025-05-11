@@ -1,0 +1,828 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const pageTitle = "Documentation | Infinity Metrics";
+const pageDescription =
+	"Comprehensive documentation for Infinity Metrics analytics - installation, requirements, and SDK integration.";
+
+// Code fragments for display in the documentation
+// Installation section
+const installCommand =
+	"curl -fsSL https://getinfinitymetrics.com/install -o install.sh && sudo bash install.sh";
+const trackingScript = `<script defer src="https://your-domain.com/api/v1/sdk.js"></script>`;
+
+// SDK Usage: Including the SDK
+const sdkIncludeScript = `<script defer src="https://your-domain.com/api/v1/sdk.js"></script>`;
+
+// SDK Usage: SDK Configuration
+const sdkConfigCode = `// Modify configuration before the SDK loads
+window.InfinityMetrics = window.InfinityMetrics || {};
+window.InfinityMetrics.config = {
+	respectDoNotTrack: true,            // Honor browser's Do Not Track setting
+	autoInstrumentButtons: true,        // Auto-track button clicks
+	autoSendPageViews: true,            // Automatically send page views
+	debug: false                        // Enable debug logging
+};`;
+
+// SDK Usage: Manual Tracking
+const customEventSimple = `// Track a simple event
+window.InfinityMetrics.sendCustomEvent('button_click')`;
+const customEventWithProps = `// Track an event with properties
+window.InfinityMetrics.sendCustomEvent('signup', { method: 'email' })`;
+const manualPageView = "window.InfinityMetrics.sendPageView()";
+const identifyUser = `window.InfinityMetrics.setUser({ userId: 'user_123' })`;
+
+const dataDrivenLinkExample = `
+<a href="/features"
+   data-infinity-event-name="Clicked Features Link From Docs"
+   data-infinity-metadata-location="Docs Page Section"
+   data-infinity-metadata-custom_id="feat_123">
+   Explore Our Features
+</a>`;
+
+// Self-Managed Installation: Docker run command
+const dockerRunCommand = `docker run -d \\
+  --name infinity-metrics \\
+  -v /path/to/storage:/app/storage \\
+  -v /path/to/logs:/app/logs \\
+  -e INFINITY_METRICS_LOG_LEVEL=debug \\
+  -e INFINITY_METRICS_APP_PORT=8080 \\
+  -e INFINITY_METRICS_LICENSE_KEY=your-license-key \\
+  -e INFINITY_METRICS_DOMAIN=your-domain.com \\
+  -e INFINITY_METRICS_PRIVATE_KEY=your-private-key \\
+  --restart unless-stopped \\
+  infinitymetrics/app:latest`;
+
+// Administrative Operations: Commands
+const changeAdminPasswordCommand =
+	"sudo infinity-metrics change-admin-password";
+const forceUpdateCommand = "sudo infinity-metrics update";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+	<Header />
+	<main class="py-16 md:py-24">
+		<div class="container px-4 md:px-6">
+			<div class="max-w-4xl mx-auto">
+				<h1
+					class="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700"
+				>
+					Documentation
+				</h1>
+
+				<!-- Table of Contents -->
+				<div class="mb-12 p-6 rounded-xl border border-gray-200">
+					<h2 class="text-xl font-semibold mb-4 text-black">Contents</h2>
+					<ul class="space-y-2">
+						<li>
+							<a
+								href="#automated-installation"
+								class="text-blue-600 hover:underline">Automated Installation</a
+							>
+							<ul class="ml-6 mt-2 space-y-2">
+								<li>
+									<a
+										href="#get-license-automated"
+										class="text-blue-600 hover:underline">Get Your License</a
+									>
+								</li>
+								<li>
+									<a
+										href="#installer-and-updater"
+										class="text-blue-600 hover:underline"
+										>InfinityMetrics Installer and Updater</a
+									>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a
+								href="#self-managed-installation"
+								class="text-blue-600 hover:underline"
+								>Self-Managed Installation</a
+							>
+							<ul class="ml-6 mt-2 space-y-2">
+								<li>
+									<a
+										href="#get-license-self-managed"
+										class="text-blue-600 hover:underline">Get Your License</a
+									>
+								</li>
+								<li>
+									<a
+										href="#docker-installation"
+										class="text-blue-600 hover:underline">Docker Installation</a
+									>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a
+								href="#integrating-tracking-script"
+								class="text-blue-600 hover:underline"
+								>Integrating the Tracking Script</a
+							>
+						</li>
+						<li>
+							<a
+								href="#accessing-dashboard"
+								class="text-blue-600 hover:underline">Accessing the Dashboard</a
+							>
+						</li>
+						<li>
+							<a
+								href="#administrative-operations"
+								class="text-blue-600 hover:underline"
+								>Administrative Operations</a
+							>
+						</li>
+						<li>
+							<a
+								href="#server-requirements"
+								class="text-blue-600 hover:underline">Server Requirements</a
+							>
+						</li>
+						<li>
+							<a href="#sdk-usage" class="text-blue-600 hover:underline"
+								>SDK Usage</a
+							>
+							<ul class="ml-6 mt-2 space-y-2">
+								<li>
+									<a href="#sdk-include" class="text-blue-600 hover:underline"
+										>Including the SDK</a
+									>
+								</li>
+								<li>
+									<a
+										href="#sdk-configuration"
+										class="text-blue-600 hover:underline">SDK Configuration</a
+									>
+								</li>
+								<li>
+									<a href="#auto-tracking" class="text-blue-600 hover:underline"
+										>Automated Tracking</a
+									>
+								</li>
+								<li>
+									<a
+										href="#manual-tracking"
+										class="text-blue-600 hover:underline">Manual Tracking</a
+									>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+				<!-- Automated Installation Section -->
+				<section id="automated-installation" class="mb-16">
+					<div class="flex items-start mb-4">
+						<h2 class="text-3xl font-bold text-black">
+							Automated Installation
+						</h2>
+					</div>
+					<div class="border-l-4 border-gray-300 pl-6 py-2">
+						<p class="text-black mb-6">
+							This method provides a streamlined installation process with
+							automatic updates, ideal for Ubuntu Server users.
+						</p>
+
+						<section id="get-license-automated" class="mb-10">
+							<h3 class="text-xl font-semibold mb-3 text-black">
+								1. Get your license
+							</h3>
+							<p class="text-black">
+								Purchase your Infinity Metrics license from our <a
+									href="/#pricing"
+									class="text-blue-600 hover:underline">pricing section</a
+								> to get started.
+							</p>
+						</section>
+
+						<section id="installer-and-updater" class="mb-10">
+							<h3 class="text-xl font-semibold mb-4 text-black">
+								2. InfinityMetrics Installer and Updater
+							</h3>
+							<p class="text-black mb-6">
+								The installer automatically configures SSL certificates and uses
+								Caddy as a proxy. For more details, see the <a
+									href="https://github.com/karloscodes/infinity-metrics-installer"
+									class="text-blue-600 hover:underline"
+									>Infinity Metrics Installer on GitHub</a
+								>.
+							</p>
+							<div class="space-y-4">
+								<h4 class="text-lg font-semibold mb-3 text-black">
+									Install with a single command
+								</h4>
+								<p class="text-black mb-4">
+									Run the installer and follow its instructions.
+								</p>
+								<div
+									class="bg-black p-3 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs"
+								>
+									<pre><code class="text-white">{installCommand}</code></pre>
+								</div>
+							</div>
+						</section>
+					</div>
+				</section>
+
+				<!-- Self-Managed Installation Section -->
+				<section id="self-managed-installation" class="mb-16">
+					<div class="flex items-start mb-4">
+						<h2 class="text-3xl font-bold text-black">
+							Self-Managed Installation
+						</h2>
+					</div>
+					<div class="border-l-4 border-gray-300 pl-6 py-2">
+						<p class="text-black mb-6">
+							This method is for users who prefer manual setup or are using a
+							non-Ubuntu Linux distribution, deploying Infinity Metrics via a
+							Docker image.
+						</p>
+
+						<section id="get-license-self-managed" class="mb-10">
+							<h3 class="text-xl font-semibold mb-3 text-black">
+								1. Get your license
+							</h3>
+							<p class="text-black">
+								Purchase your Infinity Metrics license from our <a
+									href="/#pricing"
+									class="text-blue-600 hover:underline">pricing section</a
+								> to get started.
+							</p>
+						</section>
+
+						<section id="docker-installation" class="mb-10">
+							<h3 class="text-xl font-semibold mb-4 text-black">
+								2. Docker Installation
+							</h3>
+							<div class="space-y-4">
+								<ul class="space-y-3 text-black">
+									<li>
+										Infinity Metrics consists of a single Docker image that
+										automatically manages its internal database, making it
+										compatible with any Linux distribution.
+									</li>
+									<li>
+										It is actively tested on Ubuntu Server (20.04 LTS or newer),
+										but theoretically, it can be used on any Linux distribution.
+									</li>
+									<li class="font-semibold">
+										<strong>Note:</strong> We recommend putting Infinity Metrics
+										behind a proxy for enhanced security and performance. With this
+										method, all updates are in your hands.
+									</li>
+								</ul>
+								<h4 class="text-lg font-semibold mb-3 text-black">
+									Required Environment Variables
+								</h4>
+								<p class="text-black mb-4">
+									The following environment variables are required to run the
+									Infinity Metrics Docker image:
+								</p>
+								<ul class="space-y-3 text-black">
+									<li>
+										<strong>INFINITY_METRICS_LOG_LEVEL:</strong> Logging level (e.g.,
+										<code class="text-black">debug</code>)
+									</li>
+									<li>
+										<strong>INFINITY_METRICS_APP_PORT:</strong> Port for the app
+										(e.g., <code class="text-black">8080</code>)
+									</li>
+									<li>
+										<strong>INFINITY_METRICS_LICENSE_KEY:</strong> Your license key
+										obtained in step 1
+									</li>
+									<li>
+										<strong>INFINITY_METRICS_DOMAIN:</strong> Your domain (e.g.,
+										<code class="text-black">your-domain.com</code>)
+									</li>
+									<li>
+										<strong>INFINITY_METRICS_PRIVATE_KEY:</strong> Private key for
+										internal functioning of the app. (32 random characters)
+									</li>
+								</ul>
+								<h4 class="text-lg font-semibold mb-3 text-black">
+									Docker Run Command
+								</h4>
+								<p class="text-black mb-4">
+									Use the following command to run the Infinity Metrics Docker
+									image. Replace the placeholder values with your own:
+								</p>
+								<div
+									class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs"
+								>
+									<pre><code class="text-white">{dockerRunCommand}</code></pre>
+								</div>
+							</div>
+						</section>
+					</div>
+				</section>
+
+				<!-- Integrating the Tracking Script Section -->
+				<section id="integrating-tracking-script" class="mb-16">
+					<div class="flex items-start mb-4">
+						<h2 class="text-3xl font-bold text-black">
+							Integrating the Tracking Script
+						</h2>
+					</div>
+					<p class="text-black mb-4">
+						Copy the lightweight tracking script below to your website(s) to
+						start collecting data. This step applies to both installation
+						methods.
+					</p>
+					<div
+						class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs"
+					>
+						<pre><code class="text-white">{trackingScript}</code></pre>
+					</div>
+				</section>
+
+				<!-- Accessing the Dashboard Section -->
+				<section id="accessing-dashboard" class="mb-16">
+					<div class="flex items-start mb-4">
+						<h2 class="text-3xl font-bold text-black">
+							Accessing the Dashboard
+						</h2>
+					</div>
+					<p class="text-black">
+						Once installed, access the analytics dashboard at <a
+							href="https://your-domain.com/"
+							class="text-blue-600 hover:underline">https://your-domain.com/</a
+						>. This step applies to both installation methods.
+					</p>
+				</section>
+
+				<!-- Administrative Operations Section -->
+				<section id="administrative-operations" class="mb-16">
+					<div class="flex items-start mb-4">
+						<h2 class="text-3xl font-bold text-black">
+							Administrative Operations
+						</h2>
+					</div>
+					<p class="text-black mb-6">
+						Manage your Infinity Metrics installation with the following
+						administrative commands.
+					</p>
+
+					<div class="space-y-6">
+						<div>
+							<h3 class="text-xl font-semibold mb-3 text-black">
+								Password Reset
+							</h3>
+							<p class="text-black mb-4">
+								To reset or change the admin password, run the following command
+								with sudo privileges:
+							</p>
+							<div
+								class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs"
+							>
+								<pre><code class="text-white">{changeAdminPasswordCommand}</code></pre>
+							</div>
+						</div>
+
+						<div>
+							<h3 class="text-xl font-semibold mb-3 text-black">
+								Forced Updates
+							</h3>
+							<p class="text-black mb-4">
+								To manually force an update of Infinity Metrics, run the
+								following command with sudo privileges:
+							</p>
+							<div
+								class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs"
+							>
+								<pre><code class="text-white">{forceUpdateCommand}</code></pre>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Server Requirements Section -->
+				<section id="server-requirements" class="mb-16">
+					<div class="flex items-start mb-4">
+						<h2 class="text-3xl font-bold text-black">Server Requirements</h2>
+					</div>
+					<p class="text-black mb-6">
+						Infinity Metrics is designed to run efficiently with minimal server
+						resources. You can get started with very modest specifications.
+					</p>
+
+					<div class="space-y-6">
+						<div class="card p-6 rounded-xl shadow-sm">
+							<h3 class="text-xl font-semibold mb-4 text-black">
+								Minimum Requirements
+							</h3>
+							<ul class="space-y-3 text-black">
+								<li><strong>CPU:</strong> 1 vCPU/Core</li>
+								<li><strong>RAM:</strong> 512MB (sufficient to get started)</li>
+								<li><strong>Storage:</strong> 10GB SSD</li>
+							</ul>
+						</div>
+
+						<div class="card p-6 rounded-xl shadow-sm">
+							<h3 class="text-xl font-semibold mb-4 text-black">
+								Network Requirements
+							</h3>
+							<ul class="space-y-3 text-black">
+								<li>
+									<strong>Inbound:</strong> Ports 80 (HTTP) and 443 (HTTPS) must
+									be open for Let's Encrypt certificate setup, verification, and
+									normal operations
+								</li>
+								<li>
+									<strong>Outbound:</strong> General internet access required for
+									Let's Encrypt certificate renewal and OpenAI API communication
+								</li>
+								<li>
+									<strong>SSL Certificate:</strong> Automatically provisioned during
+									installation with Let's Encrypt (for automated installer) or configured
+									manually
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- SDK Usage Section -->
+				<section id="sdk-usage" class="mb-16">
+					<div class="flex items-start mb-4">
+						<h2 class="text-3xl font-bold text-black">SDK Usage</h2>
+					</div>
+					<p class="text-black mb-6">
+						Our lightweight JavaScript SDK makes it easy to capture analytics
+						data from your websites.
+					</p>
+
+					<!-- Including the SDK -->
+					<section id="sdk-include" class="mb-10">
+						<h3 class="text-2xl font-semibold mb-4 text-black">
+							Including the SDK
+						</h3>
+						<p class="text-black mb-4">
+							Add the following script tag to the <code class="text-black"
+								><head></head> section of your website. Replace <code
+									class="text-black">your-domain.com</code
+								> with the domain where you installed Infinity Metrics.
+							</code>
+
+							<div
+								class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs mb-6"
+							>
+								<pre><code class="text-white">{sdkIncludeScript}</code></pre>
+							</div>
+
+							<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+								<div class="flex">
+									<div class="flex-shrink-0">
+										<svg
+											class="h-5 w-5 text-yellow-400"
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 20 20"
+											fill="currentColor"
+										>
+											<path
+												fill-rule="evenodd"
+												d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+												clip-rule="evenodd"></path>
+										</svg>
+									</div>
+									<div class="ml-3">
+										<p class="text-sm text-yellow-700 font-semibold">
+											For optimal data collection, place the script as early as
+											possible in the <code class="text-black"
+												><head></head> of your HTML document.
+											</code>
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<!-- SDK Configuration -->
+							<section id="sdk-configuration" class="mb-10">
+								<h3 class="text-2xl font-semibold mb-4 text-black">
+									SDK Configuration
+								</h3>
+								<p class="text-black mb-4">
+									The Infinity Metrics SDK comes with sensible defaults, but you
+									can customize its behavior by modifying the configuration
+									options.
+								</p>
+
+								<div
+									class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs mb-6"
+								>
+									<pre><code class="language-javascript text-white">{sdkConfigCode}</code></pre>
+								</div>
+
+								<h4 class="text-lg font-semibold mb-3 text-black">
+									Configuration Options
+								</h4>
+								<div class="overflow-x-auto">
+									<table class="min-w-full divide-y divide-gray-200 mb-6">
+										<thead class="bg-gray-50">
+											<tr>
+												<th
+													scope="col"
+													class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+													>Option</th
+												>
+												<th
+													scope="col"
+													class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+													>Default</th
+												>
+												<th
+													scope="col"
+													class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+													>Description</th
+												>
+											</tr>
+										</thead>
+										<tbody class="bg-white divide-y divide-gray-200">
+											<tr>
+												<td
+													class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+													>respectDoNotTrack</td
+												>
+												<td
+													class="px-6 py-4 whitespace-nowrap text-sm text-black"
+													>true</td
+												>
+												<td class="px-6 py-4 text-sm text-black"
+													>Honor the browser's Do Not Track setting</td
+												>
+											</tr>
+											<tr>
+												<td
+													class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+													>autoInstrumentButtons</td
+												>
+												<td
+													class="px-6 py-4 whitespace-nowrap text-sm text-black"
+													>true</td
+												>
+												<td class="px-6 py-4 text-sm text-black"
+													>Automatically track button clicks</td
+												>
+											</tr>
+											<tr>
+												<td
+													class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+													>autoSendPageViews</td
+												>
+												<td
+													class="px-6 py-4 whitespace-nowrap text-sm text-black"
+													>true</td
+												>
+												<td class="px-6 py-4 text-sm text-black"
+													>Automatically send page views</td
+												>
+											</tr>
+											<tr>
+												<td
+													class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+													>debug</td
+												>
+												<td
+													class="px-6 py-4 whitespace-nowrap text-sm text-black"
+													>false</td
+												>
+												<td class="px-6 py-4 text-sm text-black"
+													>Enable debug logging to console</td
+												>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</section>
+
+							<!-- Automated Tracking -->
+							<section id="auto-tracking" class="mb-10">
+								<h3 class="text-2xl font-semibold mb-4 text-black">
+									Automated Tracking
+								</h3>
+								<p class="text-black mb-4">
+									By default, Infinity Metrics automatically tracks the
+									following without any additional code:
+								</p>
+
+								<div class="space-y-6 mb-6">
+									<div class="card p-5 rounded-xl shadow-sm">
+										<h4 class="font-semibold mb-2 text-black">Page Views</h4>
+										<p class="text-black">
+											Every page load is automatically tracked.
+										</p>
+									</div>
+
+									<div class="card p-5 rounded-xl shadow-sm">
+										<h4 class="font-semibold mb-2 text-black">
+											Single-Page Application (SPA) Navigation
+										</h4>
+										<p class="text-black">
+											The SDK automatically detects navigation changes in SPAs
+											by monitoring history state and popstate events, treating
+											them as new page views. It supports React, Vue, and
+											Angular.
+										</p>
+									</div>
+
+									<div class="card p-5 rounded-xl shadow-sm">
+										<h4 class="font-semibold mb-2 text-black">Button Clicks</h4>
+										<p class="text-black">
+											When auto-instrumentation is enabled (default), clicks on <code
+												class="text-black">&lt;button&gt;</code
+											> elements, <code class="text-black"
+												>&lt;input type="button"&gt;</code
+											>, <code class="text-black"
+												>&lt;input type="submit"&gt;</code
+											>, and any element with <code class="text-black"
+												>role="button"</code
+											> are automatically tracked.
+										</p>
+										<p class="text-black mt-2">
+											Button events are named using the pattern: <code
+												class="text-black"
+												>click:button:sanitized_text:button_id</code
+											>. Here's how it's constructed:
+										</p>
+										<ul
+											class="list-disc list-inside text-black mt-2 space-y-1 pl-4"
+										>
+											<li>
+												<code class="text-black">sanitized_text</code>: Derived
+												from the button's visible text. The system prioritizes <code
+													class="text-black">textContent</code
+												>, then <code class="text-black">value</code>, then <code
+													class="text-black">title</code
+												>. This text is then sanitized: converted to lowercase,
+												spaces replaced with underscores, non-alphanumeric
+												characters (except underscores) removed, and truncated
+												to 50 characters. If no text is found or sanitization
+												results in an empty string, it defaults to
+												"unnamed_button".
+											</li>
+											<li>
+												<code class="text-black">button_id</code>: The <code
+													class="text-black">id</code
+												> attribute of the button. If the button has no ID, this
+												defaults to "noid".
+											</li>
+										</ul>
+										<p class="text-black mt-2">
+											For example, <code class="text-black"
+												>&lt;button id="myBtn"&gt;Submit&lt;/button&gt;</code
+											> would generate an event named <code class="text-black"
+												>click:button:submit:mybtn</code
+											>.
+										</p>
+										<p class="text-sm text-gray-600 mt-2">
+											Note: If an <code class="text-black">&lt;a&gt;</code> tag is
+											styled like a button but includes the <code
+												class="text-black">data-infinity-event-name</code
+											> attribute, it will be handled by Link Event Tracking (see
+											below) to avoid duplication, and this general button tracking
+											will defer.
+										</p>
+									</div>
+
+									<div class="card p-5 rounded-xl shadow-sm">
+										<h4 class="font-semibold mb-2 text-black">
+											Link Event Tracking
+										</h4>
+										<p class="text-black mb-2">
+											Track clicks on specific links declaratively by adding <code
+												class="text-black">data-</code
+											> attributes to your <code class="text-black"
+												>&lt;a&gt;</code
+											> tags. This is useful for CTAs or important navigational elements.
+											This method takes priority over general button click tracking
+											for <code class="text-black">&lt;a&gt;</code> tags to prevent
+											double counting.
+										</p>
+										<ul class="list-disc list-inside text-black mt-2 space-y-1">
+											<li>
+												<strong>Activation:</strong> Add <code
+													class="text-black">data-infinity-event-name</code
+												> to the link.
+											</li>
+											<li>
+												<strong>Event Naming:</strong> Value of <code
+													class="text-black">data-infinity-event-name</code
+												> is sanitized (lowercase, underscores, alphanumeric, 50
+												chars).
+											</li>
+											<li>
+												<strong>Automatic Metadata:</strong>
+												<code class="text-black">href</code> (link URL) and <code
+													class="text-black">text</code
+												> (link text).
+											</li>
+											<li>
+												<strong>Custom Metadata:</strong> Use attributes like <code
+													class="text-black"
+													>data-infinity-metadata-yourkey="value"</code
+												>.
+											</li>
+										</ul>
+										<p class="text-black mt-3">Example:</p>
+										<div
+											class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2"
+										>
+											<pre><code class="language-html text-white">{dataDrivenLinkExample}</code></pre>
+										</div>
+									</div>
+
+									<div class="card p-5 rounded-xl shadow-sm">
+										<h4 class="font-semibold mb-2 text-black">
+											Offline Support
+										</h4>
+										<p class="text-black">
+											The SDK automatically detects when the user is offline and
+											stores events locally for a reasonable period of time.
+											When the connection is restored, it will send the stored
+											events to the server.
+										</p>
+									</div>
+								</div>
+							</section>
+
+							<!-- Manual Tracking -->
+							<section id="manual-tracking" class="mb-10">
+								<h3 class="text-2xl font-semibold mb-4 text-black">
+									Manual Tracking
+								</h3>
+								<p class="text-black mb-4">
+									For custom events, user actions, or additional data
+									collection, you can use our JavaScript API.
+								</p>
+
+								<div class="space-y-6 mb-6">
+									<div class="card p-5 rounded-xl shadow-sm">
+										<h4 class="font-semibold mb-2 text-black">Custom Events</h4>
+										<p class="text-black">
+											Track specific user interactions or milestones not covered
+											by automated tracking using the <code class="text-black"
+												>sendCustomEvent</code
+											> function.
+										</p>
+										<p class="text-black mt-2">
+											Syntax: <code class="text-black"
+												>InfinityMetrics.sendCustomEvent(eventName, metadata)</code
+											>
+										</p>
+										<ul
+											class="list-disc list-inside text-black mt-2 space-y-1 pl-4"
+										>
+											<li>
+												<code class="text-black">eventName</code> (string): A unique
+												name for your event (e.g., "trial_started", "file_downloaded").
+											</li>
+											<li>
+												<code class="text-black">metadata</code> (object): An object
+												containing any additional dynamic information relevant to
+												the event. You can include any key-value pairs, for example,
+												<code class="text-black"
+													>&lbrace; plan: "premium", fileName: "report.pdf"
+													&rbrace;</code
+												>. This data will be available in your analytics.
+											</li>
+										</ul>
+										<p class="text-black mt-3 font-medium">Example:</p>
+										<div class="docs-code-block mt-1">
+											<code class="text-black">
+												InfinityMetrics.sendCustomEvent("video_played", &lbrace;
+												videoTitle: "Product Demo", durationWatched: "60s"
+												&rbrace;);
+											</code>
+										</div>
+									</div>
+
+									<div class="card p-5 rounded-xl shadow-sm">
+										<h4 class="font-semibold mb-2 text-black">
+											Manual Page Views
+										</h4>
+										<p class="text-black">
+											SPA frameworks could fail to automatically trigger page
+											views changes, you can do it manually like this:
+										</p>
+										<div
+											class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs mt-2"
+										>
+											<pre><code class="language-javascript text-white">{manualPageView}</code></pre>
+										</div>
+									</div>
+								</div>
+							</section>
+						</p>
+					</section>
+				</section>
+			</div>
+			<Footer />
+		</div>
+	</main></Layout
+>
