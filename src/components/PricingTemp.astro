@@ -8,30 +8,34 @@ const { class: className } = Astro.props;
       <span
         class="inline-block px-3 py-1 bg-black bg-opacity-5 rounded-full text-sm font-medium mb-4"
       >
-        Pricing
+        Special Beta Offer
       </span>
-      <h2 class="text-3xl md:text-4xl font-black mb-6 text-black">
-        Limited Time Offer
-      </h2>
     </div>
 
     <div class="max-w-lg mx-auto slide-in">
       <div class="bg-white border border-black rounded-lg p-6 shadow-md">
         <div class="text-center">
-          <div
-            class="inline-block px-4 py-1 bg-black text-white rounded-full text-sm font-medium mb-4"
-          >
-            Limited Time Offer
+          <h3 class="text-2xl font-black mb-4">Buy Beta License</h3>
+          <div class="mb-6">
+            <div class="flex items-center justify-center gap-3 mb-2">
+              <span class="text-4xl font-black line-through text-gray-400"
+                >$199.99</span
+              >
+              <span class="text-4xl font-black text-black">$49.99</span>
+            </div>
+            <p class="text-sm text-gray-600">(plus applicable taxes)</p>
           </div>
-          <h3 class="text-2xl font-black mb-2">
-            Get it Now at a Special Price
-          </h3>
-          <div class="mt-6 mb-6">
-            <span class="text-4xl font-black line-through text-gray-400"
-              >$199.99</span
+          <div class="flex items-center justify-center gap-2 mb-6">
+            <div
+              class="inline-block px-4 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium"
             >
-            <span class="text-4xl font-black ml-2 text-black">$49.99</span>
-            <p class="text-xs text-gray-500 mt-1">(plus applicable taxes)</p>
+              One-time payment
+            </div>
+            <div
+              class="inline-block px-4 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium"
+            >
+              Save 75%
+            </div>
           </div>
 
           <div class="flex flex-col items-center mb-8">
@@ -41,7 +45,7 @@ const { class: className } = Astro.props;
               href="https://karloscodes.gumroad.com/l/infinity-metrics/INITIALPRICE?wanted=true"
               class="btn-primary w-full max-w-xs py-3 text-base"
             >
-              Get it now
+              Buy License Now
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5 ml-2 inline-block"
@@ -59,7 +63,7 @@ const { class: className } = Astro.props;
                 data-infinity-event-name="click:cta_free_trial_pricing"
                 href="https://karloscodes.gumroad.com/l/infinity-metrics-30-days-free-trial?wanted=true&price=0"
                 class="text-gray-600 hover:text-gray-900 underline"
-                >Or try our free trial for (Free for 1 website for 30 days)</a
+                >Try it free for 30 days →</a
               >
             </p>
           </div>
@@ -98,23 +102,8 @@ const { class: className } = Astro.props;
                 stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-base">Up to <strong>50 websites</strong></span>
-          </li>
-          <li class="flex items-start">
-            <svg
-              class="h-5 w-5 text-black flex-shrink-0 mr-3"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1"
-                d="M5 13l4 4L19 7"></path>
-            </svg>
-            <span class="text-base"
-              ><strong>Near-zero maintenance</strong> - set up once and forget</span
+            <span class="text-base font-medium"
+              >Track up to <strong>50 websites</strong> with one license</span
             >
           </li>
           <li class="flex items-start">
@@ -130,42 +119,8 @@ const { class: className } = Astro.props;
                 stroke-width="1"
                 d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-base"
-              ><strong>Shape the product</strong> with insider feedback</span
-            >
-          </li>
-          <li class="flex items-start">
-            <svg
-              class="h-5 w-5 text-black flex-shrink-0 mr-3"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1"
-                d="M5 13l4 4L19 7"></path>
-            </svg>
-            <span class="text-base"
-              ><strong>Early access</strong> to all new features</span
-            >
-          </li>
-          <li class="flex items-start">
-            <svg
-              class="h-5 w-5 text-black flex-shrink-0 mr-3"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1"
-                d="M5 13l4 4L19 7"></path>
-            </svg>
-            <span class="text-base"
-              ><strong>Limited time offer</strong> - Get it now!</span
+            <span class="text-base font-medium"
+              >Get <strong>early access</strong> to all new features</span
             >
           </li>
         </ul>
@@ -173,7 +128,11 @@ const { class: className } = Astro.props;
         <div class="h-px bg-gray-200 my-6"></div>
 
         <p class="text-gray-600 text-center mt-8 text-sm">
-          Beta access is limited. Only certain applicants will get in.
+          <a
+            href="/terms#payments"
+            class="text-gray-700 hover:text-black transition-colors duration-150 underline"
+            >30-day money back guarantee</a
+          >
         </p>
       </div>
     </div>

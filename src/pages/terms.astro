@@ -4,7 +4,8 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const pageTitle = "Terms of Service | Infinity Metrics";
-const pageDescription = "Review the Infinity Metrics Terms of Service. Understand the license, payment, usage rights, and responsibilities for our self-hosted analytics software.";
+const pageDescription =
+  "Review the Infinity Metrics Terms of Service. Understand the license, payment, usage rights, and responsibilities for our self-hosted analytics software.";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
@@ -17,32 +18,53 @@ const pageDescription = "Review the Infinity Metrics Terms of Service. Understan
       <p class="text-lg mb-8">Last updated: March 8, 2025</p>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">1. Agreement to Terms</h2>
+        <h2 id="agreement" class="text-2xl font-semibold mb-4">1. Agreement to Terms</h2>
         <p>
-          These Terms of Service ("Terms") constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you" or "Customer") and Infinity Metrics ("we", "us", or "our"), concerning your access to and use of the `getinfinitymetrics.com` website as well as our self-hosted analytics software, including any related applications (the "Service").
+          These Terms of Service ("Terms") constitute a legally binding
+          agreement made between you, whether personally or on behalf of an
+          entity ("you" or "Customer") and Infinity Metrics ("we", "us", or
+          "our"), concerning your access to and use of the
+          `getinfinitymetrics.com` website as well as our self-hosted analytics
+          software, including any related applications (the "Service").
         </p>
         <p>
-          By purchasing, downloading, installing, or using the Service, you agree to be bound by these Terms. If you do not agree with all of these Terms, then you are expressly prohibited from using the Service and you must discontinue use immediately.
+          By purchasing, downloading, installing, or using the Service, you
+          agree to be bound by these Terms. If you do not agree with all of
+          these Terms, then you are expressly prohibited from using the Service
+          and you must discontinue use immediately.
         </p>
         <p>
-          Supplemental terms and conditions or documents that may be posted on the website from time to time are hereby expressly incorporated herein by reference.
+          Supplemental terms and conditions or documents that may be posted on
+          the website from time to time are hereby expressly incorporated herein
+          by reference.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">2. The Service: Self-Hosted Software</h2>
-         <p>
-          Infinity Metrics provides self-hosted web analytics software. This means you download, install, configure, and run the software on your own server infrastructure. You are responsible for providing and managing the necessary hosting environment.
+        <h2 id="service" class="text-2xl font-semibold mb-4">
+          2. The Service: Self-Hosted Software
+        </h2>
+        <p>
+          Infinity Metrics provides self-hosted web analytics software. This
+          means you download, install, configure, and run the software on your
+          own server infrastructure. You are responsible for providing and
+          managing the necessary hosting environment.
         </p>
         <p>
-          We provide the software license; you control its operation and the data it collects about visitors to your website(s) ("End User Data"). We do not access, store, or process your End User Data.
+          We provide the software license; you control its operation and the
+          data it collects about visitors to your website(s) ("End User Data").
+          We do not access, store, or process your End User Data.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">3. Beta Status & Early Access (If Applicable)</h2>
+        <h2 id="beta" class="text-2xl font-semibold mb-4">
+          3. Beta Status & Early Access (If Applicable)
+        </h2>
         <p>
-          Note: This section applies if you obtained the Service during a beta or early access period. We may be rolling out Infinity Metrics via an exclusive waitlist or beta program. If so:
+          Note: This section applies if you obtained the Service during a beta
+          or early access period. We may be rolling out Infinity Metrics via an
+          exclusive waitlist or beta program. If so:
         </p>
         <ul class="list-disc pl-6 mb-4">
           <li>Expect bugs, errors, and occasional service instability.</li>
@@ -55,74 +77,169 @@ const pageDescription = "Review the Infinity Metrics Terms of Service. Understan
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">4. License Grant</h2>
-        <p>Subject to your compliance with these Terms and payment of applicable fees, we grant you a limited, non-exclusive, non-transferable, non-sublicensable license during the term of your subscription to:</p>
+        <h2 id="license" class="text-2xl font-semibold mb-4">4. License Grant</h2>
+        <p>
+          Subject to your compliance with these Terms and payment of applicable
+          fees, we grant you a limited, non-exclusive, non-transferable,
+          non-sublicensable license during the term of your subscription to:
+        </p>
         <ul class="list-disc pl-6 mb-4">
           <li>Install and run Infinity Metrics on your servers.</li>
-          <li>Collect analytics data ("End User Data") from websites you own or have explicit permission to operate and monitor.</li>
+          <li>
+            Collect analytics data ("End User Data") from websites you own or
+            have explicit permission to operate and monitor.
+          </li>
         </ul>
         <p>
-          The license is typically granted per installation or based on other metrics specified at the time of purchase. Specific license terms (e.g., duration, number of sites) will be outlined in your purchase agreement or order form.
+          The license is typically granted per installation or based on other
+          metrics specified at the time of purchase. Specific license terms
+          (e.g., duration, number of sites) will be outlined in your purchase
+          agreement or order form.
         </p>
         <p>
-          <strong>Updates:</strong> Your license purchase grants you access to the current version of the software and typically includes updates (bug fixes, minor feature enhancements) released within a certain period after purchase (e.g., one year, as specified at purchase). Major future versions or significant new feature modules released beyond this period may require an additional purchase or upgrade fee.
-        </p>
-      </section>
-
-       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">5. Payments and Guarantee</h2>
-         <p>
-          Access to the Service requires a <strong>one-time license purchase fee</strong>, as specified at the time of purchase. All payments are processed through our third-party payment processor, <strong>Stripe</strong>. By providing payment information, you agree to Stripe's terms and privacy policy.
-        </p>
-        <p>
-          You agree to provide current, complete, and accurate purchase and account information for all purchases made. You further agree to promptly update account information, including email address, so that we can complete your transactions and contact you as needed.
-        </p>
-        <p>
-          <strong>30-Day Money-Back Guarantee:</strong> We offer a 30-day money-back guarantee. If you are not satisfied with the Service for any reason, you may request a full refund within 30 calendar days of your original purchase date. To request a refund, please contact us using the contact details provided in these Terms, providing your order details. Refunds will be processed back to the original payment method. This guarantee applies only to the initial license purchase.
-        </p>
-        <p>
-          We reserve the right to change the price for the Service license at any time, but price changes will not affect purchases already completed.
+          <strong>Updates:</strong> Your license purchase grants you access to the
+          current version of the software and typically includes updates (bug fixes,
+          minor feature enhancements) released within a certain period after purchase
+          (e.g., one year, as specified at purchase). Major future versions or significant
+          new feature modules released beyond this period may require an additional
+          purchase or upgrade fee.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">6. Restrictions on Use</h2>
+        <h2 id="payments" class="text-2xl font-semibold mb-4">5. Payments and Guarantee</h2>
+        <p>
+          Access to the Service requires a <strong
+            >one-time license purchase fee</strong
+          >, as specified at the time of purchase. All payments are processed
+          through our third-party payment processor, <strong>Gumroad</strong>.
+          By providing payment information, you agree to Gumroad's terms and
+          privacy policy.
+        </p>
+        <p>
+          You agree to provide current, complete, and accurate purchase and
+          account information for all purchases made. You further agree to
+          promptly update account information, including email address, so that
+          we can complete your transactions and contact you as needed.
+        </p>
+        <p>
+          <strong>30-Day Money-Back Guarantee:</strong> We offer a 30-day money-back
+          guarantee. If you're not 100% satisfied with the purchase, or it's not
+          what you were expecting, just reply to the email receipt of your purchase
+          within 30 days, and you'll get a full refund. No questions asked. Refunds
+          will be processed back to the original payment method.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 id="restrictions" class="text-2xl font-semibold mb-4">6. Restrictions on Use</h2>
         <p>Don't (and don't let others):</p>
         <ul class="list-disc pl-6 mb-4">
-          <li>Sell, rent, lease, sublicense, redistribute, or otherwise transfer the Service or license to any third party.</li>
-          <li>Reverse-engineer, decompile, disassemble, or attempt to discover the source code of the Service, except to the extent permitted by applicable law.</li>
-          <li>Modify, adapt, or create derivative works based on the Service without our prior written consent.</li>
-          <li>Use the Service to collect analytics data in violation of any applicable laws, regulations, or third-party rights, including privacy and data protection laws (e.g., GDPR, CCPA).</li>
-          <li>Use the Service to track individuals, collect sensitive personal data (unless you have explicit consent and a valid legal basis), or engage in discriminatory practices.</li>
-          <li>Remove, obscure, or alter any copyright notices, trademarks, or other proprietary rights notices affixed to or contained within the Service.</li>
-          <li>Introduce any viruses, worms, malware, or other harmful code into the Service or use it to perform denial-of-service attacks.</li>
-          <li>Use the Service for any illegal, fraudulent, harmful, unethical, or offensive purposes, or in connection with activities that promote hatred, violence, or discrimination.</li>
-          <li>Attempt to circumvent any license verification or activation mechanisms within the Service.</li>
+          <li>
+            Sell, rent, lease, sublicense, redistribute, or otherwise transfer
+            the Service or license to any third party.
+          </li>
+          <li>
+            Reverse-engineer, decompile, disassemble, or attempt to discover the
+            source code of the Service, except to the extent permitted by
+            applicable law.
+          </li>
+          <li>
+            Modify, adapt, or create derivative works based on the Service
+            without our prior written consent.
+          </li>
+          <li>
+            Use the Service to collect analytics data in violation of any
+            applicable laws, regulations, or third-party rights, including
+            privacy and data protection laws (e.g., GDPR, CCPA).
+          </li>
+          <li>
+            Use the Service to track individuals, collect sensitive personal
+            data (unless you have explicit consent and a valid legal basis), or
+            engage in discriminatory practices.
+          </li>
+          <li>
+            Remove, obscure, or alter any copyright notices, trademarks, or
+            other proprietary rights notices affixed to or contained within the
+            Service.
+          </li>
+          <li>
+            Introduce any viruses, worms, malware, or other harmful code into
+            the Service or use it to perform denial-of-service attacks.
+          </li>
+          <li>
+            Use the Service for any illegal, fraudulent, harmful, unethical, or
+            offensive purposes, or in connection with activities that promote
+            hatred, violence, or discrimination.
+          </li>
+          <li>
+            Attempt to circumvent any license verification or activation
+            mechanisms within the Service.
+          </li>
         </ul>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">7. Customer Responsibilities (Self-Hosted)</h2>
+        <h2 id="responsibilities" class="text-2xl font-semibold mb-4">
+          7. Customer Responsibilities (Self-Hosted)
+        </h2>
         <p>
           As the operator of a self-hosted service, you're solely responsible
           for:
         </p>
         <ul class="list-disc pl-6 mb-4">
-          <li>Providing, maintaining, and securing the server infrastructure (hardware, operating system, network) required to run the Service.</li>
-          <li>Installing, configuring, updating, and maintaining the Infinity Metrics software correctly.</li>
-          <li>Ensuring the security and confidentiality of the collected End User Data stored on your servers, including implementing appropriate technical and organizational measures.</li>
-          <li>Complying with all applicable laws and regulations regarding the collection, processing, and storage of End User Data, including privacy laws like GDPR and CCPA. This includes providing necessary notices and obtaining consents from End Users if required.</li>
-          <li>Creating and maintaining your own website privacy policy that accurately describes your data collection practices using the Service.</li>
-          <li>Implementing regular data backups and disaster recovery plans for your End User Data and the Service configuration.</li>
-          <li>Monitoring the performance and resource usage (CPU, memory, storage) of the Service on your infrastructure.</li>
-          <li>Notifying relevant parties (e.g., End Users, authorities) in the event of a data breach affecting the End User Data stored on your servers, as required by law.</li>
-          <li>Bearing all costs associated with your hosting infrastructure and data management.</li>
-          <li>Ensuring your use of the Service does not infringe on the rights of any third party.</li>
+          <li>
+            Providing, maintaining, and securing the server infrastructure
+            (hardware, operating system, network) required to run the Service.
+          </li>
+          <li>
+            Installing, configuring, updating, and maintaining the Infinity
+            Metrics software correctly.
+          </li>
+          <li>
+            Ensuring the security and confidentiality of the collected End User
+            Data stored on your servers, including implementing appropriate
+            technical and organizational measures.
+          </li>
+          <li>
+            Complying with all applicable laws and regulations regarding the
+            collection, processing, and storage of End User Data, including
+            privacy laws like GDPR and CCPA. This includes providing necessary
+            notices and obtaining consents from End Users if required.
+          </li>
+          <li>
+            Creating and maintaining your own website privacy policy that
+            accurately describes your data collection practices using the
+            Service.
+          </li>
+          <li>
+            Implementing regular data backups and disaster recovery plans for
+            your End User Data and the Service configuration.
+          </li>
+          <li>
+            Monitoring the performance and resource usage (CPU, memory, storage)
+            of the Service on your infrastructure.
+          </li>
+          <li>
+            Notifying relevant parties (e.g., End Users, authorities) in the
+            event of a data breach affecting the End User Data stored on your
+            servers, as required by law.
+          </li>
+          <li>
+            Bearing all costs associated with your hosting infrastructure and
+            data management.
+          </li>
+          <li>
+            Ensuring your use of the Service does not infringe on the rights of
+            any third party.
+          </li>
         </ul>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">8. Self-Hosted Service Disclaimer</h2>
+        <h2 id="disclaimer" class="text-2xl font-semibold mb-4">
+          8. Self-Hosted Service Disclaimer
+        </h2>
         <p>Infinity Metrics is a self-hosted solution. This means:</p>
         <ul class="list-disc pl-6 mb-4">
           <li>
@@ -147,33 +264,62 @@ const pageDescription = "Review the Infinity Metrics Terms of Service. Understan
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">9. Intellectual Property Rights</h2>
+        <h2 id="intellectual-property" class="text-2xl font-semibold mb-4">
+          9. Intellectual Property Rights
+        </h2>
         <p>
-          The Service (including the software, website content, features, design, code, documentation, and underlying technology) is and will remain the exclusive property of Infinity Metrics and its licensors. The Service is protected by copyright, trademark, and other laws of Spain and foreign countries.
+          The Service (including the software, website content, features,
+          design, code, documentation, and underlying technology) is and will
+          remain the exclusive property of Infinity Metrics and its licensors.
+          The Service is protected by copyright, trademark, and other laws of
+          Spain and foreign countries.
         </p>
         <p>
-          Our trademarks and trade dress may not be used in connection with any product or service without our prior written consent. Nothing in these Terms grants you any right, title, or interest in or to the Service or any of our intellectual property, except for the limited license expressly granted herein.
+          Our trademarks and trade dress may not be used in connection with any
+          product or service without our prior written consent. Nothing in these
+          Terms grants you any right, title, or interest in or to the Service or
+          any of our intellectual property, except for the limited license
+          expressly granted herein.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">10. End User Data (Collected by You)</h2>
+        <h2 id="user-data" class="text-2xl font-semibold mb-4">
+          10. End User Data (Collected by You)
+        </h2>
         <p>
-          All End User Data collected through your use of the Service is owned and controlled by you. You represent and warrant that:
+          All End User Data collected through your use of the Service is owned
+          and controlled by you. You represent and warrant that:
         </p>
         <ul class="list-disc pl-6 mb-4">
-          <li>You have obtained all necessary rights, permissions, and consents to collect, process, and store the End User Data using the Service.</li>
-          <li>Your collection and use of End User Data complies with all applicable laws, regulations, and your own privacy policy.</li>
-          <li>The End User Data and your use thereof do not infringe upon or violate the rights of any third party, including privacy rights.</li>
-          <li>You are solely responsible for the accuracy, quality, integrity, legality, reliability, and appropriateness of the End User Data.</li>
+          <li>
+            You have obtained all necessary rights, permissions, and consents to
+            collect, process, and store the End User Data using the Service.
+          </li>
+          <li>
+            Your collection and use of End User Data complies with all
+            applicable laws, regulations, and your own privacy policy.
+          </li>
+          <li>
+            The End User Data and your use thereof do not infringe upon or
+            violate the rights of any third party, including privacy rights.
+          </li>
+          <li>
+            You are solely responsible for the accuracy, quality, integrity,
+            legality, reliability, and appropriateness of the End User Data.
+          </li>
         </ul>
         <p>
-          We claim no ownership over your End User Data. We have no liability or responsibility for your management, use, security, or disclosure of End User Data.
+          We claim no ownership over your End User Data. We have no liability or
+          responsibility for your management, use, security, or disclosure of
+          End User Data.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">11. Data Security & Reliability (Your Responsibility)</h2>
+        <h2 id="data-security" class="text-2xl font-semibold mb-4">
+          11. Data Security & Reliability (Your Responsibility)
+        </h2>
         <p>
           Your analytics live on your server. We don't peek unless you invite us
           for support. You're solely responsible for:
@@ -190,46 +336,88 @@ const pageDescription = "Review the Infinity Metrics Terms of Service. Understan
           </li>
         </ul>
         <p>
-          As the Service is self-hosted, the security, availability, and reliability of your End User Data depend entirely on the measures you implement. You are solely responsible for:
+          As the Service is self-hosted, the security, availability, and
+          reliability of your End User Data depend entirely on the measures you
+          implement. You are solely responsible for:
         </p>
         <ul class="list-disc pl-6 mb-4">
-          <li>Implementing robust server security, access controls, and monitoring.</li>
-          <li>Performing regular data backups and testing recovery procedures.</li>
-          <li>Maintaining the confidentiality of any API keys or credentials used by the Service.</li>
-          <li>Complying with all applicable data protection and security laws for the End User Data you control.</li>
-          <li>Regularly applying software updates and security patches to your server environment and the Infinity Metrics software.</li>
-          <li>Preventing, detecting, and responding to any security incidents or data breaches affecting your systems and End User Data.</li>
+          <li>
+            Implementing robust server security, access controls, and
+            monitoring.
+          </li>
+          <li>
+            Performing regular data backups and testing recovery procedures.
+          </li>
+          <li>
+            Maintaining the confidentiality of any API keys or credentials used
+            by the Service.
+          </li>
+          <li>
+            Complying with all applicable data protection and security laws for
+            the End User Data you control.
+          </li>
+          <li>
+            Regularly applying software updates and security patches to your
+            server environment and the Infinity Metrics software.
+          </li>
+          <li>
+            Preventing, detecting, and responding to any security incidents or
+            data breaches affecting your systems and End User Data.
+          </li>
         </ul>
         <p>
-          While the Infinity Metrics software is designed with stability in mind, we provide no guarantees regarding uptime or data integrity on your self-hosted infrastructure. We are not liable for any data loss, corruption, downtime, or security breaches resulting from factors related to your hosting environment, configuration, maintenance, or security practices.
+          While the Infinity Metrics software is designed with stability in
+          mind, we provide no guarantees regarding uptime or data integrity on
+          your self-hosted infrastructure. We are not liable for any data loss,
+          corruption, downtime, or security breaches resulting from factors
+          related to your hosting environment, configuration, maintenance, or
+          security practices.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">12. Termination</h2>
+        <h2 id="termination" class="text-2xl font-semibold mb-4">12. Termination</h2>
+        <p>These Terms remain in effect until terminated.</p>
         <p>
-          These Terms remain in effect until terminated.
+          We may terminate or suspend your license and access to the Service
+          immediately, without prior notice or liability, for any reason
+          whatsoever, including without limitation if you breach these Terms. We
+          particularly reserve the right to terminate your license if we detect
+          or reasonably suspect:
+        </p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>
+            Violation of the license restrictions (Section 6), including resale
+            or redistribution.
+          </li>
+          <li>
+            Use of the Service for illegal, fraudulent, or harmful activities.
+          </li>
+          <li>Attempts to circumvent license validation.</li>
+          <li>
+            Actions that compromise the security or integrity of the Service or
+            harm other users (though unlikely given the self-hosted nature, this
+            clause covers unforeseen issues).
+          </li>
+          <li>Material breach of any other provision of these Terms.</li>
+        </ul>
+        <p>
+          Upon termination, your right to use the Service will cease
+          immediately. You must cease all use of the software and destroy any
+          copies in your possession. Provisions of these Terms which by their
+          nature should survive termination shall survive termination,
+          including, without limitation, ownership provisions, warranty
+          disclaimers, indemnity, and limitations of liability.
         </p>
         <p>
-          We may terminate or suspend your license and access to the Service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach these Terms. We particularly reserve the right to terminate your license if we detect or reasonably suspect:
-        </p>
-         <ul class="list-disc pl-6 mb-4">
-           <li>Violation of the license restrictions (Section 6), including resale or redistribution.</li>
-           <li>Use of the Service for illegal, fraudulent, or harmful activities.</li>
-           <li>Attempts to circumvent license validation.</li>
-           <li>Actions that compromise the security or integrity of the Service or harm other users (though unlikely given the self-hosted nature, this clause covers unforeseen issues).</li>
-           <li>Material breach of any other provision of these Terms.</li>
-         </ul>
-        <p>
-          Upon termination, your right to use the Service will cease immediately. You must cease all use of the software and destroy any copies in your possession. Provisions of these Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.
-        </p>
-        <p>
-          If you received a lifetime license during a beta or promotional period, termination for breach of these Terms will still revoke your right to use the software and receive updates or support.
+          If you received a lifetime license during a beta or promotional
+          period, termination for breach of these Terms will still revoke your
+          right to use the software and receive updates or support.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">13. Limitation of Liability</h2>
+        <h2 id="liability" class="text-2xl font-semibold mb-4">13. Limitation of Liability</h2>
         <p>
           To the maximum extent permitted by law, Infinity Metrics will not be
           liable for:
@@ -260,7 +448,9 @@ const pageDescription = "Review the Infinity Metrics Terms of Service. Understan
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">14. Disclaimer of Warranties</h2>
+        <h2 id="warranties" class="text-2xl font-semibold mb-4">
+          14. Disclaimer of Warranties
+        </h2>
         <p>
           Infinity Metrics is provided "as is" and "as available." We expressly
           disclaim all warranties of any kind, whether express, implied, or
@@ -283,12 +473,13 @@ const pageDescription = "Review the Infinity Metrics Terms of Service. Understan
           </li>
         </ul>
         <p>
-          The beta version may contain bugs, errors, and instability. Your use of the Service is at your sole risk.
+          The beta version may contain bugs, errors, and instability. Your use
+          of the Service is at your sole risk.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">15. Indemnification</h2>
+        <h2 id="indemnification" class="text-2xl font-semibold mb-4">15. Indemnification</h2>
         <p>
           You agree to indemnify, defend, and hold harmless Infinity Metrics and
           our affiliates, officers, agents, employees, and partners from and
@@ -306,27 +497,42 @@ const pageDescription = "Review the Infinity Metrics Terms of Service. Understan
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">16. Governing Law</h2>
+        <h2 id="governing-law" class="text-2xl font-semibold mb-4">16. Governing Law</h2>
         <p>
-          These Terms shall be governed and construed in accordance with the laws of <strong>Spain</strong>, without regard to its conflict of law provisions.
+          These Terms shall be governed and construed in accordance with the
+          laws of <strong>Spain</strong>, without regard to its conflict of law
+          provisions.
         </p>
         <p>
-          Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect. These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have had between us regarding the Service.
+          Our failure to enforce any right or provision of these Terms will not
+          be considered a waiver of those rights. If any provision of these
+          Terms is held to be invalid or unenforceable by a court, the remaining
+          provisions of these Terms will remain in effect. These Terms
+          constitute the entire agreement between us regarding our Service, and
+          supersede and replace any prior agreements we might have had between
+          us regarding the Service.
         </p>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">17. Changes to Terms</h2>
+        <h2 id="changes" class="text-2xl font-semibold mb-4">17. Changes to Terms</h2>
         <p>
-          We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect, typically via email or a notice on our website. What constitutes a material change will be determined at our sole discretion.
+          We reserve the right, at our sole discretion, to modify or replace
+          these Terms at any time. If a revision is material, we will provide at
+          least 30 days' notice prior to any new terms taking effect, typically
+          via email or a notice on our website. What constitutes a material
+          change will be determined at our sole discretion.
         </p>
         <p>
-          By continuing to access or use our Service after any revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, you are no longer authorized to use the Service.
+          By continuing to access or use our Service after any revisions become
+          effective, you agree to be bound by the revised terms. If you do not
+          agree to the new terms, you are no longer authorized to use the
+          Service.
         </p>
       </section>
 
-       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">18. Contact Us</h2>
+      <section class="mb-12">
+        <h2 id="contact" class="text-2xl font-semibold mb-4">18. Contact Us</h2>
         <p>
           If you have any questions about these Terms, please contact us at:
           terms@getinfinitymetrics.com
