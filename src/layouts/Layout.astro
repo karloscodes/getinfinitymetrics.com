@@ -14,7 +14,7 @@ interface Props {
 const {
 	title,
 	description = "Self-hosted, AI-powered web analytics with zero compromises on privacy. Own your data, protect your users.",
-	image = "/InfinityMetrics 128x720.png",
+	image = "https://getinfinitymetrics.com/InfinityMetrics%20128x720.png",
 	canonical = Astro.url.href,
 } = Astro.props;
 ---
@@ -26,33 +26,39 @@ const {
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="robots" content="index, follow" />
-		
+
 		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		
+
 		<!-- SEO -->
-		<SEO title={title} description={description} image={image} canonical={canonical} />
-		
+		<SEO
+			title={title}
+			description={description}
+			image={image}
+			canonical={canonical}
+		/>
+
 		<!-- Preload Assets -->
 		<PreloadAssets />
-		
+
 		<!-- Structured Data -->
-		<ProductSchema 
+		<ProductSchema
 			productName="Infinity Metrics"
 			description={description}
 			basePrice={199.99}
 			salePrice={49.99}
 			sku="infinity-metrics-app"
 		/>
-		
+
 		<!-- Fonts -->
 		<link
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
-		
+
 		<script async src="https://tally.so/widgets/embed.js"></script>
-		<script defer src="https://t.getinfinitymetrics.com/y/api/v1/sdk.js"></script>
+		<script defer src="https://t.getinfinitymetrics.com/y/api/v1/sdk.js"
+		></script>
 	</head>
 	<body>
 		<slot />

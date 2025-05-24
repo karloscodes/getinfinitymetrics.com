@@ -3,3 +3,4 @@ Allow: /
 
 # Sitemap
 Sitemap: https://getinfinitymetrics.com/sitemap-index.xml
+
