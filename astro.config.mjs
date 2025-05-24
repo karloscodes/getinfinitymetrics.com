@@ -15,9 +15,10 @@ export default defineConfig({
 			customPages: [
 				"https://getinfinitymetrics.com/privacy-policy",
 				"https://getinfinitymetrics.com/terms",
-				"https://getinfinitymetrics.com/gdpr",
 				"https://getinfinitymetrics.com/thank-you",
 				"https://getinfinitymetrics.com/docs",
+				"https://getinfinitymetrics.com/why-infinity-metrics",
+				"https://getinfinitymetrics.com/gdpr",
 			],
 		}),
 	],
