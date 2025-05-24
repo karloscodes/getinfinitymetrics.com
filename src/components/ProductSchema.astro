@@ -1,7 +1,7 @@
 ---
 // ProductSchema for structured data
 import { formatPrice } from "./FAQ.astro";
-import { getFaqSchema } from '../data/faqs';
+import { getFaqSchema } from "../data/faqs";
 
 interface Props {
   productName: string;
@@ -33,29 +33,34 @@ const {
 const breadcrumbList = [];
 for (let i = 0; i < categoryPath.length; i++) {
   const category = categoryPath[i];
-  const slug = category.toLowerCase().replace(/\s+/g, '-');
+  const slug = category.toLowerCase().replace(/\s+/g, "-");
   breadcrumbList.push({
     "@type": "ListItem",
-    "position": i + 1,
-    "name": category,
-    "item": "https://infinitymetrics.com/category/" + slug
+    position: i + 1,
+    name: category,
+    item: "https://infinitymetrics.com/category/" + slug,
   });
 }
 
 // Format prices for schema
 const priceForSchema = formatPrice(salePrice || basePrice, false);
-const highPriceForSchema = salePrice ? formatPrice(basePrice, false) : undefined;
+const highPriceForSchema = salePrice
+  ? formatPrice(basePrice, false)
+  : undefined;
 
 // Get FAQ schema
 const faqSchema = getFaqSchema();
 
 // Calculate priceValidUntil date (30 days from now)
 const today = new Date();
-const priceValidUntilDate = new Date(new Date().setDate(new Date().getDate() + 30));
-const priceValidUntil = priceValidUntilDate.toISOString().split('T')[0];
+const priceValidUntilDate = new Date(
+  new Date().setDate(new Date().getDate() + 90),
+);
+const priceValidUntil = priceValidUntilDate.toISOString().split("T")[0];
 
 // Hardcoded image URL - PLEASE UPDATE
-const absoluteImageUrl = "https://infinitymetrics.com/InfinityMetrics%20128x720.png"; // Updated with user-provided image path
+const absoluteImageUrl =
+  "https://infinitymetrics.com/InfinityMetrics%20128x720.png"; // Updated with user-provided image path
 
 // Combined schema
 const productSchema = {
@@ -63,61 +68,47 @@ const productSchema = {
   "@graph": [
     {
       "@type": "Product",
-      "name": productName,
-      "description": description,
-      "image": absoluteImageUrl,
-      "sku": sku,
-      "brand": {
+      name: productName,
+      description: description,
+      image: absoluteImageUrl,
+      sku: sku,
+      brand: {
         "@type": "Brand",
-        "name": brand
+        name: brand,
       },
-      "offers": {
+      offers: {
         "@type": "Offer",
-        "url": "https://infinitymetrics.com",
-        "priceCurrency": "USD",
-        "price": priceForSchema,
-        ...(highPriceForSchema ? { "highPrice": highPriceForSchema } : {}),
-        "priceValidUntil": priceValidUntil,
-        "availability": `https://schema.org/${availability}`,
-        "hasMerchantReturnPolicy": {
+        url: "https://infinitymetrics.com",
+        priceCurrency: "USD",
+        price: priceForSchema,
+        ...(highPriceForSchema ? { highPrice: highPriceForSchema } : {}),
+        priceValidUntil: priceValidUntil,
+        availability: `https://schema.org/${availability}`,
+        hasMerchantReturnPolicy: {
           "@type": "MerchantReturnPolicy",
-          "applicableCountry": "US",
-          "returnPolicyCategory": "https://schema.org/MerchantReturnMoneyBackGuarantee",
-          "merchantReturnDays": 30,
-          "itemCondition": "https://schema.org/NewCondition"
+          applicableCountry: "US",
+          returnPolicyCategory:
+            "https://schema.org/MerchantReturnFiniteReturnWindow",
+          merchantReturnDays: 30,
+          itemCondition: "https://schema.org/NewCondition",
+          refundType: "https://schema.org/FullRefund",
         },
-        "shippingDetails": {
-          "@type": "OfferShippingDetails",
-          "shippingRate": {
-            "@type": "MonetaryAmount",
-            "value": "0",
-            "currency": "USD"
-          },
-          "shippingDestination": {
-            "@type": "DefinedRegion",
-            "addressCountry": "US"
-          }
-        },
-        "seller": {
+        seller: {
           "@type": "Organization",
-          "name": brand
-        }
+          name: brand,
+        },
       },
-      "aggregateRating": {
+      aggregateRating: {
         "@type": "AggregateRating",
-        "ratingValue": ratingValue.toString(),
-        "reviewCount": reviewCount.toString()
-      }
+        ratingValue: ratingValue.toString(),
+        reviewCount: reviewCount.toString(),
+      },
     },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": breadcrumbList
-    },
-    faqSchema
-  ]
+    faqSchema,
+  ],
 };
 
 const schemaString = JSON.stringify(productSchema);
 ---
 
-<script type="application/ld+json" set:html={schemaString} /> 
+<script type="application/ld+json" set:html={schemaString} />
