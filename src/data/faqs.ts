@@ -2,17 +2,17 @@ export const faqs = [
   {
     question: "What's self-hosting like?",
     answer:
-      "You own your data, fully. It's lightweight, runs on Docker with just 512MB RAM on any VPS. Plus, it supports multiple websites out of the box.",
+      "Infinity Metrics runs on Docker and uses SQLite. No need for any external Database server setup or maintenance. It can run in a 512MB RAM VPS. Plus, it supports multiple websites out of the box. You can also run it in Kubernetes, Coolify or similar container orchestration platforms.",
   },
   {
     question: "How easy is the setup?",
     answer:
-      "One command, done. Installs in seconds via Docker, no fuss. Updates? They're automated, zero-downtime, and always backward-compatible.",
+      "You can use our installer that will do the heavy lifting for you. Updates? They're automated, zero-downtime, and always backward-compatible. You can also install it manually, it's just Docker and SQLite. Check our docs for more info.",
   },
   {
     question: "Can I manage my data?",
     answer:
-      "Totally. It's yours in a SQLite database, query it, export it, or plug it into your tools anytime.",
+      "Totally. It's a SQLite database, query it, export it, or plug it into your tools anytime. Your data, your rules.",
   },
   {
     question: "How does the AI Query feature work? Is my data sent externally?",
@@ -30,7 +30,7 @@ export const faqs = [
       "Updates within the same major version (1.0 to 1.1) are free. Regarding major version upgrades (1.x to 2.x), I'm still determining the pricing structure. Since this is a new product, I want to be honest that I haven't finalized how future major version upgrades will be handled yet. You'll always have the choice whether to upgrade to a new major version when the time comes.",
   },
   {
-    question: "Is it really GDPR compliant?",
+    question: "Is it GDPR compliant?",
     answer:
       "Yes, 100%. No cookies, no personal data, no consent banners needed. Just anonymous stats, aggregated data, privacy-first by design.",
   },
