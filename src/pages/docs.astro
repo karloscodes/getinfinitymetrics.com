@@ -287,11 +287,11 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 								<ul class="space-y-3 text-black">
 									<li>
 										<strong>INFINITY_METRICS_LOG_LEVEL:</strong> Logging level (e.g.,
-										<code class="text-black break-all whitespace-normal">debug</code>)
+										<code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">debug</code>)
 									</li>
 									<li>
 										<strong>INFINITY_METRICS_APP_PORT:</strong> Port for the app
-										(e.g., <code class="text-black break-all whitespace-normal">8080</code>)
+										(e.g., <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">8080</code>)
 									</li>
 									<li>
 										<strong>INFINITY_METRICS_LICENSE_KEY:</strong> Your license key
@@ -299,7 +299,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 									</li>
 									<li>
 										<strong>INFINITY_METRICS_DOMAIN:</strong> Your domain (e.g.,
-										<code class="text-black break-all whitespace-normal">your-domain.com</code>)
+										<code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">your-domain.com</code>)
 									</li>
 									<li>
 										<strong>INFINITY_METRICS_PRIVATE_KEY:</strong> Private key for
@@ -464,11 +464,8 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 							Including the SDK
 						</h3>
 						<p class="text-black mb-3">
-							Add the following script tag to the <code class="text-black"
-								><head></head> section of your website. Replace <code
-									class="text-black">your-domain.com</code
-								> with the domain where you installed Infinity Metrics.
-							</code>
+							Add the following script tag to the <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">&lt;head&gt;&lt;/head&gt;</code> section of your website. Replace <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">your-domain.com</code> with the domain where you installed Infinity Metrics.
+						</p>
 
 							<div
 								class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs mb-6"
@@ -494,9 +491,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 									<div class="ml-3">
 										<p class="text-sm text-yellow-700 font-semibold">
 											For optimal data collection, place the script as early as
-											possible in the <code class="text-black"
-												><head></head> of your HTML document.
-											</code>
+											possible in the <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">&lt;head&gt;&lt;/head&gt;</code> of your HTML document.
 										</p>
 									</div>
 								</div>
@@ -634,32 +629,17 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 									<div class="card p-5 rounded-xl shadow-sm">
 										<h4 class="font-semibold mb-2 text-black">Button Clicks</h4>
 										<p class="text-black">
-											When auto-instrumentation is enabled (default), clicks on <code
-												class="text-black">&lt;button&gt;</code
-											> elements, <code class="text-black"
-												>&lt;input type="button"&gt;</code
-											>, <code class="text-black"
-												>&lt;input type="submit"&gt;</code
-											>, and any element with <code class="text-black"
-												>role="button"</code
-											> are automatically tracked.
+											When auto-instrumentation is enabled (default), clicks on <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">&lt;button&gt;</code> elements, <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">&lt;input type="button"&gt;</code>, <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">&lt;input type="submit"&gt;</code>, and any element with <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">role="button"</code> are automatically tracked.
 										</p>
 										<p class="text-black mt-2">
-											Button events are named using the pattern: <code
-												class="text-black"
-												>click:button:sanitized_text:button_id</code
-											>. Here's how it's constructed:
+											Button events are named using the pattern: <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">click:button:sanitized_text:button_id</code>. Here's how it's constructed:
 										</p>
 										<ul
 											class="list-disc list-inside text-black mt-2 space-y-1 pl-4"
 										>
 											<li>
-												<code class="text-black break-all whitespace-normal">sanitized_text</code>: Derived
-												from the button's visible text. The system prioritizes <code
-													class="text-black">textContent</code
-												>, then <code class="text-black break-all whitespace-normal">value</code>, then <code
-													class="text-black">title</code
-												>. This text is then sanitized: converted to lowercase,
+												<code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">sanitized_text</code>: Derived
+												from the button's visible text. The system prioritizes <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">textContent</code>, then <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">value</code>, then <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">title</code>. This text is then sanitized: converted to lowercase,
 												spaces replaced with underscores, non-alphanumeric
 												characters (except underscores) removed, and truncated
 												to 50 characters. If no text is found or sanitization
@@ -667,24 +647,16 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 												"unnamed_button".
 											</li>
 											<li>
-												<code class="text-black break-all whitespace-normal">button_id</code>: The <code
-													class="text-black">id</code
-												> attribute of the button. If the button has no ID, this
+												<code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">button_id</code>: The <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">id</code> attribute of the button. If the button has no ID, this
 												defaults to "noid".
 											</li>
 										</ul>
 										<p class="text-black mt-2">
-											For example, <code class="text-black"
-												>&lt;button id="myBtn"&gt;Submit&lt;/button&gt;</code
-											> would generate an event named <code class="text-black"
-												>click:button:submit:mybtn</code
-											>.
+											For example, <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">&lt;button id="myBtn"&gt;Submit&lt;/button&gt;</code> would generate an event named <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">click:button:submit:mybtn</code>.
 										</p>
 										<p class="text-sm text-gray-600 mt-2">
-											Note: If an <code class="text-black break-all whitespace-normal">&lt;a&gt;</code> tag is
-											styled like a button but includes the <code
-												class="text-black">data-infinity-event-name</code
-											> attribute, it will be handled by Link Event Tracking (see
+											Note: If an <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">&lt;a&gt;</code> tag is
+											styled like a button but includes the <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">data-infinity-event-name</code> attribute, it will be handled by Link Event Tracking (see
 											below) to avoid duplication, and this general button tracking
 											will defer.
 										</p>
@@ -695,38 +667,25 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 											Link Event Tracking
 										</h4>
 										<p class="text-black mb-2">
-											Track clicks on specific links declaratively by adding <code
-												class="text-black">data-</code
-											> attributes to your <code class="text-black"
-												>&lt;a&gt;</code
-											> tags. This is useful for CTAs or important navigational elements.
+											Track clicks on specific links declaratively by adding <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">data-</code> attributes to your <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">&lt;a&gt;</code> tags. This is useful for CTAs or important navigational elements.
 											This method takes priority over general button click tracking
-											for <code class="text-black break-all whitespace-normal">&lt;a&gt;</code> tags to prevent
+											for <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">&lt;a&gt;</code> tags to prevent
 											double counting.
 										</p>
 										<ul class="list-disc list-inside text-black mt-2 space-y-1">
 											<li>
-												<strong>Activation:</strong> Add <code
-													class="text-black">data-infinity-event-name</code
-												> to the link.
+												<strong>Activation:</strong> Add <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">data-infinity-event-name</code> to the link.
 											</li>
 											<li>
-												<strong>Event Naming:</strong> Value of <code
-													class="text-black">data-infinity-event-name</code
-												> is sanitized (lowercase, underscores, alphanumeric, 50
+												<strong>Event Naming:</strong> Value of <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">data-infinity-event-name</code> is sanitized (lowercase, underscores, alphanumeric, 50
 												chars).
 											</li>
 											<li>
 												<strong>Automatic Metadata:</strong>
-												<code class="text-black break-all whitespace-normal">href</code> (link URL) and <code
-													class="text-black">text</code
-												> (link text).
+												<code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">href</code> (link URL) and <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">text</code> (link text).
 											</li>
 											<li>
-												<strong>Custom Metadata:</strong> Use attributes like <code
-													class="text-black"
-													>data-infinity-metadata-yourkey="value"</code
-												>.
+												<strong>Custom Metadata:</strong> Use attributes like <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">data-infinity-metadata-yourkey="value"</code>.
 											</li>
 										</ul>
 										<p class="text-black mt-3">Example:</p>
@@ -766,39 +725,31 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 										<h4 class="font-semibold mb-2 text-black">Custom Events</h4>
 										<p class="text-black">
 											Track specific user interactions or milestones not covered
-											by automated tracking using the <code class="text-black"
-												>sendCustomEvent</code
-											> function.
+											by automated tracking using the <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">sendCustomEvent</code> function.
 										</p>
 										<p class="text-black mt-2">
-											Syntax: <code class="text-black"
-												>InfinityMetrics.sendCustomEvent(eventName, metadata)</code
-											>
+											Syntax: <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">InfinityMetrics.sendCustomEvent(eventName, metadata)</code>
 										</p>
 										<ul
 											class="list-disc list-inside text-black mt-2 space-y-1 pl-4"
 										>
 											<li>
-												<code class="text-black break-all whitespace-normal">eventName</code> (string): A unique
+												<code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">eventName</code> (string): A unique
 												name for your event (e.g., "trial_started", "file_downloaded").
 											</li>
 											<li>
-												<code class="text-black break-all whitespace-normal">metadata</code> (object): An object
+												<code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">metadata</code> (object): An object
 												containing any additional dynamic information relevant to
 												the event. You can include any key-value pairs, for example,
-												<code class="text-black"
-													>&lbrace; plan: "premium", fileName: "report.pdf"
-													&rbrace;</code
-												>. This data will be available in your analytics.
+												<code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">&lbrace; plan: "premium", fileName: "report.pdf"
+												&rbrace;</code>. This data will be available in your analytics.
 											</li>
 										</ul>
 										<p class="text-black mt-3 font-medium">Example:</p>
-										<div class="docs-code-block mt-1 overflow-x-auto max-w-full">
-											<code class="text-black break-all whitespace-normal">
-												InfinityMetrics.sendCustomEvent("video_played", &lbrace;
-												videoTitle: "Product Demo", durationWatched: "60s"
-												&rbrace;);
-											</code>
+										<div
+											class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full"
+										>
+											<pre class="whitespace-pre-wrap break-all"><code class="text-white">InfinityMetrics.sendCustomEvent("video_played", &lbrace; videoTitle: "Product Demo", durationWatched: "60s" &rbrace;);</code></pre>
 										</div>
 									</div>
 
