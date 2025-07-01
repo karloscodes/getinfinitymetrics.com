@@ -63,8 +63,8 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 
 <Layout title={pageTitle} description={pageDescription}>
 	<Header />
-	<main class="py-12 md:py-20">
-		<div class="container px-4 sm:px-6">
+	<main class="py-12 md:py-20 overflow-hidden">
+		<div class="container px-4 sm:px-6 overflow-hidden">
 			<div class="max-w-4xl mx-auto">
 				<h1
 					class="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700"
@@ -223,7 +223,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 								<div
 									class="bg-black p-3 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs"
 								>
-									<pre><code class="text-white">{installCommand}</code></pre>
+									<pre class="whitespace-pre-wrap break-all"><code class="text-white">{installCommand}</code></pre>
 								</div>
 							</div>
 						</section>
@@ -287,11 +287,11 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 								<ul class="space-y-3 text-black">
 									<li>
 										<strong>INFINITY_METRICS_LOG_LEVEL:</strong> Logging level (e.g.,
-										<code class="text-black">debug</code>)
+										<code class="text-black break-all whitespace-normal">debug</code>)
 									</li>
 									<li>
 										<strong>INFINITY_METRICS_APP_PORT:</strong> Port for the app
-										(e.g., <code class="text-black">8080</code>)
+										(e.g., <code class="text-black break-all whitespace-normal">8080</code>)
 									</li>
 									<li>
 										<strong>INFINITY_METRICS_LICENSE_KEY:</strong> Your license key
@@ -299,7 +299,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 									</li>
 									<li>
 										<strong>INFINITY_METRICS_DOMAIN:</strong> Your domain (e.g.,
-										<code class="text-black">your-domain.com</code>)
+										<code class="text-black break-all whitespace-normal">your-domain.com</code>)
 									</li>
 									<li>
 										<strong>INFINITY_METRICS_PRIVATE_KEY:</strong> Private key for
@@ -316,7 +316,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 								<div
 									class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs"
 								>
-									<pre><code class="text-white">{dockerRunCommand}</code></pre>
+									<pre class="whitespace-pre-wrap break-all"><code class="text-white">{dockerRunCommand}</code></pre>
 								</div>
 							</div>
 						</section>
@@ -338,7 +338,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 					<div
 						class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs"
 					>
-						<pre><code class="text-white">{trackingScript}</code></pre>
+						<pre class="whitespace-pre-wrap break-all"><code class="text-white">{trackingScript}</code></pre>
 					</div>
 				</section>
 
@@ -381,7 +381,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 							<div
 								class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs"
 							>
-								<pre><code class="text-white">{changeAdminPasswordCommand}</code></pre>
+								<pre class="whitespace-pre-wrap break-all"><code class="text-white">{changeAdminPasswordCommand}</code></pre>
 							</div>
 						</div>
 
@@ -396,7 +396,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 							<div
 								class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs"
 							>
-								<pre><code class="text-white">{forceUpdateCommand}</code></pre>
+								<pre class="whitespace-pre-wrap break-all"><code class="text-white">{forceUpdateCommand}</code></pre>
 							</div>
 						</div>
 					</div>
@@ -473,7 +473,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 							<div
 								class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs mb-6"
 							>
-								<pre><code class="text-white">{sdkIncludeScript}</code></pre>
+								<pre class="whitespace-pre-wrap break-all"><code class="text-white">{sdkIncludeScript}</code></pre>
 							</div>
 
 							<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
@@ -516,7 +516,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 								<div
 									class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs mb-6"
 								>
-									<pre><code class="language-javascript text-white">{sdkConfigCode}</code></pre>
+									<pre class="whitespace-pre-wrap break-all"><code class="language-javascript text-white">{sdkConfigCode}</code></pre>
 								</div>
 
 								<h4 class="text-lg font-semibold mb-3 text-black">
@@ -654,10 +654,10 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 											class="list-disc list-inside text-black mt-2 space-y-1 pl-4"
 										>
 											<li>
-												<code class="text-black">sanitized_text</code>: Derived
+												<code class="text-black break-all whitespace-normal">sanitized_text</code>: Derived
 												from the button's visible text. The system prioritizes <code
 													class="text-black">textContent</code
-												>, then <code class="text-black">value</code>, then <code
+												>, then <code class="text-black break-all whitespace-normal">value</code>, then <code
 													class="text-black">title</code
 												>. This text is then sanitized: converted to lowercase,
 												spaces replaced with underscores, non-alphanumeric
@@ -667,7 +667,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 												"unnamed_button".
 											</li>
 											<li>
-												<code class="text-black">button_id</code>: The <code
+												<code class="text-black break-all whitespace-normal">button_id</code>: The <code
 													class="text-black">id</code
 												> attribute of the button. If the button has no ID, this
 												defaults to "noid".
@@ -681,7 +681,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 											>.
 										</p>
 										<p class="text-sm text-gray-600 mt-2">
-											Note: If an <code class="text-black">&lt;a&gt;</code> tag is
+											Note: If an <code class="text-black break-all whitespace-normal">&lt;a&gt;</code> tag is
 											styled like a button but includes the <code
 												class="text-black">data-infinity-event-name</code
 											> attribute, it will be handled by Link Event Tracking (see
@@ -701,7 +701,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 												>&lt;a&gt;</code
 											> tags. This is useful for CTAs or important navigational elements.
 											This method takes priority over general button click tracking
-											for <code class="text-black">&lt;a&gt;</code> tags to prevent
+											for <code class="text-black break-all whitespace-normal">&lt;a&gt;</code> tags to prevent
 											double counting.
 										</p>
 										<ul class="list-disc list-inside text-black mt-2 space-y-1">
@@ -718,7 +718,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 											</li>
 											<li>
 												<strong>Automatic Metadata:</strong>
-												<code class="text-black">href</code> (link URL) and <code
+												<code class="text-black break-all whitespace-normal">href</code> (link URL) and <code
 													class="text-black">text</code
 												> (link text).
 											</li>
@@ -731,9 +731,9 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 										</ul>
 										<p class="text-black mt-3">Example:</p>
 										<div
-											class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2"
+											class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full"
 										>
-											<pre><code class="language-html text-white">{dataDrivenLinkExample}</code></pre>
+											<pre class="whitespace-pre-wrap break-all"><code class="language-html text-white">{dataDrivenLinkExample}</code></pre>
 										</div>
 									</div>
 
@@ -779,11 +779,11 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 											class="list-disc list-inside text-black mt-2 space-y-1 pl-4"
 										>
 											<li>
-												<code class="text-black">eventName</code> (string): A unique
+												<code class="text-black break-all whitespace-normal">eventName</code> (string): A unique
 												name for your event (e.g., "trial_started", "file_downloaded").
 											</li>
 											<li>
-												<code class="text-black">metadata</code> (object): An object
+												<code class="text-black break-all whitespace-normal">metadata</code> (object): An object
 												containing any additional dynamic information relevant to
 												the event. You can include any key-value pairs, for example,
 												<code class="text-black"
@@ -793,8 +793,8 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 											</li>
 										</ul>
 										<p class="text-black mt-3 font-medium">Example:</p>
-										<div class="docs-code-block mt-1">
-											<code class="text-black">
+										<div class="docs-code-block mt-1 overflow-x-auto max-w-full">
+											<code class="text-black break-all whitespace-normal">
 												InfinityMetrics.sendCustomEvent("video_played", &lbrace;
 												videoTitle: "Product Demo", durationWatched: "60s"
 												&rbrace;);
@@ -811,9 +811,9 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 											views changes, you can do it manually like this:
 										</p>
 										<div
-											class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2"
+											class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full"
 										>
-											<pre><code class="language-javascript text-white">{manualPageView}</code></pre>
+											<pre class="whitespace-pre-wrap break-all"><code class="language-javascript text-white">{manualPageView}</code></pre>
 										</div>
 									</div>
 								</div>
