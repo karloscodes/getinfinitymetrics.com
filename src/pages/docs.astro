@@ -63,9 +63,9 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 
 <Layout title={pageTitle} description={pageDescription}>
 	<Header />
-	<main class="py-16 md:py-24">
-		<div class="container px-4 md:px-6">
-			<div class="max-w-4xl mx-auto">
+	<main class="py-12 md:py-20">
+		<div class="container px-4 sm:px-6">
+			<div class="max-w-4xl mx-auto flex flex-col">
 				<h1
 					class="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700"
 				>
@@ -75,13 +75,13 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 				<!-- Table of Contents -->
 				<div class="mb-12 p-6 rounded-xl border border-gray-200">
 					<h2 class="text-xl font-semibold mb-4 text-black">Contents</h2>
-					<ul class="space-y-2">
+					<ul class="space-y-2 flex-wrap">
 						<li>
 							<a
 								href="#automated-installation"
 								class="text-blue-600 hover:underline">Automated Installation</a
 							>
-							<ul class="ml-6 mt-2 space-y-2">
+							<ul class="ml-4 sm:ml-6 mt-2 space-y-2">
 								<li>
 									<a
 										href="#get-license-automated"
@@ -103,7 +103,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 								class="text-blue-600 hover:underline"
 								>Self-Managed Installation</a
 							>
-							<ul class="ml-6 mt-2 space-y-2">
+							<ul class="ml-4 sm:ml-6 mt-2 space-y-2">
 								<li>
 									<a
 										href="#get-license-self-managed"
@@ -148,7 +148,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 							<a href="#sdk-usage" class="text-blue-600 hover:underline"
 								>SDK Usage</a
 							>
-							<ul class="ml-6 mt-2 space-y-2">
+							<ul class="ml-4 sm:ml-6 mt-2 space-y-2">
 								<li>
 									<a href="#sdk-include" class="text-blue-600 hover:underline"
 										>Including the SDK</a
@@ -183,7 +183,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 							Automated Installation
 						</h2>
 					</div>
-					<div class="border-l-4 border-gray-300 pl-6 py-2">
+					<div class="border-l-4 border-gray-300 pl-4 sm:pl-6 py-2">
 						<p class="text-black mb-6">
 							This method provides a streamlined installation process with
 							automatic updates, ideal for Ubuntu Server users.
@@ -237,7 +237,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 							Self-Managed Installation
 						</h2>
 					</div>
-					<div class="border-l-4 border-gray-300 pl-6 py-2">
+					<div class="border-l-4 border-gray-300 pl-4 sm:pl-6 py-2">
 						<p class="text-black mb-6">
 							This method is for users who prefer manual setup or are using a
 							non-Ubuntu Linux distribution, deploying Infinity Metrics via a
@@ -811,7 +811,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
 											views changes, you can do it manually like this:
 										</p>
 										<div
-											class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed md:leading-relaxed sm:leading-relaxed sm:overflow-x-auto sm:whitespace-normal sm:text-xs mt-2"
+											class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2"
 										>
 											<pre><code class="language-javascript text-white">{manualPageView}</code></pre>
 										</div>
