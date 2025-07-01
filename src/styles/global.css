@@ -169,16 +169,7 @@
     @apply bg-black text-white;
   }
   
-  /* Section separations */
-  section {
-    @apply relative;
-    border-bottom: 1px solid #eaeaea;
-  }
-  
-  section:last-of-type {
-    border-bottom: none;
-  }
-  
+
   section.alt-bg {
     @apply bg-gray-50;
   }
@@ -200,6 +191,10 @@
     border-radius: 0.03em;
     display: inline-block;
     transform: rotate(-1deg);
+  }
+
+  .prose p {
+    @apply mb-3;
   }
   
 }
