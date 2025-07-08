@@ -1,0 +1,341 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const pageTitle = "SDK Reference | Infinity Metrics";
+const pageDescription =
+  "Complete JavaScript SDK reference for Infinity Metrics - methods, configuration, and best practices.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Header />
+  <main class="py-12 md:py-20 overflow-hidden">
+    <div class="container px-4 sm:px-6 overflow-hidden">
+      <div class="max-w-4xl mx-auto">
+        <!-- Breadcrumb -->
+        <nav class="mb-8">
+          <ol class="flex space-x-2 text-sm text-gray-500">
+            <li>
+              <a href="/docs" class="hover:text-gray-700">Documentation</a>
+            </li>
+            <li>/</li>
+            <li class="text-gray-900">SDK Reference</li>
+          </ol>
+        </nav>
+
+        <h1
+          class="text-4xl md:text-5xl font-bold mb-6 text-black"
+        >
+          SDK Reference
+        </h1>
+
+        <p class="text-xl text-gray-600 mb-12">
+          Complete JavaScript SDK reference for Infinity Metrics, including
+          methods, configuration options, and best practices.
+        </p>
+
+        <!-- SDK Installation -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-black">
+            SDK Installation
+          </h2>
+          <p class="text-gray-600 mb-6">
+            Add the Infinity Metrics SDK to your website with a single script tag:
+          </p>
+          <div class="bg-gray-900 p-4 rounded-md font-mono text-sm overflow-x-auto mb-6">
+            <pre class="text-white"><code>&lt;script defer src="https://your-domain.com/api/v1/sdk.js"&gt;&lt;/script&gt;</code></pre>
+          </div>
+          <div class="bg-blue-50 border-l-4 border-blue p-6 rounded-r-xl">
+            <p class="text-blue-900 font-medium">
+              <strong class="font-black">Note:</strong> Replace "your-domain.com" with the domain where you installed Infinity Metrics.
+            </p>
+          </div>
+        </section>
+
+        <!-- Configuration -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-black">
+            Configuration
+          </h2>
+          <p class="text-gray-600 mb-6">
+            The SDK comes with sensible defaults, but you can customize its behavior:
+          </p>
+          <div class="bg-gray-900 p-4 rounded-md font-mono text-sm overflow-x-auto mb-6">
+            <pre class="text-white"><code>{`<script>
+  // Configure before loading the SDK
+  window.InfinityMetrics = {
+    config: {
+      sendInterval: 500,          // Batch send interval in ms
+      maxRetries: 3,              // Max retry attempts
+      maxBatchSize: 10,           // Max events per batch
+      respectDoNotTrack: true,    // Respect DNT header
+      debug: false,               // Enable debug logging
+      autoInstrumentButtons: true, // Auto-track button clicks
+      autoSendPageViews: true,    // Auto-track page views
+    }
+  };
+</script>
+<script defer src="https://your-domain.com/api/v1/sdk.js"></script>`}</code></pre>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card p-6 rounded-xl shadow-sm border-l-4 border-blue">
+              <h3 class="text-lg font-semibold mb-3 text-black">
+                Performance Options
+              </h3>
+              <ul class="text-gray-600 space-y-2 text-sm">
+                <li><strong>sendInterval:</strong> How often to send batched events (default: 200ms)</li>
+                <li><strong>maxBatchSize:</strong> Maximum events per batch (default: 10)</li>
+                <li><strong>maxRetries:</strong> Maximum retry attempts (default: 3)</li>
+              </ul>
+            </div>
+            <div class="card p-6 rounded-xl shadow-sm border-l-4 border-lime">
+              <h3 class="text-lg font-semibold mb-3 text-black">
+                Privacy Options
+              </h3>
+              <ul class="text-gray-600 space-y-2 text-sm">
+                <li><strong>respectDoNotTrack:</strong> Honor DNT header (default: true)</li>
+                <li><strong>debug:</strong> Enable console logging (default: false)</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Core Methods -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-black">
+            Core Methods
+          </h2>
+
+          <!-- sendPageView -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold mb-4 text-black">
+              sendPageView()
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Manually send a page view event. This is automatically called unless
+              <code class="bg-gray-100 px-2 py-1 rounded">autoSendPageViews</code> is disabled.
+            </p>
+            <div class="bg-gray-900 p-4 rounded-md font-mono text-sm overflow-x-auto mb-4">
+              <pre class="text-white"><code>{`// Send a page view event
+window.InfinityMetrics.sendPageView();`}</code></pre>
+            </div>
+          </div>
+
+          <!-- sendCustomEvent -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold mb-4 text-black">
+              sendCustomEvent(eventName, metadata)
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Send a custom event with optional metadata.
+            </p>
+            <div class="bg-gray-900 p-4 rounded-md font-mono text-sm overflow-x-auto mb-4">
+              <pre class="text-white"><code>{`// Send a custom event
+window.InfinityMetrics.sendCustomEvent('button_click', {
+  buttonText: 'Sign Up',
+  location: 'header'
+});
+
+// Send event without metadata
+window.InfinityMetrics.sendCustomEvent('newsletter_signup');`}</code></pre>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="card p-6 rounded-xl shadow-sm border-l-4 border-blue">
+                <h4 class="font-semibold mb-2 text-black">Parameters</h4>
+                <ul class="text-gray-600 space-y-1 text-sm">
+                  <li><strong>eventName:</strong> String identifier for the event</li>
+                  <li><strong>metadata:</strong> Optional object with additional data</li>
+                </ul>
+              </div>
+              <div class="card p-6 rounded-xl shadow-sm border-l-4 border-lime">
+                <h4 class="font-semibold mb-2 text-black">Validation</h4>
+                <ul class="text-gray-600 space-y-1 text-sm">
+                  <li>• eventName must be a non-empty string</li>
+                  <li>• metadata must be an object (if provided)</li>
+                  <li>• Automatically validated before sending</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- setUser -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold mb-4 text-black">
+              setUser(userData)
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Set user identification for tracking across sessions.
+            </p>
+            <div class="bg-gray-900 p-4 rounded-md font-mono text-sm overflow-x-auto mb-4">
+              <pre class="text-white"><code>{`// Set user identification
+window.InfinityMetrics.setUser({
+  userId: 'user_12345'
+});`}</code></pre>
+            </div>
+            <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-xl">
+              <p class="text-amber-800 font-medium">
+                <strong class="font-black">Privacy Notice:</strong> Only use user IDs that are
+                safe to store and comply with your privacy policy.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Automatic Tracking -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-black">
+            Automatic Tracking
+          </h2>
+          <p class="text-gray-600 mb-6">
+            The SDK automatically tracks various user interactions when enabled:
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card p-6 rounded-xl shadow-sm border-l-4 border-blue">
+              <h3 class="text-lg font-semibold mb-3 text-black">
+                Page Views
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm">
+                Automatically tracks page views and SPA navigation.
+              </p>
+              <ul class="text-gray-600 space-y-1 text-sm">
+                <li>• Initial page load</li>
+                <li>• History API changes (pushState/popState)</li>
+                <li>• React Router, Vue Router, etc.</li>
+              </ul>
+            </div>
+            <div class="card p-6 rounded-xl shadow-sm border-l-4 border-lime">
+              <h3 class="text-lg font-semibold mb-3 text-black">
+                Button Clicks
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm">
+                Automatically tracks button and button-like element clicks.
+              </p>
+              <ul class="text-gray-600 space-y-1 text-sm">
+                <li>• &lt;button&gt; elements</li>
+                <li>• [role="button"] elements</li>
+                <li>• input[type="button"] and input[type="submit"]</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Data-Driven Tracking -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-black">
+            Data-Driven Tracking
+          </h2>
+          <p class="text-gray-600 mb-6">
+            Use HTML data attributes to track specific interactions:
+          </p>
+          <div class="bg-gray-900 p-4 rounded-md font-mono text-sm overflow-x-auto mb-6">
+            <pre class="text-white"><code>{`<!-- Track a specific link click -->
+<a href="/pricing" data-infinity-event-name="pricing_page_visit">
+  View Pricing
+</a>
+
+<!-- Track with additional metadata -->
+<a href="/signup" 
+   data-infinity-event-name="cta_click"
+   data-infinity-metadata-location="header"
+   data-infinity-metadata-variant="primary">
+  Sign Up
+</a>`}</code></pre>
+          </div>
+          <div class="card p-6 rounded-xl shadow-sm border-l-4 border-blue">
+            <h3 class="text-lg font-semibold mb-3 text-black">
+              Attributes
+            </h3>
+            <ul class="text-gray-600 space-y-2 text-sm">
+              <li><strong>data-infinity-event-name:</strong> Event name to track</li>
+              <li><strong>data-infinity-metadata-*:</strong> Additional metadata</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-black">
+            Best Practices
+          </h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card p-6 rounded-xl shadow-sm border-l-4 border-blue">
+              <h3 class="text-lg font-semibold mb-3 text-black">
+                Event Naming
+              </h3>
+              <ul class="text-gray-600 space-y-2 text-sm">
+                <li>• Use snake_case format</li>
+                <li>• Be descriptive and specific</li>
+                <li>• Keep under 50 characters</li>
+                <li>• Group related events with prefixes</li>
+              </ul>
+            </div>
+            <div class="card p-6 rounded-xl shadow-sm border-l-4 border-lime">
+              <h3 class="text-lg font-semibold mb-3 text-black">
+                Performance
+              </h3>
+              <ul class="text-gray-600 space-y-2 text-sm">
+                <li>• Events are batched automatically</li>
+                <li>• Use appropriate sendInterval</li>
+                <li>• Avoid excessive custom events</li>
+                <li>• Enable debug mode during development</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Error Handling -->
+        <section class="mb-16">
+          <h2 class="text-3xl font-bold mb-8 text-black">
+            Error Handling
+          </h2>
+          <p class="text-gray-600 mb-6">
+            The SDK includes built-in error handling and retry logic:
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card p-6 rounded-xl shadow-sm border-l-4 border-blue">
+              <h3 class="text-lg font-semibold mb-3 text-black">
+                Offline Support
+              </h3>
+              <ul class="text-gray-600 space-y-2 text-sm">
+                <li>• Events queued when offline</li>
+                <li>• Automatic retry on connection restore</li>
+                <li>• Local storage fallback</li>
+              </ul>
+            </div>
+            <div class="card p-6 rounded-xl shadow-sm border-l-4 border-lime">
+              <h3 class="text-lg font-semibold mb-3 text-black">
+                Validation
+              </h3>
+              <ul class="text-gray-600 space-y-2 text-sm">
+                <li>• Parameter validation</li>
+                <li>• Debug logging for errors</li>
+                <li>• Graceful failure handling</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Navigation -->
+        <div
+          class="flex justify-between items-center pt-8 border-t border-gray-200"
+        >
+          <a
+            href="/docs/custom-events"
+            class="flex items-center text-gray-600 hover:text-gray-800"
+          >
+            ← Custom Events
+          </a>
+          <a
+            href="/docs/troubleshooting"
+            class="flex items-center text-gray-600 hover:text-gray-800"
+          >
+            Troubleshooting →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

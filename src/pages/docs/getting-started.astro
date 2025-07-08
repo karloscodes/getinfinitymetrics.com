@@ -1,0 +1,311 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const pageTitle = "Getting Started | Infinity Metrics";
+const pageDescription =
+  "Get started with Infinity Metrics in just a few minutes. Complete setup guide from installation to your first analytics data.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Header />
+  <main class="py-12 md:py-20 overflow-hidden">
+    <div class="container px-4 sm:px-6 overflow-hidden">
+      <div class="max-w-4xl mx-auto">
+        <!-- Breadcrumb -->
+        <nav class="mb-8">
+          <ol class="flex space-x-2 text-sm text-gray-500">
+            <li>
+              <a href="/docs" class="hover:text-gray-700">Documentation</a>
+            </li>
+            <li>/</li>
+            <li class="text-gray-900">Getting Started</li>
+          </ol>
+        </nav>
+
+        <h1 class="text-4xl md:text-5xl font-black mb-6 text-black">
+          Getting Started
+        </h1>
+
+        <p class="text-xl font-medium text-gray-600 mb-12">
+          Get up and running with Infinity Metrics in just a few minutes. This
+          guide will walk you through the basics of installation and setup.
+        </p>
+
+        <!-- Quick Start Notice -->
+        <section class="mb-12">
+          <div
+            class="bg-blue-50 border-l-4 border-blue p-6 rounded-r-xl mb-6"
+          >
+            <p class="text-blue-900 font-semibold">
+              <strong class="font-black">Quick Start:</strong> You can be tracking
+              analytics data in under 5 minutes with our automated installer.
+            </p>
+          </div>
+        </section>
+
+        <!-- Key Benefits -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-black mb-8 text-black">
+            Why Infinity Metrics?
+          </h2>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <h3 class="font-bold mb-2 text-black">Privacy First</h3>
+              <p class="text-sm font-medium text-gray-600">
+                GDPR compliant, cookie-free analytics that respects user privacy
+              </p>
+            </div>
+            <div class="text-center">
+              <h3 class="font-bold mb-2 text-black">Self-Hosted</h3>
+              <p class="text-sm font-medium text-gray-600">
+                Complete control over your data with embedded SQLite database
+              </p>
+            </div>
+            <div class="text-center">
+              <h3 class="font-bold mb-2 text-black">AI-Powered</h3>
+              <p class="text-sm font-medium text-gray-600">
+                Explore your data beyond the dashboard with plain English
+                questions
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Installation Overview -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-black mb-8 text-black">
+            Installation Overview
+          </h2>
+
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Ready to install? Choose your method:
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold text-gray-800 mb-2">Ubuntu Server (Recommended)</h4>
+                <p class="text-gray-600 font-medium text-sm mb-2">
+                  One-command automated installation with SSL and proxy setup:
+                </p>
+                <div class="bg-gray-900 rounded-lg p-3 text-gray-100 font-mono text-sm">
+                  <code>curl -fsSL https://getinfinitymetrics.com/install | sudo bash</code>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-800 mb-2">Docker (All Platforms)</h4>
+                <p class="text-gray-600 font-medium text-sm">
+                  Self-managed Docker deployment for advanced users and non-Ubuntu systems.
+                </p>
+              </div>
+            </div>
+            <div class="mt-6">
+              <a 
+                href="/docs/installation" 
+                class="inline-flex items-center bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-black transition-colors font-semibold"
+              >
+                View Complete Installation Guide →
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick Setup Steps -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-black mb-8 text-black">
+            Quick Setup Steps
+          </h2>
+
+          <div class="space-y-6">
+            <!-- Step 1 -->
+            <div class="flex items-start space-x-4">
+              <span class="bg-blue text-white px-3 py-1 rounded-md font-bold text-sm">1</span>
+              <div>
+                <h3 class="text-lg font-semibold text-black mb-2">Get Your License</h3>
+                <p class="text-gray-600 font-medium">
+                  Purchase your Infinity Metrics license from our <a
+                    href="/#pricing"
+                    class="text-blue hover:text-blue-600 font-semibold underline"
+                  >pricing section</a>. You'll receive your license key and installation instructions via email.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flex items-start space-x-4">
+              <span class="bg-blue text-white px-3 py-1 rounded-md font-bold text-sm">2</span>
+              <div>
+                <h3 class="text-lg font-semibold text-black mb-2">Install Infinity Metrics</h3>
+                <p class="text-gray-600 font-medium">
+                  Follow our <a
+                    href="/docs/installation"
+                    class="text-blue hover:text-blue-600 font-semibold underline"
+                  >detailed installation guide</a> to deploy Infinity Metrics on your server using either automated installation or Docker.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flex items-start space-x-4">
+              <span class="bg-blue text-white px-3 py-1 rounded-md font-bold text-sm">3</span>
+              <div>
+                <h3 class="text-lg font-semibold text-black mb-2">Add Tracking Script</h3>
+                <p class="text-gray-600 font-medium mb-3">
+                  Add the lightweight tracking script to your website:
+                </p>
+                <div class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm">
+                  <code>&lt;script defer src="https://your-domain.com/api/v1/sdk.js"&gt;&lt;/script&gt;</code>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="flex items-start space-x-4">
+              <span class="bg-blue text-white px-3 py-1 rounded-md font-bold text-sm">4</span>
+              <div>
+                <h3 class="text-lg font-semibold text-black mb-2">Start Tracking</h3>
+                <p class="text-gray-600 font-medium">
+                  The script automatically tracks page views and button clicks. Check your dashboard to see data flowing in!
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- What You Get -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-black mb-8 text-black">
+            What You Get Out of the Box
+          </h2>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+              <h3 class="font-semibold mb-3 text-black">Automatic Tracking</h3>
+              <ul class="text-gray-600 font-medium space-y-2 text-sm">
+                <li>• Page views and unique visitors</li>
+                <li>• Button clicks and interactions</li>
+                <li>• Link tracking with external detection</li>
+                <li>• SPA navigation (React, Vue, etc.)</li>
+              </ul>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+              <h3 class="font-semibold mb-3 text-black">Advanced Features</h3>
+              <ul class="text-gray-600 font-medium space-y-2 text-sm">
+                <li>• Custom event tracking</li>
+                <li>• Revenue attribution</li>
+                <li>• Subdomain tracking</li>
+                <li>• AI-powered data exploration</li>
+              </ul>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+              <h3 class="font-semibold mb-3 text-black">Privacy Features</h3>
+              <ul class="text-gray-600 font-medium space-y-2 text-sm">
+                <li>• No cookies required</li>
+                <li>• GDPR compliant by default</li>
+                <li>• Respects Do Not Track</li>
+                <li>• Data stays on your server</li>
+              </ul>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+              <h3 class="font-semibold mb-3 text-black">Technical Benefits</h3>
+              <ul class="text-gray-600 font-medium space-y-2 text-sm">
+                <li>• Lightweight script (&lt;10KB)</li>
+                <li>• Offline support with queue</li>
+                <li>• Embedded SQLite database</li>
+                <li>• No external dependencies</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Next Steps -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-black mb-8 text-black">Next Steps</h2>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+              <h3 class="font-semibold mb-3 text-black">Framework Integration</h3>
+              <p class="text-gray-600 font-medium mb-4 text-sm">
+                Get specific setup instructions for your framework or CMS.
+              </p>
+              <a 
+                href="/docs/frameworks" 
+                class="text-blue hover:text-blue-600 font-semibold"
+              >
+                View Framework Guides →
+              </a>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+              <h3 class="font-semibold mb-3 text-black">Custom Events</h3>
+              <p class="text-gray-600 font-medium mb-4 text-sm">
+                Learn how to track custom user actions and business events.
+              </p>
+              <a 
+                href="/docs/custom-events" 
+                class="text-blue hover:text-blue-600 font-semibold"
+              >
+                Track Custom Events →
+              </a>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+              <h3 class="font-semibold mb-3 text-black">Revenue Tracking</h3>
+              <p class="text-gray-600 font-medium mb-4 text-sm">
+                Set up revenue attribution to understand the impact of your marketing.
+              </p>
+              <a 
+                href="/docs/revenue-tracking" 
+                class="text-blue hover:text-blue-600 font-semibold"
+              >
+                Setup Revenue Tracking →
+              </a>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+              <h3 class="font-semibold mb-3 text-black">Administration</h3>
+              <p class="text-gray-600 font-medium mb-4 text-sm">
+                Learn about server management, updates, and troubleshooting.
+              </p>
+              <a 
+                href="/docs/administration" 
+                class="text-blue hover:text-blue-600 font-semibold"
+              >
+                View Admin Guide →
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Need Help -->
+        <section class="text-center bg-gray-50 rounded-xl p-8">
+          <h2 class="text-2xl font-black tracking-tight mb-4 text-black">
+            Need Help Getting Started?
+          </h2>
+          <p class="text-gray-600 font-medium mb-6 max-w-2xl mx-auto">
+            Have questions about installation or setup? Our support team is here to help you get up and running quickly.
+          </p>
+          <div class="flex justify-center space-x-4">
+            <a
+              href="/docs/installation"
+              class="bg-blue text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors font-semibold"
+            >
+              Installation Guide
+            </a>
+            <a
+              href="mailto:support@getinfinitymetrics.com"
+              class="bg-white text-gray-700 px-6 py-3 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors font-semibold"
+            >
+              Contact Support
+            </a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

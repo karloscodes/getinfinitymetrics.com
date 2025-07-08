@@ -1,0 +1,355 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+
+const pageTitle = "Ghost CMS Integration | Infinity Metrics";
+const pageDescription =
+  "Complete guide to integrating Infinity Metrics with Ghost CMS - theme integration and code injection.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Header />
+  <div class="min-h-screen bg-gray-50 py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="mb-8">
+        <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+          <a href="/docs" class="hover:text-gray-700 font-medium"
+            >Documentation</a
+          >
+          <span>→</span>
+          <a href="/docs/frameworks" class="hover:text-gray-700 font-medium"
+            >Frameworks</a
+          >
+          <span>→</span>
+          <span class="text-gray-900 font-semibold">Ghost</span>
+        </nav>
+        <h1 class="text-3xl font-black tracking-tight text-black">
+          Ghost CMS Integration
+        </h1>
+        <p class="mt-2 text-gray-600 font-medium">
+          Complete guide to integrating Infinity Metrics with Ghost CMS
+        </p>
+      </div>
+
+      <!-- Quick Setup -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Quick Setup
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Method 1: Code Injection (Recommended)
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Add via Ghost Admin → Settings → Code Injection → Site Header:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`<script defer data-domain="{{@site.url}}" src="https://analytics.getinfinitymetrics.com/js/script.js"></script>`}</code></pre>
+            </div>
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mt-3">
+              <p class="text-blue-700 font-medium text-sm">
+                This method automatically uses your site's domain and works
+                across all themes.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Method 2: Theme Integration
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Add to your theme's <code class="bg-gray-100 px-2 py-1 rounded"
+                >default.hbs</code
+              > file before <code class="bg-gray-100 px-2 py-1 rounded"
+                >&lt;/head&gt;</code
+              >:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`{{!-- Infinity Metrics --}}
+<script defer data-domain="{{@site.url}}" src="https://analytics.getinfinitymetrics.com/js/script.js"></script>
+</head>`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Advanced Configuration -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Advanced Configuration
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Custom Event Tracking
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Track newsletter signups and other interactions:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`<script>
+// Track newsletter signups
+document.addEventListener('DOMContentLoaded', function() {
+    // For Ghost's built-in newsletter form
+    const newsletterForm = document.querySelector('[data-members-form]');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function() {
+            if (window.plausible) {
+                window.plausible('Newsletter Signup', {
+                    props: {
+                        location: 'footer'
+                    }
+                });
+            }
+        });
+    }
+    
+    // Track post reading time
+    const postContent = document.querySelector('.post-content');
+    if (postContent) {
+        setTimeout(function() {
+            if (window.plausible) {
+                window.plausible('Read Time', {
+                    props: {
+                        duration: '30s'
+                    }
+                });
+            }
+        }, 30000); // Track after 30 seconds
+    }
+});
+</script>`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Member-Only Content Tracking
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Track member engagement separately:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>&lcub;&lcub;#if @member&rcub;&rcub;
+&lt;script&gt;
+// Track member-specific events
+if (window.plausible) &#123;
+    window.plausible('Member Page View', &#123;
+        props: &#123;
+            member_tier: '&lcub;&lcub;@member.status&rcub;&rcub;',
+            post_type: '&lcub;&lcub;post.visibility&rcub;&rcub;'
+        &#125;
+    &#125;);
+&#125;
+&lt;/script&gt;
+&lcub;&lcub;/if&rcub;&rcub;</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Content Tracking -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Content Performance Tracking
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Track Post Categories
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Add to your <code class="bg-gray-100 px-2 py-1 rounded"
+                >post.hbs</code
+              > template:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>&lcub;&lcub;#post&rcub;&rcub;
+&lt;script&gt;
+if (window.InfinityMetrics) &#123;
+    window.InfinityMetrics.sendCustomEvent('Post View', &#123;
+        &lcub;&lcub;#if primary_tag&rcub;&rcub;
+        category: '&lcub;&lcub;primary_tag.name&rcub;&rcub;',
+        &lcub;&lcub;/if&rcub;&rcub;
+        &lcub;&lcub;#if primary_author&rcub;&rcub;
+        author: '&lcub;&lcub;primary_author.name&rcub;&rcub;',
+        &lcub;&lcub;/if&rcub;&rcub;
+        word_count: '&lcub;&lcub;reading_time&rcub;&rcub;',
+        publish_date: '&lcub;&lcub;date published_at format="YYYY-MM"&rcub;&rcub;'
+    &#125;);
+&#125;
+&lt;/script&gt;
+&lcub;&lcub;/post&rcub;&rcub;</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Track Page Types
+            </h3>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>&lt;script&gt;
+// Track different page types
+if (window.InfinityMetrics) &#123;
+    let pageType = 'unknown';
+    
+    &lcub;&lcub;#is "home"&rcub;&rcub;
+    pageType = 'home';
+    &lcub;&lcub;/is&rcub;&rcub;
+    
+    &lcub;&lcub;#is "post"&rcub;&rcub;
+    pageType = 'post';
+    &lcub;&lcub;/is&rcub;&rcub;
+    
+    &lcub;&lcub;#is "page"&rcub;&rcub;
+    pageType = 'page';
+    &lcub;&lcub;/is&rcub;&rcub;
+    
+    &lcub;&lcub;#is "tag"&rcub;&rcub;
+    pageType = 'tag';
+    &lcub;&lcub;/is&rcub;&rcub;
+    
+    &lcub;&lcub;#is "author"&rcub;&rcub;
+    pageType = 'author';
+    &lcub;&lcub;/is&rcub;&rcub;
+    
+    if (pageType !== 'unknown') &#123;
+        window.InfinityMetrics.sendCustomEvent('Page Type View', &#123;
+            page_type: pageType
+        &#125;);
+    &#125;
+&#125;
+&lt;/script&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Theme Development -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Theme Development
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Conditional Loading
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Only load analytics in production:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`{{!-- Only load analytics in production --}}
+{{#unless @labs.development}}
+<script defer src="https://your-domain.com/api/v1/sdk.js"></script>
+{{/unless}}`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Theme Settings Integration
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Allow analytics URL configuration in theme settings:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>&lcub;&lcub;!-- In package.json config section --&rcub;&rcub;
+"config": &#123;
+    "analytics_url": &#123;
+        "type": "text",
+        "default": "https://your-domain.com/api/v1/sdk.js"
+    &#125;
+&#125;
+
+&lcub;&lcub;!-- In default.hbs --&rcub;&rcub;
+&lcub;&lcub;#if @custom.analytics_url&rcub;&rcub;
+&lt;script defer src="&lcub;&lcub;@custom.analytics_url&rcub;&rcub;"&gt;&lt;/script&gt;
+&lcub;&lcub;/if&rcub;&rcub;</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Troubleshooting -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Troubleshooting
+        </h2>
+
+        <div class="space-y-4">
+          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+            <h4 class="font-semibold text-yellow-800 mb-2">
+              Code Injection Not Working?
+            </h4>
+            <ul class="text-yellow-700 text-sm space-y-1">
+              <li>• Make sure you're using Site Header, not Site Footer</li>
+              <li>• Save and publish changes in Ghost admin</li>
+              <li>• Clear browser cache and check source code</li>
+              <li>• Verify script URL is accessible</li>
+            </ul>
+          </div>
+
+          <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+            <h4 class="font-semibold text-blue-800 mb-2">Domain Issues?</h4>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>
+                • Check that <code>&#123;&#123;@site.url&#125;&#125;</code> returns
+                the correct domain
+              </li>
+              <li>• Verify subdomain vs main domain tracking setup</li>
+              <li>
+                • Test with manual domain if needed: <code
+                  >data-domain="yourdomain.com"</code
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <div
+        class="flex justify-between items-center pt-8 border-t border-gray-200"
+      >
+        <a
+          href="/docs/frameworks/wordpress"
+          class="flex items-center text-gray-700 hover:text-black font-semibold"
+        >
+          ← WordPress Integration
+        </a>
+        <a
+          href="/docs/frameworks"
+          class="flex items-center text-gray-700 hover:text-black font-semibold"
+        >
+          All Frameworks →
+        </a>
+      </div>
+    </div>
+  </div>
+  <Footer />
+</Layout>

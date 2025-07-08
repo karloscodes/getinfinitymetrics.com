@@ -1,0 +1,405 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const pageTitle = "Administration Guide | Infinity Metrics";
+const pageDescription =
+  "Complete administration guide for Infinity Metrics - server management, commands, updates, and configuration.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Header />
+  <div class="min-h-screen bg-white py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="mb-8">
+        <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+          <a href="/docs" class="hover:text-gray-700 font-medium">Documentation</a>
+          <span>→</span>
+          <span class="text-gray-900 font-semibold">Administration</span>
+        </nav>
+        <h1 class="text-3xl font-black tracking-tight text-black">
+          Administration Guide
+        </h1>
+        <p class="mt-2 text-gray-600 font-medium">
+          Complete guide for managing your Infinity Metrics server installation
+        </p>
+      </div>
+
+      <!-- Administrative Commands -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Administrative Commands
+        </h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Password Reset
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Reset or change the admin password for your Infinity Metrics dashboard:
+            </p>
+            <div class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto">
+              <pre><code>sudo infinity-metrics change-admin-password</code></pre>
+            </div>
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mt-3">
+              <p class="text-blue-700 font-medium text-sm">
+                This command requires sudo privileges and will prompt you to enter a new password.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Forced Updates
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Manually trigger an update of your Infinity Metrics installation:
+            </p>
+            <div class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto">
+              <pre><code>sudo infinity-metrics update</code></pre>
+            </div>
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-3">
+              <p class="text-yellow-700 font-medium text-sm">
+                Only use this command when you need to force an update. The automated installer handles updates automatically.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Server Requirements -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Server Requirements
+        </h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Minimum Requirements
+            </h3>
+            <p class="text-gray-600 font-medium mb-4">
+              Infinity Metrics is designed to run efficiently with minimal server resources:
+            </p>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-black mb-2">CPU</h4>
+                <p class="text-gray-600 font-medium text-sm">1 vCPU/Core</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-black mb-2">RAM</h4>
+                <p class="text-gray-600 font-medium text-sm">512MB (sufficient to get started)</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-black mb-2">Storage</h4>
+                <p class="text-gray-600 font-medium text-sm">10GB SSD</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Network Requirements
+            </h3>
+            <div class="space-y-4">
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-black mb-2">Inbound Ports</h4>
+                <ul class="text-gray-600 font-medium text-sm space-y-1">
+                  <li>• Port 80 (HTTP) - Required for Let's Encrypt certificate setup</li>
+                  <li>• Port 443 (HTTPS) - Required for normal operations and certificate verification</li>
+                </ul>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-black mb-2">Outbound Access</h4>
+                <ul class="text-gray-600 font-medium text-sm space-y-1">
+                  <li>• General internet access for Let's Encrypt certificate renewal</li>
+                  <li>• OpenAI API communication (for AI features)</li>
+                </ul>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-black mb-2">SSL Certificate</h4>
+                <p class="text-gray-600 font-medium text-sm">
+                  Automatically provisioned with Let's Encrypt (automated installer) or configured manually
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Docker Configuration -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Docker Configuration
+        </h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Environment Variables
+            </h3>
+            <p class="text-gray-600 font-medium mb-4">
+              Required environment variables for Docker deployment:
+            </p>
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Variable
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Description
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Example
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-black">
+                      INFINITY_METRICS_LOG_LEVEL
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-600 font-medium">
+                      Logging level for debugging
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-500">
+                      debug
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-black">
+                      INFINITY_METRICS_APP_PORT
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-600 font-medium">
+                      Port for the application
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-500">
+                      8080
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-black">
+                      INFINITY_METRICS_LICENSE_KEY
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-600 font-medium">
+                      Your license key from purchase
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-500">
+                      your-license-key
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-black">
+                      INFINITY_METRICS_DOMAIN
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-600 font-medium">
+                      Your domain name
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-500">
+                      your-domain.com
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-black">
+                      INFINITY_METRICS_PRIVATE_KEY
+                    </td>
+                    <td class="px-6 py-4 text-sm text-gray-600 font-medium">
+                      32 random characters for internal security
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-500">
+                      your-private-key
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Docker Run Command
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Complete Docker command for self-managed deployment:
+            </p>
+            <div class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto">
+              <pre><code>{`docker run -d \\
+  --name infinity-metrics \\
+  -v /path/to/storage:/app/storage \\
+  -v /path/to/logs:/app/logs \\
+  -e INFINITY_METRICS_LOG_LEVEL=debug \\
+  -e INFINITY_METRICS_APP_PORT=8080 \\
+  -e INFINITY_METRICS_LICENSE_KEY=your-license-key \\
+  -e INFINITY_METRICS_DOMAIN=your-domain.com \\
+  -e INFINITY_METRICS_PRIVATE_KEY=your-private-key \\
+  --restart unless-stopped \\
+  infinitymetrics/app:latest`}</code></pre>
+            </div>
+            <div class="bg-green-50 border-l-4 border-green-400 p-4 mt-3">
+              <p class="text-green-700 font-medium text-sm">
+                Replace the placeholder values with your actual configuration before running this command.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard Access -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Dashboard Access
+        </h2>
+        
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Accessing Your Dashboard
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Once installed, access your analytics dashboard at:
+            </p>
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <p class="text-blue-700 font-mono text-lg">
+                https://your-domain.com/
+              </p>
+            </div>
+          </div>
+          
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              First Time Setup
+            </h3>
+            <ul class="text-gray-600 font-medium space-y-2 text-sm">
+              <li>• Use the admin credentials created during installation</li>
+              <li>• If you forgot your password, use the password reset command above</li>
+              <li>• The dashboard is only accessible via HTTPS for security</li>
+              <li>• Configure any additional users through the dashboard interface</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Maintenance -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Maintenance & Updates
+        </h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Automated Updates (Recommended)
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              The automated installer handles updates automatically. No manual intervention required.
+            </p>
+            <div class="bg-green-50 border-l-4 border-green-400 p-4">
+              <p class="text-green-700 font-medium text-sm">
+                Updates are applied automatically to ensure you always have the latest features and security patches.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Manual Updates (Self-Managed)
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              For Docker deployments, you need to manually update the container:
+            </p>
+            <div class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto">
+              <pre><code>{`# Pull the latest image
+docker pull infinitymetrics/app:latest
+
+# Stop and remove the old container
+docker stop infinity-metrics
+docker rm infinity-metrics
+
+# Run the new container with the same configuration
+docker run -d --name infinity-metrics [your-previous-configuration]`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Backup Recommendations
+            </h3>
+            <ul class="text-gray-600 font-medium space-y-2 text-sm">
+              <li>• Regularly backup the <code class="bg-gray-100 px-2 py-1 rounded">/app/storage</code> directory</li>
+              <li>• Store backups in a separate location from your server</li>
+              <li>• Test backup restoration procedures periodically</li>
+              <li>• Consider automated backup solutions for production environments</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Troubleshooting -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Troubleshooting
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+            <h3 class="font-semibold text-yellow-800 mb-2">
+              Can't Access Dashboard?
+            </h3>
+            <ul class="text-yellow-700 text-sm space-y-1">
+              <li>• Check that ports 80 and 443 are open on your server</li>
+              <li>• Verify your DNS settings point to the correct server</li>
+              <li>• Ensure SSL certificate is properly configured</li>
+              <li>• Check server logs for any error messages</li>
+            </ul>
+          </div>
+
+          <div class="bg-red-50 border-l-4 border-red-400 p-4">
+            <h3 class="font-semibold text-red-800 mb-2">
+              Docker Container Won't Start?
+            </h3>
+            <ul class="text-red-700 text-sm space-y-1">
+              <li>• Verify all required environment variables are set</li>
+              <li>• Check that storage paths exist and are writable</li>
+              <li>• Ensure the license key is valid and not expired</li>
+              <li>• Review Docker logs: <code class="bg-red-100 px-1 rounded">docker logs infinity-metrics</code></li>
+            </ul>
+          </div>
+
+          <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+            <h3 class="font-semibold text-blue-800 mb-2">
+              Data Not Being Collected?
+            </h3>
+            <ul class="text-blue-700 text-sm space-y-1">
+              <li>• Verify the tracking script is properly installed on your website</li>
+              <li>• Check browser developer tools for any JavaScript errors</li>
+              <li>• Ensure your domain matches the INFINITY_METRICS_DOMAIN setting</li>
+              <li>• Test with debug mode enabled in the SDK configuration</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <div class="flex justify-between items-center pt-8 border-t border-gray-200">
+        <a
+          href="/docs"
+          class="flex items-center text-gray-700 hover:text-black font-semibold"
+        >
+          ← Documentation
+        </a>
+        <a
+          href="/docs/installation"
+          class="flex items-center text-gray-700 hover:text-black font-semibold"
+        >
+          Installation Guide →
+        </a>
+      </div>
+    </div>
+  </div>
+  <Footer />
+</Layout>

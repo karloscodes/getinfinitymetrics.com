@@ -1,0 +1,476 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+
+const pageTitle = "React Integration | Infinity Metrics";
+const pageDescription =
+  "Complete guide to integrating Infinity Metrics with React applications and React Router for automatic page tracking.";
+---
+
+<Layout title="React Integration - Infinity Metrics">
+  <div class="min-h-screen bg-white py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="mb-8">
+        <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+          <a href="/docs" class="hover:text-gray-700 font-medium"
+            >Documentation</a
+          >
+          <span>→</span>
+          <a href="/docs/frameworks" class="hover:text-gray-700 font-medium"
+            >Frameworks</a
+          >
+          <span>→</span>
+          <span class="text-gray-900 font-semibold">React</span>
+        </nav>
+        <h1 class="text-3xl font-black tracking-tight text-black">
+          React Integration
+        </h1>
+        <p class="mt-2 text-gray-600 font-medium">
+          Complete guide to integrating Infinity Metrics with React applications
+        </p>
+      </div>
+
+      <!-- Quick Setup -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Quick Setup
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Method 1: Add to public/index.html (Recommended)
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Add the Infinity Metrics tracking script to your React app's <code
+                class="bg-gray-100 px-2 py-1 rounded">public/index.html</code
+              > file:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your React App</title>
+    
+    <!-- Infinity Metrics -->
+    <script defer src="https://your-domain.com/api/v1/sdk.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Method 2: Dynamic Script Loading
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Alternatively, add the script dynamically from your root
+              component:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`import { useEffect } from 'react';
+
+function App() {
+  useEffect(() => {
+    // Add Infinity Metrics script
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = 'https://your-domain.com/api/v1/sdk.js';
+    document.head.appendChild(script);
+
+    // Cleanup on unmount
+    return () => {
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
+    };
+  }, []);
+
+  return (
+    // Your app content
+  );
+}`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Configuration
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Replace <code class="bg-gray-100 px-2 py-1 rounded"
+                >your-domain.com</code
+              > with the domain where you installed Infinity Metrics.
+            </p>
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+              <p class="text-blue-700 font-medium">
+                The script automatically tracks page views and button clicks,
+                including SPA navigation changes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Using Analytics -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Tracking Custom Events
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Access the Analytics Function
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Once the script is loaded, you can access the global <code
+                class="bg-gray-100 px-2 py-1 rounded">InfinityMetrics</code
+              > object to track custom events:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`function ProductCard({ product }) {
+  const handleClick = () => {
+    // Track custom event
+    if (window.InfinityMetrics) {
+      window.InfinityMetrics.sendCustomEvent('product_click', {
+        product_id: product.id,
+        product_name: product.name,
+        category: product.category
+      });
+    }
+  };
+
+  return (
+    <div onClick={handleClick}>
+      <h3>{product.name}</h3>
+      <p>{product.price}</p>
+    </div>
+  );
+}`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Create a Custom Hook
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              For better React integration, create a custom hook to handle
+              analytics:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`import { useCallback } from 'react';
+
+export function useAnalytics() {
+  const track = useCallback((eventName, metadata = {}) => {
+    if (window.InfinityMetrics) {
+      window.InfinityMetrics.sendCustomEvent(eventName, metadata);
+    }
+  }, []);
+
+  return { track };
+}
+
+// Usage in component
+function SignupButton() {
+  const { track } = useAnalytics();
+  
+  const handleSignup = () => {
+    track('signup_started', {
+      source: 'header_button'
+    });
+  };
+
+  return <button onClick={handleSignup}>Sign Up</button>;
+}`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- React Router Integration -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          React Router Integration
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Automatic SPA Tracking
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Infinity Metrics automatically detects React Router navigation
+              changes and tracks them as page views. No additional setup
+              required.
+            </p>
+            <div class="bg-green-50 border-l-4 border-green-400 p-4">
+              <p class="text-green-700 font-medium">
+                The SDK monitors history state changes and popstate events,
+                automatically treating SPA navigation as new page views.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Manual Page View Tracking
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              If automatic detection fails, you can manually trigger page views:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+function usePageTracking() {
+  const location = useLocation();
+  
+  useEffect(() => {
+    // Manually trigger page view
+    if (window.InfinityMetrics) {
+      window.InfinityMetrics.sendPageView();
+    }
+  }, [location]);
+}
+
+// Use in your main App component
+function App() {
+  usePageTracking();
+  
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/products/:id" element={<Product />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
+  );
+}`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Track Specific Page Types
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Add additional context to page views based on the route:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
+function ProductPage() {
+  const { productId } = useParams();
+  
+  useEffect(() => {
+    if (window.InfinityMetrics && productId) {
+      window.InfinityMetrics.sendCustomEvent('product_view', {
+        product_id: productId
+      });
+    }
+  }, [productId]);
+
+  return <div>Product details for {productId}</div>;
+}`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- E-commerce Tracking -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          E-commerce Tracking
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Track Purchase Events
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Track completed purchases with revenue data:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`function CheckoutSuccess({ order }) {
+  useEffect(() => {
+    if (window.InfinityMetrics && order) {
+      window.InfinityMetrics.sendCustomEvent('purchase', {
+        transaction_id: order.id,
+        value: order.total,
+        currency: order.currency,
+        items_count: order.items.length
+      });
+    }
+  }, [order]);
+
+  return <div>Thank you for your purchase!</div>;
+}`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Add to Cart Tracking
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Track when users add items to their cart:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`function AddToCartButton({ product }) {
+  const { track } = useAnalytics();
+  
+  const handleAddToCart = () => {
+    // Add to cart logic
+    addToCart(product);
+    
+    // Track the event
+    track('add_to_cart', {
+      product_id: product.id,
+      product_name: product.name,
+      price: product.price,
+      category: product.category
+    });
+  };
+
+  return (
+    <button 
+      onClick={handleAddToCart}
+      className="bg-blue-600 text-white px-4 py-2 rounded"
+    >
+      Add to Cart
+    </button>
+  );
+}`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Performance Tips -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Performance Tips
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Debounce Frequent Events
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              For events that fire frequently (like search), use debouncing:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`import { useMemo } from 'react';
+import { debounce } from 'lodash';
+
+function SearchBox() {
+  const { track } = useAnalytics();
+  
+  const debouncedTrack = useMemo(
+    () => debounce((searchTerm) => {
+      track('search', { query: searchTerm });
+    }, 300),
+    [track]
+  );
+  
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    if (value.length > 2) {
+      debouncedTrack(value);
+    }
+  };
+  
+  return (
+    <input 
+      type="text"
+      onChange={handleSearch}
+      placeholder="Search products..."
+    />
+  );
+}`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Conditional Tracking
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Only track events when the analytics script is loaded:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`export function useAnalytics() {
+  const track = useCallback((eventName, metadata = {}) => {
+    // Check if analytics is available
+    if (typeof window !== 'undefined' && window.InfinityMetrics) {
+      window.InfinityMetrics.sendCustomEvent(eventName, metadata);
+    } else if (process.env.NODE_ENV === 'development') {
+      console.log('Analytics Event:', eventName, metadata);
+    }
+  }, []);
+
+  return { track };
+}`}</code></pre>
+            </div>
+          </div>
+
+          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+            <p class="text-yellow-700 font-medium">
+              <strong>Note:</strong> The tracking script loads asynchronously and
+              won't block your React app's performance. Events are automatically
+              queued if the script hasn't loaded yet.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <div
+        class="flex justify-between items-center pt-8 border-t border-gray-200"
+      >
+        <a
+          href="/docs/frameworks/nextjs"
+          class="flex items-center text-gray-700 hover:text-black font-semibold"
+        >
+          ← Next.js Integration
+        </a>
+        <a
+          href="/docs/frameworks/vue"
+          class="flex items-center text-gray-700 hover:text-black font-semibold"
+        >
+          Vue Integration →
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

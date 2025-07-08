@@ -1,0 +1,518 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+---
+
+<Layout title="Vue Integration - Infinity Metrics">
+  <div class="min-h-screen bg-white py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="mb-8">
+        <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+          <a href="/docs" class="hover:text-gray-700 font-medium"
+            >Documentation</a
+          >
+          <span>→</span>
+          <a href="/docs/frameworks" class="hover:text-gray-700 font-medium"
+            >Frameworks</a
+          >
+          <span>→</span>
+          <span class="text-gray-900 font-semibold">Vue</span>
+        </nav>
+        <h1 class="text-3xl font-black tracking-tight text-black">
+          Vue Integration
+        </h1>
+        <p class="mt-2 text-gray-600 font-medium">
+          Complete guide to integrating Infinity Metrics with Vue.js
+          applications
+        </p>
+      </div>
+
+      <!-- Quick Setup -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Quick Setup
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Method 1: Add to public/index.html (Recommended)
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Add the Infinity Metrics tracking script to your Vue app's <code
+                class="bg-gray-100 px-2 py-1 rounded">public/index.html</code
+              > file:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Your Vue App</title>
+    
+    <!-- Infinity Metrics -->
+    <script defer src="https://your-domain.com/api/v1/sdk.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Method 2: Dynamic Script Loading
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Add the script dynamically in your main Vue app:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`import { createApp } from 'vue'
+import App from './App.vue'
+
+// Load Infinity Metrics
+const script = document.createElement('script');
+script.defer = true;
+script.src = 'https://your-domain.com/api/v1/sdk.js';
+document.head.appendChild(script);
+
+const app = createApp(App)
+app.mount('#app')`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Configuration
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Replace <code class="bg-gray-100 px-2 py-1 rounded"
+                >your-domain.com</code
+              > with the domain where you installed Infinity Metrics.
+            </p>
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+              <p class="text-blue-700 font-medium">
+                The script automatically tracks page views and button clicks,
+                including Vue Router navigation changes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tracking Custom Events -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Tracking Custom Events
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Composition API (Vue 3)
+            </h3>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`<template>
+  <div>
+    <button @click="handleClick">Track Event</button>
+    <button @click="handlePurchase">Track Purchase</button>
+  </div>
+</template>
+
+<script setup>
+const handleClick = () => {
+  if (window.InfinityMetrics) {
+    window.InfinityMetrics.sendCustomEvent('button_click', {
+      button_name: 'cta_button',
+      page: 'homepage'
+    });
+  }
+};
+
+const handlePurchase = () => {
+  if (window.InfinityMetrics) {
+    window.InfinityMetrics.sendCustomEvent('purchase', {
+      value: 29.99,
+      currency: 'USD',
+      items_count: 1
+    });
+  }
+};
+</script>`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Create a Composable
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Create a reusable composable for analytics tracking:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`// composables/useAnalytics.js
+export function useAnalytics() {
+  const track = (eventName, metadata = {}) => {
+    if (window.InfinityMetrics) {
+      window.InfinityMetrics.sendCustomEvent(eventName, metadata);
+    }
+  };
+
+  return { track };
+}
+
+// Usage in component
+&lt;script setup&gt;
+import &#123; useAnalytics &#125; from '../composables/useAnalytics';
+
+const &#123; track &#125; = useAnalytics();
+
+const handleSignup = () =&gt; &#123;
+  track('signup_started', &#123;
+    source: 'hero_section'
+  &#125;);
+&#125;;
+</script>`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Options API -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Options API (Vue 2 & 3)
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Component Usage
+            </h3>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`<template>
+  <div>
+    <product-card
+      v-for="product in products"
+      :key="product.id"
+      :product="product"
+      @view="trackProductView"
+      @add-to-cart="trackAddToCart"
+    />
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      products: []
+    }
+  },
+  mounted() {
+    this.trackPageView();
+  },
+  methods: {
+    trackPageView() {
+      if (window.InfinityMetrics) {
+        window.InfinityMetrics.sendCustomEvent('page_view', {
+          page: 'products',
+          category: this.$route.params.category
+        });
+      }
+    },
+    trackProductView(product) {
+      if (window.InfinityMetrics) {
+        window.InfinityMetrics.sendCustomEvent('product_view', {
+          product_id: product.id,
+          product_name: product.name,
+          category: product.category,
+          price: product.price
+        });
+      }
+    },
+    trackAddToCart(product) {
+      if (window.InfinityMetrics) {
+        window.InfinityMetrics.sendCustomEvent('add_to_cart', {
+          product_id: product.id,
+          product_name: product.name,
+          price: product.price,
+          currency: 'USD'
+        });
+      }
+    }
+  }
+}
+</script>`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vue Router Integration -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Vue Router Integration
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Automatic SPA Tracking
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Infinity Metrics automatically detects Vue Router navigation
+              changes and tracks them as page views. No additional setup
+              required.
+            </p>
+            <div class="bg-green-50 border-l-4 border-green-400 p-4">
+              <p class="text-green-700 font-medium">
+                The SDK monitors router changes and treats SPA navigation as new
+                page views automatically.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Manual Router Tracking
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              If you need manual control, you can track route changes:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`// router/index.js
+import { createRouter, createWebHistory } from 'vue-router';
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    // your routes
+  ]
+});
+
+router.afterEach((to, from) => {
+  if (window.InfinityMetrics) {
+    window.InfinityMetrics.sendPageView();
+  }
+});
+
+export default router;`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Best Practices -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Best Practices
+        </h2>
+
+        <div class="space-y-4">
+          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+            <h3 class="font-semibold text-yellow-800 mb-2">
+              Consistent Event Naming
+            </h3>
+            <p class="text-yellow-700 font-medium text-sm">
+              Use snake_case for event names and consistent naming patterns
+              across your Vue components.
+            </p>
+          </div>
+
+          <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+            <h3 class="font-semibold text-blue-800 mb-2">
+              Component Isolation
+            </h3>
+            <p class="text-blue-700 font-medium text-sm">
+              Keep analytics logic separate from business logic by using
+              dedicated tracking methods or composables.
+            </p>
+          </div>
+
+          <div class="bg-green-50 border-l-4 border-green-400 p-4">
+            <h3 class="font-semibold text-green-800 mb-2">Performance</h3>
+            <p class="text-green-700 font-medium text-sm">
+              Debounce high-frequency events like scroll or input to avoid
+              overwhelming your analytics with excessive data.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <div
+        class="flex justify-between items-center pt-8 border-t border-gray-200"
+      >
+        <a
+          href="/docs/frameworks/react"
+          class="flex items-center text-gray-700 hover:text-black font-semibold"
+        >
+          ← React Integration
+        </a>
+        <a
+          href="/docs/frameworks/wordpress"
+          class="flex items-center text-gray-700 hover:text-black font-semibold"
+        >
+          WordPress Integration →
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+const handlePurchase = () =&gt; &#123; track('purchase', &#123; transaction_id:
+'txn_123', value: 49.99, currency: 'USD' &#125;) &#125; &lt;/script&gt;
+
+<div>
+  <h3 class="text-lg font-medium text-gray-900 mb-2">Page View Tracking</h3>
+  <div
+    class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+  >
+    <pre><code>&lt;script setup&gt;
+import &#123; onMounted &#125; from 'vue'
+import &#123; useInfinityMetrics &#125; from '@infinity-metrics/vue'
+import &#123; useRoute &#125; from 'vue-router'
+
+const route = useRoute()
+const &#123; track &#125; = useInfinityMetrics()
+
+onMounted(() =&gt; &#123;
+  track('page_view', &#123;
+    path: route.path,
+    page_title: document.title,
+    referrer: document.referrer
+  &#125;)
+&#125;)
+&lt;/script&gt;</code></pre>
+  </div>
+</div>
+
+<!-- Options API -->
+<section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+  <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+    Options API (Vue 2 & 3)
+  </h2>
+
+  <div class="space-y-6">
+    <div>
+      <h3 class="text-lg font-medium text-gray-900 mb-2">Component Usage</h3>
+      <div
+        class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+      >
+        <pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;product-card
+      v-for="product in products"
+      :key="product.id"
+      :product="product"
+      @view="trackProductView"
+      @add-to-cart="trackAddToCart"
+    /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default &#123;
+  data() &#123;
+    return &#123;
+      products: []
+    &#125;
+  &#125;,
+  mounted() &#123;
+    this.$track('page_view', &#123;
+      page: 'products',
+      category: this.$route.params.category
+    &#125;)
+  &#125;,
+  methods: &#123;
+    trackProductView(product) &#123;
+      this.$track('view_item', &#123;
+        item_id: product.id,
+        item_name: product.name,
+        category: product.category,
+        value: product.price
+      &#125;)
+    &#125;,
+    trackAddToCart(product) &#123;
+      this.$track('add_to_cart', &#123;
+        currency: 'USD',
+        value: product.price,
+        items: [&#123;
+          item_id: product.id,
+          item_name: product.name,
+          category: product.category,
+          quantity: 1,
+          price: product.price
+        &#125;]
+      &#125;)
+    &#125;
+  &#125;
+&#125;
+&lt;/script&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Best Practices -->
+<section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+  <h2 class="text-2xl font-semibold text-gray-900 mb-4">Best Practices</h2>
+
+  <div class="space-y-4">
+    <div class="border-l-4 border-gray-400 pl-4">
+      <h3 class="font-medium text-gray-900">Consistent Event Naming</h3>
+      <p class="text-gray-600 text-sm">
+        Use consistent event names across your Vue components to make analytics
+        data more meaningful.
+      </p>
+    </div>
+
+    <div class="border-l-4 border-gray-400 pl-4">
+      <h3 class="font-medium text-gray-900">Component Isolation</h3>
+      <p class="text-gray-600 text-sm">
+        Keep analytics logic separate from business logic by using dedicated
+        tracking methods.
+      </p>
+    </div>
+
+    <div class="border-l-4 border-gray-400 pl-4">
+      <h3 class="font-medium text-gray-900">Performance</h3>
+      <p class="text-gray-600 text-sm">
+        Debounce high-frequency events like scroll or input to avoid
+        overwhelming your analytics.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Navigation -->
+<div class="flex justify-between items-center pt-8 border-t border-gray-200">
+  <a
+    href="/docs/frameworks/react"
+    class="flex items-center text-gray-700 hover:text-black font-semibold"
+  >
+    ← React Integration
+  </a>
+  <a
+    href="/docs/frameworks/wordpress"
+    class="flex items-center text-gray-700 hover:text-black font-semibold"
+  >
+    WordPress Integration →
+  </a>
+</div>
