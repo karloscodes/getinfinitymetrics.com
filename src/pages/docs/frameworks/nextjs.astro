@@ -1,0 +1,457 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+---
+
+<Layout title="Next.js Integration - Infinity Metrics">
+  <div class="min-h-screen bg-white py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="mb-8">
+        <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+          <a href="/docs" class="hover:text-gray-700 font-medium"
+            >Documentation</a
+          >
+          <span>→</span>
+          <a href="/docs/frameworks" class="hover:text-gray-700 font-medium"
+            >Frameworks</a
+          >
+          <span>→</span>
+          <span class="text-gray-900 font-semibold">Next.js</span>
+        </nav>
+        <h1 class="text-3xl font-black tracking-tight text-black">
+          Next.js Integration
+        </h1>
+        <p class="mt-2 font-medium text-gray-600">
+          Complete guide to integrating Infinity Metrics with Next.js
+          applications
+        </p>
+      </div>
+
+      <!-- Quick Setup -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Quick Setup
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Method 1: Using Next.js Script Component (Recommended)
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Add to your root layout or _app.js file using Next.js Script
+              component:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`// pages/_app.js (Pages Router) or app/layout.js (App Router)
+import Script from 'next/script';
+
+export default function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <Script 
+        src="https://your-domain.com/api/v1/sdk.js"
+        strategy="afterInteractive"
+      />
+      <Component {...pageProps} />
+    </>
+  );
+}`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Method 2: Using Head Component
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Alternative method using Next.js Head component:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`import Head from 'next/head';
+
+export default function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <Head>
+        <script defer src="https://your-domain.com/api/v1/sdk.js" />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
+}`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Configuration
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Replace <code class="bg-gray-100 px-2 py-1 rounded"
+                >your-domain.com</code
+              > with the domain where you installed Infinity Metrics.
+            </p>
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+              <p class="text-blue-700 font-medium">
+                The script automatically tracks page views and button clicks,
+                including Next.js router navigation changes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- App Router Setup -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          App Router Setup (Next.js 13+)
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Root Layout Configuration
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Add the script to your app/layout.js or layout.tsx file:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`// app/layout.tsx
+import Script from 'next/script';
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <Script 
+          src="https://your-domain.com/api/v1/sdk.js"
+          strategy="afterInteractive"
+        />
+        {children}
+      </body>
+    </html>
+  );
+}`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Configuration Options
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              You can also configure the SDK before it loads:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>// app/layout.tsx
+import Script from 'next/script';
+
+export default function RootLayout(&#123; children &#125;) &#123;
+  return (
+    &lt;html lang="en"&gt;
+      &lt;body&gt;
+        &lt;Script id="infinity-metrics-config" strategy="beforeInteractive"&gt;
+          &#123;`
+            window.InfinityMetrics = window.InfinityMetrics || &#123;&#125;;
+            window.InfinityMetrics.config = &#123;
+              respectDoNotTrack: true,
+              autoInstrumentButtons: true,
+              autoSendPageViews: true,
+              debug: false
+            &#125;;
+          `&#125;
+        &lt;/Script&gt;
+        &lt;Script 
+          src="https://your-domain.com/api/v1/sdk.js"
+          strategy="afterInteractive"
+        /&gt;
+        &#123;children&#125;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  );
+&#125;</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Custom Events -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Tracking Custom Events
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Basic Event Tracking
+            </h3>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`// components/ProductCard.js
+export default function ProductCard({ product }) {
+  const handlePurchase = () => {
+    if (window.InfinityMetrics) {
+      window.InfinityMetrics.sendCustomEvent('purchase', {
+        product_id: product.id,
+        value: product.price,
+        currency: 'USD'
+      });
+    }
+  };
+
+  return (
+    <button onClick={handlePurchase}>
+      Buy Now
+    </button>
+  );
+}`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Create a Custom Hook
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Create a reusable hook for analytics tracking:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`// hooks/useAnalytics.js
+import { useCallback } from 'react';
+
+export function useAnalytics() {
+  const track = useCallback((eventName, metadata = {}) => {
+    if (window.InfinityMetrics) {
+      window.InfinityMetrics.sendCustomEvent(eventName, metadata);
+    }
+  }, []);
+
+  return { track };
+}
+
+// Usage in component
+import { useAnalytics } from '../hooks/useAnalytics';
+
+export default function SignupButton() {
+  const { track } = useAnalytics();
+  
+  const handleSignup = () => {
+    track('signup_started', {
+      source: 'header_button'
+    });
+  };
+
+  return <button onClick={handleSignup}>Sign Up</button>;
+}`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- E-commerce Tracking -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          E-commerce Tracking
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Product Views
+            </h3>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`// pages/products/[id].js
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
+export default function ProductPage({ product }) {
+  const router = useRouter();
+  
+  useEffect(() => {
+    if (window.InfinityMetrics && product) {
+      window.InfinityMetrics.sendCustomEvent('product_view', {
+        product_id: product.id,
+        product_name: product.name,
+        category: product.category,
+        price: product.price
+      });
+    }
+  }, [product]);
+
+  return <div>{/* Product content */}</div>;
+}`}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Cart Events
+            </h3>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`const handleAddToCart = (item) => {
+  if (window.InfinityMetrics) {
+    window.InfinityMetrics.sendCustomEvent('add_to_cart', {
+      product_id: item.id,
+      product_name: item.name,
+      category: item.category,
+      price: item.price,
+      currency: 'USD'
+    });
+  }
+};
+
+const handlePurchase = (order) => {
+  if (window.InfinityMetrics) {
+    window.InfinityMetrics.sendCustomEvent('purchase', {
+      transaction_id: order.id,
+      value: order.total,
+      currency: order.currency,
+      items_count: order.items.length
+    });
+  }
+};`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Router Integration -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Next.js Router Integration
+        </h2>
+
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Automatic SPA Tracking
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              Infinity Metrics automatically detects Next.js router navigation
+              and tracks them as page views. No additional setup required.
+            </p>
+            <div class="bg-green-50 border-l-4 border-green-400 p-4">
+              <p class="text-green-700 font-medium">
+                The SDK monitors Next.js router events and treats navigation as
+                new page views automatically.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Manual Page View Tracking
+            </h3>
+            <p class="text-gray-600 font-medium mb-3">
+              If you need manual control over page views:
+            </p>
+            <div
+              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
+            >
+              <pre><code>{`// pages/_app.js
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+
+export default function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      if (window.InfinityMetrics) {
+        window.InfinityMetrics.sendPageView();
+      }
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
+  return <Component {...pageProps} />;
+}`}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Best Practices -->
+      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
+        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
+          Best Practices
+        </h2>
+
+        <div class="space-y-4">
+          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+            <h3 class="font-semibold text-yellow-800 mb-2">
+              Script Loading Strategy
+            </h3>
+            <p class="text-yellow-700 font-medium text-sm">
+              Use Next.js Script component with "afterInteractive" strategy for
+              optimal performance and tracking accuracy.
+            </p>
+          </div>
+
+          <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+            <h3 class="font-semibold text-blue-800 mb-2">
+              Environment Variables
+            </h3>
+            <p class="text-blue-700 font-medium text-sm">
+              Store your analytics domain in environment variables for different
+              deployment environments.
+            </p>
+          </div>
+
+          <div class="bg-green-50 border-l-4 border-green-400 p-4">
+            <h3 class="font-semibold text-green-800 mb-2">
+              Server-Side Rendering
+            </h3>
+            <p class="text-green-700 font-medium text-sm">
+              Client-side analytics work perfectly with SSR and SSG. The script
+              loads after page hydration.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Navigation -->
+      <div
+        class="flex justify-between items-center pt-8 border-t border-gray-200"
+      >
+        <a
+          href="/docs/frameworks"
+          class="flex items-center text-gray-700 hover:text-black font-semibold"
+        >
+          ← Framework Guides
+        </a>
+        <a
+          href="/docs/frameworks/react"
+          class="flex items-center text-gray-700 hover:text-black font-semibold"
+        >
+          React Integration →
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

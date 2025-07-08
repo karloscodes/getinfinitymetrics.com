@@ -75,6 +75,233 @@ const dockerRunCommand = `docker run -d \\
 const changeAdminPasswordCommand =
   "sudo infinity-metrics change-admin-password";
 const forceUpdateCommand = "sudo infinity-metrics update";
+
+// Framework Installation Guides code snippets
+const frameworkGuides = {
+	nextjs: `// pages/_app.js or app/layout.js (App Router)
+import { useEffect } from 'react';
+
+function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = 'https://your-domain.com/api/v1/sdk.js';
+    document.head.appendChild(script);
+    
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
+  return <Component {...pageProps} />;
+}
+
+export default MyApp;`,
+
+	react: `// App.js or main component
+import { useEffect } from 'react';
+
+function App() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = 'https://your-domain.com/api/v1/sdk.js';
+    document.head.appendChild(script);
+    
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
+  return (
+    <div className="App">
+      {/* Your app content */}
+    </div>
+  );
+}
+
+export default App;`,
+
+	vue: `<!-- App.vue -->
+<template>
+  <div id="app">
+    <!-- Your app content -->
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'App',
+  mounted() {
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = 'https://your-domain.com/api/v1/sdk.js';
+    document.head.appendChild(script);
+  }
+}
+</script>`,
+
+	angular: `// app.component.ts
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  
+  ngOnInit() {
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = 'https://your-domain.com/api/v1/sdk.js';
+    document.head.appendChild(script);
+  }
+}`,
+
+	django: `<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Site{% endblock %}</title>
+    
+    <!-- Infinity Metrics -->
+    <script defer src="https://your-domain.com/api/v1/sdk.js"></script>
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>`,
+
+	laravel: `<!-- resources/views/layouts/app.blade.php -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'Your Site')</title>
+    
+    <!-- Infinity Metrics -->
+    <script defer src="https://your-domain.com/api/v1/sdk.js"></script>
+</head>
+<body>
+    @yield('content')
+</body>
+</html>`,
+
+	wordpress: `// functions.php
+function add_infinity_metrics_script() {
+    ?>
+    <script defer src="https://your-domain.com/api/v1/sdk.js"></script>
+    <?php
+}
+add_action('wp_head', 'add_infinity_metrics_script');`,
+
+	gatsby: `// gatsby-config.js
+module.exports = {
+  plugins: [
+    {
+      resolve: 'gatsby-plugin-html-attributes',
+      options: {
+        'data-infinity-domain': 'your-domain.com'
+      }
+    }
+  ]
+}
+
+// gatsby-browser.js
+export const onClientEntry = () => {
+  const script = document.createElement('script');
+  script.defer = true;
+  script.src = 'https://your-domain.com/api/v1/sdk.js';
+  document.head.appendChild(script);
+};`,
+
+	nuxt: `// nuxt.config.js
+export default {
+  head: {
+    script: [
+      {
+        defer: true,
+        src: 'https://your-domain.com/api/v1/sdk.js'
+      }
+    ]
+  }
+}`,
+
+	svelte: `<!-- App.svelte -->
+<script>
+  import { onMount } from 'svelte';
+  
+  onMount(() => {
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = 'https://your-domain.com/api/v1/sdk.js';
+    document.head.appendChild(script);
+  });
+</script>
+
+<main>
+  <!-- Your app content -->
+</main>`
+};
+
+// Subdomain tracking configuration
+const subdomainConfig = `// Configure subdomain tracking
+window.InfinityMetrics = window.InfinityMetrics || {};
+window.InfinityMetrics.config = {
+	trackSubdomains: true,               // Enable subdomain tracking
+	domain: '.yourdomain.com',           // Root domain with leading dot
+	autoSendPageViews: true,
+	respectDoNotTrack: true
+};`;
+
+// Revenue tracking examples
+const revenueTrackingExamples = {
+	basic: `// Basic purchase tracking
+window.InfinityMetrics.sendCustomEvent('purchase', {
+	revenue: 29.99,
+	currency: 'USD',
+	product: 'Pro Plan'
+});`,
+
+	detailed: `// Detailed purchase with metadata
+window.InfinityMetrics.sendCustomEvent('purchase', {
+	revenue: 99.99,
+	currency: 'USD',
+	product: 'Enterprise Plan',
+	quantity: 1,
+	paymentMethod: 'stripe',
+	subscriptionType: 'annual',
+	customerId: 'cust_123',
+	orderId: 'order_456'
+});`,
+
+	subscription: `// Subscription events
+window.InfinityMetrics.sendCustomEvent('subscription_started', {
+	revenue: 19.99,
+	currency: 'USD',
+	plan: 'monthly_pro',
+	trial: false
+});
+
+window.InfinityMetrics.sendCustomEvent('subscription_cancelled', {
+	plan: 'monthly_pro',
+	reason: 'too_expensive'
+});`,
+
+	leadValue: `// Lead value tracking
+window.InfinityMetrics.sendCustomEvent('lead_generated', {
+	leadValue: 50.00,
+	currency: 'USD',
+	source: 'contact_form',
+	leadType: 'sales_inquiry'
+});`
+};
+
 ---
 
 <Layout
@@ -93,6 +320,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
           Documentation
         </h1>
 
+<<<<<<< HEAD:src/pages/docs.astro
         <!-- Table of Contents -->
         <div
           class="mb-12 p-4 sm:p-6 rounded-xl border border-gray-200 overflow-x-hidden"
@@ -213,6 +441,180 @@ const forceUpdateCommand = "sudo infinity-metrics update";
             </li>
           </ul>
         </div>
+=======
+				<!-- Table of Contents -->
+				<div class="mb-12 p-4 sm:p-6 rounded-xl border border-gray-200 overflow-x-hidden">
+					<h2 class="text-xl font-semibold mb-4 text-black">Contents</h2>
+					<ul class="space-y-2">
+						<li>
+							<a
+								href="#automated-installation"
+								class="text-blue-600 hover:underline break-words">Automated Installation</a
+							>
+							<ul class="ml-2 sm:ml-6 mt-2 space-y-2">
+								<li>
+									<a
+										href="#get-license-automated"
+										class="text-blue-600 hover:underline break-words">Get Your License</a
+									>
+								</li>
+								<li>
+									<a
+										href="#installer-and-updater"
+										class="text-blue-600 hover:underline"
+										>InfinityMetrics Installer and Updater</a
+									>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a
+								href="#self-managed-installation"
+								class="text-blue-600 hover:underline"
+								>Self-Managed Installation</a
+							>
+							<ul class="ml-2 sm:ml-6 mt-2 space-y-2">
+								<li>
+									<a
+										href="#get-license-self-managed"
+										class="text-blue-600 hover:underline break-words">Get Your License</a
+									>
+								</li>
+								<li>
+									<a
+										href="#docker-installation"
+										class="text-blue-600 hover:underline break-words">Docker Installation</a
+									>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a
+								href="#integrating-tracking-script"
+								class="text-blue-600 hover:underline"
+								>Integrating the Tracking Script</a
+							>
+						</li>
+						<li>
+							<a
+								href="#accessing-dashboard"
+								class="text-blue-600 hover:underline break-words">Accessing the Dashboard</a
+							>
+						</li>
+						<li>
+							<a
+								href="#administrative-operations"
+								class="text-blue-600 hover:underline"
+								>Administrative Operations</a
+							>
+						</li>
+						<li>
+							<a
+								href="#server-requirements"
+								class="text-blue-600 hover:underline break-words">Server Requirements</a
+							>
+						</li>
+						<li>
+							<a href="#sdk-usage" class="text-blue-600 hover:underline"
+								>SDK Usage</a
+							>
+							<ul class="ml-2 sm:ml-6 mt-2 space-y-2">
+								<li>
+									<a href="#sdk-include" class="text-blue-600 hover:underline"
+										>Including the SDK</a
+									>
+								</li>
+								<li>
+									<a
+										href="#sdk-configuration"
+										class="text-blue-600 hover:underline break-words">SDK Configuration</a
+									>
+								</li>
+								<li>
+									<a href="#auto-tracking" class="text-blue-600 hover:underline"
+										>Automated Tracking</a
+									>
+								</li>
+								<li>
+									<a
+										href="#manual-tracking"
+										class="text-blue-600 hover:underline break-words">Manual Tracking</a
+									>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#framework-guides" class="text-blue-600 hover:underline"
+								>Framework Installation Guides</a
+							>
+							<ul class="ml-2 sm:ml-6 mt-2 space-y-2">
+								<li>
+									<a href="#nextjs-guide" class="text-blue-600 hover:underline"
+										>Next.js</a
+									>
+								</li>
+								<li>
+									<a href="#react-guide" class="text-blue-600 hover:underline"
+										>React</a
+									>
+								</li>
+								<li>
+									<a href="#vue-guide" class="text-blue-600 hover:underline"
+										>Vue.js</a
+									>
+								</li>
+								<li>
+									<a href="#angular-guide" class="text-blue-600 hover:underline"
+										>Angular</a
+									>
+								</li>
+								<li>
+									<a href="#django-guide" class="text-blue-600 hover:underline"
+										>Django</a
+									>
+								</li>
+								<li>
+									<a href="#laravel-guide" class="text-blue-600 hover:underline"
+										>Laravel</a
+									>
+								</li>
+								<li>
+									<a href="#wordpress-guide" class="text-blue-600 hover:underline"
+										>WordPress</a
+									>
+								</li>
+								<li>
+									<a href="#other-frameworks" class="text-blue-600 hover:underline"
+										>Other Frameworks</a
+									>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#advanced-features" class="text-blue-600 hover:underline"
+								>Advanced Features</a
+							>
+							<ul class="ml-2 sm:ml-6 mt-2 space-y-2">
+								<li>
+									<a href="#subdomain-tracking" class="text-blue-600 hover:underline"
+										>Subdomain Tracking</a
+									>
+								</li>
+								<li>
+									<a href="#revenue-tracking" class="text-blue-600 hover:underline"
+										>Revenue Tracking</a
+									>
+								</li>
+								<li>
+									<a href="#custom-events" class="text-blue-600 hover:underline"
+										>Custom Events</a
+									>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+>>>>>>> 96fe8b6 (WIP):_docs.astro.old
 
         <!-- Automated Installation Section -->
         <section id="automated-installation" class="mb-12">
@@ -810,6 +1212,7 @@ const forceUpdateCommand = "sudo infinity-metrics update";
                     </div>
                   </div>
 
+<<<<<<< HEAD:src/pages/docs.astro
                   <div class="mt-4 mb-4">
                     <h5 class="font-medium mb-2 text-black">
                       Purchase Tracking
@@ -1315,4 +1718,510 @@ InfinityMetrics.registerPurchase(1999, 'USD', &lbrace;
     </div>
     <Footer />
   </main>
+=======
+									<div class="card p-5 rounded-xl shadow-sm">
+										<h4 class="font-semibold mb-2 text-black">
+											Manual Page Views
+										</h4>
+										<p class="text-black">
+											SPA frameworks could fail to automatically trigger page
+											views changes, you can do it manually like this:
+										</p>
+										<div
+											class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full"
+										>
+											<pre class="whitespace-pre-wrap break-all"><code class="language-javascript text-white">{manualPageView}</code></pre>
+										</div>
+									</div>
+								</div>
+							</section>
+						</section>
+					</section>
+				</section>
+
+				<!-- Framework Installation Guides Section -->
+				<section id="framework-guides" class="mb-12">
+					<div class="flex items-start mb-6">
+						<h2 class="text-3xl font-bold text-black">Framework Installation Guides</h2>
+					</div>
+					<p class="text-black mb-6">
+						Follow these step-by-step guides to integrate Infinity Metrics with your preferred framework or platform.
+					</p>
+
+					<!-- Next.js Guide -->
+					<section id="nextjs-guide" class="mb-10">
+						<div class="card p-6 rounded-xl shadow-sm">
+							<h3 class="text-2xl font-semibold mb-4 text-black flex items-center">
+								<span class="mr-3">⚡</span>
+								Next.js
+							</h3>
+							<p class="text-black mb-4">
+								Add Infinity Metrics to your Next.js application using the App Router or Pages Router.
+							</p>
+							<div class="space-y-4">
+								<h4 class="text-lg font-semibold text-black">App Router (Recommended)</h4>
+								<p class="text-black">
+									Add the tracking script to your root layout file:
+								</p>
+								<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+									<pre class="whitespace-pre-wrap break-all"><code class="text-white">{frameworkGuides.nextjs}</code></pre>
+								</div>
+								<div class="bg-blue-50 border-l-4 border-blue-400 p-4 mt-4">
+									<p class="text-sm text-blue-700">
+										<strong>Alternative:</strong> You can also add the script directly to your <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">app/layout.tsx</code> in the <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">&lt;head&gt;</code> section.
+									</p>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- React Guide -->
+					<section id="react-guide" class="mb-10">
+						<div class="card p-6 rounded-xl shadow-sm">
+							<h3 class="text-2xl font-semibold mb-4 text-black flex items-center">
+								<span class="mr-3">⚛️</span>
+								React
+							</h3>
+							<p class="text-black mb-4">
+								Add Infinity Metrics to your React application by injecting the script into your root component.
+							</p>
+							<div class="space-y-4">
+								<h4 class="text-lg font-semibold text-black">Root Component Method</h4>
+								<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+									<pre class="whitespace-pre-wrap break-all"><code class="text-white">{frameworkGuides.react}</code></pre>
+								</div>
+								<div class="bg-blue-50 border-l-4 border-blue-400 p-4 mt-4">
+									<p class="text-sm text-blue-700">
+										<strong>Alternative:</strong> You can also add the script directly to your <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">public/index.html</code> file in the <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">&lt;head&gt;</code> section.
+									</p>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Vue.js Guide -->
+					<section id="vue-guide" class="mb-10">
+						<div class="card p-6 rounded-xl shadow-sm">
+							<h3 class="text-2xl font-semibold mb-4 text-black flex items-center">
+								<span class="mr-3">🌟</span>
+								Vue.js
+							</h3>
+							<p class="text-black mb-4">
+								Add Infinity Metrics to your Vue.js application using the mounted lifecycle hook.
+							</p>
+							<div class="space-y-4">
+								<h4 class="text-lg font-semibold text-black">App.vue Method</h4>
+								<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+									<pre class="whitespace-pre-wrap break-all"><code class="text-white">{frameworkGuides.vue}</code></pre>
+								</div>
+								<div class="bg-blue-50 border-l-4 border-blue-400 p-4 mt-4">
+									<p class="text-sm text-blue-700">
+										<strong>For Nuxt.js:</strong> See the <a href="#nuxt-guide" class="text-blue-600 underline">Nuxt.js section</a> below for the recommended approach.
+									</p>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Angular Guide -->
+					<section id="angular-guide" class="mb-10">
+						<div class="card p-6 rounded-xl shadow-sm">
+							<h3 class="text-2xl font-semibold mb-4 text-black flex items-center">
+								<span class="mr-3">🅰️</span>
+								Angular
+							</h3>
+							<p class="text-black mb-4">
+								Add Infinity Metrics to your Angular application using the OnInit lifecycle hook.
+							</p>
+							<div class="space-y-4">
+								<h4 class="text-lg font-semibold text-black">App Component Method</h4>
+								<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+									<pre class="whitespace-pre-wrap break-all"><code class="text-white">{frameworkGuides.angular}</code></pre>
+								</div>
+								<div class="bg-blue-50 border-l-4 border-blue-400 p-4 mt-4">
+									<p class="text-sm text-blue-700">
+										<strong>Alternative:</strong> You can also add the script directly to your <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">src/index.html</code> file in the <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">&lt;head&gt;</code> section.
+									</p>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Django Guide -->
+					<section id="django-guide" class="mb-10">
+						<div class="card p-6 rounded-xl shadow-sm">
+							<h3 class="text-2xl font-semibold mb-4 text-black flex items-center">
+								<span class="mr-3">🐍</span>
+								Django
+							</h3>
+							<p class="text-black mb-4">
+								Add Infinity Metrics to your Django application by including the script in your base template.
+							</p>
+							<div class="space-y-4">
+								<h4 class="text-lg font-semibold text-black">Base Template Method</h4>
+								<p class="text-black">
+									Add the script to your base template (typically <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">templates/base.html</code>):
+								</p>
+								<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+									<pre class="whitespace-pre-wrap break-all"><code class="text-white">{frameworkGuides.django}</code></pre>
+								</div>
+								<div class="bg-green-50 border-l-4 border-green-400 p-4 mt-4">
+									<p class="text-sm text-green-700">
+										<strong>Pro tip:</strong> You can also use Django settings to dynamically configure the script URL based on your environment.
+									</p>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Laravel Guide -->
+					<section id="laravel-guide" class="mb-10">
+						<div class="card p-6 rounded-xl shadow-sm">
+							<h3 class="text-2xl font-semibold mb-4 text-black flex items-center">
+								<span class="mr-3">🎼</span>
+								Laravel
+							</h3>
+							<p class="text-black mb-4">
+								Add Infinity Metrics to your Laravel application by including the script in your layout blade template.
+							</p>
+							<div class="space-y-4">
+								<h4 class="text-lg font-semibold text-black">Layout Template Method</h4>
+								<p class="text-black">
+									Add the script to your layout template (typically <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">resources/views/layouts/app.blade.php</code>):
+								</p>
+								<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+									<pre class="whitespace-pre-wrap break-all"><code class="text-white">{frameworkGuides.laravel}</code></pre>
+								</div>
+								<div class="bg-green-50 border-l-4 border-green-400 p-4 mt-4">
+									<p class="text-sm text-green-700">
+										<strong>Pro tip:</strong> You can use Laravel's environment variables to configure the script URL dynamically.
+									</p>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- WordPress Guide -->
+					<section id="wordpress-guide" class="mb-10">
+						<div class="card p-6 rounded-xl shadow-sm">
+							<h3 class="text-2xl font-semibold mb-4 text-black flex items-center">
+								<span class="mr-3">📝</span>
+								WordPress
+							</h3>
+							<p class="text-black mb-4">
+								Add Infinity Metrics to your WordPress site by adding code to your theme's functions.php file.
+							</p>
+							<div class="space-y-4">
+								<h4 class="text-lg font-semibold text-black">Functions.php Method</h4>
+								<p class="text-black">
+									Add the following code to your theme's <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">functions.php</code> file:
+								</p>
+								<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+									<pre class="whitespace-pre-wrap break-all"><code class="text-white">{frameworkGuides.wordpress}</code></pre>
+								</div>
+								<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-4">
+									<p class="text-sm text-yellow-700">
+										<strong>Important:</strong> Make sure to replace <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">your-domain.com</code> with your actual Infinity Metrics domain.
+									</p>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Other Frameworks -->
+					<section id="other-frameworks" class="mb-10">
+						<div class="card p-6 rounded-xl shadow-sm">
+							<h3 class="text-2xl font-semibold mb-4 text-black">Other Frameworks</h3>
+							<p class="text-black mb-4">
+								Here are additional integration examples for other popular frameworks:
+							</p>
+							
+							<div class="space-y-6">
+								<!-- Gatsby -->
+								<div class="border-l-4 border-gray-300 pl-4">
+									<h4 class="text-lg font-semibold text-black mb-2">Gatsby</h4>
+									<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+										<pre class="whitespace-pre-wrap break-all"><code class="text-white">{frameworkGuides.gatsby}</code></pre>
+									</div>
+								</div>
+
+								<!-- Nuxt.js -->
+								<div class="border-l-4 border-gray-300 pl-4" id="nuxt-guide">
+									<h4 class="text-lg font-semibold text-black mb-2">Nuxt.js</h4>
+									<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+										<pre class="whitespace-pre-wrap break-all"><code class="text-white">{frameworkGuides.nuxt}</code></pre>
+									</div>
+								</div>
+
+								<!-- Svelte -->
+								<div class="border-l-4 border-gray-300 pl-4">
+									<h4 class="text-lg font-semibold text-black mb-2">Svelte</h4>
+									<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+										<pre class="whitespace-pre-wrap break-all"><code class="text-white">{frameworkGuides.svelte}</code></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Verification -->
+					<div class="bg-green-50 border-l-4 border-green-400 p-6 rounded-r-xl">
+						<h4 class="text-lg font-semibold text-green-800 mb-2">Verify Your Installation</h4>
+						<p class="text-green-700 mb-3">
+							After implementing any of the above methods:
+						</p>
+						<ul class="list-disc list-inside text-green-700 space-y-1">
+							<li>Visit your live website</li>
+							<li>Check your Infinity Metrics dashboard for incoming data</li>
+							<li>It might take a few minutes for the first pageviews to appear</li>
+							<li>Use browser developer tools to ensure the script loads without errors</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- Advanced Features Section -->
+				<section id="advanced-features" class="mb-12">
+					<div class="flex items-start mb-6">
+						<h2 class="text-3xl font-bold text-black">Advanced Features</h2>
+					</div>
+					<p class="text-black mb-6">
+						Unlock the full potential of Infinity Metrics with these advanced tracking capabilities.
+					</p>
+
+					<!-- Subdomain Tracking -->
+					<section id="subdomain-tracking" class="mb-10">
+						<div class="card p-6 rounded-xl shadow-sm">
+							<h3 class="text-2xl font-semibold mb-4 text-black">Subdomain Tracking</h3>
+							<p class="text-black mb-4">
+								Track visitors across multiple subdomains as a single website. This is useful for applications with separate subdomains for different sections (e.g., <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">app.yoursite.com</code>, <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">blog.yoursite.com</code>).
+							</p>
+							
+							<div class="space-y-4">
+								<h4 class="text-lg font-semibold text-black">Configuration</h4>
+								<p class="text-black">
+									Enable subdomain tracking by configuring the SDK before it loads:
+								</p>
+								<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+									<pre class="whitespace-pre-wrap break-all"><code class="text-white">{subdomainConfig}</code></pre>
+								</div>
+								
+								<div class="bg-blue-50 border-l-4 border-blue-400 p-4 mt-4">
+									<h5 class="text-sm font-semibold text-blue-800 mb-2">Key Points:</h5>
+									<ul class="text-sm text-blue-700 space-y-1">
+										<li>• Use a leading dot in the domain configuration (e.g., <code class="bg-black text-white px-2 py-1 rounded text-sm font-mono">.yoursite.com</code>)</li>
+										<li>• This will track all subdomains under your main domain</li>
+										<li>• Sessions will be maintained across subdomain navigation</li>
+										<li>• All subdomains must have the same tracking script installed</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Revenue Tracking -->
+					<section id="revenue-tracking" class="mb-10">
+						<div class="card p-6 rounded-xl shadow-sm">
+							<h3 class="text-2xl font-semibold mb-4 text-black">Revenue Tracking</h3>
+							<p class="text-black mb-4">
+								Track revenue and conversion data to understand the financial impact of your marketing efforts and user behavior.
+							</p>
+							
+							<div class="space-y-6">
+								<div class="border-l-4 border-green-400 pl-4">
+									<h4 class="text-lg font-semibold text-black mb-2">Basic Purchase Tracking</h4>
+									<p class="text-black mb-3">
+										Track simple purchases with revenue, currency, and product information:
+									</p>
+									<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+										<pre class="whitespace-pre-wrap break-all"><code class="text-white">{revenueTrackingExamples.basic}</code></pre>
+									</div>
+								</div>
+
+								<div class="border-l-4 border-blue-400 pl-4">
+									<h4 class="text-lg font-semibold text-black mb-2">Detailed Purchase Tracking</h4>
+									<p class="text-black mb-3">
+										Include comprehensive metadata for advanced analytics:
+									</p>
+									<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+										<pre class="whitespace-pre-wrap break-all"><code class="text-white">{revenueTrackingExamples.detailed}</code></pre>
+									</div>
+								</div>
+
+								<div class="border-l-4 border-purple-400 pl-4">
+									<h4 class="text-lg font-semibold text-black mb-2">Subscription Tracking</h4>
+									<p class="text-black mb-3">
+										Track subscription-based revenue and lifecycle events:
+									</p>
+									<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+										<pre class="whitespace-pre-wrap break-all"><code class="text-white">{revenueTrackingExamples.subscription}</code></pre>
+									</div>
+								</div>
+
+								<div class="border-l-4 border-orange-400 pl-4">
+									<h4 class="text-lg font-semibold text-black mb-2">Lead Value Tracking</h4>
+									<p class="text-black mb-3">
+										Track potential revenue from leads and prospects:
+									</p>
+									<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+										<pre class="whitespace-pre-wrap break-all"><code class="text-white">{revenueTrackingExamples.leadValue}</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6">
+								<h5 class="text-sm font-semibold text-yellow-800 mb-2">Best Practices:</h5>
+								<ul class="text-sm text-yellow-700 space-y-1">
+									<li>• Always include currency with revenue amounts</li>
+									<li>• Use consistent event names across your application</li>
+									<li>• Include customer IDs for better user journey tracking</li>
+									<li>• Track both successful and failed transactions</li>
+									<li>• Consider tracking refunds and cancellations</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+					<!-- Custom Events -->
+					<section id="custom-events" class="mb-10">
+						<div class="card p-6 rounded-xl shadow-sm">
+							<h3 class="text-2xl font-semibold mb-4 text-black">Custom Events</h3>
+							<p class="text-black mb-4">
+								Track specific user actions and business events that matter to your application beyond basic page views and clicks.
+							</p>
+							
+							<div class="space-y-6">
+								<div class="border-l-4 border-indigo-400 pl-4">
+									<h4 class="text-lg font-semibold text-black mb-2">User Engagement Events</h4>
+									<p class="text-black mb-3">
+										Track how users interact with your content:
+									</p>
+									<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+										<pre class="whitespace-pre-wrap break-all"><code class="text-white">// Video engagement
+window.InfinityMetrics.sendCustomEvent('video_played', {
+  videoId: 'intro-video',
+  videoTitle: 'Product Introduction',
+  duration: 120,
+  position: 'homepage'
+});
+
+// File downloads
+window.InfinityMetrics.sendCustomEvent('file_download', {
+  fileName: 'whitepaper.pdf',
+  fileSize: '2.5MB',
+  downloadSource: 'blog_post'
+});
+
+// Form interactions
+window.InfinityMetrics.sendCustomEvent('form_started', {
+  formId: 'contact-form',
+  formType: 'contact',
+  page: window.location.pathname
+});</code></pre>
+									</div>
+								</div>
+
+								<div class="border-l-4 border-red-400 pl-4">
+									<h4 class="text-lg font-semibold text-black mb-2">Business Milestone Events</h4>
+									<p class="text-black mb-3">
+										Track important business events and user achievements:
+									</p>
+									<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+										<pre class="whitespace-pre-wrap break-all"><code class="text-white">// User registration
+window.InfinityMetrics.sendCustomEvent('user_registered', {
+  registrationMethod: 'email',
+  userType: 'free',
+  referralSource: 'google'
+});
+
+// Feature usage
+window.InfinityMetrics.sendCustomEvent('feature_used', {
+  featureName: 'advanced_search',
+  userPlan: 'premium',
+  usageCount: 5
+});
+
+// Goal completion
+window.InfinityMetrics.sendCustomEvent('goal_completed', {
+  goalType: 'onboarding',
+  stepsCompleted: 5,
+  totalSteps: 5,
+  timeSpent: 180
+});</code></pre>
+									</div>
+								</div>
+
+								<div class="border-l-4 border-teal-400 pl-4">
+									<h4 class="text-lg font-semibold text-black mb-2">E-commerce Events</h4>
+									<p class="text-black mb-3">
+										Track the complete customer journey:
+									</p>
+									<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+										<pre class="whitespace-pre-wrap break-all"><code class="text-white">// Product views
+window.InfinityMetrics.sendCustomEvent('product_viewed', {
+  productId: 'prod-123',
+  productName: 'Premium Widget',
+  category: 'widgets',
+  price: 29.99,
+  currency: 'USD'
+});
+
+// Cart interactions
+window.InfinityMetrics.sendCustomEvent('add_to_cart', {
+  productId: 'prod-123',
+  quantity: 2,
+  value: 59.98,
+  currency: 'USD'
+});
+
+// Checkout steps
+window.InfinityMetrics.sendCustomEvent('checkout_started', {
+  cartValue: 59.98,
+  itemCount: 2,
+  currency: 'USD'
+});</code></pre>
+									</div>
+								</div>
+
+								<div class="border-l-4 border-pink-400 pl-4">
+									<h4 class="text-lg font-semibold text-black mb-2">Error and Performance Events</h4>
+									<p class="text-black mb-3">
+										Track technical issues and performance metrics:
+									</p>
+									<div class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed">
+										<pre class="whitespace-pre-wrap break-all"><code class="text-white">// Error tracking
+window.InfinityMetrics.sendCustomEvent('error_occurred', {
+  errorType: 'javascript_error',
+  errorMessage: 'TypeError: Cannot read property',
+  page: window.location.pathname,
+  userAgent: navigator.userAgent
+});
+
+// Performance tracking
+window.InfinityMetrics.sendCustomEvent('page_load_time', {
+  loadTime: 1250,
+  page: window.location.pathname,
+  connectionType: 'fast'
+});</code></pre>
+									</div>
+								</div>
+							</div>
+
+							<div class="bg-green-50 border-l-4 border-green-400 p-4 mt-6">
+								<h5 class="text-sm font-semibold text-green-800 mb-2">Event Naming Best Practices:</h5>
+								<ul class="text-sm text-green-700 space-y-1">
+									<li>• Use clear, descriptive event names (e.g., "video_played" not "vp")</li>
+									<li>• Use consistent naming conventions (snake_case recommended)</li>
+									<li>• Include relevant context in metadata</li>
+									<li>• Keep event names under 50 characters</li>
+									<li>• Group related events with prefixes (e.g., "checkout_started", "checkout_completed")</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</section>
+			</div>
+		</div>
+		<Footer />
+	</main>
+>>>>>>> 96fe8b6 (WIP):_docs.astro.old
 </Layout>
