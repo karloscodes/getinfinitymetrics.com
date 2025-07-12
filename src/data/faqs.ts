@@ -25,6 +25,11 @@ export const faqs = [
       "One-time payment, lifetime access, no subscriptions. Not happy? We've got a 30-day money-back guarantee.",
   },
   {
+    question: "What does 'bare bones support' include?",
+    answer:
+      "Bare bones support includes basic installation help, bug reports, and essential troubleshooting via email. This covers getting you up and running and fixing any software issues. It doesn't include custom feature development, extensive configuration consulting, or priority support channels.",
+  },
+  {
     question: "Do updates cost extra?",
     answer:
       "Updates within the same major version (1.0 to 1.1) are free. Regarding major version upgrades (1.x to 2.x), I'm still determining the pricing structure. Since this is a new product, I want to be honest that I haven't finalized how future major version upgrades will be handled yet. You'll always have the choice whether to upgrade to a new major version when the time comes.",
@@ -43,6 +48,11 @@ export const faqs = [
     question: "How does privacy-first tracking work?",
     answer:
       "Infinity Metrics ditches cookies for fingerprinting and session-based analytics, no personal data stored. You get accurate insights while keeping user privacy intact.",
+  },
+  {
+    question: "Can Adblockers block InfinityMetrics?",
+    answer:
+      "No they can't. Since Infinity Metrics is self-hosted on your domain, adblockers and privacy software can't block your analytics script. This means you get complete, accurate data without gaps from blocked requests. Plus, serving analytics from your own domain strengthens user trust since no data is shared with external domains - everything stays on your server.",
   },
 ];
 

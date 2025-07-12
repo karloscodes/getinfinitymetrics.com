@@ -1,0 +1,58 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const pageTitle = "Checkout - InfinityMetrics";
+const pageDescription = "Redirecting to secure checkout...";
+const gumroadUrl =
+  "https://karloscodes.gumroad.com/l/infinity-metrics/INITIALPRICE?wanted=true";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <div class="min-h-screen bg-white flex items-center justify-center">
+    <div class="max-w-md mx-auto text-center p-8">
+      <div class="mb-8">
+        <div
+          class="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"
+        >
+        </div>
+        <h1 class="text-2xl font-bold text-black mb-2">
+          Redirecting to Checkout
+        </h1>
+        <p class="text-gray-600 mb-6">
+          Please wait while we redirect you to our secure checkout page in
+          Gumroad...
+        </p>
+      </div>
+
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+        <p class="text-sm text-gray-600 mb-4">
+          If you're not redirected automatically, please click the button below:
+        </p>
+        <a
+          href={gumroadUrl}
+          class="btn-primary inline-block px-6 py-3 bg-black text-white rounded-md hover:bg-gray-800 transition-colors font-bold"
+        >
+          Continue to Checkout
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 ml-2 inline-block"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script define:vars={{ gumroadUrl }}>
+    // Redirect to Gumroad after a short delay
+    setTimeout(() => {
+      window.location.href = gumroadUrl;
+    }, 1500);
+  </script>
+</Layout>
