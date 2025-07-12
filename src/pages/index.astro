@@ -10,21 +10,22 @@ import HeroTemp from "../components/HeroTemp.astro";
 import CTATemp from "../components/CTATemp.astro";
 import AboutMe from "../components/AboutMe.astro";
 
-const pageTitle = "Infinity Metrics | Own Your Data, Ask Anything";
+const pageTitle =
+  "InfinityMetrics | Break Free from Modern Web Analytics Lock-In";
 const pageDescription =
-	"A self-hosted analytics server with an embedded SQLite database, no third-party sharing, just pure privacy. Explore your data beyond the limits of the dashboard with plain English questions.";
+  "Self-hosted web analytics with AI insights. One-command install, SQLite database, unlimited sites. Break free from vendor lock-in and grow your business.";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-	<Header />
-	<main>
-		<HeroTemp />
-		<Features class="alt-bg" />
-		<HowItWorks />
-		<PricingTemp class="alt-bg" />
-		<AboutMe />
-		<FAQ />
-		<CTATemp />
-	</main>
-	<Footer />
+  <Header />
+  <main>
+    <HeroTemp />
+    <Features class="alt-bg" />
+    <HowItWorks />
+    <PricingTemp class="alt-bg" />
+    <AboutMe />
+    <FAQ />
+    <CTATemp />
+  </main>
+  <Footer />
 </Layout>

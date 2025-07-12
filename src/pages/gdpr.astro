@@ -3,23 +3,30 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-const pageTitle = "GDPR Compliance & Infinity Metrics";
-const pageDescription = "Learn how Infinity Metrics software design helps you achieve GDPR compliance. Understand data responsibilities for our self-hosted, cookieless analytics.";
+const pageTitle = "InfinityMetrics | GDPR Compliance";
+const pageDescription =
+  "GDPR compliance with Infinity Metrics self-hosted analytics. One command install, Docker & SQLite. Your data stays on your servers with full privacy control.";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
   <Header />
 
   <div class="container mx-auto px-4 py-12 max-w-4xl">
-    <h1 class="text-3xl md:text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700">GDPR Compliance & Infinity Metrics</h1>
+    <h1
+      class="text-3xl md:text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700"
+    >
+      GDPR Compliance & Infinity Metrics
+    </h1>
 
     <div class="prose prose-lg max-w-none text-gray-800">
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mt-8 mb-4">Understanding Roles: You vs. Us</h2>
+        <h2 class="text-2xl font-semibold mt-8 mb-4">
+          Understanding Roles: You vs. Us
+        </h2>
         <p class="text-lg mb-4">
-          Infinity Metrics is a <strong>self-hosted</strong> analytics software. This means
-          you (our customer) install and run the software on your own servers.
-          Consequently:
+          Infinity Metrics is a <strong>self-hosted</strong> analytics software.
+          This means you (our customer) install and run the software on your own
+          servers. Consequently:
         </p>
         <ul class="list-disc pl-6 mb-4">
           <li>
@@ -27,7 +34,9 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
             data collected through your installation of Infinity Metrics.
           </li>
           <li>
-            <strong>We (Infinity Metrics, the company) are the Data Processor</strong>
+            <strong
+              >We (Infinity Metrics, the company) are the Data Processor</strong
+            >
             only for the limited personal data we collect directly from you (our
             customer) via our website (getinfinitymetrics.com) for account management
             and payment processing (see our Privacy Policy).
@@ -38,8 +47,8 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
           </li>
         </ul>
         <p>
-          This page explains how the <em>design</em> of the Infinity Metrics software helps
-          you meet your GDPR obligations as a Data Controller for the analytics
+          This page explains how the <em>design</em> of the Infinity Metrics software
+          helps you meet your GDPR obligations as a Data Controller for the analytics
           data you collect.
         </p>
       </section>
@@ -59,21 +68,30 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
           No Cookies, No Consent Banners Needed (for Analytics)
         </h2>
         <p>
-          Traditional analytics tools often use persistent cookies, requiring consent banners under GDPR. The Infinity Metrics software avoids this:
+          Traditional analytics tools often use persistent cookies, requiring
+          consent banners under GDPR. The Infinity Metrics software avoids this:
         </p>
         <ul class="list-disc pl-6 mb-4">
           <li>
-            <strong>Zero cookies used by the software</strong> - The tracking script does not set cookies on your visitors' browsers for analytics purposes.
+            <strong>Zero cookies used by the software</strong> - The tracking script
+            does not set cookies on your visitors' browsers for analytics purposes.
           </li>
           <li>
-            <strong>Consent banners often not required for analytics</strong> - Since the software doesn't use cookies or collect personal data (when configured correctly), you likely don't need specific cookie consent banners *for the analytics function*. You may still need banners for other cookies or tracking used on your site.
+            <strong>Consent banners often not required for analytics</strong> - Since
+            the software doesn't use cookies or collect personal data (when configured
+            correctly), you likely don't need specific cookie consent banners *for
+            the analytics function*. You may still need banners for other cookies
+            or tracking used on your site.
           </li>
           <li>
-            <strong>Focus on User Experience</strong> - Helps you avoid intrusive consent popups related to analytics tracking.
+            <strong>Focus on User Experience</strong> - Helps you avoid intrusive
+            consent popups related to analytics tracking.
           </li>
         </ul>
         <p>
-          <strong>Note:</strong> While the software avoids cookies, you, as the Data Controller, must still ensure your overall data collection practices comply with GDPR, including providing transparency in your site's privacy policy.
+          <strong>Note:</strong> While the software avoids cookies, you, as the Data
+          Controller, must still ensure your overall data collection practices comply
+          with GDPR, including providing transparency in your site's privacy policy.
         </p>
       </section>
 
@@ -82,23 +100,37 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
           How the Software Protects Visitor Personal Data
         </h2>
         <p>
-          The Infinity Metrics software is designed to minimize the collection of personal data as defined by GDPR:
+          The Infinity Metrics software is designed to minimize the collection
+          of personal data as defined by GDPR:
         </p>
         <ul class="list-disc pl-6 mb-4">
           <li>
-            <strong>Designed for minimal data collection</strong> - The software aims to collect only aggregated, anonymized metrics necessary for understanding website trends.
+            <strong>Designed for minimal data collection</strong> - The software
+            aims to collect only aggregated, anonymized metrics necessary for understanding
+            website trends.
           </li>
           <li>
-            <strong>IP address anonymization</strong> - IP addresses are used briefly for country-level geolocation, then immediately hashed (using a salt unique to your installation) and discarded. The original IP is never stored permanently by the software. This hashing process is one-way and designed to prevent re-identification.
+            <strong>IP address anonymization</strong> - IP addresses are used briefly
+            for country-level geolocation, then immediately hashed (using a salt
+            unique to your installation) and discarded. The original IP is never
+            stored permanently by the software. This hashing process is one-way and
+            designed to prevent re-identification.
           </li>
           <li>
-            <strong>No cross-site tracking</strong> - The software operates only on the site where you install it. It does not track users across different websites.
+            <strong>No cross-site tracking</strong> - The software operates only
+            on the site where you install it. It does not track users across different
+            websites.
           </li>
           <li>
-            <strong>No persistent user identifiers</strong> - The software generates user signatures based on IP address (anonymized) and User-Agent, salted uniquely per day per site. This prevents long-term tracking of individuals across days.
+            <strong>No persistent user identifiers</strong> - The software generates
+            user signatures based on IP address (anonymized) and User-Agent, salted
+            uniquely per day per site. This prevents long-term tracking of individuals
+            across days.
           </li>
           <li>
-            <strong>Focus on aggregated metrics</strong> - The primary output is anonymized, aggregated data (e.g., page views, visitor counts, session duration) that cannot reasonably be used to identify individuals.
+            <strong>Focus on aggregated metrics</strong> - The primary output is
+            anonymized, aggregated data (e.g., page views, visitor counts, session
+            duration) that cannot reasonably be used to identify individuals.
           </li>
         </ul>
       </section>
@@ -112,47 +144,70 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
             How Infinity Metrics Works Without Cookies
           </h3>
           <p class="mb-4">
-            Instead of cookies, the software uses a privacy-preserving
-            method to distinguish visits within a limited timeframe:
+            Instead of cookies, the software uses a privacy-preserving method to
+            distinguish visits within a limited timeframe:
           </p>
           <ol class="list-decimal pl-6 mb-4">
             <li>
-              <strong>Daily Anonymous Signatures</strong> - For each visitor on a given day, a unique signature is generated using their anonymized IP address, User-Agent string, and a site-specific, daily-rotating salt. This allows distinguishing unique visits within a day without long-term tracking.
+              <strong>Daily Anonymous Signatures</strong> - For each visitor on a
+              given day, a unique signature is generated using their anonymized IP
+              address, User-Agent string, and a site-specific, daily-rotating salt.
+              This allows distinguishing unique visits within a day without long-term
+              tracking.
             </li>
             <li>
-              <strong>One-way hashing</strong> - This signature is created using a secure, one-way hash function. It's mathematically infeasible to reverse the hash to get the original IP or User-Agent data.
+              <strong>One-way hashing</strong> - This signature is created using
+              a secure, one-way hash function. It's mathematically infeasible to
+              reverse the hash to get the original IP or User-Agent data.
             </li>
             <li>
-              <strong>Not stored on device</strong> - No identifiers are stored on the user's device by the analytics script.
+              <strong>Not stored on device</strong> - No identifiers are stored on
+              the user's device by the analytics script.
             </li>
             <li>
-              <strong>Session Calculation</strong> - Sessions are calculated based on the time between events from the same daily anonymous signature, typically resetting after 30 minutes of inactivity.
+              <strong>Session Calculation</strong> - Sessions are calculated based
+              on the time between events from the same daily anonymous signature,
+              typically resetting after 30 minutes of inactivity.
             </li>
           </ol>
         </div>
 
         <div class="p-6">
-          <h3 class="text-xl font-medium mb-5">How the Software Handles IP Addresses</h3>
+          <h3 class="text-xl font-medium mb-5">
+            How the Software Handles IP Addresses
+          </h3>
           <p class="mb-4">
-            IP addresses must be handled carefully under GDPR. Here's the software's
-            process:
+            IP addresses must be handled carefully under GDPR. Here's the
+            software's process:
           </p>
           <ol class="list-decimal pl-6 mb-4">
             <li>
-              IP address is briefly held in memory for country lookup (if enabled).
+              IP address is briefly held in memory for country lookup (if
+              enabled).
             </li>
             <li>
               IP is immediately hashed using a secure one-way algorithm combined
-              with a unique, daily-rotating salt specific to your website installation.
+              with a unique, daily-rotating salt specific to your website
+              installation.
             </li>
-            <li>Original IP address is permanently discarded and never stored on disk.</li>
+            <li>
+              Original IP address is permanently discarded and never stored on
+              disk.
+            </li>
             <li>
               The hash cannot be reversed to reveal the original IP address.
             </li>
             <li>
-              The use of a unique, daily-rotating salt for each installation makes pre-computed attack methods like rainbow tables infeasible. Recovering the original IP from the hash is computationally impractical with current technology, estimated to take decades or longer.
+              The use of a unique, daily-rotating salt for each installation
+              makes pre-computed attack methods like rainbow tables infeasible.
+              Recovering the original IP from the hash is computationally
+              impractical with current technology, estimated to take decades or
+              longer.
             </li>
-            <li>Neither you nor we can access the original visitor IP addresses from the stored data.</li>
+            <li>
+              Neither you nor we can access the original visitor IP addresses
+              from the stored data.
+            </li>
           </ol>
         </div>
       </section>
@@ -167,7 +222,9 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
               <tr>
                 <th class="py-2 px-4 border-b text-left">Data Type</th>
                 <th class="py-2 px-4 border-b text-left">How It's Processed</th>
-                <th class="py-2 px-4 border-b text-left">GDPR Consideration (for Customer)</th>
+                <th class="py-2 px-4 border-b text-left"
+                  >GDPR Consideration (for Customer)</th
+                >
               </tr>
             </thead>
             <tbody>
@@ -176,23 +233,31 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
                 <td class="py-2 px-4 border-b"
                   >Derived from IP during processing, then IP is discarded</td
                 >
-                <td class="py-2 px-4 border-b">Generally not personal data when aggregated</td>
+                <td class="py-2 px-4 border-b"
+                  >Generally not personal data when aggregated</td
+                >
               </tr>
               <tr>
                 <td class="py-2 px-4 border-b">Browser & OS</td>
                 <td class="py-2 px-4 border-b"
                   >Extracted from User-Agent string (e.g., "Chrome", "Windows")</td
                 >
-                <td class="py-2 px-4 border-b">Generally not personal data when aggregated</td>
+                <td class="py-2 px-4 border-b"
+                  >Generally not personal data when aggregated</td
+                >
               </tr>
               <tr>
                 <td class="py-2 px-4 border-b">Page Views</td>
-                <td class="py-2 px-4 border-b">Counted anonymously by URL path</td>
+                <td class="py-2 px-4 border-b"
+                  >Counted anonymously by URL path</td
+                >
                 <td class="py-2 px-4 border-b">Not personal data</td>
               </tr>
               <tr>
                 <td class="py-2 px-4 border-b">Referrer Source</td>
-                <td class="py-2 px-4 border-b">Recorded as domain name (e.g., "google.com")</td>
+                <td class="py-2 px-4 border-b"
+                  >Recorded as domain name (e.g., "google.com")</td
+                >
                 <td class="py-2 px-4 border-b">Generally not personal data</td>
               </tr>
               <tr>
@@ -205,28 +270,42 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
               <tr>
                 <td class="py-2 px-4 border-b">Session Duration</td>
                 <td class="py-2 px-4 border-b"
-                  >Calculated based on time between events linked by daily anonymous signature</td
+                  >Calculated based on time between events linked by daily
+                  anonymous signature</td
                 >
-                <td class="py-2 px-4 border-b">Not personal data when aggregated</td>
+                <td class="py-2 px-4 border-b"
+                  >Not personal data when aggregated</td
+                >
               </tr>
-               <tr>
+              <tr>
                 <td class="py-2 px-4 border-b">UTM Parameters</td>
                 <td class="py-2 px-4 border-b"
                   >Extracted from URL query strings (e.g., utm_source)</td
                 >
-                <td class="py-2 px-4 border-b">Potentially personal data if misused; customer responsibility</td>
+                <td class="py-2 px-4 border-b"
+                  >Potentially personal data if misused; customer responsibility</td
+                >
               </tr>
-               <tr>
+              <tr>
                 <td class="py-2 px-4 border-b">Custom Events</td>
                 <td class="py-2 px-4 border-b"
                   >Data defined and sent by the customer via the SDK</td
                 >
-                <td class="py-2 px-4 border-b">Potentially personal data depending on what is sent; customer responsibility</td>
+                <td class="py-2 px-4 border-b"
+                  >Potentially personal data depending on what is sent; customer
+                  responsibility</td
+                >
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="mt-4"><strong>Important:</strong> You, the customer, are responsible for ensuring that you do not configure custom events or use UTM parameters in a way that sends personal data to your Infinity Metrics instance unless you have a valid legal basis and meet necessary GDPR requirements (like consent, if applicable).</p>
+        <p class="mt-4">
+          <strong>Important:</strong> You, the customer, are responsible for ensuring
+          that you do not configure custom events or use UTM parameters in a way
+          that sends personal data to your Infinity Metrics instance unless you have
+          a valid legal basis and meet necessary GDPR requirements (like consent,
+          if applicable).
+        </p>
       </section>
 
       <section class="mb-12">
@@ -234,21 +313,34 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
           GDPR Rights and Your Visitors (Data You Collect)
         </h2>
         <p class="mb-4">
-          GDPR grants individuals rights regarding their personal data. Because the Infinity Metrics software is designed *not* to collect personal data that identifies individuals:
+          GDPR grants individuals rights regarding their personal data. Because
+          the Infinity Metrics software is designed *not* to collect personal
+          data that identifies individuals:
         </p>
         <ul class="list-disc pl-6 mb-4">
           <li>
-            <strong>Right to access / rectification / erasure ('to be forgotten')</strong> - Since no identifiable personal data is stored by the software's default configuration, there is typically no personal data for visitors to access, correct, or delete from the analytics system.
+            <strong
+              >Right to access / rectification / erasure ('to be forgotten')</strong
+            > - Since no identifiable personal data is stored by the software's default
+            configuration, there is typically no personal data for visitors to access,
+            correct, or delete from the analytics system.
           </li>
           <li>
-            <strong>Right to data portability</strong> - Aggregated, anonymous data is not subject to portability requirements.
+            <strong>Right to data portability</strong> - Aggregated, anonymous data
+            is not subject to portability requirements.
           </li>
           <li>
-            <strong>Right to object to processing</strong> - Visitors can typically object by using browser privacy settings (like Do Not Track, which Infinity Metrics can be configured to respect) or browser extensions that block tracking scripts.
+            <strong>Right to object to processing</strong> - Visitors can typically
+            object by using browser privacy settings (like Do Not Track, which Infinity
+            Metrics can be configured to respect) or browser extensions that block
+            tracking scripts.
           </li>
         </ul>
         <p>
-          You must inform visitors about the analytics data you collect (even if anonymous) in your website's privacy policy and explain how they can exercise their rights, potentially including how to opt-out of tracking if you offer such a mechanism.
+          You must inform visitors about the analytics data you collect (even if
+          anonymous) in your website's privacy policy and explain how they can
+          exercise their rights, potentially including how to opt-out of
+          tracking if you offer such a mechanism.
         </p>
       </section>
 
@@ -257,23 +349,37 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
           Your Responsibilities as a Data Controller
         </h2>
         <p>
-          While the Infinity Metrics software aids compliance, as the Data Controller for your visitor data, you must:
+          While the Infinity Metrics software aids compliance, as the Data
+          Controller for your visitor data, you must:
         </p>
         <ul class="list-disc pl-6 mb-4">
           <li>
-            <strong>Maintain a clear Privacy Policy:</strong> Inform your visitors that you use analytics, what data is collected (even if anonymous), why, and that it's hosted on your servers. Explain the privacy measures taken (like IP anonymization).
+            <strong>Maintain a clear Privacy Policy:</strong> Inform your visitors
+            that you use analytics, what data is collected (even if anonymous), why,
+            and that it's hosted on your servers. Explain the privacy measures taken
+            (like IP anonymization).
           </li>
           <li>
-            <strong>Ensure Lawful Basis:</strong> Determine your legal basis for processing analytics data (likely Legitimate Interest for anonymous, aggregated data, but potentially Consent if you collect identifiable data via custom events/UTMs).
+            <strong>Ensure Lawful Basis:</strong> Determine your legal basis for
+            processing analytics data (likely Legitimate Interest for anonymous,
+            aggregated data, but potentially Consent if you collect identifiable
+            data via custom events/UTMs).
           </li>
           <li>
-            <strong>Configure Responsibly:</strong> Ensure you do not configure custom events or use UTM parameters to collect personal data without a proper legal basis and disclosures.
+            <strong>Configure Responsibly:</strong> Ensure you do not configure custom
+            events or use UTM parameters to collect personal data without a proper
+            legal basis and disclosures.
           </li>
           <li>
-            <strong>Secure Your Server:</strong> Protect the server hosting your Infinity Metrics installation and the collected data according to security best practices.
+            <strong>Secure Your Server:</strong> Protect the server hosting your
+            Infinity Metrics installation and the collected data according to security
+            best practices.
           </li>
           <li>
-            <strong>Data Processing Agreement (DPA):</strong> Since we (Infinity Metrics, the company) do not process your visitors' data, a DPA between you and us is generally not required *for that data*. You may need DPAs with your hosting provider or other processors.
+            <strong>Data Processing Agreement (DPA):</strong> Since we (Infinity
+            Metrics, the company) do not process your visitors' data, a DPA between
+            you and us is generally not required *for that data*. You may need DPAs
+            with your hosting provider or other processors.
           </li>
         </ul>
       </section>
@@ -283,16 +389,40 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
           Data Processing by Us (Infinity Metrics, the Company)
         </h2>
         <p>
-          Separately from the data you collect with your self-hosted instance, we, Infinity Metrics (the company), act as a Data Controller for the personal data we collect directly from our customers (you) and visitors to our website (`getinfinitymetrics.com`). This includes:
+          Separately from the data you collect with your self-hosted instance,
+          we, Infinity Metrics (the company), act as a Data Controller for the
+          personal data we collect directly from our customers (you) and
+          visitors to our website (`getinfinitymetrics.com`). This includes:
         </p>
-         <ul class="list-disc pl-6 mb-4">
-           <li><strong>Account Information:</strong> Name, email address, company details provided during sign-up or purchase. Legal basis: Performance of Contract.</li>
-           <li><strong>Payment Information:</strong> Processed via Stripe (our payment processor). We do not store full credit card details. Legal basis: Performance of Contract.</li>
-           <li><strong>Website Analytics (`getinfinitymetrics.com`):</strong> We use our own Infinity Metrics software to collect anonymous, aggregated statistics about visitors to our website. This includes page views, referrers, device types, country, etc., using the same privacy-preserving techniques described above (no cookies, IP anonymization). Legal basis: Legitimate Interest.</li>
-           <li><strong>Communication Data:</strong> Information you provide when contacting us for support or inquiries. Legal basis: Legitimate Interest, Performance of Contract.</li>
-         </ul>
+        <ul class="list-disc pl-6 mb-4">
+          <li>
+            <strong>Account Information:</strong> Name, email address, company details
+            provided during sign-up or purchase. Legal basis: Performance of Contract.
+          </li>
+          <li>
+            <strong>Payment Information:</strong> Processed via Stripe (our payment
+            processor). We do not store full credit card details. Legal basis: Performance
+            of Contract.
+          </li>
+          <li>
+            <strong>Website Analytics (`getinfinitymetrics.com`):</strong> We use
+            our own Infinity Metrics software to collect anonymous, aggregated statistics
+            about visitors to our website. This includes page views, referrers, device
+            types, country, etc., using the same privacy-preserving techniques described
+            above (no cookies, IP anonymization). Legal basis: Legitimate Interest.
+          </li>
+          <li>
+            <strong>Communication Data:</strong> Information you provide when contacting
+            us for support or inquiries. Legal basis: Legitimate Interest, Performance
+            of Contract.
+          </li>
+        </ul>
         <p>
-          We process this data in accordance with our <a href="/privacy-policy" class="text-blue-600 hover:underline">Privacy Policy</a>. We implement appropriate technical and organizational measures to protect this data.
+          We process this data in accordance with our <a
+            href="/privacy-policy"
+            class="text-blue-600 hover:underline">Privacy Policy</a
+          >. We implement appropriate technical and organizational measures to
+          protect this data.
         </p>
       </section>
 
@@ -306,40 +436,76 @@ const pageDescription = "Learn how Infinity Metrics software design helps you ac
           </p>
           <div class="pl-4 italic">
             <p class="mb-2">
-              "We use Infinity Metrics, a self-hosted web analytics software, to collect anonymous statistics about how visitors use our website. We host this software on our own servers, meaning no third-party company (including the makers of Infinity Metrics) has access to this data.
+              "We use Infinity Metrics, a self-hosted web analytics software, to
+              collect anonymous statistics about how visitors use our website.
+              We host this software on our own servers, meaning no third-party
+              company (including the makers of Infinity Metrics) has access to
+              this data.
             </p>
             <p class="mb-2">
-              This analytics service does not use cookies. It collects anonymized information such as page views, approximate session duration, referral sources (the website you came from), general browser and device type (e.g., Chrome on Desktop), and country-level location derived from your IP address. Your IP address is anonymized immediately upon processing and the original IP is never stored.
+              This analytics service does not use cookies. It collects
+              anonymized information such as page views, approximate session
+              duration, referral sources (the website you came from), general
+              browser and device type (e.g., Chrome on Desktop), and
+              country-level location derived from your IP address. Your IP
+              address is anonymized immediately upon processing and the original
+              IP is never stored.
             </p>
-             <p>
-              We use this aggregated data solely to understand website traffic patterns and improve our website's performance and content. We cannot identify you or track your specific browsing habits across different websites using this data. The legal basis for this processing is our legitimate interest in understanding and improving our website."
+            <p>
+              We use this aggregated data solely to understand website traffic
+              patterns and improve our website's performance and content. We
+              cannot identify you or track your specific browsing habits across
+              different websites using this data. The legal basis for this
+              processing is our legitimate interest in understanding and
+              improving our website."
             </p>
           </div>
         </div>
       </section>
 
       <section class="mb-12">
-        <h2 class="text-2xl font-semibold mt-8 mb-4">Legal Basis for Your Analytics Processing</h2>
+        <h2 class="text-2xl font-semibold mt-8 mb-4">
+          Legal Basis for Your Analytics Processing
+        </h2>
         <p>
-          As the Data Controller for the analytics data you collect using your self-hosted Infinity Metrics instance, you need a legal basis under GDPR.
+          As the Data Controller for the analytics data you collect using your
+          self-hosted Infinity Metrics instance, you need a legal basis under
+          GDPR.
         </p>
         <ul class="list-disc pl-6 mb-4">
           <li>
-            <strong>Legitimate Interest:</strong> For collecting anonymous, aggregated website statistics (like page views, browser types, country), Legitimate Interest is often the appropriate legal basis. You must balance this interest against the rights and freedoms of your visitors (which are minimal when data is truly anonymous). You should document this assessment (LIA).
+            <strong>Legitimate Interest:</strong> For collecting anonymous, aggregated
+            website statistics (like page views, browser types, country), Legitimate
+            Interest is often the appropriate legal basis. You must balance this
+            interest against the rights and freedoms of your visitors (which are
+            minimal when data is truly anonymous). You should document this assessment
+            (LIA).
           </li>
           <li>
-            <strong>Consent:</strong> If you configure Infinity Metrics (e.g., via custom events or UTM parameters) to collect data that could be considered personal data, or if required by specific local laws (like ePrivacy Directive nuances), you may need to obtain explicit consent *before* collecting that data.
+            <strong>Consent:</strong> If you configure Infinity Metrics (e.g., via
+            custom events or UTM parameters) to collect data that could be considered
+            personal data, or if required by specific local laws (like ePrivacy Directive
+            nuances), you may need to obtain explicit consent *before* collecting
+            that data.
           </li>
         </ul>
         <p>
-          Consult with legal counsel to determine the appropriate legal basis for your specific implementation and data collection practices.
+          Consult with legal counsel to determine the appropriate legal basis
+          for your specific implementation and data collection practices.
         </p>
       </section>
 
       <section class="mb-12">
         <h2 class="text-2xl font-semibold mt-8 mb-4">Conclusion</h2>
         <p>
-          The Infinity Metrics software is engineered to facilitate GDPR compliance for website analytics by minimizing data collection, avoiding cookies, and anonymizing potential identifiers like IP addresses. However, as a self-hosted solution, ultimate responsibility for GDPR compliance rests with you, the customer, as the Data Controller for the data you collect on your servers. Ensure you understand your obligations, maintain a transparent privacy policy, and configure the software responsibly.
+          The Infinity Metrics software is engineered to facilitate GDPR
+          compliance for website analytics by minimizing data collection,
+          avoiding cookies, and anonymizing potential identifiers like IP
+          addresses. However, as a self-hosted solution, ultimate responsibility
+          for GDPR compliance rests with you, the customer, as the Data
+          Controller for the data you collect on your servers. Ensure you
+          understand your obligations, maintain a transparent privacy policy,
+          and configure the software responsibly.
         </p>
       </section>
     </div>

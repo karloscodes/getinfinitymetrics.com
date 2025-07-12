@@ -5,111 +5,111 @@ import ProductSchema from "../components/ProductSchema.astro";
 import PreloadAssets from "../components/PreloadAssets.astro";
 
 interface Props {
-	title: string;
-	description?: string;
-	image?: string;
-	canonical?: string;
+  title: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
 }
 
 const {
-	title,
-	description = "Self-hosted, AI-powered web analytics with zero compromises on privacy. Own your data, protect your users.",
-	image = "https://getinfinitymetrics.com/InfinityMetrics%20128x720.png",
-	canonical = Astro.url.href,
+  title,
+  description = "Self-hosted web analytics with AI insights. One-command install, SQLite database, unlimited sites. Break free from vendor lock-in and grow your business.",
+  image = "https://getinfinitymetrics.com/InfinityMetrics%20128x720.png",
+  canonical = Astro.url.href,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="robots" content="index, follow" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="index, follow" />
 
-		<!-- Favicon -->
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-		<!-- SEO -->
-		<SEO
-			title={title}
-			description={description}
-			image={image}
-			canonical={canonical}
-		/>
+    <!-- SEO -->
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      canonical={canonical}
+    />
 
-		<!-- Preload Assets -->
-		<PreloadAssets />
+    <!-- Preload Assets -->
+    <PreloadAssets />
 
-		<!-- Structured Data -->
-		<ProductSchema
-			productName="Infinity Metrics"
-			description={description}
-			basePrice={199.99}
-			salePrice={49.99}
-			sku="infinity-metrics-app"
-			includeFAQ={Astro.url.pathname === '/'}
-		/>
+    <!-- Structured Data -->
+    <ProductSchema
+      productName="Infinity Metrics"
+      description={description}
+      basePrice={199.99}
+      salePrice={49.99}
+      sku="infinity-metrics-app"
+      includeFAQ={Astro.url.pathname === "/"}
+    />
 
-		<!-- Fonts -->
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-			rel="stylesheet"
-		/>
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-		<script async src="https://tally.so/widgets/embed.js"></script>
-		<script defer src="https://t.getinfinitymetrics.com/y/api/v1/sdk.js"
-		></script>
-	</head>
-	<body>
-		<slot />
-		<script>
-			// Simple JavaScript for mobile menu toggle
-			document.addEventListener("DOMContentLoaded", () => {
-				const mobileMenuButton = document.getElementById("mobile-menu-button");
-				const mobileMenu = document.getElementById("mobile-menu");
+    <script async src="https://tally.so/widgets/embed.js"></script>
+    <script defer src="https://t.getinfinitymetrics.com/y/api/v1/sdk.js"
+    ></script>
+  </head>
+  <body>
+    <slot />
+    <script>
+      // Simple JavaScript for mobile menu toggle
+      document.addEventListener("DOMContentLoaded", () => {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
 
-				if (mobileMenuButton && mobileMenu) {
-					mobileMenuButton.addEventListener("click", () => {
-						mobileMenu.classList.toggle("hidden");
-					});
+        if (mobileMenuButton && mobileMenu) {
+          mobileMenuButton.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
 
-					// Close menu when clicking on a link
-					const mobileLinks = mobileMenu.querySelectorAll("a");
-					mobileLinks.forEach((link) => {
-						link.addEventListener("click", () => {
-							mobileMenu.classList.add("hidden");
-						});
-					});
-				}
+          // Close menu when clicking on a link
+          const mobileLinks = mobileMenu.querySelectorAll("a");
+          mobileLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              mobileMenu.classList.add("hidden");
+            });
+          });
+        }
 
-				// FAQs toggle
-				const faqItems = document.querySelectorAll(".faq-item");
-				faqItems.forEach((item) => {
-					const button = item.querySelector("button");
-					const content = item.querySelector(".faq-content");
+        // FAQs toggle
+        const faqItems = document.querySelectorAll(".faq-item");
+        faqItems.forEach((item) => {
+          const button = item.querySelector("button");
+          const content = item.querySelector(".faq-content");
 
-					if (button && content) {
-						button.addEventListener("click", () => {
-							const isOpen = !content.classList.contains("hidden");
+          if (button && content) {
+            button.addEventListener("click", () => {
+              const isOpen = !content.classList.contains("hidden");
 
-							// Close all
-							document.querySelectorAll(".faq-content").forEach((el) => {
-								el.classList.add("hidden");
-							});
-							document.querySelectorAll(".faq-icon").forEach((el) => {
-								el.classList.remove("rotate-180");
-							});
+              // Close all
+              document.querySelectorAll(".faq-content").forEach((el) => {
+                el.classList.add("hidden");
+              });
+              document.querySelectorAll(".faq-icon").forEach((el) => {
+                el.classList.remove("rotate-180");
+              });
 
-							// Toggle clicked one
-							if (!isOpen) {
-								content.classList.remove("hidden");
-								button.querySelector(".faq-icon")?.classList.add("rotate-180");
-							}
-						});
-					}
-				});
-			});
-		</script>
-	</body>
+              // Toggle clicked one
+              if (!isOpen) {
+                content.classList.remove("hidden");
+                button.querySelector(".faq-icon")?.classList.add("rotate-180");
+              }
+            });
+          }
+        });
+      });
+    </script>
+  </body>
 </html>

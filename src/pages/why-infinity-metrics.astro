@@ -3,16 +3,20 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-const pageTitle = "Why Infinity Metrics | Infinity Metrics";
+const pageTitle = "InfinityMetrics | Why InfinityMetrics";
 const pageDescription =
-  "Learn why Infinity Metrics was created. Discover my story of building a self-hosted, privacy-first web analytics platform with AI insights, low maintenance, and lifetime ownership.";
+  "Learn why Infinity Metrics was created. Self-hosted analytics with one command install, Docker & SQLite. Breaks dashboard limits with AI for solopreneurs and small teams.";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
   <Header />
 
   <div class="container mx-auto px-4 py-12 max-w-4xl">
-    <h1 class="text-3xl md:text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700">Why Infinity Metrics</h1>
+    <h1
+      class="text-3xl md:text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700"
+    >
+      Why Infinity Metrics
+    </h1>
 
     <div class="prose prose-lg max-w-none text-gray-800">
       <section>
@@ -107,9 +111,11 @@ const pageDescription =
           If you're tired of compromising on privacy, paying endless fees, or
           wrestling with complex setups, Infinity Metrics is for you.
         </p>
-        
+
         <div class="mt-8 mb-6 text-center">
-          <a href="/#pricing" class="inline-block px-8 py-4 bg-black hover:bg-gray-800 text-white font-bold rounded-md shadow-md transition-transform transform hover:scale-105 text-lg"
+          <a
+            href="/#pricing"
+            class="inline-block px-8 py-4 bg-black hover:bg-gray-800 text-white font-bold rounded-md shadow-md transition-transform transform hover:scale-105 text-lg"
             ><span class="text-white">Get It Now</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +129,9 @@ const pageDescription =
                 clip-rule="evenodd"></path>
             </svg>
           </a>
-          <p class="mt-3 text-sm text-gray-600">One-time payment, lifetime ownership</p>
+          <p class="mt-3 text-sm text-gray-600">
+            One-time payment, lifetime ownership
+          </p>
         </div>
       </section>
     </div>
