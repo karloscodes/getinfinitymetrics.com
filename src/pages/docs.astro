@@ -34,6 +34,17 @@ window.InfinityMetrics.sendCustomEvent('signup', { method: 'email' })`;
 const manualPageView = "window.InfinityMetrics.sendPageView()";
 const identifyUser = `window.InfinityMetrics.setUser({ userId: 'user_123' })`;
 
+// Purchase tracking examples
+const registerPurchaseSimple = `// Track a $19.99 purchase
+window.InfinityMetrics.registerPurchase(1999, 'USD')`;
+const registerPurchaseWithMetadata = `// Track a purchase with additional metadata
+window.InfinityMetrics.registerPurchase(1999, 'USD', {
+  productId: 'prod_123',
+  productName: 'Premium Plan',
+  quantity: 1,
+  category: 'subscription'
+})`;
+
 const dataDrivenLinkExample = `
 <a href="/features"
    data-infinity-event-name="Clicked Features Link From Docs"
@@ -179,6 +190,13 @@ const forceUpdateCommand = "sudo infinity-metrics update";
                     href="#manual-tracking"
                     class="text-blue-600 hover:underline break-words"
                     >Manual Tracking</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#purchase-tracking"
+                    class="text-blue-600 hover:underline break-words"
+                    >Purchase Tracking</a
                   >
                 </li>
               </ul>
@@ -878,6 +896,187 @@ const forceUpdateCommand = "sudo infinity-metrics update";
                   >
                     <pre
                       class="whitespace-pre-wrap break-all"><code class="language-javascript text-white">{manualPageView}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Purchase Tracking -->
+            <section id="purchase-tracking" class="mb-10">
+              <h3 class="text-2xl font-semibold mb-5 text-black">
+                Purchase Tracking
+              </h3>
+              <p class="text-black mb-3">
+                Track revenue events and purchases with InfinityMetrics'
+                built-in purchase tracking functionality. This provides
+                standardized revenue analytics and integrates seamlessly with
+                your existing analytics data.
+              </p>
+
+              <div class="space-y-6 mb-6">
+                <div class="card p-5 rounded-xl shadow-sm">
+                  <h4 class="font-semibold mb-2 text-black">
+                    registerPurchase Function
+                  </h4>
+                  <p class="text-black">
+                    The <code
+                      class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                      >registerPurchase</code
+                    > function automatically creates a <code
+                      class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                      >revenue:purchased</code
+                    > custom event with standardized purchase data. This ensures
+                    consistent revenue tracking across your entire application.
+                  </p>
+                  <p class="text-black mt-2">
+                    Syntax: <code
+                      class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                      >InfinityMetrics.registerPurchase(priceInCents, currency,
+                      metadata)</code
+                    >
+                  </p>
+                  <ul
+                    class="list-disc list-inside text-black mt-2 space-y-1 pl-4"
+                  >
+                    <li>
+                      <code
+                        class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                        >priceInCents</code
+                      > (number, required): The purchase price in cents (e.g., 1999
+                      for $19.99). Must be a positive number.
+                    </li>
+                    <li>
+                      <code
+                        class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                        >currency</code
+                      > (string, optional): Currency code following ISO 4217 standard
+                      (defaults to 'USD').
+                    </li>
+                    <li>
+                      <code
+                        class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                        >metadata</code
+                      > (object, optional): Additional purchase information like
+                      product details, quantity, categories, etc.
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="card p-5 rounded-xl shadow-sm">
+                  <h4 class="font-semibold mb-2 text-black">Basic Usage</h4>
+                  <p class="text-black">
+                    Track a simple purchase with just the price and currency:
+                  </p>
+                  <div
+                    class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full"
+                  >
+                    <pre
+                      class="whitespace-pre-wrap break-all"><code class="text-white">{registerPurchaseSimple}</code></pre>
+                  </div>
+                  <p class="text-black mt-3 text-sm">
+                    This creates a <code
+                      class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                      >revenue:purchased</code
+                    > event with price: 1999, currency: 'USD', and quantity: 1 (default).
+                  </p>
+                </div>
+
+                <div class="card p-5 rounded-xl shadow-sm">
+                  <h4 class="font-semibold mb-2 text-black">
+                    Advanced Usage with Metadata
+                  </h4>
+                  <p class="text-black">
+                    Include additional product and purchase information for
+                    detailed revenue analytics:
+                  </p>
+                  <div
+                    class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full"
+                  >
+                    <pre
+                      class="whitespace-pre-wrap break-all"><code class="text-white">{registerPurchaseWithMetadata}</code></pre>
+                  </div>
+                  <p class="text-black mt-3 text-sm">
+                    The metadata object can include any additional fields
+                    relevant to your business such as:
+                  </p>
+                  <ul
+                    class="list-disc list-inside text-black mt-2 space-y-1 pl-4 text-sm"
+                  >
+                    <li>
+                      <strong>productId</strong>: Unique product identifier
+                    </li>
+                    <li>
+                      <strong>productName</strong>: Human-readable product name
+                    </li>
+                    <li><strong>category</strong>: Product category or type</li>
+                    <li>
+                      <strong>quantity</strong>: Number of items purchased
+                      (defaults to 1)
+                    </li>
+                    <li>
+                      <strong>discountCode</strong>: Applied discount or promo
+                      code
+                    </li>
+                    <li><strong>paymentMethod</strong>: Payment method used</li>
+                  </ul>
+                </div>
+
+                <div class="card p-5 rounded-xl shadow-sm">
+                  <h4 class="font-semibold mb-2 text-black">
+                    Integration Examples
+                  </h4>
+                  <p class="text-black mb-3">
+                    Common integration patterns for different scenarios:
+                  </p>
+
+                  <h5 class="font-medium mb-2 text-black">
+                    E-commerce Checkout
+                  </h5>
+                  <div
+                    class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full mb-4"
+                  >
+                    <pre
+                      class="whitespace-pre-wrap break-all"><code class="text-white">// After successful payment processing
+InfinityMetrics.registerPurchase(2999, 'USD', &lbrace;
+  productId: 'widget-pro-123',
+  productName: 'Widget Pro',
+  category: 'software',
+  quantity: 1,
+  discountCode: 'SAVE20',
+  paymentMethod: 'stripe'
+&rbrace;);</code></pre>
+                  </div>
+
+                  <h5 class="font-medium mb-2 text-black">
+                    Subscription Purchase
+                  </h5>
+                  <div
+                    class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full mb-4"
+                  >
+                    <pre
+                      class="whitespace-pre-wrap break-all"><code class="text-white">// Monthly subscription signup
+InfinityMetrics.registerPurchase(999, 'USD', &lbrace;
+  productId: 'plan-monthly',
+  productName: 'Monthly Plan',
+  category: 'subscription',
+  billingCycle: 'monthly',
+  planType: 'premium'
+&rbrace;);</code></pre>
+                  </div>
+
+                  <h5 class="font-medium mb-2 text-black">Digital Download</h5>
+                  <div
+                    class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full"
+                  >
+                    <pre
+                      class="whitespace-pre-wrap break-all"><code class="text-white">// Digital product purchase
+InfinityMetrics.registerPurchase(1999, 'USD', &lbrace;
+  productId: 'ebook-advanced-js',
+  productName: 'Advanced JavaScript Guide',
+  category: 'digital-content',
+  format: 'pdf',
+  fileSize: '2.5MB'
+&rbrace;);</code></pre>
                   </div>
                 </div>
               </div>
