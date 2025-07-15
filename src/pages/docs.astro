@@ -694,55 +694,129 @@ const forceUpdateCommand = "sudo infinity-metrics update";
                       >role="button"</code
                     > are automatically tracked.
                   </p>
-                  <p class="text-black mt-2">
-                    Button events are named using the pattern: <code
-                      class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
-                      >click:button:sanitized_text:button_id</code
-                    >. Here's how it's constructed:
-                  </p>
-                  <ul
-                    class="list-disc list-inside text-black mt-2 space-y-1 pl-4"
-                  >
-                    <li>
-                      <code
+
+                  <div class="mt-4 mb-4">
+                    <h5 class="font-medium mb-2 text-black">
+                      Automatic Event Naming
+                    </h5>
+                    <p class="text-black">
+                      By default, button events are named using the pattern: <code
                         class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
-                        >sanitized_text</code
-                      >: Derived from the button's visible text. The system
-                      prioritizes <code
+                        >click:button:sanitized_text:button_id</code
+                      >. Here's how it's constructed:
+                    </p>
+                    <ul
+                      class="list-disc list-inside text-black mt-2 space-y-1 pl-4"
+                    >
+                      <li>
+                        <code
+                          class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                          >sanitized_text</code
+                        >: Derived from the button's visible text. The system
+                        prioritizes <code
+                          class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                          >textContent</code
+                        >, then <code
+                          class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                          >value</code
+                        >, then <code
+                          class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                          >title</code
+                        >. This text is then sanitized: converted to lowercase,
+                        spaces replaced with underscores, non-alphanumeric
+                        characters (except underscores) removed, and truncated
+                        to 50 characters. If no text is found or sanitization
+                        results in an empty string, it defaults to
+                        "unnamed_button".
+                      </li>
+                      <li>
+                        <code
+                          class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                          >button_id</code
+                        >: The <code
+                          class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                          >id</code
+                        > attribute of the button. If the button has no ID, this
+                        defaults to "noid".
+                      </li>
+                    </ul>
+                    <p class="text-black mt-2">
+                      For example, <code
                         class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
-                        >textContent</code
-                      >, then <code
+                        >&lt;button id="myBtn"&gt;Submit&lt;/button&gt;</code
+                      > would generate an event named <code
                         class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
-                        >value</code
-                      >, then <code
+                        >click:button:submit:mybtn</code
+                      >.
+                    </p>
+                  </div>
+
+                  <div class="mt-4 mb-4">
+                    <h5 class="font-medium mb-2 text-black">
+                      Custom Event Names
+                    </h5>
+                    <p class="text-black">
+                      You can override the automatic naming by adding the <code
                         class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
-                        >title</code
-                      >. This text is then sanitized: converted to lowercase,
-                      spaces replaced with underscores, non-alphanumeric
-                      characters (except underscores) removed, and truncated to
-                      50 characters. If no text is found or sanitization results
-                      in an empty string, it defaults to "unnamed_button".
-                    </li>
-                    <li>
-                      <code
+                        >data-infinity-event-name</code
+                      > attribute to your button. This is useful for standardizing
+                      event names across your application or tracking specific user
+                      actions.
+                    </p>
+                    <div
+                      class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full"
+                    >
+                      <pre
+                        class="whitespace-pre-wrap break-all"><code class="language-html text-white">&lt;button data-infinity-event-name="newsletter_signup"&gt;
+  Subscribe to Newsletter
+&lt;/button&gt;
+
+&lt;button data-infinity-event-name="download_started"&gt;
+  Download App
+&lt;/button&gt;</code></pre>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 mb-4">
+                    <h5 class="font-medium mb-2 text-black">Custom Metadata</h5>
+                    <p class="text-black">
+                      Add custom metadata to button events using <code
                         class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
-                        >button_id</code
-                      >: The <code
+                        >data-infinity-metadata-*</code
+                      > attributes. This allows you to capture additional context
+                      about the user's action.
+                    </p>
+                    <div
+                      class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full"
+                    >
+                      <pre
+                        class="whitespace-pre-wrap break-all"><code class="language-html text-white">&lt;button 
+  data-infinity-event-name="product_purchased"
+  data-infinity-metadata-product="premium_plan"
+  data-infinity-metadata-price="29.99"
+  data-infinity-metadata-billing="monthly"&gt;
+  Buy Premium Plan
+&lt;/button&gt;</code></pre>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 mb-4">
+                    <h5 class="font-medium mb-2 text-black">
+                      Purchase Tracking
+                    </h5>
+                    <p class="text-black">
+                      You can automatically track purchases by setting <code
                         class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
-                        >id</code
-                      > attribute of the button. If the button has no ID, this defaults
-                      to "noid".
-                    </li>
-                  </ul>
-                  <p class="text-black mt-2">
-                    For example, <code
-                      class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
-                      >&lt;button id="myBtn"&gt;Submit&lt;/button&gt;</code
-                    > would generate an event named <code
-                      class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
-                      >click:button:submit:mybtn</code
-                    >.
-                  </p>
+                        >data-infinity-event-name="revenue:purchased"</code
+                      > on buttons. This creates standardized purchase events that
+                      integrate with your revenue analytics. See the <a
+                        href="#purchase-tracking"
+                        class="text-blue-600 hover:underline"
+                        >Purchase Tracking section</a
+                      > for complete details and examples.
+                    </p>
+                  </div>
+
                   <p class="text-sm text-gray-600 mt-2">
                     Note: If an <code
                       class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
@@ -781,10 +855,11 @@ const forceUpdateCommand = "sudo infinity-metrics update";
                       > to the link.
                     </li>
                     <li>
-                      <strong>Event Naming:</strong> Value of <code
+                      <strong>Event Naming:</strong> The value of <code
                         class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
                         >data-infinity-event-name</code
-                      > is sanitized (lowercase, underscores, alphanumeric, 50 chars).
+                      > is used directly as the event name (no sanitization for custom
+                      names).
                     </li>
                     <li>
                       <strong>Automatic Metadata:</strong>
@@ -803,12 +878,63 @@ const forceUpdateCommand = "sudo infinity-metrics update";
                       >.
                     </li>
                   </ul>
-                  <p class="text-black mt-3">Example:</p>
-                  <div
-                    class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full"
-                  >
-                    <pre
-                      class="whitespace-pre-wrap break-all"><code class="language-html text-white">{dataDrivenLinkExample}</code></pre>
+
+                  <div class="mt-4 mb-4">
+                    <h5 class="font-medium mb-2 text-black">
+                      Navigation Links
+                    </h5>
+                    <p class="text-black">
+                      For links that navigate to other pages, the SDK
+                      automatically uses <code
+                        class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                        >navigator.sendBeacon()</code
+                      > to ensure the event is sent even if the user navigates away
+                      immediately. This provides reliable tracking for navigation
+                      events.
+                    </p>
+                  </div>
+
+                  <div class="mt-4 mb-4">
+                    <h5 class="font-medium mb-2 text-black">Basic Example</h5>
+                    <div
+                      class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full"
+                    >
+                      <pre
+                        class="whitespace-pre-wrap break-all"><code class="language-html text-white">{dataDrivenLinkExample}</code></pre>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 mb-4">
+                    <h5 class="font-medium mb-2 text-black">
+                      Common Use Cases
+                    </h5>
+                    <div
+                      class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-2 max-w-full"
+                    >
+                      <pre
+                        class="whitespace-pre-wrap break-all"><code class="language-html text-white">&lt;!-- Track external link clicks --&gt;
+&lt;a href="https://partner.com" 
+   data-infinity-event-name="external_link_clicked"
+   data-infinity-metadata-partner="partner_name"&gt;
+   Visit Partner Site
+&lt;/a&gt;
+
+&lt;!-- Track CTA clicks --&gt;
+&lt;a href="/signup" 
+   data-infinity-event-name="cta_clicked"
+   data-infinity-metadata-location="header"
+   data-infinity-metadata-variant="primary"&gt;
+   Get Started
+&lt;/a&gt;
+
+&lt;!-- Track download events --&gt;
+&lt;a href="/download/app.zip" 
+   data-infinity-event-name="download_started"
+   data-infinity-metadata-file="mobile_app"
+   data-infinity-metadata-version="1.2.0"&gt;
+   Download App
+&lt;/a&gt;</code></pre>
+                    </div>
                   </div>
                 </div>
 
@@ -913,7 +1039,99 @@ const forceUpdateCommand = "sudo infinity-metrics update";
                 your existing analytics data.
               </p>
 
+              <p class="text-black mb-3">
+                InfinityMetrics offers two approaches for purchase tracking:
+                programmatic tracking using the <code
+                  class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                  >registerPurchase()</code
+                > function, and automated tracking using HTML attributes. Both methods
+                create the same standardized <code
+                  class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                  >revenue:purchased</code
+                > events.
+              </p>
+
               <div class="space-y-6 mb-6">
+                <div class="card p-5 rounded-xl shadow-sm">
+                  <h4 class="font-semibold mb-2 text-black">
+                    Automated Purchase Tracking
+                  </h4>
+                  <p class="text-black">
+                    Track purchases automatically using HTML attributes by
+                    setting <code
+                      class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                      >data-infinity-event-name="revenue:purchased"</code
+                    > on buttons or links. This approach is ideal for checkout flows,
+                    payment buttons, purchase links, or any purchase-related actions
+                    that can be tracked declaratively.
+                  </p>
+                  <p class="text-black mt-2">Required metadata attributes:</p>
+                  <ul
+                    class="list-disc list-inside text-black mt-2 space-y-1 pl-4"
+                  >
+                    <li>
+                      <code
+                        class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                        >data-infinity-metadata-price</code
+                      >: Price in cents (e.g., 1999 for $19.99)
+                    </li>
+                    <li>
+                      <code
+                        class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                        >data-infinity-metadata-currency</code
+                      >: Currency code (e.g., USD, EUR)
+                    </li>
+                  </ul>
+                  <p class="text-black mt-2">Optional metadata attributes:</p>
+                  <ul
+                    class="list-disc list-inside text-black mt-2 space-y-1 pl-4"
+                  >
+                    <li>
+                      <code
+                        class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                        >data-infinity-metadata-quantity</code
+                      >: Number of items (defaults to 1)
+                    </li>
+                    <li>
+                      <code
+                        class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                        >data-infinity-metadata-product</code
+                      >: Product identifier or name
+                    </li>
+                    <li>
+                      <code
+                        class="bg-black text-white px-2 py-1 rounded text-sm font-mono"
+                        >data-infinity-metadata-category</code
+                      >: Product category
+                    </li>
+                  </ul>
+                  <div
+                    class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto leading-relaxed mt-4 max-w-full"
+                  >
+                    <pre
+                      class="whitespace-pre-wrap break-all"><code class="language-html text-white">&lt;!-- Button example --&gt;
+&lt;button 
+  data-infinity-event-name="revenue:purchased"
+  data-infinity-metadata-price="2999"
+  data-infinity-metadata-currency="USD"
+  data-infinity-metadata-product="premium_plan"
+  data-infinity-metadata-quantity="1"
+  data-infinity-metadata-category="subscription"&gt;
+  Purchase Premium Plan
+&lt;/button&gt;
+
+&lt;!-- Link example --&gt;
+&lt;a href="/checkout/complete"
+  data-infinity-event-name="revenue:purchased"
+  data-infinity-metadata-price="4999"
+  data-infinity-metadata-currency="USD"
+  data-infinity-metadata-product="yearly_subscription"
+  data-infinity-metadata-quantity="1"&gt;
+  Complete Purchase
+&lt;/a&gt;</code></pre>
+                  </div>
+                </div>
+
                 <div class="card p-5 rounded-xl shadow-sm">
                   <h4 class="font-semibold mb-2 text-black">
                     registerPurchase Function
