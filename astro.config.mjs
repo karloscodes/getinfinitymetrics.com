@@ -5,6 +5,7 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
+	compressHTML: false,
 	integrations: [
 		tailwind(),
 		react(),

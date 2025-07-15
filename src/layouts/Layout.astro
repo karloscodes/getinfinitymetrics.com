@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import SEO from "../components/SEO.astro";
-import ProductSchema from "../components/ProductSchema.astro";
+import Schema from "../components/Schema.astro";
 import PreloadAssets from "../components/PreloadAssets.astro";
 
 interface Props {
@@ -42,14 +42,7 @@ const {
     <PreloadAssets />
 
     <!-- Structured Data -->
-    <ProductSchema
-      productName="Infinity Metrics"
-      description={description}
-      basePrice={199.99}
-      salePrice={49.99}
-      sku="infinity-metrics-app"
-      includeFAQ={Astro.url.pathname === "/"}
-    />
+    <Schema includeFAQ={Astro.url.pathname === "/"} />
 
     <!-- Fonts -->
     <link

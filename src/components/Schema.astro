@@ -1,0 +1,60 @@
+---
+// WebPage and WebSite Schema for structured data
+import { getFaqSchema } from "../data/faqs";
+
+interface Props {
+  name: string;
+  headline?: string;
+  description: string;
+  image?: string;
+  siteName?: string;
+  siteUrl?: string;
+  includeFAQ?: boolean;
+}
+
+const {
+  headline = "Break Free from Modern Web Analytics Lock-In",
+  description = "Deploy in one command on your server. Use AI to unlock insights beyond dashboards. Grow from small bets to thriving businesses.",
+  image = "https://getinfinitymetrics.com/InfinityMetrics%20128x720.png",
+  siteName = "Infinity Metrics",
+  siteUrl = "https://getinfinitymetrics.com",
+  includeFAQ = false,
+} = Astro.props as Props;
+
+// Get current page URL
+const currentUrl = Astro.url.href;
+
+// Get FAQ schema
+const faqSchema = getFaqSchema();
+
+// WebPage schema
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": currentUrl,
+  },
+  name: siteName,
+  headline: headline,
+  description: description,
+  url: currentUrl,
+  image: image,
+};
+
+// Website schema
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteName,
+  url: siteUrl,
+};
+
+const webPageSchemaString = JSON.stringify(webPageSchema);
+const websiteSchemaString = JSON.stringify(websiteSchema);
+const faqSchemaString = includeFAQ ? JSON.stringify(faqSchema) : null;
+---
+
+<script type="application/ld+json" set:html={webPageSchemaString} />
+<script type="application/ld+json" set:html={websiteSchemaString} />
+{includeFAQ && <script type="application/ld+json" set:html={faqSchemaString} />}
