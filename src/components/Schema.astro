@@ -1,6 +1,12 @@
 ---
 // WebPage and WebSite Schema for structured data
 import { getFaqSchema } from "../data/faqs";
+import BreadcrumbSchema from "./BreadcrumbSchema.astro";
+
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
 
 interface Props {
   name: string;
@@ -10,6 +16,7 @@ interface Props {
   siteName?: string;
   siteUrl?: string;
   includeFAQ?: boolean;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 const {
@@ -19,6 +26,7 @@ const {
   siteName = "Infinity Metrics",
   siteUrl = "https://getinfinitymetrics.com",
   includeFAQ = false,
+  breadcrumbs = [],
 } = Astro.props as Props;
 
 // Get current page URL
@@ -58,3 +66,8 @@ const faqSchemaString = includeFAQ ? JSON.stringify(faqSchema) : null;
 <script type="application/ld+json" set:html={webPageSchemaString} />
 <script type="application/ld+json" set:html={websiteSchemaString} />
 {includeFAQ && <script type="application/ld+json" set:html={faqSchemaString} />}
+{
+  breadcrumbs && breadcrumbs.length > 0 && (
+    <BreadcrumbSchema breadcrumbs={breadcrumbs} />
+  )
+}

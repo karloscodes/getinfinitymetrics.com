@@ -2,16 +2,26 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import BreadcrumbNavigation from "../components/BreadcrumbNavigation.astro";
+import { generateBreadcrumbs } from "../utils/breadcrumbs";
 
 const pageTitle = "InfinityMetrics | Privacy Policy";
 const pageDescription =
   "Privacy policy for Infinity Metrics self-hosted analytics. One command install, Docker & SQLite. Your data stays private on your servers with full control.";
+
+// Generate breadcrumbs for privacy policy page
+const breadcrumbs = generateBreadcrumbs(Astro.url.pathname);
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  breadcrumbs={breadcrumbs}
+>
   <Header />
 
   <div class="container mx-auto px-4 py-12 max-w-4xl">
+    <BreadcrumbNavigation breadcrumbs={breadcrumbs} />
     <h1
       class="text-3xl md:text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700"
     >

@@ -2,10 +2,15 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import BreadcrumbNavigation from "../components/BreadcrumbNavigation.astro";
+import { generateBreadcrumbs } from "../utils/breadcrumbs";
 
 const pageTitle = "InfinityMetrics | Documentation";
 const pageDescription =
   "Complete documentation for Infinity Metrics. One command install, Docker & SQLite setup. Self-hosted analytics with AI insights for solopreneurs and small teams.";
+
+// Generate breadcrumbs for docs page
+const breadcrumbs = generateBreadcrumbs(Astro.url.pathname);
 
 // Code fragments for display in the documentation
 // Installation section
@@ -72,11 +77,16 @@ const changeAdminPasswordCommand =
 const forceUpdateCommand = "sudo infinity-metrics update";
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  breadcrumbs={breadcrumbs}
+>
   <Header />
   <main class="py-12 md:py-20 overflow-hidden">
     <div class="container px-4 sm:px-6 overflow-hidden">
       <div class="max-w-4xl mx-auto">
+        <BreadcrumbNavigation breadcrumbs={breadcrumbs} />
         <h1
           class="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700"
         >

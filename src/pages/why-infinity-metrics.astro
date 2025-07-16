@@ -2,16 +2,26 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import BreadcrumbNavigation from "../components/BreadcrumbNavigation.astro";
+import { generateBreadcrumbs } from "../utils/breadcrumbs";
 
 const pageTitle = "InfinityMetrics | Why InfinityMetrics";
 const pageDescription =
   "Learn why Infinity Metrics was created. Self-hosted analytics with one command install, Docker & SQLite. Breaks dashboard limits with AI for solopreneurs and small teams.";
+
+// Generate breadcrumbs for why-infinity-metrics page
+const breadcrumbs = generateBreadcrumbs(Astro.url.pathname);
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  breadcrumbs={breadcrumbs}
+>
   <Header />
 
   <div class="container mx-auto px-4 py-12 max-w-4xl">
+    <BreadcrumbNavigation breadcrumbs={breadcrumbs} />
     <h1
       class="text-3xl md:text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-700"
     >

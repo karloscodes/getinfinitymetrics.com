@@ -1,0 +1,29 @@
+---
+// Breadcrumb Schema for structured data
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  breadcrumbs: BreadcrumbItem[];
+}
+
+const { breadcrumbs } = Astro.props;
+
+// Generate breadcrumb schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbs.map((crumb, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: crumb.name,
+    item: crumb.url,
+  })),
+};
+
+const breadcrumbSchemaString = JSON.stringify(breadcrumbSchema);
+---
+
+<script type="application/ld+json" set:html={breadcrumbSchemaString} />
