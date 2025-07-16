@@ -155,6 +155,39 @@ import DocsLayout from "../../layouts/DocsLayout.astro";
   <div class="mb-10">
     <h2 class="text-2xl font-bold text-gray-900 mb-6">Core Features</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Automated Tracking -->
+      <a
+        href="/docs/automated-tracking"
+        class="group bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-indigo-300 transition-all duration-200"
+      >
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-indigo-500 rounded-lg flex items-center justify-center mr-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3
+            class="text-lg font-semibold text-gray-900 group-hover:text-indigo-600"
+          >
+            Automated Tracking
+          </h3>
+        </div>
+        <p class="text-gray-600">
+          Page views, button clicks, and SPA navigation tracking
+        </p>
+      </a>
+
       <!-- Custom Events -->
       <a
         href="/docs/custom-events"
@@ -539,6 +572,11 @@ import DocsLayout from "../../layouts/DocsLayout.astro";
           title: "Installation",
           url: "/docs/installation",
           description: "Deploy Infinity Metrics on your server in one command",
+        },
+        {
+          title: "Automated Tracking",
+          url: "/docs/automated-tracking",
+          description: "Page views, button clicks, and SPA navigation tracking",
         },
         {
           title: "Custom Events",
