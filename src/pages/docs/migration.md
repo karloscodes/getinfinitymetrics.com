@@ -34,10 +34,6 @@ Each migration guide will cover:
 - Goal and conversion setup
 - Historical data considerations
 
-## Get Notified
+## Found an Issue or Want to Improve?
 
-Want to be notified when the migration guide is ready? Contact us at [support@getinfinitymetrics.com](mailto:support@getinfinitymetrics.com) and we'll let you know as soon as it's available.
-
-## Need Help Now?
-
-If you need immediate assistance with migrating from your current analytics platform, our team can help. Contact us directly and we'll provide personalized migration assistance.
+If you find any issue or want to improve this documentation, you can do it here: [@https://github.com/karloscodes/getinfinitymetrics.com](https://github.com/karloscodes/getinfinitymetrics.com)

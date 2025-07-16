@@ -72,9 +72,6 @@ If you're still experiencing issues after checking this guide:
 2. **Try the basics** - Restart the service and check configuration
 3. **Contact support** - Reach out to our support team with specific error messages
 
-Need immediate help? Contact us at [support@getinfinitymetrics.com](mailto:support@getinfinitymetrics.com) with:
+## Found an Issue or Want to Improve?
 
-- Your server configuration
-- Error messages from logs
-- Steps to reproduce the issue
-- Expected vs actual behavior
+If you find any issue or want to improve this documentation, you can do it here: [@https://github.com/karloscodes/getinfinitymetrics.com](https://github.com/karloscodes/getinfinitymetrics.com)
