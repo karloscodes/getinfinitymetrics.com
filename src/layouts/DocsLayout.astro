@@ -1,0 +1,759 @@
+---
+import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import Schema from "../components/Schema.astro";
+import PreloadAssets from "../components/PreloadAssets.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description = "Deploy in one command on your server. Use AI to unlock insights beyond dashboards. Grow from small bets to thriving businesses.",
+  image = "https://getinfinitymetrics.com/InfinityMetrics%20128x720.png",
+  canonical = Astro.url.href,
+} = Astro.props;
+
+// Get current page path for navigation highlighting
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- SEO -->
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      canonical={canonical}
+    />
+
+    <!-- Preload Assets -->
+    <PreloadAssets />
+
+    <!-- Structured Data -->
+    <Schema name={title} description={description} includeFAQ={false} />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Prism CSS for syntax highlighting -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom docs styles -->
+    <style>
+      /* Navigation styles */
+      .docs-nav-item {
+        @apply block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md transition-colors;
+      }
+      .docs-nav-item.active {
+        @apply bg-blue-50 text-blue-700 border-r-2 border-blue-500;
+      }
+      .docs-nav-section {
+        @apply mb-6;
+      }
+      .docs-nav-section h3 {
+        @apply text-xs font-semibold text-gray-900 uppercase tracking-wide mb-2;
+      }
+
+      /* Main content container */
+      .docs-content {
+        max-width: none;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          "Roboto",
+          sans-serif;
+        color: #374151;
+        line-height: 1.7;
+      }
+
+      /* Reset and base typography */
+      .docs-content * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Headings */
+      .docs-content h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #e5e7eb;
+        line-height: 1.2;
+      }
+
+      .docs-content h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #111827;
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #e5e7eb;
+        line-height: 1.3;
+      }
+
+      .docs-content h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #111827;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+      }
+
+      .docs-content h4 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #111827;
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+      }
+
+      .docs-content h5 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #111827;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+      }
+
+      .docs-content h6 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #111827;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+      }
+
+      /* Paragraphs */
+      .docs-content p {
+        color: #4b5563;
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+        font-size: 1rem;
+      }
+
+      .docs-content p + p {
+        margin-top: 1.5rem;
+      }
+
+      /* Lists */
+      .docs-content ul,
+      .docs-content ol {
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+      }
+
+      .docs-content ul {
+        list-style-type: disc;
+      }
+
+      .docs-content ol {
+        list-style-type: decimal;
+      }
+
+      .docs-content li {
+        color: #4b5563;
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
+
+      .docs-content li p {
+        margin-bottom: 0.5rem;
+      }
+
+      /* Nested lists */
+      .docs-content ul ul,
+      .docs-content ol ol,
+      .docs-content ul ol,
+      .docs-content ol ul {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Links */
+      .docs-content a {
+        color: #2563eb;
+        text-decoration: underline;
+        text-decoration-color: rgba(37, 99, 235, 0.3);
+        text-underline-offset: 2px;
+        transition: all 0.2s;
+      }
+
+      .docs-content a:hover {
+        color: #1d4ed8;
+        text-decoration-color: rgba(29, 78, 216, 0.6);
+      }
+
+      /* Inline code */
+      .docs-content code {
+        background-color: #f3f4f6;
+        color: #1f2937;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.375rem;
+        font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+        font-size: 0.875rem;
+        border: 1px solid #e5e7eb;
+      }
+
+      /* Code blocks */
+      .docs-content pre {
+        background-color: #1f2937;
+        color: #f9fafb;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin: 1.5rem 0;
+        overflow-x: auto;
+        border: 1px solid #374151;
+        font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        position: relative;
+        /* Fix overflow issues */
+        max-width: 100%;
+        white-space: pre;
+        word-wrap: normal;
+        word-break: normal;
+      }
+
+      .docs-content pre code {
+        background-color: transparent;
+        color: inherit;
+        padding: 0;
+        border: none;
+        font-size: inherit;
+        border-radius: 0;
+      }
+
+      /* Code block scrollbar */
+      .docs-content pre::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .docs-content pre::-webkit-scrollbar-track {
+        background: #374151;
+        border-radius: 4px;
+      }
+
+      .docs-content pre::-webkit-scrollbar-thumb {
+        background: #6b7280;
+        border-radius: 4px;
+      }
+
+      .docs-content pre::-webkit-scrollbar-thumb:hover {
+        background: #9ca3af;
+      }
+
+      /* Copy button */
+      .docs-content pre::after {
+        content: "Copy";
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        background-color: #4b5563;
+        color: #f9fafb;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        font-family: "Inter", sans-serif;
+        opacity: 0;
+        transition: opacity 0.2s;
+        cursor: pointer;
+      }
+
+      .docs-content pre:hover::after {
+        opacity: 1;
+      }
+
+      /* Blockquotes */
+      .docs-content blockquote {
+        border-left: 4px solid #dbeafe;
+        padding-left: 1.5rem;
+        margin: 1.5rem 0;
+        background-color: #eff6ff;
+        padding: 1rem 1.5rem;
+        border-radius: 0.5rem;
+        font-style: italic;
+        color: #1e40af;
+      }
+
+      /* Tables */
+      .docs-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        overflow: hidden;
+      }
+
+      .docs-content th {
+        background-color: #f9fafb;
+        border: 1px solid #d1d5db;
+        padding: 0.75rem 1rem;
+        text-align: left;
+        font-weight: 600;
+        color: #111827;
+      }
+
+      .docs-content td {
+        border: 1px solid #d1d5db;
+        padding: 0.75rem 1rem;
+        color: #4b5563;
+      }
+
+      /* Strong and emphasis */
+      .docs-content strong {
+        font-weight: 600;
+        color: #111827;
+      }
+
+      .docs-content em {
+        font-style: italic;
+        color: #374151;
+      }
+
+      /* Horizontal rules */
+      .docs-content hr {
+        border: 0;
+        border-top: 1px solid #e5e7eb;
+        margin: 2rem 0;
+      }
+
+      /* Images */
+      .docs-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        border: 1px solid #e5e7eb;
+        margin: 1.5rem 0;
+      }
+
+      /* Alert boxes */
+      .docs-content .note {
+        background-color: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-left: 4px solid #3b82f6;
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0.5rem;
+      }
+
+      .docs-content .note h4 {
+        color: #1e40af;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .docs-content .note p {
+        color: #1e40af;
+        margin-bottom: 0;
+      }
+
+      .docs-content .warning {
+        background-color: #fefce8;
+        border: 1px solid #fde047;
+        border-left: 4px solid #eab308;
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0.5rem;
+      }
+
+      .docs-content .warning h4 {
+        color: #a16207;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .docs-content .warning p {
+        color: #a16207;
+        margin-bottom: 0;
+      }
+
+      .docs-content .danger {
+        background-color: #fef2f2;
+        border: 1px solid #fecaca;
+        border-left: 4px solid #ef4444;
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0.5rem;
+      }
+
+      .docs-content .danger h4 {
+        color: #dc2626;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .docs-content .danger p {
+        color: #dc2626;
+        margin-bottom: 0;
+      }
+
+      .docs-content .success {
+        background-color: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        border-left: 4px solid #22c55e;
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 0.5rem;
+      }
+
+      .docs-content .success h4 {
+        color: #16a34a;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .docs-content .success p {
+        color: #16a34a;
+        margin-bottom: 0;
+      }
+
+      /* Command line styling */
+      .docs-content .command {
+        background-color: #1f2937;
+        color: #10b981;
+        padding: 1rem 1.5rem;
+        border-radius: 0.5rem;
+        font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+        font-size: 0.875rem;
+        margin: 1.5rem 0;
+        position: relative;
+        overflow-x: auto;
+      }
+
+      .docs-content .command::before {
+        content: "$ ";
+        color: #6ee7b7;
+        font-weight: 500;
+      }
+
+      /* Syntax highlighting tokens */
+      .docs-content .token.comment,
+      .docs-content .token.prolog,
+      .docs-content .token.doctype,
+      .docs-content .token.cdata {
+        color: #6b7280;
+      }
+
+      .docs-content .token.punctuation {
+        color: #d1d5db;
+      }
+
+      .docs-content .token.property,
+      .docs-content .token.tag,
+      .docs-content .token.boolean,
+      .docs-content .token.number,
+      .docs-content .token.constant,
+      .docs-content .token.symbol,
+      .docs-content .token.deleted {
+        color: #fbbf24;
+      }
+
+      .docs-content .token.selector,
+      .docs-content .token.attr-name,
+      .docs-content .token.string,
+      .docs-content .token.char,
+      .docs-content .token.builtin,
+      .docs-content .token.inserted {
+        color: #10b981;
+      }
+
+      .docs-content .token.operator,
+      .docs-content .token.entity,
+      .docs-content .token.url,
+      .docs-content .language-css .token.string,
+      .docs-content .style .token.string {
+        color: #f59e0b;
+      }
+
+      .docs-content .token.atrule,
+      .docs-content .token.attr-value,
+      .docs-content .token.keyword {
+        color: #8b5cf6;
+      }
+
+      .docs-content .token.function,
+      .docs-content .token.class-name {
+        color: #3b82f6;
+      }
+
+      .docs-content .token.regex,
+      .docs-content .token.important,
+      .docs-content .token.variable {
+        color: #ef4444;
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .docs-content h1 {
+          font-size: 2rem;
+        }
+
+        .docs-content h2 {
+          font-size: 1.5rem;
+        }
+
+        .docs-content h3 {
+          font-size: 1.25rem;
+        }
+
+        .docs-content pre {
+          font-size: 0.75rem;
+          padding: 1rem;
+        }
+
+        .docs-content .command {
+          font-size: 0.75rem;
+          padding: 0.75rem 1rem;
+        }
+      }
+
+      /* Print styles */
+      @media print {
+        .docs-content {
+          color: #000;
+        }
+
+        .docs-content pre {
+          background-color: #f3f4f6;
+          color: #000;
+          border: 1px solid #d1d5db;
+        }
+
+        .docs-content .command {
+          background-color: #f3f4f6;
+          color: #000;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-white antialiased">
+    <Header />
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex gap-8 py-8">
+        <!-- Main content -->
+        <main class="flex-1 min-w-0">
+          <div class="docs-content">
+            <slot />
+          </div>
+        </main>
+
+        <!-- Right sidebar navigation -->
+        <aside class="w-64 flex-shrink-0 hidden lg:block">
+          <nav class="sticky top-8 space-y-1">
+            <div class="docs-nav-section">
+              <h3>Getting Started</h3>
+              <a
+                href="/docs"
+                class={`docs-nav-item ${currentPath === "/docs" ? "active" : ""}`}
+              >
+                Documentation
+              </a>
+              <a
+                href="/docs/getting-started"
+                class={`docs-nav-item ${currentPath === "/docs/getting-started" ? "active" : ""}`}
+              >
+                Getting Started
+              </a>
+              <a
+                href="/docs/installation"
+                class={`docs-nav-item ${currentPath === "/docs/installation" ? "active" : ""}`}
+              >
+                Installation
+              </a>
+            </div>
+
+            <div class="docs-nav-section">
+              <h3>Core Features</h3>
+              <a
+                href="/docs/custom-events"
+                class={`docs-nav-item ${currentPath === "/docs/custom-events" ? "active" : ""}`}
+              >
+                Custom Events
+              </a>
+              <a
+                href="/docs/revenue-tracking"
+                class={`docs-nav-item ${currentPath === "/docs/revenue-tracking" ? "active" : ""}`}
+              >
+                Revenue Tracking
+              </a>
+              <a
+                href="/docs/subdomain-tracking"
+                class={`docs-nav-item ${currentPath === "/docs/subdomain-tracking" ? "active" : ""}`}
+              >
+                Subdomain Tracking
+              </a>
+            </div>
+
+            <div class="docs-nav-section">
+              <h3>Framework Guides</h3>
+              <a
+                href="/docs/frameworks"
+                class={`docs-nav-item ${currentPath === "/docs/frameworks" ? "active" : ""}`}
+              >
+                All Frameworks
+              </a>
+              <a
+                href="/docs/frameworks/nextjs"
+                class={`docs-nav-item ${currentPath === "/docs/frameworks/nextjs" ? "active" : ""}`}
+              >
+                Next.js
+              </a>
+              <a
+                href="/docs/frameworks/react"
+                class={`docs-nav-item ${currentPath === "/docs/frameworks/react" ? "active" : ""}`}
+              >
+                React
+              </a>
+              <a
+                href="/docs/frameworks/vue"
+                class={`docs-nav-item ${currentPath === "/docs/frameworks/vue" ? "active" : ""}`}
+              >
+                Vue.js
+              </a>
+              <a
+                href="/docs/frameworks/wordpress"
+                class={`docs-nav-item ${currentPath === "/docs/frameworks/wordpress" ? "active" : ""}`}
+              >
+                WordPress
+              </a>
+              <a
+                href="/docs/frameworks/ghost"
+                class={`docs-nav-item ${currentPath === "/docs/frameworks/ghost" ? "active" : ""}`}
+              >
+                Ghost
+              </a>
+              <a
+                href="/docs/frameworks/webflow"
+                class={`docs-nav-item ${currentPath === "/docs/frameworks/webflow" ? "active" : ""}`}
+              >
+                Webflow
+              </a>
+            </div>
+
+            <div class="docs-nav-section">
+              <h3>Advanced</h3>
+              <a
+                href="/docs/administration"
+                class={`docs-nav-item ${currentPath === "/docs/administration" ? "active" : ""}`}
+              >
+                Administration
+              </a>
+              <a
+                href="/docs/sdk-reference"
+                class={`docs-nav-item ${currentPath === "/docs/sdk-reference" ? "active" : ""}`}
+              >
+                SDK Reference
+              </a>
+              <a
+                href="/docs/api-reference"
+                class={`docs-nav-item ${currentPath === "/docs/api-reference" ? "active" : ""}`}
+              >
+                API Reference
+              </a>
+            </div>
+
+            <div class="docs-nav-section">
+              <h3>Help & Support</h3>
+              <a
+                href="/docs/troubleshooting"
+                class={`docs-nav-item ${currentPath === "/docs/troubleshooting" ? "active" : ""}`}
+              >
+                Troubleshooting
+              </a>
+              <a
+                href="/docs/migration"
+                class={`docs-nav-item ${currentPath === "/docs/migration" ? "active" : ""}`}
+              >
+                Migration Guide
+              </a>
+            </div>
+          </nav>
+        </aside>
+      </div>
+    </div>
+
+    <Footer />
+
+    <!-- Copy functionality for code blocks -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const codeBlocks = document.querySelectorAll(".docs-content pre");
+        codeBlocks.forEach((block) => {
+          block.addEventListener("click", function (e) {
+            // Only trigger on the copy button area
+            const rect = block.getBoundingClientRect();
+            const mouseEvent = e as MouseEvent;
+            const isInCopyArea =
+              mouseEvent.clientX > rect.right - 80 &&
+              mouseEvent.clientX < rect.right - 10 &&
+              mouseEvent.clientY > rect.top + 10 &&
+              mouseEvent.clientY < rect.top + 40;
+
+            if (!isInCopyArea) return;
+
+            const code = block.querySelector("code");
+            if (code) {
+              navigator.clipboard.writeText(code.textContent || "").then(() => {
+                // Create temporary style for "Copied!" feedback
+                const style = document.createElement("style");
+                style.textContent = `
+                  .docs-content pre.copied::after {
+                    content: "Copied!";
+                    background-color: #059669;
+                    color: #fff;
+                  }
+                `;
+                document.head.appendChild(style);
+
+                block.classList.add("copied");
+                setTimeout(() => {
+                  block.classList.remove("copied");
+                  document.head.removeChild(style);
+                }, 2000);
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

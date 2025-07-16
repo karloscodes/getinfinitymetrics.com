@@ -1,309 +1,44 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-
-const pageTitle = "Custom Events | Infinity Metrics";
-const pageDescription =
-  "Learn how to track custom events with Infinity Metrics analytics.";
+import DocsLayout from "../../layouts/DocsLayout.astro";
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
-  <Header />
-  <main class="py-12 md:py-20 overflow-hidden">
-    <div class="container px-4 sm:px-6 overflow-hidden">
-      <div class="max-w-4xl mx-auto">
-        <!-- Breadcrumbs -->
-        <nav class="mb-8">
-          <ol class="flex space-x-2 text-sm text-gray-500">
-            <li>
-              <a href="/docs" class="hover:text-gray-800">Documentation</a>
-            </li>
-            <li>→</li>
-            <li class="text-gray-900">Custom Events</li>
-          </ol>
-        </nav>
+<DocsLayout title="Custom Events - Infinity Metrics">
+  <h1>Custom Events</h1>
+  <p>
+    Track specific user interactions and business metrics beyond page views.
+  </p>
 
-        <h1
-          class="text-4xl md:text-5xl font-bold mb-6 text-black"
-        >
-          Custom Events
-        </h1>
-        <p class="text-xl text-gray-600 mb-12 max-w-3xl">
-          Track specific user interactions and business metrics that matter to
-          your application.
-        </p>
+  <h2>Basic Event Tracking</h2>
+  <p>Track a custom event:</p>
+  <pre><code>Infinity.track('button_click', &#123;
+  button_name: 'Subscribe',
+  page: '/pricing'
+&#125;);</code></pre>
 
-        <!-- Overview -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-bold mb-8 text-black">
-            What are Custom Events?
-          </h2>
-          <p class="text-gray-600 mb-8">
-            Custom events allow you to track specific user interactions that are
-            important to your business but aren't automatically captured by
-            basic page view tracking. These could be button clicks, form
-            submissions, video plays, downloads, or any other meaningful user
-            action.
-          </p>
-
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <h3 class="text-lg font-black mb-3 text-black">
-                Business Metrics
-              </h3>
-              <ul class="text-gray-600 space-y-1 text-sm">
-                <li>• Sign-ups and registrations</li>
-                <li>• Feature usage and adoption</li>
-                <li>• Purchase and conversion events</li>
-                <li>• Goal completions</li>
-              </ul>
-            </div>
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <h3 class="text-lg font-black mb-3 text-black">User Behavior</h3>
-              <ul class="text-gray-600 space-y-1 text-sm">
-                <li>• Content engagement (video plays, downloads)</li>
-                <li>• Form interactions and abandonments</li>
-                <li>• Search queries and results</li>
-                <li>• User journey milestones</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- Basic Usage -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-bold mb-8 text-black">Basic Usage</h2>
-          <p class="text-gray-600 mb-6">
-            The core function for tracking custom events in Infinity Metrics:
-          </p>
-
-          <div
-            class="bg-gray-900 p-4 rounded-md font-mono text-sm overflow-x-auto mb-6"
-          >
-            <pre
-              class="text-white"><code>{`// Send a custom event
-window.InfinityMetrics.sendCustomEvent(eventName, metadata)
-
-// Parameters:
-// eventName (string, required): Event identifier
-// metadata (object, optional): Additional event data`}</code></pre>
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-6 mb-6">
-            <div
-              class="card p-6 rounded-xl shadow-sm border border-gray-200"
-            >
-              <h4 class="font-semibold mb-2 text-black">
-                eventName (required)
-              </h4>
-              <p class="text-gray-600 text-sm mb-2">
-                A descriptive string that identifies the event type.
-              </p>
-              <ul class="text-gray-600 text-sm space-y-1">
-                <li>• Use snake_case format (e.g., "video_played")</li>
-                <li>• Keep under 50 characters</li>
-                <li>• Be specific and consistent</li>
-              </ul>
-            </div>
-            <div
-              class="card p-6 rounded-xl shadow-sm border border-gray-200"
-            >
-              <h4 class="font-semibold mb-2 text-black">metadata (optional)</h4>
-              <p class="text-gray-600 text-sm mb-2">
-                An object containing additional event data.
-              </p>
-              <ul class="text-gray-600 text-sm space-y-1">
-                <li>• Include relevant context</li>
-                <li>• Use consistent property names</li>
-                <li>• Avoid sensitive information</li>
-              </ul>
-            </div>
-          </div>
-
-          <h3 class="text-xl font-semibold mb-4 text-black">Simple Example</h3>
-          <div
-            class="bg-gray-900 p-4 rounded-md font-mono text-sm overflow-x-auto mb-4"
-          >
-            <pre
-              class="text-white"><code>{`// Track a simple button click
-window.InfinityMetrics.sendCustomEvent('newsletter_signup');`}</code></pre>
-          </div>
-
-          <h3 class="text-xl font-semibold mb-4 text-black">
-            Example with Metadata
-          </h3>
-          <div
-            class="bg-gray-900 p-4 rounded-md font-mono text-sm overflow-x-auto mb-4"
-          >
-            <pre
-              class="text-white"><code>{`// Track with additional context
-window.InfinityMetrics.sendCustomEvent('video_played', {
-  videoId: 'intro-tutorial',
-  videoTitle: 'Getting Started Guide',
-  duration: 120,
-  quality: '1080p',
-  autoplay: false
-});`}</code></pre>
-          </div>
-        </section>
-
-        <!-- Best Practices -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-bold mb-8 text-black">Best Practices</h2>
-
-          <div class="grid md:grid-cols-2 gap-6">
-            <div
-              class="card p-6 rounded-xl shadow-sm border-l-4 border-gray-600"
-            >
-              <h3 class="text-lg font-semibold mb-3 text-black">✅ Do</h3>
-              <ul class="text-gray-600 space-y-2 text-sm">
-                <li>• Use consistent naming conventions</li>
-                <li>• Include relevant context in metadata</li>
-                <li>• Track user-initiated actions</li>
-                <li>• Document your event schema</li>
-                <li>• Test events in development first</li>
-              </ul>
-            </div>
-            <div
-              class="card p-6 rounded-xl shadow-sm border-l-4 border-gray-400"
-            >
-              <h3 class="text-lg font-semibold mb-3 text-black">❌ Don't</h3>
-              <ul class="text-gray-600 space-y-2 text-sm">
-                <li>• Track sensitive user information</li>
-                <li>• Over-track every minor interaction</li>
-                <li>• Use inconsistent event names</li>
-                <li>• Track system-generated events</li>
-                <li>• Forget to handle tracking failures</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- Common Event Types -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-bold mb-8 text-black">Common Event Types</h2>
-
-          <div class="space-y-8">
-            <!-- Form Events -->
-            <div class="card p-6 rounded-xl shadow-sm">
-              <h3 class="text-xl font-semibold mb-4 text-black">Form Events</h3>
-              <div class="space-y-4">
-                <div>
-                  <h4 class="font-medium mb-2 text-black">Form Submission</h4>
-                  <div
-                    class="bg-gray-900 p-4 rounded-md font-mono text-sm overflow-x-auto"
-                  >
-                    <pre
-                      class="text-white"><code>{`window.InfinityMetrics.sendCustomEvent('form_submitted', {
-  formName: 'contact_form',
-  fieldsCompleted: 8,
-  totalFields: 10,
-  submissionTime: 120 // seconds
-});`}</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- E-commerce Events -->
-            <div class="card p-6 rounded-xl shadow-sm">
-              <h3 class="text-xl font-semibold mb-4 text-black">
-                E-commerce Events
-              </h3>
-              <div class="space-y-4">
-                <div>
-                  <h4 class="font-medium mb-2 text-black">Add to Cart</h4>
-                  <div
-                    class="bg-gray-900 p-4 rounded-md font-mono text-sm overflow-x-auto"
-                  >
-                    <pre
-                      class="text-white"><code>{`window.InfinityMetrics.sendCustomEvent('add_to_cart', {
-  productId: 'prod_12345',
-  quantity: 1,
+  <h2>Event Properties</h2>
+  <p>Add custom properties to events:</p>
+  <pre><code>Infinity.track('purchase', &#123;
   value: 99.99,
-  cartTotal: 199.98,
-  cartItems: 2
-});`}</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
+  currency: 'USD',
+  product_id: 'abc123'
+&#125;);</code></pre>
 
-            <!-- Media Events -->
-            <div class="card p-6 rounded-xl shadow-sm">
-              <h3 class="text-xl font-semibold mb-4 text-black">
-                Media Events
-              </h3>
-              <div class="space-y-4">
-                <div>
-                  <h4 class="font-medium mb-2 text-black">Video Play</h4>
-                  <div
-                    class="bg-gray-900 p-4 rounded-md font-mono text-sm overflow-x-auto"
-                  >
-                    <pre
-                      class="text-white"><code>{`window.InfinityMetrics.sendCustomEvent('video_played', {
-  videoId: 'product_demo',
-  source: 'homepage_hero',
-  duration: 120
-});`}</code></pre>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+  <h2>Common Use Cases</h2>
+  <ul>
+    <li>Button clicks</li>
+    <li>Form submissions</li>
+    <li>Video plays</li>
+    <li>File downloads</li>
+    <li>E-commerce purchases</li>
+  </ul>
 
-        <!-- Implementation Example -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-bold mb-8 text-black">
-            Implementation Example
-          </h2>
+  <h2>Best Practices</h2>
+  <ul>
+    <li>Use descriptive event names</li>
+    <li>Include relevant properties</li>
+    <li>Don't track sensitive data</li>
+    <li>Be consistent with naming</li>
+  </ul>
 
-          <div class="card p-6 rounded-xl shadow-sm">
-            <h3 class="text-xl font-semibold mb-4 text-black">
-              Button Click Tracking
-            </h3>
-            <div
-              class="bg-gray-900 p-4 rounded-md font-mono text-sm overflow-x-auto"
-            >
-              <pre
-                class="text-white"><code>{`// HTML
-<button id="cta-button" onclick="trackCTAClick()">
-  Get Started Free
-</button>
-
-// JavaScript
-function trackCTAClick() {
-  window.InfinityMetrics.sendCustomEvent('cta_clicked', {
-    buttonText: 'Get Started Free',
-    page: window.location.pathname,
-    section: 'hero'
-  });
-}`}</code></pre>
-            </div>
-          </div>
-        </section>
-
-        <!-- Navigation -->
-        <div
-          class="flex justify-between items-center pt-8 border-t border-gray-200"
-        >
-          <a
-            href="/docs/frameworks"
-            class="flex items-center text-gray-600 hover:text-gray-800"
-          >
-            ← Framework Guides
-          </a>
-          <a
-            href="/docs/sdk-reference"
-            class="flex items-center text-gray-600 hover:text-gray-800"
-          >
-            SDK Reference →
-          </a>
-        </div>
-      </div>
-    </div>
-  </main>
-  <Footer />
-</Layout>
+  <p>Next: <a href="/docs/revenue-tracking">Revenue Tracking</a></p>
+</DocsLayout>

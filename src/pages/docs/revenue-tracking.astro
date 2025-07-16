@@ -1,496 +1,58 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import DocsLayout from "../../layouts/DocsLayout.astro";
 ---
 
-<Layout title="Revenue Tracking - Infinity Metrics">
-  <div class="min-h-screen bg-gray-50 py-12">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Header -->
-      <div class="mb-8">
-        <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
-          <a href="/docs" class="hover:text-gray-700">Documentation</a>
-          <span>→</span>
-          <span class="text-gray-900">Revenue Tracking</span>
-        </nav>
-        <h1 class="text-3xl font-bold text-gray-900">Revenue Tracking</h1>
-        <p class="mt-2 text-gray-600">
-          Comprehensive guide to tracking revenue and e-commerce events
-        </p>
-      </div>
+<DocsLayout title="Revenue Tracking - Infinity Metrics">
+  <h1>Revenue Tracking</h1>
+  <p>
+    Track e-commerce transactions and revenue attribution to understand the
+    impact of your marketing efforts.
+  </p>
 
-      <!-- Overview -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Overview</h2>
-        <p class="text-gray-600 mb-4">
-          Revenue tracking allows you to measure the financial impact of your
-          user interactions and marketing campaigns. Infinity Metrics provides
-          comprehensive e-commerce tracking capabilities that help you
-          understand your customers' purchase journey and optimize for
-          conversions.
-        </p>
-
-        <div class="bg-gray-50 border border-blue-200 rounded-lg p-4">
-          <h3 class="font-medium text-gray-900 mb-2">Key Features</h3>
-          <ul class="text-gray-800 space-y-1 text-sm">
-            <li>• Track individual purchases and transaction details</li>
-            <li>• Monitor cart abandonment and recovery</li>
-            <li>• Measure conversion funnels and drop-off points</li>
-            <li>• Attribution modeling for marketing channels</li>
-            <li>• Customer lifetime value (CLV) calculations</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Purchase Events -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-          Purchase Events
-        </h2>
-
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">
-              Basic Purchase Tracking
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`// Track a completed purchase
-analytics.track('purchase', {
-  transaction_id: 'txn_1234567890',
-  value: 129.99,
-  currency: 'USD',
-  tax: 10.40,
-  shipping: 5.99,
-  coupon: 'SAVE10',
-  items: [{
-    item_id: 'sku_12345',
-    item_name: 'Premium Subscription',
-    category: 'subscription',
-    quantity: 1,
-    price: 119.99
-  }, {
-    item_id: 'sku_67890',
-    item_name: 'Setup Fee',
-    category: 'service',
-    quantity: 1,
-    price: 10.00
-  }]
-});`}</code></pre>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">
-              Subscription Revenue
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`// Track subscription purchase
-analytics.track('purchase', {
-  transaction_id: 'sub_1234567890',
-  value: 29.99,
-  currency: 'USD',
-  subscription: {
-    subscription_id: 'sub_premium_monthly',
-    plan_name: 'Premium Monthly',
-    billing_cycle: 'monthly',
-    trial_period: 14, // days
-    is_trial: false
-  },
-  items: [{
-    item_id: 'plan_premium',
-    item_name: 'Premium Plan',
-    category: 'subscription',
-    quantity: 1,
-    price: 29.99,
-    subscription_period: 'monthly'
-  }]
-});`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- E-commerce Funnel -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-          E-commerce Funnel Tracking
-        </h2>
-
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">
-              Product Views
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`// Track when user views a product
-analytics.track('view_item', {
-  item_id: 'prod_12345',
-  item_name: 'Wireless Headphones',
-  category: 'electronics',
-  brand: 'AudioBrand',
+  <h2>Basic Revenue Tracking</h2>
+  <p>Track a purchase event:</p>
+  <pre><code>Infinity.track('purchase', &#123;
   value: 99.99,
   currency: 'USD',
-  list_name: 'search_results',
-  list_position: 3
-});`}</code></pre>
-            </div>
-          </div>
+  transaction_id: 'txn_123456'
+&#125;);</code></pre>
 
-          <div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">Add to Cart</h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`// Track when user adds item to cart
-analytics.track('add_to_cart', {
+  <h2>E-commerce Events</h2>
+  <p>Track the complete purchase funnel:</p>
+  <pre><code>// Add to cart
+Infinity.track('add_to_cart', &#123;
+  product_id: 'prod_123',
+  price: 29.99,
+  quantity: 1
+&#125;);
+
+// Begin checkout
+Infinity.track('begin_checkout', &#123;
+  cart_value: 89.97,
+  items: 3
+&#125;);
+
+// Purchase complete
+Infinity.track('purchase', &#123;
+  value: 89.97,
   currency: 'USD',
-  value: 99.99,
-  items: [{
-    item_id: 'prod_12345',
-    item_name: 'Wireless Headphones',
-    category: 'electronics',
-    quantity: 1,
-    price: 99.99,
-    variant: 'black'
-  }]
-});`}</code></pre>
-            </div>
-          </div>
+  transaction_id: 'txn_123456'
+&#125;);</code></pre>
 
-          <div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">
-              Begin Checkout
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`// Track when user starts checkout process
-analytics.track('begin_checkout', {
-  currency: 'USD',
-  value: 199.98,
-  coupon: 'FIRSTTIME10',
-  items: [{
-    item_id: 'prod_12345',
-    item_name: 'Wireless Headphones',
-    category: 'electronics',
-    quantity: 2,
-    price: 99.99
-  }]
-});`}</code></pre>
-            </div>
-          </div>
+  <h2>Revenue Attribution</h2>
+  <p>
+    Understand which marketing channels drive the most revenue by tracking the
+    complete customer journey from first visit to purchase.
+  </p>
 
-          <div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">Payment Info</h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`// Track when user adds payment information
-analytics.track('add_payment_info', {
-  currency: 'USD',
-  value: 199.98,
-  payment_type: 'credit_card',
-  items: [{
-    item_id: 'prod_12345',
-    item_name: 'Wireless Headphones',
-    category: 'electronics',
-    quantity: 2,
-    price: 99.99
-  }]
-});`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </section>
+  <h2>Common Properties</h2>
+  <ul>
+    <li><strong>value</strong> - Transaction amount</li>
+    <li><strong>currency</strong> - Currency code (USD, EUR, etc.)</li>
+    <li><strong>transaction_id</strong> - Unique transaction identifier</li>
+    <li><strong>product_id</strong> - Product identifier</li>
+    <li><strong>quantity</strong> - Number of items</li>
+  </ul>
 
-      <!-- Refunds and Returns -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-          Refunds and Returns
-        </h2>
-
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">Full Refund</h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`// Track a full order refund
-analytics.track('refund', {
-  transaction_id: 'txn_1234567890',
-  value: 129.99,
-  currency: 'USD',
-  refund_reason: 'customer_request',
-  items: [{
-    item_id: 'sku_12345',
-    item_name: 'Premium Subscription',
-    category: 'subscription',
-    quantity: 1,
-    price: 119.99
-  }]
-});`}</code></pre>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">
-              Partial Refund
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`// Track a partial refund (single item)
-analytics.track('refund', {
-  transaction_id: 'txn_1234567890',
-  value: 50.00,
-  currency: 'USD',
-  refund_type: 'partial',
-  refund_reason: 'damaged_item',
-  items: [{
-    item_id: 'sku_67890',
-    item_name: 'Bluetooth Speaker',
-    category: 'electronics',
-    quantity: 1,
-    price: 50.00
-  }]
-});`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Revenue Attribution -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-          Revenue Attribution
-        </h2>
-
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">
-              Marketing Attribution
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`// Track purchase with marketing attribution
-analytics.track('purchase', {
-  transaction_id: 'txn_1234567890',
-  value: 99.99,
-  currency: 'USD',
-  attribution: {
-    source: 'google',
-    medium: 'cpc',
-    campaign: 'summer_sale_2024',
-    term: 'wireless headphones',
-    content: 'ad_variant_a',
-    click_id: 'gclid_12345'
-  },
-  items: [{
-    item_id: 'prod_12345',
-    item_name: 'Wireless Headphones',
-    category: 'electronics',
-    quantity: 1,
-    price: 99.99
-  }]
-});`}</code></pre>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">
-              Customer Journey Attribution
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`// Track purchase with customer journey context
-analytics.track('purchase', {
-  transaction_id: 'txn_1234567890',
-  value: 199.99,
-  currency: 'USD',
-  customer_journey: {
-    touchpoints: [
-      { source: 'organic', medium: 'search', timestamp: '2024-01-15T10:00:00Z' },
-      { source: 'email', medium: 'newsletter', timestamp: '2024-01-16T14:00:00Z' },
-      { source: 'direct', medium: 'none', timestamp: '2024-01-17T16:30:00Z' }
-    ],
-    days_to_conversion: 2,
-    session_count: 3,
-    previous_purchases: 1
-  },
-  items: [{
-    item_id: 'prod_67890',
-    item_name: 'Premium Package',
-    category: 'software',
-    quantity: 1,
-    price: 199.99
-  }]
-});`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Server-Side Revenue Tracking -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-          Server-Side Revenue Tracking
-        </h2>
-
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">
-              Payment Webhook Integration
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`// Example: Stripe webhook handler
-const { InfinityMetrics } = require('@infinity-metrics/node');
-
-const analytics = new InfinityMetrics({
-  apiKey: process.env.INFINITY_METRICS_API_KEY
-});
-
-async function handleStripeWebhook(event) {
-  switch (event.type) {
-    case 'payment_intent.succeeded':
-      const paymentIntent = event.data.object;
-      
-      await analytics.track({
-        userId: paymentIntent.customer,
-        event: 'purchase',
-        properties: {
-          transaction_id: paymentIntent.id,
-          value: paymentIntent.amount / 100, // Convert from cents
-          currency: paymentIntent.currency,
-          payment_method: paymentIntent.payment_method_types[0],
-          metadata: paymentIntent.metadata
-        }
-      });
-      break;
-      
-    case 'invoice.payment_succeeded':
-      const invoice = event.data.object;
-      
-      await analytics.track({
-        userId: invoice.customer,
-        event: 'subscription_payment',
-        properties: {
-          subscription_id: invoice.subscription,
-          amount: invoice.amount_paid / 100,
-          currency: invoice.currency,
-          billing_period: invoice.lines.data[0].period
-        }
-      });
-      break;
-  }
-}`}</code></pre>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">
-              Batch Revenue Processing
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`// Process revenue events in batches for better performance
-const events = [
-  {
-    userId: 'user_123',
-    event: 'purchase',
-    timestamp: '2024-01-15T10:30:00Z',
-    properties: {
-      transaction_id: 'txn_001',
-      value: 99.99,
-      currency: 'USD'
-    }
-  },
-  {
-    userId: 'user_456',
-    event: 'purchase',
-    timestamp: '2024-01-15T11:00:00Z',
-    properties: {
-      transaction_id: 'txn_002',
-      value: 149.99,
-      currency: 'USD'
-    }
-  }
-];
-
-await analytics.batch(events);`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Best Practices -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-          Best Practices
-        </h2>
-
-        <div class="space-y-4">
-          <div class="border-l-4 border-gray-400 pl-4">
-            <h3 class="font-medium text-gray-700">Currency Consistency</h3>
-            <p class="text-gray-700 text-sm">
-              Always use the same currency format (preferably ISO 4217 codes)
-              and ensure values are in the same denomination (e.g., dollars, not
-              cents).
-            </p>
-          </div>
-
-          <div class="border-l-4 border-blue-500 pl-4">
-            <h3 class="font-medium text-gray-900">Server-Side Validation</h3>
-            <p class="text-gray-800 text-sm">
-              Track critical revenue events server-side to ensure accuracy and
-              prevent client-side manipulation.
-            </p>
-          </div>
-
-          <div class="border-l-4 border-gray-400 pl-4">
-            <h3 class="font-medium text-gray-700">Transaction IDs</h3>
-            <p class="text-gray-700 text-sm">
-              Always include unique transaction IDs to prevent duplicate
-              tracking and enable accurate reconciliation.
-            </p>
-          </div>
-
-          <div class="border-l-4 border-gray-400 pl-4">
-            <h3 class="font-medium text-gray-700">Privacy Compliance</h3>
-            <p class="text-gray-700 text-sm">
-              Ensure revenue tracking complies with GDPR, CCPA, and other
-              privacy regulations. Avoid tracking PII in revenue events.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Navigation -->
-      <div
-        class="flex justify-between items-center pt-8 border-t border-gray-200"
-      >
-        <a
-          href="/docs/custom-events"
-          class="flex items-center text-gray-700 hover:text-black"
-        >
-          ← Custom Events
-        </a>
-        <a
-          href="/docs/subdomain-tracking"
-          class="flex items-center text-gray-700 hover:text-black"
-        >
-          Subdomain Tracking →
-        </a>
-      </div>
-    </div>
-  </div>
-</Layout>
+  <p>Next: <a href="/docs/subdomain-tracking">Subdomain Tracking</a></p>
+</DocsLayout>

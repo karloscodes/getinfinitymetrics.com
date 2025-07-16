@@ -1,550 +1,302 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-
-const pageTitle = "Installation | Infinity Metrics";
-const pageDescription =
-  "Complete installation guide for Infinity Metrics - automated installer and Docker deployment options.";
-
-// Code examples
-const installCommand =
-  "curl -fsSL https://getinfinitymetrics.com/install -o install.sh && sudo bash install.sh";
-const dockerRunCommand = `docker run -d \\
-  --name infinity-metrics \\
-  -v /path/to/storage:/app/storage \\
-  -v /path/to/logs:/app/logs \\
-  -e INFINITY_METRICS_LOG_LEVEL=debug \\
-  -e INFINITY_METRICS_APP_PORT=8080 \\
-  -e INFINITY_METRICS_LICENSE_KEY=your-license-key \\
-  -e INFINITY_METRICS_DOMAIN=your-domain.com \\
-  -e INFINITY_METRICS_PRIVATE_KEY=your-private-key \\
-  --restart unless-stopped \\
-  infinitymetrics/app:latest`;
+import DocsLayout from "../../layouts/DocsLayout.astro";
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
-  <Header />
-  <main class="py-12 md:py-20 overflow-hidden">
-    <div class="container px-4 sm:px-6 overflow-hidden">
-      <div class="max-w-4xl mx-auto">
-        <!-- Breadcrumb -->
-        <nav class="mb-8">
-          <ol class="flex space-x-2 text-sm text-gray-500">
-            <li>
-              <a href="/docs" class="hover:text-gray-700">Documentation</a>
-            </li>
-            <li>/</li>
-            <li class="text-gray-900">Installation</li>
-          </ol>
-        </nav>
+<DocsLayout title="Installation - Infinity Metrics">
+  <h1>Installation</h1>
 
-        <h1
-          class="text-4xl md:text-5xl font-bold mb-6 text-black"
-        >
-          Installation Guide
-        </h1>
+  <p>
+    Get Infinity Metrics running on your server in minutes. Choose from our
+    automated installer, Docker deployment, or manual installation for full
+    control.
+  </p>
 
-        <p class="text-xl text-gray-600 mb-8">
-          Choose the installation method that best fits your needs. We offer
-          both automated and manual installation options.
-        </p>
+  <div class="note">
+    <h4>🚀 Quick Start</h4>
+    <p>
+      For most users, the <strong>automated installer</strong> is the fastest way
+      to get started. It handles dependencies, configuration, and service setup automatically.
+    </p>
+  </div>
 
-        <!-- Installation Methods -->
-        <section class="mb-12">
-          <h2 class="text-3xl font-bold mb-6 text-black">
-            Installation Methods
-          </h2>
-          <div class="grid md:grid-cols-2 gap-6 mb-8">
-            <div
-              class="card p-6 rounded-xl shadow-sm border border-gray-200"
-            >
-              <h3 class="text-xl font-black mb-3 text-black">
-                Automated Installation
-              </h3>
-              <p class="text-gray-600 mb-4">
-                One-command installation with automatic SSL setup. Perfect for
-                Ubuntu Server users.
-              </p>
-              <ul class="text-sm text-gray-600 space-y-1 mb-4">
-                <li>✅ Automatic SSL certificates</li>
-                <li>✅ Caddy proxy configuration</li>
-                <li>✅ System service setup</li>
-                <li>✅ Automatic updates</li>
-              </ul>
-              <a
-                href="#automated"
-                class="text-blue hover:text-blue-600 font-medium"
-              >
-                Get Started →
-              </a>
-            </div>
-            <div
-              class="card p-6 rounded-xl shadow-sm border border-gray-200"
-            >
-              <h3 class="text-xl font-black mb-3 text-black">
-                Docker Installation
-              </h3>
-              <p class="text-gray-600 mb-4">
-                Self-managed Docker deployment for advanced users and non-Ubuntu
-                systems.
-              </p>
-              <ul class="text-sm text-gray-600 space-y-1 mb-4">
-                <li>✅ Works on any Linux distribution</li>
-                <li>✅ Full control over configuration</li>
-                <li>✅ Easy to integrate with existing infrastructure</li>
-                <li>✅ Manual update control</li>
-              </ul>
-              <a
-                href="#docker"
-                class="text-blue hover:text-blue-600 font-medium"
-              >
-                Get Started →
-              </a>
-            </div>
-          </div>
-        </section>
+  <h2>Automated Installation</h2>
 
-        <!-- Prerequisites -->
-        <section class="mb-12">
-          <h2 class="text-3xl font-bold mb-6 text-black">Prerequisites</h2>
-          <div
-            class="bg-gray-50 border-l-4 border-gray-400 p-6 rounded-r-xl mb-6"
-          >
-            <h3 class="text-lg font-semibold mb-2 text-gray-700">
-              Before You Begin
-            </h3>
-            <ul class="text-gray-700 space-y-1">
-              <li>
-                • A valid Infinity Metrics license (purchase from our <a
-                  href="/#pricing"
-                  class="underline">pricing page</a
-                >)
-              </li>
-              <li>• A server or VPS running Linux</li>
-              <li>• Root or sudo access to the server</li>
-              <li>• Domain name pointed to your server</li>
-              <li>• Open ports 80 and 443 for SSL certificate setup</li>
-            </ul>
-          </div>
-        </section>
+  <p>
+    Our automated installer works on most Linux distributions and handles all
+    setup automatically:
+  </p>
 
-        <!-- Automated Installation -->
-        <section id="automated" class="mb-12">
-          <h2 class="text-3xl font-bold mb-6 text-black">
-            Automated Installation
-          </h2>
-          <p class="text-gray-600 mb-6">
-            The automated installer handles everything for you, including SSL
-            certificates and proxy configuration.
-          </p>
+  <div class="command">
+    curl -sSL https://getinfinitymetrics.com/install | bash
+  </div>
 
-          <div class="space-y-6">
-            <div class="bg-gray-50 border-l-4 border-gray-400 p-6 rounded-r-xl">
-              <h3 class="text-lg font-semibold mb-2 text-gray-800">
-                System Requirements
-              </h3>
-              <ul class="text-gray-700 space-y-1">
-                <li>• Ubuntu Server 20.04 LTS or newer</li>
-                <li>• 512MB RAM minimum (1GB recommended)</li>
-                <li>• 10GB free disk space</li>
-                <li>• Internet connection for package installation</li>
-              </ul>
-            </div>
+  <p>The installer will:</p>
+  <ul>
+    <li>✅ Check system requirements</li>
+    <li>✅ Download the latest version</li>
+    <li>✅ Install dependencies</li>
+    <li>✅ Configure the database</li>
+    <li>✅ Set up the systemd service</li>
+    <li>✅ Start Infinity Metrics</li>
+  </ul>
 
-            <div>
-              <h3 class="text-xl font-semibold mb-4 text-black">
-                Installation Steps
-              </h3>
+  <h3>Supported Systems</h3>
+  <ul>
+    <li>Ubuntu 18.04+ / Debian 10+</li>
+    <li>CentOS 7+ / RHEL 7+</li>
+    <li>Amazon Linux 2</li>
+    <li>Arch Linux</li>
+  </ul>
 
-              <div class="space-y-4">
-                <div class="flex items-start">
-                  <div
-                    class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3"
-                  >
-                    1
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-black mb-2">
-                      Run the installer
-                    </h4>
-                    <p class="text-gray-600 mb-3">
-                      Execute the following command on your server:
-                    </p>
-                    <div
-                      class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto"
-                    >
-                      <pre
-                        class="text-white"><code>{installCommand}</code></pre>
-                    </div>
-                  </div>
-                </div>
+  <h2>Docker Installation</h2>
 
-                <div class="flex items-start">
-                  <div
-                    class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3"
-                  >
-                    2
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-black mb-2">
-                      Follow the prompts
-                    </h4>
-                    <p class="text-gray-600 mb-3">
-                      The installer will ask for:
-                    </p>
-                    <ul class="text-gray-600 space-y-1">
-                      <li>• Your license key</li>
-                      <li>• Domain name for your installation</li>
-                      <li>• Email address for SSL certificate</li>
-                      <li>• Admin password for the dashboard</li>
-                    </ul>
-                  </div>
-                </div>
+  <p>For containerized deployments, use our official Docker image:</p>
 
-                <div class="flex items-start">
-                  <div
-                    class="flex-shrink-0 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3"
-                  >
-                    3
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-black mb-2">
-                      Access your dashboard
-                    </h4>
-                    <p class="text-gray-600">
-                      Once installation is complete, visit <code
-                        class="bg-gray-100 px-2 py-1 rounded"
-                        >https://your-domain.com</code
-                      > to access your Infinity Metrics dashboard.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <h3>Quick Start with Docker</h3>
 
-            <div class="bg-gray-50 border-l-4 border-gray-400 p-6 rounded-r-xl">
-              <h3 class="text-lg font-semibold mb-2 text-gray-700">
-                What the installer does:
-              </h3>
-              <ul class="text-gray-700 space-y-1">
-                <li>• Downloads and installs Infinity Metrics</li>
-                <li>• Sets up Caddy as a reverse proxy</li>
-                <li>
-                  • Configures automatic SSL certificates with Let's Encrypt
-                </li>
-                <li>• Creates system services for automatic startup</li>
-                <li>• Sets up automatic updates</li>
-              </ul>
-            </div>
-          </div>
-        </section>
+  <pre><code class="language-bash">docker run -d \
+  --name infinity-metrics \
+  -p 8080:8080 \
+  -v infinity-data:/var/lib/infinity-metrics \
+  infinitymetrics/infinity-metrics:latest</code></pre>
 
-        <!-- Docker Installation -->
-        <section id="docker" class="mb-12">
-          <h2 class="text-3xl font-bold mb-6 text-black">
-            Docker Installation
-          </h2>
-          <p class="text-gray-600 mb-6">
-            For advanced users or those running non-Ubuntu systems, you can
-            deploy Infinity Metrics using Docker.
-          </p>
+  <h3>Docker Compose</h3>
 
-          <div class="space-y-6">
-            <div class="bg-gray-50 border-l-4 border-gray-400 p-6 rounded-r-xl">
-              <h3 class="text-lg font-semibold mb-2 text-gray-800">
-                System Requirements
-              </h3>
-              <ul class="text-gray-700 space-y-1">
-                <li>• Any Linux distribution with Docker support</li>
-                <li>• Docker Engine 20.10+ installed</li>
-                <li>• 512MB RAM minimum (1GB recommended)</li>
-                <li>• 10GB free disk space</li>
-              </ul>
-            </div>
+  <p>For production deployments, use Docker Compose with persistent storage:</p>
 
-            <div>
-              <h3 class="text-xl font-semibold mb-4 text-black">
-                Required Environment Variables
-              </h3>
-              <div class="overflow-x-auto">
-                <table
-                  class="min-w-full divide-y divide-gray-200 border border-gray-200 rounded-lg"
-                >
-                  <thead class="bg-gray-50">
-                    <tr>
-                      <th
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >Variable</th
-                      >
-                      <th
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >Description</th
-                      >
-                      <th
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >Example</th
-                      >
-                    </tr>
-                  </thead>
-                  <tbody class="bg-white divide-y divide-gray-200">
-                    <tr>
-                      <td
-                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                        >INFINITY_METRICS_LICENSE_KEY</td
-                      >
-                      <td class="px-6 py-4 text-sm text-gray-500"
-                        >Your license key from purchase</td
-                      >
-                      <td class="px-6 py-4 text-sm text-gray-500">abc123...</td>
-                    </tr>
-                    <tr>
-                      <td
-                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                        >INFINITY_METRICS_DOMAIN</td
-                      >
-                      <td class="px-6 py-4 text-sm text-gray-500"
-                        >Your domain name</td
-                      >
-                      <td class="px-6 py-4 text-sm text-gray-500"
-                        >analytics.example.com</td
-                      >
-                    </tr>
-                    <tr>
-                      <td
-                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                        >INFINITY_METRICS_PRIVATE_KEY</td
-                      >
-                      <td class="px-6 py-4 text-sm text-gray-500"
-                        >32-character random string</td
-                      >
-                      <td class="px-6 py-4 text-sm text-gray-500"
-                        >abcd1234...</td
-                      >
-                    </tr>
-                    <tr>
-                      <td
-                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                        >INFINITY_METRICS_APP_PORT</td
-                      >
-                      <td class="px-6 py-4 text-sm text-gray-500"
-                        >Port for the application</td
-                      >
-                      <td class="px-6 py-4 text-sm text-gray-500">8080</td>
-                    </tr>
-                    <tr>
-                      <td
-                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                        >INFINITY_METRICS_LOG_LEVEL</td
-                      >
-                      <td class="px-6 py-4 text-sm text-gray-500"
-                        >Logging level</td
-                      >
-                      <td class="px-6 py-4 text-sm text-gray-500">info</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+  <pre><code class="language-yaml">version: '3.8'
 
-            <div>
-              <h3 class="text-xl font-semibold mb-4 text-black">
-                Docker Command
-              </h3>
-              <p class="text-gray-600 mb-3">
-                Replace the placeholder values with your actual configuration:
-              </p>
-              <div
-                class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto"
-              >
-                <pre class="text-white"><code>{dockerRunCommand}</code></pre>
-              </div>
-            </div>
+services:
+  infinity-metrics:
+    image: infinitymetrics/infinity-metrics:latest
+    container_name: infinity-metrics
+    ports:
+      - "8080:8080"
+    volumes:
+      - infinity-data:/var/lib/infinity-metrics
+      - ./config.yml:/etc/infinity-metrics/config.yml
+    environment:
+      - INFINITY_CONFIG=/etc/infinity-metrics/config.yml
+    restart: unless-stopped
 
-            <div class="bg-gray-50 border-l-4 border-gray-400 p-6 rounded-r-xl">
-              <h3 class="text-lg font-semibold mb-2 text-gray-700">
-                Important Notes:
-              </h3>
-              <ul class="text-gray-700 space-y-1">
-                <li>
-                  • You'll need to set up your own reverse proxy (Nginx, Caddy,
-                  etc.)
-                </li>
-                <li>• SSL certificates must be configured separately</li>
-                <li>• Updates are manual - you control when to update</li>
-                <li>• Make sure to persist data by mounting volumes</li>
-              </ul>
-            </div>
-          </div>
-        </section>
+volumes:
+  infinity-data:</code></pre>
 
-        <!-- Post-Installation -->
-        <section class="mb-12">
-          <h2 class="text-3xl font-bold mb-6 text-black">Post-Installation</h2>
-          <div class="space-y-6">
-            <div class="card p-6 rounded-xl shadow-sm">
-              <h3 class="text-xl font-semibold mb-3 text-black">
-                1. Verify Installation
-              </h3>
-              <p class="text-gray-600 mb-4">
-                Check that Infinity Metrics is running correctly:
-              </p>
-              <ul class="text-gray-600 space-y-1">
-                <li>• Visit your domain in a web browser</li>
-                <li>• You should see the Infinity Metrics login page</li>
-                <li>
-                  • Check that SSL certificate is working (green lock icon)
-                </li>
-                <li>• Log in with your admin credentials</li>
-              </ul>
-            </div>
+  <div class="command">docker-compose up -d</div>
 
-            <div class="card p-6 rounded-xl shadow-sm">
-              <h3 class="text-xl font-semibold mb-3 text-black">
-                2. Add Tracking Script
-              </h3>
-              <p class="text-gray-600 mb-4">
-                Add the tracking script to your website:
-              </p>
-              <div
-                class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto"
-              >
-                <pre
-                  class="text-white"><code>&lt;script defer src="https://your-domain.com/api/v1/sdk.js"&gt;&lt;/script&gt;</code></pre>
-              </div>
-              <p class="text-gray-600 mt-3">
-                See our <a
-                  href="/docs/frameworks"
-                  class="text-gray-700 hover:underline">framework guides</a
-                > for specific integration instructions.
-              </p>
-            </div>
+  <h2>Manual Installation</h2>
 
-            <div class="card p-6 rounded-xl shadow-sm">
-              <h3 class="text-xl font-semibold mb-3 text-black">
-                3. Test Data Collection
-              </h3>
-              <p class="text-gray-600 mb-4">
-                Verify that analytics data is being collected:
-              </p>
-              <ul class="text-gray-600 space-y-1">
-                <li>• Visit your website with the tracking script installed</li>
-                <li>• Check your Infinity Metrics dashboard</li>
-                <li>• You should see page views appear within a few minutes</li>
-                <li>• Use browser developer tools to verify script loads</li>
-              </ul>
-            </div>
-          </div>
-        </section>
+  <p>For advanced users who want full control over the installation process:</p>
 
-        <!-- Troubleshooting -->
-        <section class="mb-12">
-          <h2 class="text-3xl font-bold mb-6 text-black">Troubleshooting</h2>
-          <div class="space-y-4">
-            <details class="bg-gray-50 rounded-lg p-4">
-              <summary class="cursor-pointer font-medium text-black"
-                >Installation fails with permission errors</summary
-              >
-              <div class="mt-3 text-gray-600">
-                <p>
-                  Make sure you're running the installer with sudo privileges:
-                </p>
-                <code class="bg-gray-200 px-2 py-1 rounded"
-                  >sudo bash install.sh</code
-                >
-              </div>
-            </details>
+  <h3>Step 1: Download and Extract</h3>
 
-            <details class="bg-gray-50 rounded-lg p-4">
-              <summary class="cursor-pointer font-medium text-black"
-                >SSL certificate issues</summary
-              >
-              <div class="mt-3 text-gray-600">
-                <p>
-                  Ensure your domain is pointed to your server and ports 80/443
-                  are open. Let's Encrypt needs to verify domain ownership.
-                </p>
-              </div>
-            </details>
+  <pre><code class="language-bash"># Download the latest release
+wget https://github.com/infinitymetrics/infinity-metrics/releases/latest/download/infinity-metrics-linux-amd64.tar.gz
 
-            <details class="bg-gray-50 rounded-lg p-4">
-              <summary class="cursor-pointer font-medium text-black"
-                >Docker container won't start</summary
-              >
-              <div class="mt-3 text-gray-600">
-                <p>
-                  Check that all required environment variables are set and your
-                  license key is valid. Use <code
-                    class="bg-gray-200 px-2 py-1 rounded"
-                    >docker logs infinity-metrics</code
-                  > to see error messages.
-                </p>
-              </div>
-            </details>
+# Extract to /opt/infinity-metrics
+sudo tar -xzf infinity-metrics-linux-amd64.tar.gz -C /opt/
+sudo chown -R infinity-metrics:infinity-metrics /opt/infinity-metrics</code></pre>
 
-            <details class="bg-gray-50 rounded-lg p-4">
-              <summary class="cursor-pointer font-medium text-black"
-                >Can't access dashboard</summary
-              >
-              <div class="mt-3 text-gray-600">
-                <p>
-                  Make sure your domain DNS is properly configured and the
-                  server is running. Check firewall settings for ports 80 and
-                  443.
-                </p>
-              </div>
-            </details>
-          </div>
-        </section>
+  <h3>Step 2: Create User and Directories</h3>
 
-        <!-- Next Steps -->
-        <section class="bg-gray-50 rounded-xl p-8">
-          <h2 class="text-2xl font-bold mb-4 text-black">Next Steps</h2>
-          <p class="text-gray-600 mb-6">
-            Great! You've successfully installed Infinity Metrics. Here's what
-            to do next:
-          </p>
-          <div class="grid md:grid-cols-2 gap-4">
-            <a
-              href="/docs/getting-started"
-              class="bg-white p-4 rounded-lg border border-blue-200 hover:border-blue-300 transition-colors"
-            >
-              <h3 class="font-black text-black mb-2">Getting Started Guide</h3>
-              <p class="text-gray-600 text-sm">
-                Learn the basics and add your first tracking script
-              </p>
-            </a>
-            <a
-              href="/docs/frameworks"
-              class="bg-white p-4 rounded-lg border border-blue-200 hover:border-blue-300 transition-colors"
-            >
-              <h3 class="font-black text-black mb-2">Framework Integration</h3>
-              <p class="text-gray-600 text-sm">
-                Framework-specific installation guides
-              </p>
-            </a>
-            <a
-              href="/docs/configuration"
-              class="bg-white p-4 rounded-lg border border-blue-200 hover:border-blue-300 transition-colors"
-            >
-              <h3 class="font-black text-black mb-2">Configuration</h3>
-              <p class="text-gray-600 text-sm">
-                Customize your Infinity Metrics setup
-              </p>
-            </a>
-            <a
-              href="/docs/admin"
-              class="bg-white p-4 rounded-lg border border-blue-200 hover:border-blue-300 transition-colors"
-            >
-              <h3 class="font-semibold text-black mb-2">🔧 Admin Operations</h3>
-              <p class="text-gray-600 text-sm">
-                Manage your installation and perform updates
-              </p>
-            </a>
-          </div>
-        </section>
-      </div>
-    </div>
-  </main>
-  <Footer />
-</Layout>
+  <pre><code class="language-bash"># Create system user
+sudo useradd --system --shell /bin/false infinity-metrics
+
+# Create data directory
+sudo mkdir -p /var/lib/infinity-metrics
+sudo chown infinity-metrics:infinity-metrics /var/lib/infinity-metrics
+
+# Create log directory
+sudo mkdir -p /var/log/infinity-metrics
+sudo chown infinity-metrics:infinity-metrics /var/log/infinity-metrics</code></pre>
+
+  <h3>Step 3: Configuration</h3>
+
+  <p>
+    Create the configuration file at <code
+      >/etc/infinity-metrics/config.yml</code
+    >:
+  </p>
+
+  <pre><code class="language-yaml"># Database configuration
+database:
+  type: sqlite
+  path: /var/lib/infinity-metrics/data.db
+  # For PostgreSQL:
+  # type: postgres
+  # host: localhost
+  # port: 5432
+  # database: infinity_metrics
+  # username: infinity_metrics
+  # password: your_password
+
+# Server configuration
+server:
+  host: 0.0.0.0
+  port: 8080
+  # For HTTPS:
+  # tls:
+  #   cert: /path/to/certificate.pem
+  #   key: /path/to/private-key.pem
+
+# Security
+security:
+  secret_key: "your-secret-key-here"
+  cors_origins:
+    - "https://yourdomain.com"
+    - "https://www.yourdomain.com"
+
+# Logging
+logging:
+  level: info
+  file: /var/log/infinity-metrics/infinity-metrics.log
+  max_size: 100MB
+  max_backups: 5</code></pre>
+
+  <h3>Step 4: Create Systemd Service</h3>
+
+  <p>Create <code>/etc/systemd/system/infinity-metrics.service</code>:</p>
+
+  <pre><code class="language-ini">[Unit]
+Description=Infinity Metrics Analytics Server
+After=network.target
+
+[Service]
+Type=simple
+User=infinity-metrics
+Group=infinity-metrics
+ExecStart=/opt/infinity-metrics/infinity-metrics -config /etc/infinity-metrics/config.yml
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/infinity-metrics /var/log/infinity-metrics
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+
+  <h3>Step 5: Start the Service</h3>
+
+  <pre><code class="language-bash"># Reload systemd and start the service
+sudo systemctl daemon-reload
+sudo systemctl enable infinity-metrics
+sudo systemctl start infinity-metrics
+
+# Check status
+sudo systemctl status infinity-metrics</code></pre>
+
+  <h2>Reverse Proxy Setup</h2>
+
+  <p>For production deployments, use a reverse proxy like Nginx:</p>
+
+  <h3>Nginx Configuration</h3>
+
+  <pre><code class="language-nginx">server &#123;
+     listen 80;
+     server_name analytics.yourdomain.com;
+     
+     # Redirect HTTP to HTTPS
+     return 301 https://&#36;server_name&#36;request_uri;
+ &#125;
+ 
+ server &#123;
+     listen 443 ssl http2;
+     server_name analytics.yourdomain.com;
+     
+     ssl_certificate /path/to/certificate.pem;
+     ssl_certificate_key /path/to/private-key.pem;
+     
+     # Security headers
+     add_header X-Frame-Options DENY;
+     add_header X-Content-Type-Options nosniff;
+     add_header X-XSS-Protection "1; mode=block";
+     
+     location / &#123;
+         proxy_pass http://localhost:8080;
+         proxy_set_header Host &#36;host;
+         proxy_set_header X-Real-IP &#36;remote_addr;
+         proxy_set_header X-Forwarded-For &#36;proxy_add_x_forwarded_for;
+         proxy_set_header X-Forwarded-Proto &#36;scheme;
+         
+         # WebSocket support
+         proxy_http_version 1.1;
+         proxy_set_header Upgrade &#36;http_upgrade;
+         proxy_set_header Connection "upgrade";
+     &#125;
+ &#125;</code></pre>
+
+  <h2>Verification</h2>
+
+  <p>Once installed, verify that Infinity Metrics is running:</p>
+
+  <pre><code class="language-bash"># Check if the service is running
+curl http://localhost:8080/health
+
+# Expected response:
+# &#123;"status":"ok","version":"1.0.0","uptime":"5m30s"&#125;</code></pre>
+
+  <h2>Environment Variables</h2>
+
+  <p>You can also configure Infinity Metrics using environment variables:</p>
+
+  <pre><code class="language-bash">export INFINITY_DATABASE_PATH="/var/lib/infinity-metrics/data.db"
+export INFINITY_SERVER_HOST="0.0.0.0"
+export INFINITY_SERVER_PORT="8080"
+export INFINITY_SECRET_KEY="your-secret-key"
+export INFINITY_LOG_LEVEL="info"</code></pre>
+
+  <h2>Troubleshooting</h2>
+
+  <div class="warning">
+    <h4>⚠️ Common Issues</h4>
+    <ul>
+      <li>
+        <strong>Port already in use:</strong> Change the port in configuration or
+        stop the conflicting service
+      </li>
+      <li>
+        <strong>Permission denied:</strong> Ensure the infinity-metrics user has
+        proper permissions
+      </li>
+      <li>
+        <strong>Database connection:</strong> Check database credentials and connectivity
+      </li>
+    </ul>
+  </div>
+
+  <h3>Check Logs</h3>
+
+  <pre><code class="language-bash"># View service logs
+sudo journalctl -u infinity-metrics -f
+
+# View application logs
+sudo tail -f /var/log/infinity-metrics/infinity-metrics.log</code></pre>
+
+  <h3>Test Configuration</h3>
+
+  <pre><code class="language-bash"># Test configuration file
+/opt/infinity-metrics/infinity-metrics -config /etc/infinity-metrics/config.yml -test</code></pre>
+
+  <div class="success">
+    <h4>✅ Installation Complete!</h4>
+    <p>
+      Infinity Metrics is now running. Continue with the <a
+        href="/docs/getting-started">Getting Started guide</a
+      > to configure your first site.
+    </p>
+  </div>
+
+  <h2>Next Steps</h2>
+
+  <ul>
+    <li><a href="/docs/getting-started">Complete the setup process</a></li>
+    <li><a href="/docs/custom-events">Learn about custom events</a></li>
+    <li><a href="/docs/frameworks">Integrate with your framework</a></li>
+    <li><a href="/docs/administration">Configure user accounts</a></li>
+  </ul>
+</DocsLayout>

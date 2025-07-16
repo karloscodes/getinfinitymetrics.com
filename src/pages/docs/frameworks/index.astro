@@ -1,366 +1,59 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
-import Header from "../../../components/Header.astro";
-import Footer from "../../../components/Footer.astro";
-
-const pageTitle = "Framework Integration Guides | Infinity Metrics";
-const pageDescription =
-  "Framework-specific integration guides for Infinity Metrics - Next.js, React, Vue.js, Django, Laravel, and more.";
+import DocsLayout from "../../../layouts/DocsLayout.astro";
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
-  <Header />
-  <main class="py-12 md:py-20 overflow-hidden">
-    <div class="container px-4 sm:px-6 overflow-hidden">
-      <div class="max-w-6xl mx-auto">
-        <!-- Breadcrumb -->
-        <nav class="mb-8">
-          <ol class="flex space-x-2 text-sm text-gray-500">
-            <li>
-              <a href="/docs" class="hover:text-gray-700">Documentation</a>
-            </li>
-            <li>/</li>
-            <li class="text-gray-900">Framework Guides</li>
-          </ol>
-        </nav>
+<DocsLayout title="Framework Integration - Infinity Metrics">
+  <h1>Framework Integration</h1>
+  <p>Choose your framework or platform for specific setup instructions.</p>
 
-        <div class="text-center mb-12">
-          <h1
-            class="text-4xl md:text-5xl font-black tracking-tight mb-4 text-black"
-          >
-            Framework Integration Guides
-          </h1>
-          <p class="text-xl font-medium text-gray-600 max-w-3xl mx-auto">
-            Learn how to integrate the Infinity Metrics tracking script with
-            your framework and handle single-page application routing.
-          </p>
-        </div>
+  <h2>JavaScript Frameworks</h2>
+  <ul>
+    <li>
+      <a href="/docs/frameworks/nextjs">Next.js</a> - App Router and Pages Router
+    </li>
+    <li>
+      <a href="/docs/frameworks/react">React</a> - Create React App and SPA
+    </li>
+    <li>
+      <a href="/docs/frameworks/vue">Vue.js</a> - Vue Router and Composition API
+    </li>
+  </ul>
 
-        <!-- Universal Setup -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-black tracking-tight mb-8 text-black">
-            Universal Setup
-          </h2>
-          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-            <p class="text-gray-600 font-medium mb-6">
-              All frameworks start with the same basic setup. Add the tracking
-              script to your HTML:
-            </p>
+  <h2>Content Management Systems</h2>
+  <ul>
+    <li>
+      <a href="/docs/frameworks/wordpress">WordPress</a> - Theme and plugin integration
+    </li>
+    <li>
+      <a href="/docs/frameworks/ghost">Ghost</a> - Modern publishing platform
+    </li>
+    <li>
+      <a href="/docs/frameworks/webflow">Webflow</a> - Visual web design platform
+    </li>
+  </ul>
 
-            <div
-              class="bg-black p-4 rounded-md font-mono text-sm overflow-x-auto mb-6"
-            >
-              <pre
-                class="text-white"><code>&lt;script defer src="https://your-domain.com/api/v1/sdk.js"&gt;&lt;/script&gt;</code></pre>
-            </div>
+  <h2>General Setup</h2>
+  <p>
+    For any framework not listed above, add the tracking script to your HTML:
+  </p>
+  <pre><code>&lt;script src="https://your-domain.com/infinity.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  Infinity.init(&#123;
+    site_id: 'your-site-id'
+  &#125;);
+&lt;/script&gt;</code></pre>
 
-            <p class="text-gray-600 font-medium">
-              The framework-specific guides below show how to handle single-page
-              application routing and custom event tracking for each framework.
-            </p>
-          </div>
-        </section>
+  <h2>Single Page Applications</h2>
+  <p>For SPAs, track page changes manually:</p>
+  <pre><code>// Track route changes
+Infinity.track('page_view', &#123;
+  path: window.location.pathname,
+  title: document.title
+&#125;);</code></pre>
 
-        <!-- Framework Guides -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-black tracking-tight mb-8 text-black">
-            Available Frameworks
-          </h2>
-          <div class="grid md:grid-cols-2 gap-8">
-            <!-- Next.js -->
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <div class="flex items-center mb-4">
-                <div
-                  class="w-12 h-12 bg-black rounded-lg flex items-center justify-center mr-4"
-                >
-                  <span class="text-white text-xl font-black">N</span>
-                </div>
-                <div>
-                  <h3 class="text-lg font-black text-black">Next.js</h3>
-                  <p class="text-sm font-medium text-gray-500">
-                    App Router & Pages Router
-                  </p>
-                </div>
-              </div>
-              <p class="text-gray-600 font-medium mb-4 text-sm">
-                Integration guide for both App Router and Pages Router with
-                automatic page tracking.
-              </p>
-              <a
-                href="/docs/frameworks/nextjs"
-                class="text-gray-700 hover:text-black font-semibold"
-              >
-                View Guide →
-              </a>
-            </div>
-
-            <!-- React -->
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <div class="flex items-center mb-4">
-                <div
-                  class="w-12 h-12 bg-gray-600 rounded-lg flex items-center justify-center mr-4"
-                >
-                  <span class="text-white text-xl font-black">R</span>
-                </div>
-                <div>
-                  <h3 class="text-lg font-black text-black">React</h3>
-                  <p class="text-sm font-medium text-gray-500">
-                    React Router & SPA Navigation
-                  </p>
-                </div>
-              </div>
-              <p class="text-gray-600 font-medium mb-4 text-sm">
-                Integration with React Router and custom hooks for tracking page
-                changes and events.
-              </p>
-              <a
-                href="/docs/frameworks/react"
-                class="text-gray-700 hover:text-black font-semibold"
-              >
-                View Guide →
-              </a>
-            </div>
-
-            <!-- Vue.js -->
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <div class="flex items-center mb-4">
-                <div
-                  class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mr-4"
-                >
-                  <span class="text-white text-xl font-black">V</span>
-                </div>
-                <div>
-                  <h3 class="text-lg font-black text-black">Vue.js</h3>
-                  <p class="text-sm font-medium text-gray-500">
-                    Vue Router & Composition API
-                  </p>
-                </div>
-              </div>
-              <p class="text-gray-600 font-medium mb-4 text-sm">
-                Integration with Vue Router and composables for automatic page
-                tracking.
-              </p>
-              <a
-                href="/docs/frameworks/vue"
-                class="text-gray-700 hover:text-black font-semibold"
-              >
-                View Guide →
-              </a>
-            </div>
-
-            <!-- WordPress -->
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <div class="flex items-center mb-4">
-                <div
-                  class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4"
-                >
-                  <span class="text-white text-xl font-black">W</span>
-                </div>
-                <div>
-                  <h3 class="text-lg font-black text-black">WordPress</h3>
-                  <p class="text-sm font-medium text-gray-500">
-                    Functions.php & plugins
-                  </p>
-                </div>
-              </div>
-              <p class="text-gray-600 font-medium mb-4 text-sm">
-                Theme integration with functions.php and custom plugin
-                development.
-              </p>
-              <a
-                href="/docs/frameworks/wordpress"
-                class="text-gray-700 hover:text-black font-semibold"
-              >
-                View Guide →
-              </a>
-            </div>
-
-            <!-- Ghost -->
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <div class="flex items-center mb-4">
-                <div
-                  class="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center mr-4"
-                >
-                  <span class="text-white text-xl font-black">G</span>
-                </div>
-                <div>
-                  <h3 class="text-lg font-black text-black">Ghost</h3>
-                  <p class="text-sm font-medium text-gray-500">Headless CMS</p>
-                </div>
-              </div>
-              <p class="text-gray-600 font-medium mb-4 text-sm">
-                Theme integration with Ghost's templating system and code
-                injection.
-              </p>
-              <a
-                href="/docs/frameworks/ghost"
-                class="text-gray-700 hover:text-black font-semibold"
-              >
-                View Guide →
-              </a>
-            </div>
-
-            <!-- Webflow -->
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <div class="flex items-center mb-4">
-                <div
-                  class="w-12 h-12 bg-gray-500 rounded-lg flex items-center justify-center mr-4"
-                >
-                  <span class="text-white text-xl font-black">W</span>
-                </div>
-                <div>
-                  <h3 class="text-lg font-black text-black">Webflow</h3>
-                  <p class="text-sm font-medium text-gray-500">
-                    Visual web builder
-                  </p>
-                </div>
-              </div>
-              <p class="text-gray-600 font-medium mb-4 text-sm">
-                Custom code integration in Webflow projects and published sites.
-              </p>
-              <a
-                href="/docs/frameworks/webflow"
-                class="text-gray-700 hover:text-black font-semibold"
-              >
-                View Guide →
-              </a>
-            </div>
-
-            <!-- Vanilla JavaScript -->
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <div class="flex items-center mb-4">
-                <div
-                  class="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center mr-4"
-                >
-                  <span class="text-white text-xl font-black">JS</span>
-                </div>
-                <div>
-                  <h3 class="text-lg font-black text-black">
-                    Vanilla JavaScript
-                  </h3>
-                  <p class="text-sm font-medium text-gray-500">
-                    Pure JavaScript Implementation
-                  </p>
-                </div>
-              </div>
-              <p class="text-gray-600 font-medium mb-4 text-sm">
-                Basic integration using just the tracking script with manual
-                event tracking.
-              </p>
-              <span class="text-gray-400 font-medium">Coming soon</span>
-            </div>
-
-            <!-- Angular -->
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <div class="flex items-center mb-4">
-                <div
-                  class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mr-4"
-                >
-                  <span class="text-white text-xl font-black">A</span>
-                </div>
-                <div>
-                  <h3 class="text-lg font-black text-black">Angular</h3>
-                  <p class="text-sm font-medium text-gray-500">Angular 15+</p>
-                </div>
-              </div>
-              <p class="text-gray-600 font-medium mb-4 text-sm">
-                Service-based integration with TypeScript and dependency
-                injection.
-              </p>
-              <span class="text-gray-400 font-medium">Coming soon</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- Best Practices -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-black tracking-tight mb-8 text-black">
-            Integration Best Practices
-          </h2>
-          <div class="grid md:grid-cols-2 gap-6">
-            <div
-              class="card p-6 rounded-xl shadow-sm border-l-4 border-blue-500"
-            >
-              <h3 class="text-lg font-black mb-3 text-black">Placement</h3>
-              <ul class="text-gray-600 font-medium space-y-2 text-sm">
-                <li>
-                  • Place script in the &lt;head&gt; section for best
-                  performance
-                </li>
-                <li>
-                  • Use the defer attribute to avoid blocking page rendering
-                </li>
-                <li>• Load early to capture all user interactions</li>
-                <li>• Avoid loading conditionally unless necessary</li>
-              </ul>
-            </div>
-
-            <div
-              class="card p-6 rounded-xl shadow-sm border-l-4 border-gray-400"
-            >
-              <h3 class="text-lg font-black mb-3 text-black">Configuration</h3>
-              <ul class="text-gray-600 font-medium space-y-2 text-sm">
-                <li>• Configure before the script loads for best results</li>
-                <li>• Use environment variables for domain configuration</li>
-                <li>• Enable debug mode during development</li>
-                <li>• Respect user privacy settings (Do Not Track)</li>
-              </ul>
-            </div>
-
-            <div
-              class="card p-6 rounded-xl shadow-sm border-l-4 border-gray-400"
-            >
-              <h3 class="text-lg font-black mb-3 text-black">Testing</h3>
-              <ul class="text-gray-600 font-medium space-y-2 text-sm">
-                <li>
-                  • Verify script loads without errors in browser dev tools
-                </li>
-                <li>• Check network requests to your analytics domain</li>
-                <li>• Test page views appear in your dashboard</li>
-                <li>• Validate custom events are tracked correctly</li>
-              </ul>
-            </div>
-
-            <div
-              class="card p-6 rounded-xl shadow-sm border-l-4 border-gray-400"
-            >
-              <h3 class="text-lg font-black mb-3 text-black">Maintenance</h3>
-              <ul class="text-gray-600 font-medium space-y-2 text-sm">
-                <li>• Keep your Infinity Metrics server updated</li>
-                <li>• Monitor script load performance</li>
-                <li>• Review and update custom event tracking</li>
-                <li>• Check for console errors periodically</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- Need Help -->
-        <section class="bg-gray-50 rounded-xl p-8 text-center">
-          <h2 class="text-2xl font-black tracking-tight mb-4 text-black">
-            Need Help?
-          </h2>
-          <p class="text-gray-600 font-medium mb-6 max-w-2xl mx-auto">
-            Can't find integration instructions for your specific setup? We're
-            here to help you get started.
-          </p>
-          <div class="flex justify-center space-x-4">
-            <a
-              href="/docs/getting-started"
-              class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
-            >
-              Get Started
-            </a>
-            <a
-              href="mailto:support@getinfinitymetrics.com"
-              class="bg-white text-gray-700 px-6 py-3 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors font-semibold"
-            >
-              Contact Support
-            </a>
-          </div>
-        </section>
-      </div>
-    </div>
-  </main>
-  <Footer />
-</Layout>
+  <p>
+    Need help with a specific framework? <a
+      href="mailto:support@getinfinitymetrics.com">Contact support</a
+    >
+  </p>
+</DocsLayout>

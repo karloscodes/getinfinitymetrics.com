@@ -1,444 +1,95 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
-import Header from "../../../components/Header.astro";
-import Footer from "../../../components/Footer.astro";
-
-const pageTitle = "WordPress Integration | Infinity Metrics";
-const pageDescription =
-  "Complete guide to integrating Infinity Metrics with WordPress - themes, plugins, and custom implementations.";
+import DocsLayout from "../../../layouts/DocsLayout.astro";
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
-  <Header />
-  <div class="min-h-screen bg-white py-12">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Header -->
-      <div class="mb-8">
-        <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
-          <a href="/docs" class="hover:text-gray-700 font-medium"
-            >Documentation</a
-          >
-          <span>→</span>
-          <a href="/docs/frameworks" class="hover:text-gray-700 font-medium"
-            >Frameworks</a
-          >
-          <span>→</span>
-          <span class="text-gray-900 font-semibold">WordPress</span>
-        </nav>
-        <h1 class="text-3xl font-black tracking-tight text-black">
-          WordPress Integration
-        </h1>
-        <p class="mt-2 text-gray-600 font-medium">
-          Complete guide to integrating Infinity Metrics with WordPress
-        </p>
-      </div>
+<DocsLayout title="WordPress Integration - Infinity Metrics">
+  <h1>WordPress Integration</h1>
+  <p>
+    Complete guide to integrating Infinity Metrics with WordPress websites using
+    themes and plugins.
+  </p>
 
-      <!-- Quick Setup -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
-          Quick Setup
-        </h2>
+  <h2>Theme Integration</h2>
+  <p>Add the tracking script to your theme's functions.php file:</p>
+  <pre><code>// functions.php
+function add_infinity_metrics() &#123;
+    ?&gt;
+    &lt;script src="https://your-domain.com/infinity.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+      Infinity.init(&#123;
+        site_id: 'your-site-id'
+      &#125;);
+    &lt;/script&gt;
+    &lt;?php
+&#125;
+add_action('wp_head', 'add_infinity_metrics');</code></pre>
 
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Method 1: Using a Plugin (Recommended)
-            </h3>
-            <p class="text-gray-600 font-medium mb-3">
-              Use a header/footer plugin to add the script safely:
-            </p>
-            <ol
-              class="list-decimal list-inside text-gray-600 font-medium space-y-2 mb-3"
-            >
-              <li>
-                Install a plugin like "Insert Headers and Footers" or "WPCode"
-              </li>
-              <li>Navigate to the plugin's settings in your WordPress admin</li>
-              <li>Add this script to the "Scripts in Header" section:</li>
-            </ol>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`<script defer src="https://your-domain.com/api/v1/sdk.js"></script>`}</code></pre>
-            </div>
-          </div>
+  <h2>Header.php Integration</h2>
+  <p>Alternatively, add directly to your theme's header.php:</p>
+  <pre><code>&lt;!-- Add before closing &lt;/head&gt; tag --&gt;
+&lt;script src="https://your-domain.com/infinity.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  Infinity.init(&#123;
+    site_id: 'your-site-id'
+  &#125;);
+&lt;/script&gt;
+&lt;/head&gt;</code></pre>
 
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Method 2: Editing theme's header.php (Advanced)
-            </h3>
-            <p class="text-gray-600 font-medium mb-3">
-              For advanced users, add directly to your theme's <code
-                class="bg-gray-100 px-2 py-1 rounded">header.php</code
-              > file:
-            </p>
-            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-3">
-              <p class="text-yellow-700 font-medium">
-                <strong>Warning:</strong> Always backup your theme files before making
-                changes. Use a child theme to prevent updates from overwriting your
-                changes.
-              </p>
-            </div>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`<!-- Add before the closing </head> tag in header.php -->
-<script defer src="https://your-domain.com/api/v1/sdk.js"></script>
-</head>`}</code></pre>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Method 3: Functions.php Integration
-            </h3>
-            <p class="text-gray-600 font-medium mb-3">
-              Add to your theme's <code class="bg-gray-100 px-2 py-1 rounded"
-                >functions.php</code
-              > file for better control:
-            </p>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`function add_infinity_metrics() {
-    if (!is_admin()) {
-        echo '<script defer src="https://your-domain.com/api/v1/sdk.js"></script>';
-    }
-}
-add_action('wp_head', 'add_infinity_metrics');`}</code></pre>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Configuration
-            </h3>
-            <p class="text-gray-600 font-medium mb-3">
-              Replace <code class="bg-gray-100 px-2 py-1 rounded"
-                >your-domain.com</code
-              > with the domain where you installed Infinity Metrics.
-            </p>
-            <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
-              <p class="text-blue-700 font-medium">
-                The script automatically tracks page views, button clicks, and
-                form submissions on your WordPress site.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Plugin Development -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
-          Custom Plugin
-        </h2>
-
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Create a Simple Plugin
-            </h3>
-            <p class="text-gray-600 font-medium mb-3">
-              Create <code class="bg-gray-100 px-2 py-1 rounded"
-                >wp-content/plugins/infinity-metrics/infinity-metrics.php</code
-              >:
-            </p>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`<?php
-/**
- * Plugin Name: Infinity Metrics
- * Description: Privacy-focused analytics for WordPress
- * Version: 1.0.0
- * Author: Your Name
- */
-
-// Prevent direct access
-if (!defined('ABSPATH')) {
-    exit;
-}
-
-class InfinityMetrics {
-    
-    public function __construct() {
-        add_action('wp_head', array($this, 'add_tracking_script'));
-        add_action('admin_menu', array($this, 'add_admin_menu'));
-        add_action('admin_init', array($this, 'register_settings'));
-    }
-    
-    public function add_tracking_script() {
-        if (is_admin() || is_feed() || is_robots() || is_trackback()) {
-            return;
-        }
-        
-        $script_url = get_option('infinity_metrics_script_url', 'https://your-domain.com/api/v1/sdk.js');
-        
-        if (!empty($script_url)) {
-            echo '<script defer src="' . esc_url($script_url) . '"></script>' . "\n";
-        }
-    }
-    
-    public function add_admin_menu() {
-        add_options_page(
-            'Infinity Metrics Settings',
-            'Infinity Metrics',
-            'manage_options',
-            'infinity-metrics',
-            array($this, 'admin_page')
-        );
-    }
-    
-    public function register_settings() {
-        register_setting('infinity_metrics_settings', 'infinity_metrics_script_url');
-    }
-    
-    public function admin_page() {
-        ?>
-        <div class="wrap">
-            <h1>Infinity Metrics Settings</h1>
-            <form method="post" action="options.php">
-                <?php settings_fields('infinity_metrics_settings'); ?>
-                <table class="form-table">
-                    <tr>
-                        <th scope="row">Script URL</th>
-                        <td>
-                            <input type="url" name="infinity_metrics_script_url" 
-                                   value="<?php echo esc_attr(get_option('infinity_metrics_script_url', 'https://your-domain.com/api/v1/sdk.js')); ?>" 
-                                   class="regular-text" />
-                            <p class="description">URL to your Infinity Metrics tracking script</p>
-                        </td>
-                    </tr>
-                </table>
-                <?php submit_button(); ?>
-            </form>
-        </div>
-        <?php
-    }
-}
-
-new InfinityMetrics();`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- WooCommerce Integration -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
-          WooCommerce Integration
-        </h2>
-
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Track Purchase Events
-            </h3>
-            <p class="text-gray-600 font-medium mb-3">
-              Add to your theme's <code class="bg-gray-100 px-2 py-1 rounded"
-                >functions.php</code
-              > to track WooCommerce purchases:
-            </p>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`function track_woocommerce_purchase($order_id) {
-    $order = wc_get_order($order_id);
-    if (!$order) return;
-    
-    $revenue = $order->get_total();
-    $currency = $order->get_currency();
-    
-    echo '<script>
-        if (window.InfinityMetrics) {
-            window.InfinityMetrics.sendCustomEvent("purchase", {
-                revenue: "' . esc_js($revenue) . '",
-                currency: "' . esc_js($currency) . '",
-                order_id: "' . esc_js($order_id) . '"
-            });
-        }
-    </script>';
-}
-add_action('woocommerce_thankyou', 'track_woocommerce_purchase');`}</code></pre>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Track Add to Cart
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`function track_add_to_cart() {
-    ?>
-    <script>
-    jQuery(document).ready(function($) {
-        $(document.body).on('added_to_cart', function(event, fragments, cart_hash, button) {
-            var product_id = button.data('product_id');
-            var product_name = button.data('product_name') || 'Unknown Product';
-            
-            if (window.InfinityMetrics) {
-                window.InfinityMetrics.sendCustomEvent('add_to_cart', {
-                    product_id: product_id,
-                    product_name: product_name
-                });
-            }
-        });
-    });
-    </script>
-    <?php
-}
-add_action('wp_footer', 'track_add_to_cart');`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Advanced Configuration -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
-          Advanced Configuration
-        </h2>
-
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Exclude Admin Users
-            </h3>
-            <p class="text-gray-600 font-medium mb-3">
-              Don't track logged-in administrators:
-            </p>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`function add_infinity_metrics_conditional() {
-    // Don't track admin users
-    if (current_user_can('administrator')) {
-        return;
-    }
-    
-    // Don't track admin pages, feeds, etc.
-    if (is_admin() || is_feed() || is_robots() || is_trackback()) {
-        return;
-    }
-    
-    echo '<script defer src="https://your-domain.com/api/v1/sdk.js"></script>';
-}
-add_action('wp_head', 'add_infinity_metrics_conditional');`}</code></pre>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Custom Post Type Tracking
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`function track_custom_post_types() {
-    if (is_singular()) {
+  <h2>Custom Post Type Tracking</h2>
+  <p>Track different post types with custom events:</p>
+  <pre><code>// functions.php
+function track_post_views() &#123;
+    if (is_single()) &#123;
         global $post;
-        $post_type = get_post_type($post);
-        
-        if ($post_type !== 'post' && $post_type !== 'page') {
-            echo '<script>
-                if (window.InfinityMetrics) {
-                    window.InfinityMetrics.sendCustomEvent("custom_post_view", {
-                        post_type: "' . esc_js($post_type) . '",
-                        post_id: "' . esc_js($post->ID) . '"
-                    });
-                }
-            </script>';
-        }
-    }
-}
-add_action('wp_footer', 'track_custom_post_types');`}</code></pre>
-            </div>
-          </div>
+        ?&gt;
+        &lt;script&gt;
+        document.addEventListener('DOMContentLoaded', function() &#123;
+            Infinity.track('post_view', &#123;
+                post_id: &lt;?php echo $post-&gt;ID; ?&gt;,
+                post_type: '&lt;?php echo $post-&gt;post_type; ?&gt;',
+                post_title: '&lt;?php echo esc_js($post-&gt;post_title); ?&gt;'
+            &#125;);
+        &#125;);
+        &lt;/script&gt;
+        &lt;?php
+    &#125;
+&#125;
+add_action('wp_footer', 'track_post_views');</code></pre>
 
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Track Contact Form 7 Submissions
-            </h3>
-            <p class="text-gray-600 font-medium mb-3">
-              Track form submissions with Contact Form 7:
-            </p>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`function track_cf7_submissions() {
-    ?>
-    <script>
-    document.addEventListener('wpcf7mailsent', function(event) {
-        if (window.InfinityMetrics) {
-            window.InfinityMetrics.sendCustomEvent('form_submission', {
-                form_id: event.detail.contactFormId,
-                form_title: event.detail.inputs.find(input => input.name === 'your-subject')?.value || 'Contact Form'
-            });
-        }
-    }, false);
-    </script>
-    <?php
-}
-add_action('wp_footer', 'track_cf7_submissions');`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </section>
+  <h2>E-commerce Integration</h2>
+  <p>For WooCommerce stores, track purchase events:</p>
+  <pre><code>// Track completed purchases
+function track_woocommerce_purchase($order_id) &#123;
+    $order = wc_get_order($order_id);
+    ?&gt;
+    &lt;script&gt;
+    Infinity.track('purchase', &#123;
+        transaction_id: '&lt;?php echo $order-&gt;get_id(); ?&gt;',
+        value: &lt;?php echo $order-&gt;get_total(); ?&gt;,
+        currency: '&lt;?php echo $order-&gt;get_currency(); ?&gt;'
+    &#125;);
+    &lt;/script&gt;
+    &lt;?php
+&#125;
+add_action('woocommerce_thankyou', 'track_woocommerce_purchase');</code></pre>
 
-      <!-- Troubleshooting -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
-          Troubleshooting
-        </h2>
+  <h2>Environment Configuration</h2>
+  <p>Use WordPress constants for configuration:</p>
+  <pre><code>// wp-config.php
+define('INFINITY_SITE_ID', 'your-site-id');
+define('INFINITY_DOMAIN', 'your-domain.com');
 
-        <div class="space-y-4">
-          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
-            <h4 class="font-semibold text-yellow-800 mb-2">
-              Script Not Loading?
-            </h4>
-            <ul class="text-yellow-700 text-sm space-y-1">
-              <li>• Check if other security plugins are blocking the script</li>
-              <li>• Verify the script URL is accessible</li>
-              <li>• Clear any caching plugins and CDN cache</li>
-              <li>• Check browser console for JavaScript errors</li>
-            </ul>
-          </div>
+// functions.php
+function add_infinity_metrics() &#123;
+    $site_id = defined('INFINITY_SITE_ID') ? INFINITY_SITE_ID : 'default-site-id';
+    ?&gt;
+    &lt;script&gt;
+      Infinity.init(&#123;
+        site_id: '&lt;?php echo $site_id; ?&gt;'
+      &#125;);
+    &lt;/script&gt;
+    &lt;?php
+&#125;</code></pre>
 
-          <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
-            <h4 class="font-semibold text-blue-800 mb-2">
-              Not Tracking Visits?
-            </h4>
-            <ul class="text-blue-700 text-sm space-y-1">
-              <li>• Ensure you're not excluded (check admin user exclusion)</li>
-              <li>• Verify the domain matches your site exactly</li>
-              <li>• Check if ad blockers are enabled</li>
-              <li>• Test in incognito mode</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Navigation -->
-      <div
-        class="flex justify-between items-center pt-8 border-t border-gray-200"
-      >
-        <a
-          href="/docs/frameworks/webflow"
-          class="flex items-center text-gray-700 hover:text-black font-semibold"
-        >
-          ← Webflow Integration
-        </a>
-        <a
-          href="/docs/frameworks"
-          class="flex items-center text-gray-700 hover:text-black font-semibold"
-        >
-          All Frameworks →
-        </a>
-      </div>
-    </div>
-  </div>
-  <Footer />
-</Layout>
+  <p>Next: <a href="/docs/frameworks/ghost">Ghost Integration</a></p>
+</DocsLayout>

@@ -1,308 +1,666 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-
-const pageTitle = "Documentation | Infinity Metrics";
-const pageDescription =
-  "Comprehensive documentation for Infinity Metrics analytics - installation, requirements, and SDK integration.";
+import DocsLayout from "../../layouts/DocsLayout.astro";
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
-  <Header />
-  <main class="py-12 md:py-20 overflow-hidden">
-    <div class="container px-4 sm:px-6 overflow-hidden">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-          <h1
-            class="text-4xl md:text-5xl font-black tracking-tight mb-4 text-black"
-          >
-            Documentation
-          </h1>
-          <p class="text-xl font-medium text-gray-600 max-w-3xl mx-auto">
-            Everything you need to get started with Infinity Metrics, from
-            installation to advanced features.
-          </p>
-        </div>
+<DocsLayout title="Documentation - Infinity Metrics">
+  <!-- Hero Section -->
+  <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-8 mb-8">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">
+      Infinity Metrics Documentation
+    </h1>
+    <p class="text-xl text-gray-600 mb-6">
+      Complete guide to setting up and using your self-hosted analytics
+      platform. Get started in minutes, scale to millions of events.
+    </p>
 
-        <!-- Quick Start -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-black tracking-tight mb-8 text-black">
-            Quick Start
-          </h2>
-          <div class="grid md:grid-cols-2 gap-8">
-            <div
-              class="card p-6 rounded-xl shadow-sm border border-gray-200"
-            >
-              <h3 class="text-xl font-black mb-3 text-black">Get Started</h3>
-              <p class="text-gray-600 font-medium mb-4">
-                New to Infinity Metrics? Start here for a quick overview and
-                basic setup.
-              </p>
-              <a
-                href="/docs/getting-started"
-                class="text-blue hover:text-blue-600 font-semibold"
-              >
-                Get Started →
-              </a>
-            </div>
-            <div
-              class="card p-6 rounded-xl shadow-sm border border-gray-200"
-            >
-              <h3 class="text-xl font-black mb-3 text-black">Installation</h3>
-              <p class="text-gray-600 font-medium mb-4">
-                Step-by-step installation guide for both automated and
-                self-managed setups.
-              </p>
-              <a
-                href="/docs/installation"
-                class="text-blue hover:text-blue-600 font-semibold"
-              >
-                Install Now →
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <!-- Main Documentation Sections -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-black tracking-tight mb-8 text-black">
-            Documentation
-          </h2>
-
-          <!-- Getting Started Section -->
-          <div class="mb-12">
-            <h3 class="text-xl font-black text-black mb-6">Getting Started</h3>
-            <div class="grid md:grid-cols-2 gap-6">
-              <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
-                <div class="flex items-center mb-4">
-                  <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
-                    <span class="text-white font-bold text-sm">1</span>
-                  </div>
-                  <h4 class="text-lg font-black text-black">Setup & Installation</h4>
-                </div>
-                <p class="text-gray-600 font-medium mb-4 text-sm">
-                  Everything you need to get Infinity Metrics running on your server.
-                </p>
-                <div class="space-y-2">
-                  <a href="/docs/getting-started" class="block text-blue-700 hover:text-blue-800 font-semibold text-sm">
-                    → Getting Started Guide
-                  </a>
-                  <a href="/docs/installation" class="block text-blue-700 hover:text-blue-800 font-semibold text-sm">
-                    → Installation Instructions
-                  </a>
-                  <a href="/docs/administration" class="block text-blue-700 hover:text-blue-800 font-semibold text-sm">
-                    → Server Administration
-                  </a>
-                </div>
-              </div>
-
-              <div class="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6">
-                <div class="flex items-center mb-4">
-                  <div class="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center mr-3">
-                    <span class="text-white font-bold text-sm">2</span>
-                  </div>
-                  <h4 class="text-lg font-black text-black">Integration</h4>
-                </div>
-                <p class="text-gray-600 font-medium mb-4 text-sm">
-                  Connect Infinity Metrics to your website or application.
-                </p>
-                <div class="space-y-2">
-                  <a href="/docs/frameworks" class="block text-green-700 hover:text-green-800 font-semibold text-sm">
-                    → Framework Guides
-                  </a>
-                  <a href="/docs/frameworks/nextjs" class="block text-green-700 hover:text-green-800 font-semibold text-sm">
-                    → Next.js Integration
-                  </a>
-                  <a href="/docs/frameworks/react" class="block text-green-700 hover:text-green-800 font-semibold text-sm">
-                    → React Integration
-                  </a>
-                  <a href="/docs/frameworks/vue" class="block text-green-700 hover:text-green-800 font-semibold text-sm">
-                    → Vue.js Integration
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Features & Advanced Usage -->
-          <div class="mb-12">
-            <h3 class="text-xl font-black text-black mb-6">Features & Advanced Usage</h3>
-            <div class="grid md:grid-cols-3 gap-6">
-              <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                <div class="flex items-center mb-4">
-                  <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center mr-3">
-                    <span class="text-white font-bold text-xs">📊</span>
-                  </div>
-                  <h4 class="text-lg font-black text-black">Tracking</h4>
-                </div>
-                <div class="space-y-2">
-                  <a href="/docs/custom-events" class="block text-gray-700 hover:text-black font-semibold text-sm">
-                    → Custom Events
-                  </a>
-                  <a href="/docs/sdk-reference" class="block text-gray-700 hover:text-black font-semibold text-sm">
-                    → SDK Reference
-                  </a>
-                  <a href="/docs/revenue-tracking" class="block text-gray-700 hover:text-black font-semibold text-sm">
-                    → Revenue Attribution
-                  </a>
-                  <a href="/docs/subdomain-tracking" class="block text-gray-700 hover:text-black font-semibold text-sm">
-                    → Subdomain Tracking
-                  </a>
-                </div>
-              </div>
-
-              <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                <div class="flex items-center mb-4">
-                  <div class="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center mr-3">
-                    <span class="text-white font-bold text-xs">🛠</span>
-                  </div>
-                  <h4 class="text-lg font-black text-black">CMS Platforms</h4>
-                </div>
-                <div class="space-y-2">
-                  <a href="/docs/frameworks/wordpress" class="block text-gray-700 hover:text-black font-semibold text-sm">
-                    → WordPress
-                  </a>
-                  <a href="/docs/frameworks/webflow" class="block text-gray-700 hover:text-black font-semibold text-sm">
-                    → Webflow
-                  </a>
-                  <a href="/docs/frameworks/ghost" class="block text-gray-700 hover:text-black font-semibold text-sm">
-                    → Ghost
-                  </a>
-                </div>
-              </div>
-
-              <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                <div class="flex items-center mb-4">
-                  <div class="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center mr-3">
-                    <span class="text-white font-bold text-xs">⚙️</span>
-                  </div>
-                  <h4 class="text-lg font-black text-black">Support</h4>
-                </div>
-                <div class="space-y-2">
-                  <a href="/docs/troubleshooting" class="block text-gray-700 hover:text-black font-semibold text-sm">
-                    → Troubleshooting
-                  </a>
-                  <a href="mailto:support@getinfinitymetrics.com" class="block text-gray-700 hover:text-black font-semibold text-sm">
-                    → Contact Support
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Coming Soon -->
-          <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
-            <h3 class="text-lg font-black text-black mb-3">Coming Soon</h3>
-            <p class="text-gray-600 font-medium mb-4 text-sm">
-              We're working on expanding our documentation with these upcoming sections:
-            </p>
-            <div class="grid md:grid-cols-2 gap-4">
-              <div class="text-gray-500 font-medium text-sm">
-                • SDK & Integration Documentation
-              </div>
-              <div class="text-gray-500 font-medium text-sm">
-                • API Reference & Examples
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Popular Guides -->
-        <section class="mb-16">
-          <h2 class="text-3xl font-black tracking-tight mb-8 text-black">
-            Popular Guides
-          </h2>
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <h3 class="text-lg font-black mb-2 text-black">
-                Track Custom Events
-              </h3>
-              <p class="text-gray-600 font-medium mb-4">
-                Learn how to track custom user actions and business events
-                beyond basic page views.
-              </p>
-              <a
-                href="/docs/custom-events"
-                class="text-gray-800 hover:text-black font-semibold"
-              >
-                Read Guide →
-              </a>
-            </div>
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <h3 class="text-lg font-black mb-2 text-black">
-                Revenue Attribution
-              </h3>
-              <p class="text-gray-600 font-medium mb-4">
-                Set up revenue tracking to understand the financial impact of
-                your marketing efforts.
-              </p>
-              <a
-                href="/docs/revenue-tracking"
-                class="text-gray-800 hover:text-black font-semibold"
-              >
-                Read Guide →
-              </a>
-            </div>
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <h3 class="text-lg font-black mb-2 text-black">
-                Subdomain Tracking
-              </h3>
-              <p class="text-gray-600 font-medium mb-4">
-                Track visitors across multiple subdomains as a single unified
-                website.
-              </p>
-              <a
-                href="/docs/subdomain-tracking"
-                class="text-gray-800 hover:text-black font-semibold"
-              >
-                Read Guide →
-              </a>
-            </div>
-            <div class="card p-6 rounded-xl shadow-sm border border-gray-200">
-              <h3 class="text-lg font-black mb-2 text-black">
-                Next.js Integration
-              </h3>
-              <p class="text-gray-600 font-medium mb-4">
-                Complete guide to integrating Infinity Metrics with Next.js App
-                Router and Pages Router.
-              </p>
-              <a
-                href="/docs/frameworks/nextjs"
-                class="text-gray-800 hover:text-black font-semibold"
-              >
-                Read Guide →
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <!-- Need Help -->
-        <section class="text-center bg-gray-50 rounded-xl p-8">
-          <h2 class="text-2xl font-black tracking-tight mb-4 text-black">
-            Need Help?
-          </h2>
-          <p class="text-gray-600 font-medium mb-6 max-w-2xl mx-auto">
-            Can't find what you're looking for? Check out our troubleshooting
-            guide or contact support.
-          </p>
-          <div class="flex justify-center space-x-4">
-            <a
-              href="/docs/troubleshooting"
-              class="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-black transition-colors font-semibold"
-            >
-              Troubleshooting
-            </a>
-            <a
-              href="mailto:support@getinfinitymetrics.com"
-              class="bg-white text-gray-700 px-6 py-3 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors font-semibold"
-            >
-              Contact Support
-            </a>
-          </div>
-        </section>
+    <!-- Search Bar -->
+    <div class="relative max-w-md">
+      <input
+        type="text"
+        id="doc-search"
+        placeholder="Search documentation..."
+        class="w-full px-4 py-3 pr-10 text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      />
+      <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+        <svg
+          class="w-5 h-5 text-gray-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
       </div>
     </div>
-  </main>
-  <Footer />
-</Layout>
+
+    <!-- Search Results -->
+    <div
+      id="search-results"
+      class="hidden mt-4 bg-white rounded-lg shadow-lg border border-gray-200"
+    >
+    </div>
+  </div>
+
+  <!-- Quick Start Shortcuts -->
+  <div class="mb-10">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Quick Start</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Installation -->
+      <a
+        href="/docs/installation"
+        class="group bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-blue-300 transition-all duration-200"
+      >
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+          </div>
+          <h3
+            class="text-lg font-semibold text-gray-900 group-hover:text-blue-600"
+          >
+            Installation
+          </h3>
+        </div>
+        <p class="text-gray-600">
+          Deploy Infinity Metrics on your server in one command
+        </p>
+      </a>
+
+      <!-- Getting Started -->
+      <a
+        href="/docs/getting-started"
+        class="group bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-green-300 transition-all duration-200"
+      >
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center mr-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3
+            class="text-lg font-semibold text-gray-900 group-hover:text-green-600"
+          >
+            Getting Started
+          </h3>
+        </div>
+        <p class="text-gray-600">
+          Complete setup guide from installation to first events
+        </p>
+      </a>
+
+      <!-- Framework Integration -->
+      <a
+        href="/docs/frameworks"
+        class="group bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-purple-300 transition-all duration-200"
+      >
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+              ></path>
+            </svg>
+          </div>
+          <h3
+            class="text-lg font-semibold text-gray-900 group-hover:text-purple-600"
+          >
+            Framework Integration
+          </h3>
+        </div>
+        <p class="text-gray-600">
+          Integrate with Next.js, React, Vue, WordPress, and more
+        </p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Core Features -->
+  <div class="mb-10">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Core Features</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Custom Events -->
+      <a
+        href="/docs/custom-events"
+        class="group bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-orange-300 transition-all duration-200"
+      >
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              ></path>
+            </svg>
+          </div>
+          <h3
+            class="text-lg font-semibold text-gray-900 group-hover:text-orange-600"
+          >
+            Custom Events
+          </h3>
+        </div>
+        <p class="text-gray-600">
+          Track user interactions, conversions, and business metrics
+        </p>
+      </a>
+
+      <!-- Revenue Tracking -->
+      <a
+        href="/docs/revenue-tracking"
+        class="group bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-emerald-300 transition-all duration-200"
+      >
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center mr-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+              ></path>
+            </svg>
+          </div>
+          <h3
+            class="text-lg font-semibold text-gray-900 group-hover:text-emerald-600"
+          >
+            Revenue Tracking
+          </h3>
+        </div>
+        <p class="text-gray-600">
+          Monitor conversions, revenue attribution, and ROI
+        </p>
+      </a>
+
+      <!-- Subdomain Tracking -->
+      <a
+        href="/docs/subdomain-tracking"
+        class="group bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-cyan-300 transition-all duration-200"
+      >
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-cyan-500 rounded-lg flex items-center justify-center mr-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+              ></path>
+            </svg>
+          </div>
+          <h3
+            class="text-lg font-semibold text-gray-900 group-hover:text-cyan-600"
+          >
+            Subdomain Tracking
+          </h3>
+        </div>
+        <p class="text-gray-600">
+          Track users across multiple subdomains and domains
+        </p>
+      </a>
+
+      <!-- Administration -->
+      <a
+        href="/docs/administration"
+        class="group bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-red-300 transition-all duration-200"
+      >
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-red-500 rounded-lg flex items-center justify-center mr-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+              ></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+          </div>
+          <h3
+            class="text-lg font-semibold text-gray-900 group-hover:text-red-600"
+          >
+            Administration
+          </h3>
+        </div>
+        <p class="text-gray-600">
+          Server management, user accounts, and configuration
+        </p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Developer Resources -->
+  <div class="mb-10">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Developer Resources</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- SDK Reference -->
+      <a
+        href="/docs/sdk-reference"
+        class="group bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-indigo-300 transition-all duration-200"
+      >
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-indigo-500 rounded-lg flex items-center justify-center mr-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+          </div>
+          <h3
+            class="text-lg font-semibold text-gray-900 group-hover:text-indigo-600"
+          >
+            SDK Reference
+          </h3>
+        </div>
+        <p class="text-gray-600">
+          Complete JavaScript SDK documentation and examples
+        </p>
+      </a>
+
+      <!-- API Reference -->
+      <a
+        href="/docs/api-reference"
+        class="group bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-pink-300 transition-all duration-200"
+      >
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-pink-500 rounded-lg flex items-center justify-center mr-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+          </div>
+          <h3
+            class="text-lg font-semibold text-gray-900 group-hover:text-pink-600"
+          >
+            API Reference
+          </h3>
+        </div>
+        <p class="text-gray-600">
+          REST API endpoints, authentication, and server integration
+        </p>
+      </a>
+
+      <!-- Migration Guide -->
+      <a
+        href="/docs/migration"
+        class="group bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-teal-300 transition-all duration-200"
+      >
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-teal-500 rounded-lg flex items-center justify-center mr-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+            </svg>
+          </div>
+          <h3
+            class="text-lg font-semibold text-gray-900 group-hover:text-teal-600"
+          >
+            Migration Guide
+          </h3>
+        </div>
+        <p class="text-gray-600">
+          Migrate from Google Analytics, Plausible, and other platforms
+        </p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Help & Support -->
+  <div class="mb-10">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Help & Support</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Troubleshooting -->
+      <a
+        href="/docs/troubleshooting"
+        class="group bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-yellow-300 transition-all duration-200"
+      >
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center mr-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"
+              ></path>
+            </svg>
+          </div>
+          <h3
+            class="text-lg font-semibold text-gray-900 group-hover:text-yellow-600"
+          >
+            Troubleshooting
+          </h3>
+        </div>
+        <p class="text-gray-600">
+          Common issues, solutions, and debugging guides
+        </p>
+      </a>
+
+      <!-- Community -->
+      <div class="group bg-white border border-gray-200 rounded-lg p-6">
+        <div class="flex items-center mb-4">
+          <div
+            class="w-10 h-10 bg-gray-500 rounded-lg flex items-center justify-center mr-4"
+          >
+            <svg
+              class="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h2m-4 0V6a2 2 0 012-2h6a2 2 0 012 2v2m-6 0h2v2H9V8z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900">Community Support</h3>
+        </div>
+        <p class="text-gray-600">
+          Join our community for help, feature requests, and discussions
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popular Framework Shortcuts -->
+  <div class="bg-gray-50 rounded-lg p-6 mb-10">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">
+      Popular Framework Guides
+    </h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <a
+        href="/docs/frameworks/nextjs"
+        class="text-center p-4 bg-white rounded-lg hover:shadow-md transition-shadow"
+      >
+        <div class="text-2xl mb-2">⚡</div>
+        <div class="text-sm font-medium text-gray-900">Next.js</div>
+      </a>
+      <a
+        href="/docs/frameworks/react"
+        class="text-center p-4 bg-white rounded-lg hover:shadow-md transition-shadow"
+      >
+        <div class="text-2xl mb-2">⚛️</div>
+        <div class="text-sm font-medium text-gray-900">React</div>
+      </a>
+      <a
+        href="/docs/frameworks/vue"
+        class="text-center p-4 bg-white rounded-lg hover:shadow-md transition-shadow"
+      >
+        <div class="text-2xl mb-2">🟢</div>
+        <div class="text-sm font-medium text-gray-900">Vue.js</div>
+      </a>
+      <a
+        href="/docs/frameworks/wordpress"
+        class="text-center p-4 bg-white rounded-lg hover:shadow-md transition-shadow"
+      >
+        <div class="text-2xl mb-2">📝</div>
+        <div class="text-sm font-medium text-gray-900">WordPress</div>
+      </a>
+      <a
+        href="/docs/frameworks/ghost"
+        class="text-center p-4 bg-white rounded-lg hover:shadow-md transition-shadow"
+      >
+        <div class="text-2xl mb-2">👻</div>
+        <div class="text-sm font-medium text-gray-900">Ghost</div>
+      </a>
+      <a
+        href="/docs/frameworks/webflow"
+        class="text-center p-4 bg-white rounded-lg hover:shadow-md transition-shadow"
+      >
+        <div class="text-2xl mb-2">🎨</div>
+        <div class="text-sm font-medium text-gray-900">Webflow</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Script for search functionality -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchInput = document.getElementById("doc-search");
+      const searchResults = document.getElementById("search-results");
+
+      // Documentation pages for search
+      const docs = [
+        {
+          title: "Getting Started",
+          url: "/docs/getting-started",
+          description: "Complete setup guide from installation to first events",
+        },
+        {
+          title: "Installation",
+          url: "/docs/installation",
+          description: "Deploy Infinity Metrics on your server in one command",
+        },
+        {
+          title: "Custom Events",
+          url: "/docs/custom-events",
+          description:
+            "Track user interactions, conversions, and business metrics",
+        },
+        {
+          title: "Revenue Tracking",
+          url: "/docs/revenue-tracking",
+          description: "Monitor conversions, revenue attribution, and ROI",
+        },
+        {
+          title: "Subdomain Tracking",
+          url: "/docs/subdomain-tracking",
+          description: "Track users across multiple subdomains and domains",
+        },
+        {
+          title: "Administration",
+          url: "/docs/administration",
+          description: "Server management, user accounts, and configuration",
+        },
+        {
+          title: "SDK Reference",
+          url: "/docs/sdk-reference",
+          description: "Complete JavaScript SDK documentation and examples",
+        },
+        {
+          title: "API Reference",
+          url: "/docs/api-reference",
+          description:
+            "REST API endpoints, authentication, and server integration",
+        },
+        {
+          title: "Troubleshooting",
+          url: "/docs/troubleshooting",
+          description: "Common issues, solutions, and debugging guides",
+        },
+        {
+          title: "Migration Guide",
+          url: "/docs/migration",
+          description:
+            "Migrate from Google Analytics, Plausible, and other platforms",
+        },
+        {
+          title: "Next.js Integration",
+          url: "/docs/frameworks/nextjs",
+          description: "Integrate Infinity Metrics with Next.js applications",
+        },
+        {
+          title: "React Integration",
+          url: "/docs/frameworks/react",
+          description: "Integrate Infinity Metrics with React applications",
+        },
+        {
+          title: "Vue.js Integration",
+          url: "/docs/frameworks/vue",
+          description: "Integrate Infinity Metrics with Vue.js applications",
+        },
+        {
+          title: "WordPress Integration",
+          url: "/docs/frameworks/wordpress",
+          description: "Integrate Infinity Metrics with WordPress websites",
+        },
+        {
+          title: "Ghost Integration",
+          url: "/docs/frameworks/ghost",
+          description: "Integrate Infinity Metrics with Ghost blogs",
+        },
+        {
+          title: "Webflow Integration",
+          url: "/docs/frameworks/webflow",
+          description: "Integrate Infinity Metrics with Webflow websites",
+        },
+      ];
+
+      if (searchInput && searchResults) {
+        searchInput.addEventListener("input", function () {
+          const query = (this as HTMLInputElement).value.toLowerCase().trim();
+
+          if (query.length < 2) {
+            searchResults.classList.add("hidden");
+            return;
+          }
+
+          const filteredDocs = docs
+            .filter(
+              (doc) =>
+                doc.title.toLowerCase().includes(query) ||
+                doc.description.toLowerCase().includes(query)
+            )
+            .slice(0, 5);
+
+          if (filteredDocs.length > 0) {
+            searchResults.innerHTML = filteredDocs
+              .map(
+                (doc) => `
+              <a href="${doc.url}" class="block p-4 hover:bg-gray-50 border-b border-gray-100 last:border-b-0">
+                <div class="font-medium text-gray-900">${doc.title}</div>
+                <div class="text-sm text-gray-600">${doc.description}</div>
+              </a>
+            `
+              )
+              .join("");
+            searchResults.classList.remove("hidden");
+          } else {
+            searchResults.innerHTML =
+              '<div class="p-4 text-gray-500">No results found</div>';
+            searchResults.classList.remove("hidden");
+          }
+        });
+
+        // Hide search results when clicking outside
+        document.addEventListener("click", function (e) {
+          if (
+            !searchInput.contains(e.target as Node) &&
+            !searchResults.contains(e.target as Node)
+          ) {
+            searchResults.classList.add("hidden");
+          }
+        });
+      }
+    });
+  </script>
+</DocsLayout>

@@ -1,431 +1,109 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
-import Header from "../../../components/Header.astro";
-import Footer from "../../../components/Footer.astro";
-
-const pageTitle = "Webflow Integration | Infinity Metrics";
-const pageDescription =
-  "Complete guide to integrating Infinity Metrics with Webflow - custom code and interaction tracking.";
+import DocsLayout from "../../../layouts/DocsLayout.astro";
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
-  <Header />
-  <div class="min-h-screen bg-gray-50 py-12">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Header -->
-      <div class="mb-8">
-        <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
-          <a href="/docs" class="hover:text-gray-700 font-medium"
-            >Documentation</a
-          >
-          <span>→</span>
-          <a href="/docs/frameworks" class="hover:text-gray-700 font-medium"
-            >Frameworks</a
-          >
-          <span>→</span>
-          <span class="text-gray-900 font-semibold">Webflow</span>
-        </nav>
-        <h1 class="text-3xl font-black tracking-tight text-black">
-          Webflow Integration
-        </h1>
-        <p class="mt-2 text-gray-600 font-medium">
-          Complete guide to integrating Infinity Metrics with Webflow
-        </p>
-      </div>
+<DocsLayout title="Webflow Integration - Infinity Metrics">
+  <h1>Webflow Integration</h1>
+  <p>
+    Complete guide to integrating Infinity Metrics with Webflow websites using
+    custom code.
+  </p>
 
-      <!-- Quick Setup -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
-          Quick Setup
-        </h2>
+  <h2>Site-Wide Integration</h2>
+  <p>Add the tracking script to your Webflow site:</p>
+  <ol>
+    <li>Go to Project Settings → Custom Code</li>
+    <li>Add to the Head Code section:</li>
+  </ol>
+  <pre><code>&lt;script src="https://your-domain.com/infinity.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  Infinity.init(&#123;
+    site_id: 'your-site-id'
+  &#125;);
+&lt;/script&gt;</code></pre>
 
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Site-wide Installation
-            </h3>
-            <p class="text-gray-600 font-medium mb-3">
-              Go to Project Settings → Custom Code → Head Code and add:
-            </p>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`<script defer data-domain="yourdomain.com" src="https://analytics.getinfinitymetrics.com/js/script.js"></script>`}</code></pre>
-            </div>
-            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mt-3">
-              <p class="text-blue-700 font-medium text-sm">
-                Replace "yourdomain.com" with your actual domain name.
-              </p>
-            </div>
-          </div>
+  <h2>Page-Specific Tracking</h2>
+  <p>Add custom tracking to specific pages:</p>
+  <ol>
+    <li>Go to Page Settings → Custom Code</li>
+    <li>Add to the Head Code section:</li>
+  </ol>
+  <pre><code>&lt;script&gt;
+document.addEventListener('DOMContentLoaded', function() &#123;
+  Infinity.track('page_view', &#123;
+    page_name: 'Landing Page',
+    page_type: 'marketing'
+  &#125;);
+&#125;);
+&lt;/script&gt;</code></pre>
 
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Page-specific Installation
-            </h3>
-            <p class="text-gray-600 font-medium mb-3">
-              For specific pages, add to Page Settings → Custom Code → Head
-              Code:
-            </p>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`<script defer data-domain="yourdomain.com" src="https://analytics.getinfinitymetrics.com/js/script.js"></script>`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </section>
+  <h2>Form Tracking</h2>
+  <p>Track Webflow form submissions:</p>
+  <pre><code>&lt;!-- Add to page with forms --&gt;
+&lt;script&gt;
+document.addEventListener('DOMContentLoaded', function() &#123;
+  // Track form submissions
+  const forms = document.querySelectorAll('form');
+  forms.forEach(form =&gt; &#123;
+    form.addEventListener('submit', function() &#123;
+      Infinity.track('form_submit', &#123;
+        form_name: this.getAttribute('name') || 'contact_form',
+        page_url: window.location.href
+      &#125;);
+    &#125;);
+  &#125;);
+&#125;);
+&lt;/script&gt;</code></pre>
 
-      <!-- Interaction Tracking -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
-          Interaction Tracking
-        </h2>
+  <h2>E-commerce Tracking</h2>
+  <p>Track Webflow e-commerce events:</p>
+  <pre><code>&lt;!-- Add to e-commerce pages --&gt;
+&lt;script&gt;
+document.addEventListener('DOMContentLoaded', function() &#123;
+  // Track add to cart
+  const addToCartButtons = document.querySelectorAll('[data-wf-cart-type="add-to-cart"]');
+  addToCartButtons.forEach(button =&gt; &#123;
+    button.addEventListener('click', function() &#123;
+      const productElement = this.closest('[data-wf-product-type="product"]');
+      const productName = productElement.querySelector('h2').textContent;
+      
+      Infinity.track('add_to_cart', &#123;
+        product_name: productName,
+        page_url: window.location.href
+      &#125;);
+    &#125;);
+  &#125;);
+&#125;);
+&lt;/script&gt;</code></pre>
 
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Button Click Tracking
-            </h3>
-            <p class="text-gray-600 font-medium mb-3">
-              Add custom attributes to buttons and forms for tracking:
-            </p>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`<!-- Add this to Page Settings → Custom Code → Footer Code -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Track button clicks
-    document.querySelectorAll('[data-track-event]').forEach(function(element) {
-        element.addEventListener('click', function() {
-            const eventName = this.getAttribute('data-track-event');
-            const eventProps = this.getAttribute('data-track-props');
-            
-            if (window.plausible && eventName) {
-                const props = eventProps ? JSON.parse(eventProps) : {};
-                window.plausible(eventName, { props: props });
-            }
-        });
-    });
-});
-</script>`}</code></pre>
-            </div>
-            <p class="text-gray-600 font-medium text-sm mt-3">
-              Then add custom attributes to your elements in Webflow Designer:
-            </p>
-            <div class="bg-gray-100 p-3 rounded text-sm">
-              <code>data-track-event="Button Click"</code><br />
-              <code
-                >data-track-props='&#123;"button": "CTA", "location":
-                "hero"&#125;'</code
-              >
-            </div>
-          </div>
+  <h2>Button Click Tracking</h2>
+  <p>Track specific button clicks:</p>
+  <pre><code>&lt;!-- Add to pages with important buttons --&gt;
+&lt;script&gt;
+document.addEventListener('DOMContentLoaded', function() &#123;
+  // Track CTA button clicks
+  const ctaButtons = document.querySelectorAll('.cta-button');
+  ctaButtons.forEach(button =&gt; &#123;
+    button.addEventListener('click', function() &#123;
+      Infinity.track('cta_click', &#123;
+        button_text: this.textContent,
+        button_location: this.closest('section').className
+      &#125;);
+    &#125;);
+  &#125;);
+&#125;);
+&lt;/script&gt;</code></pre>
 
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Form Submission Tracking
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`<script>
-// Track Webflow form submissions
-document.addEventListener('DOMContentLoaded', function() {
-    // Listen for Webflow's form success event
-    document.addEventListener('submit', function(e) {
-        const form = e.target;
-        if (form.getAttribute('data-name')) {
-            const formName = form.getAttribute('data-name');
-            
-            // Track immediately
-            if (window.plausible) {
-                window.plausible('Form Submit', {
-                    props: {
-                        form_name: formName,
-                        page: window.location.pathname
-                    }
-                });
-            }
-        }
-    });
-    
-    // Alternative: Track when success message appears
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            mutation.addedNodes.forEach(function(node) {
-                if (node.nodeType === 1 && node.classList.contains('w-form-done')) {
-                    if (window.plausible) {
-                        window.plausible('Form Success', {
-                            props: {
-                                page: window.location.pathname
-                            }
-                        });
-                    }
-                }
-            });
-        });
-    });
-    
-    observer.observe(document.body, { childList: true, subtree: true });
-});
-</script>`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </section>
+  <h2>Environment Configuration</h2>
+  <p>Use different configurations for staging and production:</p>
+  <pre><code>&lt;script&gt;
+  var siteId = window.location.hostname === 'your-domain.com' ? 
+    'production-site-id' : 'staging-site-id';
+  
+  Infinity.init(&#123;
+    site_id: siteId
+  &#125;);
+&lt;/script&gt;</code></pre>
 
-      <!-- E-commerce Tracking -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
-          E-commerce Tracking
-        </h2>
-
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Purchase Tracking
-            </h3>
-            <p class="text-gray-600 font-medium mb-3">
-              For Webflow E-commerce, add to order confirmation page:
-            </p>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`<script>
-// Add this to the Order Confirmation page (after purchase)
-document.addEventListener('DOMContentLoaded', function() {
-    // Try to get order data from Webflow's order object
-    if (typeof wfOrder !== 'undefined' && wfOrder) {
-        if (window.plausible) {
-            window.plausible('Purchase', {
-                props: {
-                    revenue: wfOrder.totals.total,
-                    currency: wfOrder.currency,
-                    order_id: wfOrder.id,
-                    items_count: wfOrder.items.length
-                }
-            });
-        }
-    }
-    
-    // Alternative: Manual tracking if order data isn't available
-    const urlParams = new URLSearchParams(window.location.search);
-    const orderTotal = urlParams.get('total');
-    const orderId = urlParams.get('order');
-    
-    if (orderTotal && window.plausible) {
-        window.plausible('Purchase', {
-            props: {
-                revenue: orderTotal,
-                order_id: orderId,
-                source: 'webflow'
-            }
-        });
-    }
-});
-</script>`}</code></pre>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Add to Cart Tracking
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`<script>
-// Track add to cart events
-document.addEventListener('DOMContentLoaded', function() {
-    // Listen for Webflow's add to cart button clicks
-    document.querySelectorAll('[data-wf-cart-type="add-to-cart"]').forEach(function(button) {
-        button.addEventListener('click', function() {
-            const productName = this.getAttribute('data-wf-cart-product-name') || 'Unknown Product';
-            const productId = this.getAttribute('data-wf-cart-product-id');
-            const productPrice = this.getAttribute('data-wf-cart-product-price');
-            
-            if (window.plausible) {
-                window.plausible('Add to Cart', {
-                    props: {
-                        product_name: productName,
-                        product_id: productId,
-                        price: productPrice
-                    }
-                });
-            }
-        });
-    });
-});
-</script>`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Advanced Configuration -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
-          Advanced Configuration
-        </h2>
-
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Scroll Depth Tracking
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`<script>
-// Track scroll depth
-let scrollDepthTracked = {};
-
-function trackScrollDepth() {
-    const scrollPercentage = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-    
-    [25, 50, 75, 90].forEach(function(milestone) {
-        if (scrollPercentage >= milestone && !scrollDepthTracked[milestone]) {
-            scrollDepthTracked[milestone] = true;
-            
-            if (window.plausible) {
-                window.plausible('Scroll Depth', {
-                    props: {
-                        depth: milestone + '%',
-                        page: window.location.pathname
-                    }
-                });
-            }
-        }
-    });
-}
-
-window.addEventListener('scroll', trackScrollDepth);
-</script>`}</code></pre>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">
-              Video Tracking
-            </h3>
-            <div
-              class="bg-gray-900 rounded-lg p-4 text-gray-100 font-mono text-sm overflow-x-auto"
-            >
-              <pre><code>{`<script>
-// Track video interactions
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('video, iframe[src*="youtube"], iframe[src*="vimeo"]').forEach(function(video) {
-        if (video.tagName === 'VIDEO') {
-            video.addEventListener('play', function() {
-                if (window.plausible) {
-                    window.plausible('Video Play', {
-                        props: {
-                            video_src: this.src || 'embedded',
-                            page: window.location.pathname
-                        }
-                    });
-                }
-            });
-        }
-    });
-});
-</script>`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Best Practices -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
-          Best Practices
-        </h2>
-
-        <div class="space-y-4">
-          <div class="bg-green-50 border-l-4 border-green-400 p-4">
-            <h4 class="font-semibold text-green-800 mb-2">Performance Tips</h4>
-            <ul class="text-green-700 text-sm space-y-1">
-              <li>• Always use the defer attribute on the script tag</li>
-              <li>• Place analytics code in the head for faster loading</li>
-              <li>• Avoid tracking on every scroll event - use throttling</li>
-              <li>
-                • Test tracking in Webflow's preview mode before publishing
-              </li>
-            </ul>
-          </div>
-
-          <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
-            <h4 class="font-semibold text-blue-800 mb-2">Custom Attributes</h4>
-            <ul class="text-blue-700 text-sm space-y-1">
-              <li>• Use data-track-event for event names</li>
-              <li>
-                • Use data-track-props for additional event data (JSON format)
-              </li>
-              <li>• Keep event names consistent across your site</li>
-              <li>• Use descriptive properties for better analytics</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Troubleshooting -->
-      <section class="mb-12 bg-white rounded-lg shadow-sm p-6">
-        <h2 class="text-2xl font-black tracking-tight text-black mb-4">
-          Troubleshooting
-        </h2>
-
-        <div class="space-y-4">
-          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
-            <h4 class="font-semibold text-yellow-800 mb-2">
-              Script Not Loading?
-            </h4>
-            <ul class="text-yellow-700 text-sm space-y-1">
-              <li>• Check if script is in Head Code, not Footer Code</li>
-              <li>• Publish your site after adding the code</li>
-              <li>• Verify the script URL is accessible</li>
-              <li>• Check browser console for errors</li>
-            </ul>
-          </div>
-
-          <div class="bg-red-50 border-l-4 border-red-400 p-4">
-            <h4 class="font-semibold text-red-800 mb-2">
-              Events Not Tracking?
-            </h4>
-            <ul class="text-red-700 text-sm space-y-1">
-              <li>
-                • Ensure custom attributes are added correctly in Designer
-              </li>
-              <li>• Check that event names don't contain special characters</li>
-              <li>• Verify JSON syntax in data-track-props</li>
-              <li>
-                • Test in browser console: <code
-                  >window.plausible('Test Event')</code>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Navigation -->
-      <div
-        class="flex justify-between items-center pt-8 border-t border-gray-200"
-      >
-        <a
-          href="/docs/frameworks/ghost"
-          class="flex items-center text-gray-700 hover:text-black font-semibold"
-        >
-          ← Ghost Integration
-        </a>
-        <a
-          href="/docs/frameworks/wordpress"
-          class="flex items-center text-gray-700 hover:text-black font-semibold"
-        >
-          WordPress Integration →
-        </a>
-      </div>
-    </div>
-  </div>
-  <Footer />
-</Layout>
+  <p>Next: <a href="/docs/sdk-reference">SDK Reference</a></p>
+</DocsLayout>
