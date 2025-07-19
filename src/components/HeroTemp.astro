@@ -60,89 +60,32 @@
         </p>
       </div>
 
-      <!-- Slideshow section - now below -->
+      <!-- Video section - replaced screenshots -->
       <div class="max-w-4xl mx-auto">
         <div
           class="bg-white rounded-lg border border-black shadow-md overflow-hidden"
         >
           <div class="relative w-full">
-            <div class="slideshow-container relative h-[500px]">
+            <div class="video-container relative h-[500px]">
               <div
-                class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out"
+                class="w-full h-full flex items-center justify-center bg-black"
               >
-                <img
-                  src="/dashboard-preview.png"
-                  alt="Infinity Metrics AI-Powered Analytics Dashboard"
-                  class="w-full h-full object-contain cursor-zoom-in"
-                />
-                <div
-                  class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center"
-                >
-                  <p class="text-sm font-bold">Simple analytics dashboard</p>
-                </div>
-              </div>
-              <div
-                class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out"
-              >
-                <img
-                  src="/ask-ai-1.png"
-                  alt="Infinity Metrics AI Assistant Analytics Interface"
-                  class="w-full h-full object-contain cursor-zoom-in"
-                />
-                <div
-                  class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center"
-                >
-                  <p class="text-sm font-bold">
-                    Ask your data questions using natural language
-                  </p>
-                </div>
-              </div>
-              <div
-                class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out"
-              >
-                <img
-                  src="/ask-ai-3.png"
-                  alt="Infinity Metrics AI Assistant Analytics Interface"
-                  class="w-full h-full object-contain cursor-zoom-in"
-                />
-                <div
-                  class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center"
-                >
-                  <p class="text-sm font-bold">Ask about your funnels</p>
-                </div>
-              </div>
-              <div
-                class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out"
-              >
-                <img
-                  src="/ask-ai-4.png"
-                  alt="Infinity Metrics AI Assistant Analytics Interface"
-                  class="w-full h-full object-contain cursor-zoom-in"
-                />
-                <div
-                  class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center"
-                >
-                  <p class="text-sm font-bold">Ask common user patterns</p>
-                </div>
-              </div>
-              <div
-                class="slide absolute w-full h-full opacity-0 transition-opacity duration-1000 ease-in-out"
-              >
-                <img
-                  src="/ask-ai-5.png"
-                  alt="Infinity Metrics AI Assistant Analytics Interface"
-                  class="w-full h-full object-contain cursor-zoom-in"
-                />
-                <div
-                  class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center"
-                >
-                  <p class="text-sm font-bold">Ask about your traffic</p>
+                <div class="w-full h-full relative">
+                  <iframe
+                    src="https://www.youtube.com/embed/tYrOTMHlEmI?autoplay=0&rel=0&modestbranding=1"
+                    title="InfinityMetrics Demo Video"
+                    class="w-full h-full"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
                 </div>
               </div>
 
-              <!-- Navigation arrows -->
+              <!-- Full-screen button -->
               <button
-                class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-30 hover:bg-opacity-50 text-white rounded-full w-8 h-8 flex items-center justify-center z-20"
+                id="fullscreenBtn"
+                class="absolute top-4 right-4 bg-black bg-opacity-70 hover:bg-opacity-90 text-white rounded-full p-2 transition-all duration-200 z-10"
+                title="Open in full screen"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -154,43 +97,28 @@
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M15 19l-7-7 7-7"></path>
+                    stroke-width="2"
+                    d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+                  ></path>
                 </svg>
               </button>
-              <button
-                class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-30 hover:bg-opacity-50 text-white rounded-full w-8 h-8 flex items-center justify-center z-20"
+
+              <div
+                class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M9 5l7 7-7 7"></path>
-                </svg>
-              </button>
+                <p class="text-sm font-bold">Watch InfinityMetrics in action</p>
+              </div>
             </div>
 
-            <!-- Image zoom modal -->
+            <!-- Full-screen modal -->
             <div
-              id="imageModal"
-              class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden"
+              id="fullscreenModal"
+              class="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-50 hidden"
             >
-              <div class="relative max-w-[90%] max-h-[90%]">
-                <img
-                  id="zoomedImage"
-                  src=""
-                  alt="Zoomed image"
-                  class="max-w-full max-h-[90vh] object-contain"
-                />
+              <div class="relative w-full h-full max-w-7xl max-h-[90vh] p-4">
                 <button
-                  class="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2"
+                  id="closeFullscreenBtn"
+                  class="absolute top-4 right-4 text-white bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full p-2 z-10 transition-all duration-200"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -206,18 +134,16 @@
                       d="M6 18L18 6M6 6l12 12"></path>
                   </svg>
                 </button>
+                <div class="w-full h-full">
+                  <iframe
+                    src="https://www.youtube.com/embed/tYrOTMHlEmI?autoplay=1&rel=0&modestbranding=1"
+                    title="InfinityMetrics Demo Video - Full Screen"
+                    class="w-full h-full"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                </div>
               </div>
-            </div>
-
-            <div
-              class="flex justify-center gap-3 py-3 absolute bottom-14 left-0 right-0 z-10"
-            >
-              <span
-                class="dot w-3 h-3 bg-white bg-opacity-50 rounded-full cursor-pointer hover:bg-white transition-all"
-              ></span>
-              <span
-                class="dot w-3 h-3 bg-white bg-opacity-50 rounded-full cursor-pointer hover:bg-white transition-all"
-              ></span>
             </div>
           </div>
         </div>
@@ -244,146 +170,41 @@
   </style>
 
   <script is:inline>
-    let slideIndex = 1;
-    let slideInterval;
-    let isHovering = false;
-
-    // Initialize the slideshow
     document.addEventListener("DOMContentLoaded", () => {
-      showSlides(slideIndex);
-      startSlideInterval();
-      setupImageZoom();
-      setupHoverPause();
+      const fullscreenBtn = document.getElementById("fullscreenBtn");
+      const fullscreenModal = document.getElementById("fullscreenModal");
+      const closeFullscreenBtn = document.getElementById("closeFullscreenBtn");
 
-      // Attach click handlers to navigation buttons
-      document
-        .querySelectorAll(".slideshow-container button")
-        .forEach((button) => {
-          if (button.innerHTML.includes("M15 19l-7-7 7-7")) {
-            button.addEventListener("click", () => plusSlides(-1));
-          } else if (button.innerHTML.includes("M9 5l7 7-7 7")) {
-            button.addEventListener("click", () => plusSlides(1));
-          }
-        });
+      // Open full-screen modal
+      fullscreenBtn.addEventListener("click", () => {
+        fullscreenModal.classList.remove("hidden");
+        document.body.style.overflow = "hidden"; // Prevent background scrolling
+      });
 
-      // Attach click handlers to dots
-      document.querySelectorAll(".dot").forEach((dot, index) => {
-        dot.addEventListener("click", () => currentSlide(index + 1));
+      // Close full-screen modal
+      closeFullscreenBtn.addEventListener("click", () => {
+        fullscreenModal.classList.add("hidden");
+        document.body.style.overflow = ""; // Re-enable scrolling
+      });
+
+      // Close modal when clicking outside the video
+      fullscreenModal.addEventListener("click", (e) => {
+        if (e.target === fullscreenModal) {
+          fullscreenModal.classList.add("hidden");
+          document.body.style.overflow = "";
+        }
+      });
+
+      // Close modal with Escape key
+      document.addEventListener("keydown", (e) => {
+        if (
+          e.key === "Escape" &&
+          !fullscreenModal.classList.contains("hidden")
+        ) {
+          fullscreenModal.classList.add("hidden");
+          document.body.style.overflow = "";
+        }
       });
     });
-
-    // Start the auto-slide interval
-    function startSlideInterval() {
-      slideInterval = setInterval(() => {
-        if (!isHovering) {
-          plusSlides(1);
-        }
-      }, 15000); // Change slides every 15 seconds
-    }
-
-    // Setup zoom functionality
-    function setupImageZoom() {
-      const slides = document.querySelectorAll(".slide");
-      const modal = document.getElementById("imageModal");
-      const zoomedImage = document.getElementById("zoomedImage");
-
-      slides.forEach((slide, index) => {
-        const img = slide.querySelector("img");
-        if (img) {
-          img.addEventListener("click", () => {
-            if (zoomedImage && modal && img instanceof HTMLImageElement) {
-              // Make sure we're showing the currently visible slide's image
-              const visibleSlide = document.querySelector(
-                '.slide[style*="opacity: 1"]'
-              );
-              const visibleImg = visibleSlide
-                ? visibleSlide.querySelector("img")
-                : null;
-
-              if (visibleImg instanceof HTMLImageElement) {
-                zoomedImage.src = visibleImg.src;
-                zoomedImage.alt = visibleImg.alt;
-                modal.classList.remove("hidden");
-                document.body.style.overflow = "hidden"; // Prevent scrolling
-              }
-            }
-          });
-        }
-      });
-
-      // Add event listener for the close button
-      const closeButton = document.querySelector("#imageModal button");
-      if (closeButton) {
-        closeButton.addEventListener("click", closeModal);
-      }
-    }
-
-    // Setup pause on hover
-    function setupHoverPause() {
-      const slideshowContainer = document.querySelector(".slideshow-container");
-
-      if (slideshowContainer) {
-        slideshowContainer.addEventListener("mouseenter", () => {
-          isHovering = true;
-        });
-
-        slideshowContainer.addEventListener("mouseleave", () => {
-          isHovering = false;
-        });
-      }
-    }
-
-    // Close the modal
-    function closeModal() {
-      const modal = document.getElementById("imageModal");
-      if (modal) {
-        modal.classList.add("hidden");
-        document.body.style.overflow = ""; // Re-enable scrolling
-      }
-    }
-
-    function plusSlides(n) {
-      showSlides((slideIndex += n));
-    }
-
-    function currentSlide(n) {
-      showSlides((slideIndex = n));
-    }
-
-    function showSlides(n) {
-      let i;
-      const slides = document.getElementsByClassName("slide");
-      const dots = document.getElementsByClassName("dot");
-
-      if (n > slides.length) {
-        slideIndex = 1;
-      }
-      if (n < 1) {
-        slideIndex = slides.length;
-      }
-
-      // Hide all slides
-      for (i = 0; i < slides.length; i++) {
-        const slide = slides[i];
-        if (slide) {
-          slide.style.opacity = "0";
-        }
-      }
-
-      // Reset all dots
-      for (i = 0; i < dots.length; i++) {
-        dots[i].classList.remove("bg-gray-600");
-      }
-
-      // Show the current slide and highlight its dot
-      const currentSlide = slides[slideIndex - 1];
-      if (currentSlide) {
-        currentSlide.style.opacity = "1";
-      }
-
-      if (dots[slideIndex - 1]) {
-        dots[slideIndex - 1].classList.add("bg-gray-600");
-      }
-    }
   </script>
 </section>
