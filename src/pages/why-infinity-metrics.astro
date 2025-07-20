@@ -30,103 +30,81 @@ const breadcrumbs = generateBreadcrumbs(Astro.url.pathname);
 
     <div class="prose prose-lg max-w-none text-gray-800">
       <section>
-        <h2 id="the-problem" class="text-2xl font-semibold mt-8 mb-4">
-          The Frustrations That Sparked a New Solution
+        <h2 id="trust-disaster" class="text-2xl font-semibold mt-8 mb-4">
+          Third-Party Analytics Are a Trust Disaster
         </h2>
         <p>
-          As a website owner, I relied on web analytics to understand my
-          audience, but the options out there left me frustrated. Free tools,
-          like Google Analytics, seem convenient, but they come with a steep
-          hidden cost: your users’ privacy. They often monetize user data by
-          sharing it with third parties, forcing you to clutter your site with
-          intrusive cookie banners to comply with regulations like GDPR. It’s a
-          compromise that erodes user trust and complicates your setup.
+          Let's be real: third-party analytics are a mess. You're genuinely
+          curious about who's visiting your website, what brings them there,
+          where they're from, what they care about.
         </p>
         <p>
-          Paid SaaS platforms, often marketed as privacy-first alternatives,
-          solve some of these issues but introduce new frustrations. They don’t
-          necessarily offer more features, just a higher price tag with
-          recurring fees that scale with your traffic. The more your site grows,
-          the more you pay, leaving you stuck in a cycle of endless payments
-          with limited control over your data.
+          But what do you get? A trust disaster. These tools ship your users'
+          data everywhere, to faceless vendors you wouldn't trust with a
+          paperclip. Even if you trust these third parties, why would your
+          users? They don't, and they're right not to. Nobody wants their info
+          escaping to some stranger's database, scattered across the internet.
         </p>
         <p>
-          Self-hosted analytics seemed like a better path, but they brought
-          their own challenges. Most options required complex setups, external
-          database servers to pay for, and ongoing maintenance that felt
-          overwhelming. I knew there had to be a better way to balance control,
-          privacy, and simplicity.
+          When data leaks out to these vendors, your credibility takes a hit.
+          Users can tell when their info isn't safe, it's why they use
+          adblockers, just like I do, stacking every privacy layer I can.
+        </p>
+        <p>
+          Adblockers wreck your data because users hate being tracked. And
+          you're left hoping these vendors don't mishandle or leak your users'
+          data, shattering the trust you've built. For what? A clunky dashboard
+          that's more hype than help? Come on. You're better than that, and your
+          users deserve better.
         </p>
 
-        <h2 id="a-different-vision" class="text-2xl font-semibold mt-8 mb-4">
-          My Vision for Something Better
+        <h2 id="first-party-solution" class="text-2xl font-semibold mt-8 mb-4">
+          First-Party Analytics: Trust, Control, Curiosity
         </h2>
         <p>
-          I wanted a solution that gave me full control over my data without the
-          headaches. I envisioned a web analytics tool that prioritized user
-          privacy and data ownership, all while requiring minimal maintenance
-          effort so I could focus on insights, not infrastructure.
+          Here's the real deal: first-party analytics. It's just you and your
+          users, no shady vendors, no data escaping everywhere, no nonsense.
         </p>
         <p>
-          I also craved deeper insights than static dashboards could offer. I
-          wanted to ask questions in plain language and get answers instantly,
-          going beyond predefined charts and metrics. And if I ever needed to
-          use another tool, I wanted direct access to the database file
-          —unrestricted and on my terms.
+          You get clean, reliable insights into who's visiting your site, where
+          they're from, and what they're into, all kept in-house. It's about
+          feeding your genuine interest in your audience while building trust
+          and credibility, not burning them.
+        </p>
+        <p>
+          Your users see you're not selling them out to third parties they have
+          no reason to trust. Adblockers? They don't touch you because you're
+          not the creepy one.
+        </p>
+        <p>
+          First-party analytics means control. Your data stays with you, not
+          locked in someone else's system or scattered across the web. You get
+          straightforward insights that fuel your curiosity without compromising
+          user trust. It's simple, it's honest, it's how it should be.
         </p>
 
-        <h2
-          id="introducing-infinity-metrics"
-          class="text-2xl font-semibold mt-8 mb-4"
-        >
-          Introducing Infinity Metrics
+        <h2 id="ditch-trust-killer" class="text-2xl font-semibold mt-8 mb-4">
+          Ditch the Trust-Killer, Own Your Data
         </h2>
         <p>
-          That’s why I created Infinity Metrics, a self-hosted analytics
-          platform that solves these problems and delivers on my vision. Here’s
-          what makes it different:
+          Your business is about trust and credibility, why break it by sending
+          user data to third parties? Have the courage to own it!
         </p>
-        <ul class="list-disc pl-6 mb-4">
-          <li>
-            <strong>Own Your Data, Pay Once:</strong> With a one-time payment, you
-            own Infinity Metrics forever. Scale your traffic infinitely without worrying
-            about rising costs or surprise bills.
-          </li>
-          <li>
-            <strong>Unrestricted Data Access:</strong> Your data lives in a portable
-            SQLite file. Query, export, or explore it with any tool you choose, your
-            data, your rules.
-          </li>
-          <li>
-            <strong>AI-Driven Insights:</strong> Go beyond dashboards with the AI
-            assistant. Query your data in plain language to uncover insights that
-            traditional tools can’t provide.
-          </li>
-          <li>
-            <strong>Pure Privacy, No Third-Party Sharing:</strong> Infinity Metrics
-            is cookieless and GDPR-compliant by default, storing zero personal data.
-            It runs on your server, ensuring no third-party access to your data.
-          </li>
-          <li>
-            <strong>Effortless Setup and Maintenance:</strong> Powered by Docker
-            and SQLite, setup is as simple as a single command. There’s no database
-            server to manage, just a lightweight SQLite file for near-zero maintenance.
-          </li>
-        </ul>
-
-        <h2 id="resonate" class="text-2xl font-semibold mt-8 mb-4">
-          Does This Resonate with You?
-        </h2>
         <p>
-          If you're tired of compromising on privacy, paying endless fees, or
-          wrestling with complex setups, Infinity Metrics is for you.
+          Show consistency in your actions and always take care of your users by
+          running your business like you mean it. Host your first-party web
+          analytics with Infinity Metrics and keep your data in-house.
+        </p>
+        <p>
+          You'll fuel your curiosity about your users and build trust without
+          the leaks. Ready to make the switch?
         </p>
 
         <div class="mt-8 mb-6 text-center">
           <a
             href="/#pricing"
             class="inline-block px-8 py-4 bg-black hover:bg-gray-800 text-white font-bold rounded-md shadow-md transition-transform transform hover:scale-105 text-lg"
-            ><span class="text-white">Get It Now</span>
+            ><span class="text-white">Become a First-Party Analytics Host</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5 ml-2 inline-block text-white"
@@ -139,9 +117,6 @@ const breadcrumbs = generateBreadcrumbs(Astro.url.pathname);
                 clip-rule="evenodd"></path>
             </svg>
           </a>
-          <p class="mt-3 text-sm text-gray-600">
-            One-time payment, lifetime ownership
-          </p>
         </div>
       </section>
     </div>
