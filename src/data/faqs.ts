@@ -1,8 +1,8 @@
 export const faqs = [
   {
-    question: "Why is first-party web analytics important?",
+    question: "Why does first-party web analytics matter?",
     answer:
-      "First-party analytics keeps your users' data on your own server instead of shipping it to third-party vendors. This builds trust with your audience since you're not betraying their data to external companies they don't know or trust. It also means adblockers won't block your analytics, giving you complete, accurate data. Plus, you maintain full control over your data without being locked into vendor ecosystems or worrying about data leaks from third parties.",
+      "First-party analytics keeps your users' data on your own server instead of shipping it to third-party vendors. This builds trust with your audience since they don't see their data being shipped through the door to third parties. This reflects possitively on your brand and reinforces credibility.",
   },
   {
     question: "What's self-hosting like?",
