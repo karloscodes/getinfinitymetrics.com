@@ -1,5 +1,10 @@
 export const faqs = [
   {
+    question: "Why is first-party web analytics important?",
+    answer:
+      "First-party analytics keeps your users' data on your own server instead of shipping it to third-party vendors. This builds trust with your audience since you're not betraying their data to external companies they don't know or trust. It also means adblockers won't block your analytics, giving you complete, accurate data. Plus, you maintain full control over your data without being locked into vendor ecosystems or worrying about data leaks from third parties.",
+  },
+  {
     question: "What's self-hosting like?",
     answer:
       "Infinity Metrics runs on Docker and uses SQLite. No need for any external Database server setup or maintenance. It can run in a 512MB RAM VPS. Plus, it supports multiple websites out of the box. You can also run it in Kubernetes, Coolify or similar container orchestration platforms.",
