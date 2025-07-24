@@ -63,6 +63,7 @@ export const faqs = [
 
 export function getFaqSchema() {
   return {
+    "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": faqs.map(faq => ({
       "@type": "Question",

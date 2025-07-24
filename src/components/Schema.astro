@@ -32,12 +32,18 @@ const {
 // Get current page URL
 const currentUrl = Astro.url.href;
 
-// Get FAQ schema
-const faqSchema = getFaqSchema();
+// Create consolidated schema array to avoid multiple @context declarations
+const schemaArray = [];
+
+// Website schema (primary)
+schemaArray.push({
+  "@type": "WebSite",
+  name: siteName,
+  url: siteUrl,
+});
 
 // WebPage schema
-const webPageSchema = {
-  "@context": "https://schema.org",
+schemaArray.push({
   "@type": "WebPage",
   mainEntityOfPage: {
     "@type": "WebPage",
@@ -48,24 +54,31 @@ const webPageSchema = {
   description: description,
   url: currentUrl,
   image: image,
-};
+  isPartOf: {
+    "@type": "WebSite",
+    "@id": siteUrl,
+  },
+});
 
-// Website schema
-const websiteSchema = {
+// Add FAQ schema if requested
+if (includeFAQ) {
+  const faqSchema = getFaqSchema();
+  schemaArray.push({
+    "@type": "FAQPage",
+    mainEntity: faqSchema.mainEntity,
+  });
+}
+
+// Create consolidated schema with single @context
+const consolidatedSchema = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: siteName,
-  url: siteUrl,
+  "@graph": schemaArray,
 };
 
-const webPageSchemaString = JSON.stringify(webPageSchema);
-const websiteSchemaString = JSON.stringify(websiteSchema);
-const faqSchemaString = includeFAQ ? JSON.stringify(faqSchema) : null;
+const consolidatedSchemaString = JSON.stringify(consolidatedSchema);
 ---
 
-<script type="application/ld+json" set:html={webPageSchemaString} />
-<script type="application/ld+json" set:html={websiteSchemaString} />
-{includeFAQ && <script type="application/ld+json" set:html={faqSchemaString} />}
+<script type="application/ld+json" set:html={consolidatedSchemaString} />
 {
   breadcrumbs && breadcrumbs.length > 0 && (
     <BreadcrumbSchema breadcrumbs={breadcrumbs} />
