@@ -38,6 +38,7 @@ const schemaArray = [];
 // Website schema (primary)
 schemaArray.push({
   "@type": "WebSite",
+  "@id": siteUrl,
   name: siteName,
   url: siteUrl,
 });
@@ -55,7 +56,6 @@ schemaArray.push({
   url: currentUrl,
   image: image,
   isPartOf: {
-    "@type": "WebSite",
     "@id": siteUrl,
   },
 });
