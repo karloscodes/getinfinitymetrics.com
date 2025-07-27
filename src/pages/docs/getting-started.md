@@ -57,7 +57,7 @@ By default, Infinity Metrics automatically tracks:
 
 ## Next Steps
 
-- [Learn about SDK configuration](/docs/sdk-reference)
+- [Learn about configuration](/docs/automated-tracking#configuration)
 - [Track custom events](/docs/custom-events)
 - [Set up purchase tracking](/docs/revenue-tracking)
 - [Configure administrative settings](/docs/administration)

@@ -138,6 +138,7 @@ const currentPath = Astro.url.pathname;
       .docs-content pre:hover::after {
         @apply opacity-100;
       }
+
     </style>
   </head>
   <body class="bg-white antialiased">
@@ -163,7 +164,7 @@ const currentPath = Astro.url.pathname;
                 href="/docs"
                 class={`docs-nav-item ${currentPath === "/docs" ? "active" : ""}`}
               >
-                Documentation
+                Home
               </a>
               <a
                 href="/docs/getting-started"
@@ -205,16 +206,16 @@ const currentPath = Astro.url.pathname;
               >
                 Subdomain Tracking
               </a>
+              <a
+                href="/docs/configuration"
+                class={`docs-nav-item ${currentPath === "/docs/configuration" ? "active" : ""}`}
+              >
+                SDK Configuration
+              </a>
             </div>
 
             <div class="docs-nav-section">
               <h3>Integration Guides</h3>
-              <a
-                href="/docs/integrations"
-                class={`docs-nav-item ${currentPath === "/docs/integrations" ? "active" : ""}`}
-              >
-                All Integrations
-              </a>
               <a
                 href="/docs/integrations/generic"
                 class={`docs-nav-item ${currentPath === "/docs/integrations/generic" ? "active" : ""}`}
@@ -231,12 +232,6 @@ const currentPath = Astro.url.pathname;
               >
                 Administration
               </a>
-              <a
-                href="/docs/sdk-reference"
-                class={`docs-nav-item ${currentPath === "/docs/sdk-reference" ? "active" : ""}`}
-              >
-                SDK Reference
-              </a>
             </div>
           </nav>
         </aside>
@@ -245,9 +240,10 @@ const currentPath = Astro.url.pathname;
 
     <Footer />
 
-    <!-- Copy functionality for code blocks -->
+    <!-- Copy functionality for code blocks and header anchors -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        // Code block copy functionality
         const codeBlocks = document.querySelectorAll(".docs-content pre");
         codeBlocks.forEach((block) => {
           block.addEventListener("click", function (e) {
@@ -285,6 +281,7 @@ const currentPath = Astro.url.pathname;
             }
           });
         });
+
       });
     </script>
   </body>

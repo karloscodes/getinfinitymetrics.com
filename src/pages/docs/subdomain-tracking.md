@@ -7,6 +7,8 @@ layout: "../../layouts/DocsLayout.astro"
 
 Track visitors across multiple subdomains as a unified website experience. The Infinity Metrics SDK automatically handles subdomain tracking when the same script is installed on all subdomains.
 
+**Note**: Subdomain tracking is disabled by default and must be enabled in the website settings through the administration interface.
+
 ## How It Works
 
 When you install the same tracking script on multiple subdomains, the SDK automatically:
@@ -17,7 +19,9 @@ When you install the same tracking script on multiple subdomains, the SDK automa
 
 ## Setup
 
-Simply install the same tracking script on all your subdomains:
+**First**, enable subdomain tracking in your website settings through the administration interface.
+
+**Then**, install the same tracking script on all your subdomains:
 
 ```html
 <!-- Main domain: example.com -->

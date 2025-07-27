@@ -5,25 +5,109 @@ layout: "../../layouts/DocsLayout.astro"
 
 # Administration
 
-## Administrative Operations
+This guide covers how to manage your Infinity Metrics installation. Choose the section that matches your deployment method.
 
-Manage your Infinity Metrics installation with the following administrative commands.
+## CLI Installation Management
 
-### Password Reset
+If you installed Infinity Metrics using the automated installer, you have access to the `infinity-metrics` CLI tool.
 
-To reset or change the admin password, run the following command with sudo privileges:
+### CLI Tool Overview
+
+The automated installation installs Infinity Metrics to `/opt/infinity-metrics` and adds the `infinity-metrics` command to your system PATH, making it available from anywhere.
+
+### Key Files and Directories
+
+```
+/opt/infinity-metrics/
+├── Caddyfile                           # Web server configuration
+├── logs/
+│   ├── caddy.log                       # Web server logs
+│   ├── infinity-metrics.log            # Application logs
+│   └── updater.log                     # Auto-updater logs
+└── storage/
+    ├── backups/                        # Daily database backups
+    │   └── backup_YYYYMMDD_HHMMSS.db
+    └── infinity-metrics-production.db  # Main database
+```
+
+### Administrative Commands
+
+#### Available CLI Commands
+
+View all available commands:
 
 ```bash
+infinity-metrics --help
+```
+
+Administrative commands:
+
+```bash
+# Change admin password
 sudo infinity-metrics change-admin-password
+
+# Force manual update (updates normally run automatically at 3:00 AM)
+sudo infinity-metrics update
+
+# Reload configuration and restart services
+sudo infinity-metrics reload
+
+# Restore from backup
+sudo infinity-metrics restore
+
+# Check version
+infinity-metrics version
 ```
 
-### Forced Updates
 
-To manually force an update of Infinity Metrics, run the following command with sudo privileges:
+#### View Logs
+
+View real-time logs:
 
 ```bash
-sudo infinity-metrics update
+# Application logs
+sudo tail -f /opt/infinity-metrics/logs/infinity-metrics.log
+
+# Web server logs  
+sudo tail -f /opt/infinity-metrics/logs/caddy.log
+
+# Auto-updater logs
+sudo tail -f /opt/infinity-metrics/logs/updater.log
 ```
+
+#### Database Management
+
+Access the database:
+
+```bash
+sudo sqlite3 /opt/infinity-metrics/storage/infinity-metrics-production.db
+```
+
+View automatic backups (created nightly at 3:00 AM):
+
+```bash
+ls -la /opt/infinity-metrics/storage/backups/
+```
+
+Restore from backup:
+
+```bash
+sudo infinity-metrics stop
+sudo cp /opt/infinity-metrics/storage/backups/backup_YYYYMMDD_HHMMSS.db /opt/infinity-metrics/storage/infinity-metrics-production.db
+sudo infinity-metrics start
+```
+
+#### Automatic Maintenance
+
+The system automatically performs the following maintenance tasks every night at 3:00 AM:
+
+- **Updates**: Checks for and installs Infinity Metrics updates
+- **Backups**: Creates daily database backups (retained for 30 days)
+- **Log rotation**: Archives old log files
+
+## Docker Installation Management
+
+If you deployed Infinity Metrics using Docker, you can manage your installation using standard Docker commands for container operations, log viewing, and database access.
 
 ## Server Requirements
 

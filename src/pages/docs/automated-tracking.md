@@ -79,8 +79,8 @@ For links that navigate to other pages, the SDK automatically uses `navigator.se
 ```html
 <a
   href="/features"
-  data-infinity-event-name="Clicked Features Link From Docs"
-  data-infinity-metadata-location="Docs Page Section"
+  data-infinity-event-name="clicked_features_link_from_docs"
+  data-infinity-metadata-location="docs_page_section"
   data-infinity-metadata-custom_id="feat_123"
 >
   Explore Our Features
@@ -124,33 +124,9 @@ For links that navigate to other pages, the SDK automatically uses `navigator.se
 
 The SDK automatically detects when the user is offline and stores events locally for a reasonable period of time. When the connection is restored, it will send the stored events to the server.
 
-## Configuration
-
-You can control automated tracking behavior through configuration options:
-
-```javascript
-// Modify configuration before the SDK loads
-window.InfinityMetrics = window.InfinityMetrics || {};
-window.InfinityMetrics.config = {
-  respectDoNotTrack: true, // Honor browser's Do Not Track setting
-  autoInstrumentButtons: true, // Auto-track button clicks
-  autoSendPageViews: true, // Automatically send page views
-  debug: false, // Enable debug logging
-};
-```
-
-### Configuration Options
-
-| Option                  | Default | Description                              |
-| ----------------------- | ------- | ---------------------------------------- |
-| `respectDoNotTrack`     | `true`  | Honor the browser's Do Not Track setting |
-| `autoInstrumentButtons` | `true`  | Automatically track button clicks        |
-| `autoSendPageViews`     | `true`  | Automatically send page views            |
-| `debug`                 | `false` | Enable debug logging to console          |
-
 ## Disabling Automated Tracking
 
-If you prefer to track events manually, you can disable automated tracking:
+If you prefer to track events manually, you can disable automated tracking through the [SDK Configuration](/docs/configuration):
 
 ```javascript
 window.InfinityMetrics = window.InfinityMetrics || {};
