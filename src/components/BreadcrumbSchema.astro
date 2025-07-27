@@ -1,29 +1,25 @@
 ---
-// Breadcrumb Schema for structured data
-interface BreadcrumbItem {
-  name: string;
-  url: string;
-}
+import { generateBreadcrumbs } from "../utils/breadcrumbs";
 
 interface Props {
-  breadcrumbs: BreadcrumbItem[];
+  pathname: string;
 }
 
-const { breadcrumbs } = Astro.props;
+const { pathname } = Astro.props;
+const safePath = pathname || Astro.url.pathname || '/';
+const breadcrumbs = generateBreadcrumbs(safePath);
 
-// Generate breadcrumb schema
+// Generate JSON-LD schema for breadcrumbs
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  itemListElement: breadcrumbs.map((crumb, index) => ({
+  "itemListElement": breadcrumbs.map((breadcrumb, index) => ({
     "@type": "ListItem",
-    position: index + 1,
-    name: crumb.name,
-    item: crumb.url,
-  })),
+    "position": index + 1,
+    "name": breadcrumb.name,
+    "item": `https://getinfinitymetrics.com${breadcrumb.url}`
+  }))
 };
-
-const breadcrumbSchemaString = JSON.stringify(breadcrumbSchema);
 ---
 
-<script type="application/ld+json" set:html={breadcrumbSchemaString} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>

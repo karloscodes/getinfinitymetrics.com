@@ -13,6 +13,11 @@ export function generateBreadcrumbs(pathname: string, siteName: string = "Infini
     url: "/"
   });
 
+  // Handle undefined or empty pathname
+  if (!pathname || pathname === '/') {
+    return breadcrumbs;
+  }
+
   // Split pathname into segments
   const segments = pathname.split('/').filter(segment => segment.length > 0);
 
@@ -45,6 +50,11 @@ function segmentToName(segment: string): string {
     'subdomain-tracking': 'Subdomain Tracking',
     'revenue-tracking': 'Revenue Tracking',
     'configuration': 'SDK Configuration',
+    'automated-tracking': 'Automated Tracking',
+    'administration': 'Administration',
+    'installation': 'Installation',
+    'migration': 'Migration',
+    'integrations': 'Integrations',
     'generic': 'Generic Integration',
     'nextjs': 'Next.js',
     'wordpress': 'WordPress',
