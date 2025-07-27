@@ -71,81 +71,42 @@
           <div class="relative w-full">
             <div class="video-container relative h-[500px]">
               <div
-                class="w-full h-full flex items-center justify-center bg-black"
+                class="w-full h-full flex items-center justify-center bg-black relative group cursor-pointer"
               >
-                <div class="w-full h-full relative">
-                  <iframe
-                    src="https://www.youtube-nocookie.com/embed/VxBSvtcGlJI?rel=0&modestbranding=1"
-                    title="InfinityMetrics Demo Video"
-                    class="w-full h-full"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+                <img
+                  src="/video-thumbnail.jpg"
+                  alt="InfinityMetrics Demo Video Thumbnail"
+                  class="w-full h-full object-cover"
+                />
+                
+                <!-- Play button overlay -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="bg-black bg-opacity-70 hover:bg-opacity-90 text-white rounded-full p-4 transition-all duration-200 group-hover:scale-110">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-12 w-12"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
                 </div>
-              </div>
 
-              <!-- Full-screen button -->
-              <button
-                id="fullscreenBtn"
-                class="absolute top-4 right-4 bg-black bg-opacity-70 hover:bg-opacity-90 text-white rounded-full p-2 transition-all duration-200 z-10"
-                title="Open in full screen"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
-                  ></path>
-                </svg>
-              </button>
+                <!-- Click overlay -->
+                <a
+                  href="https://www.youtube.com/watch?v=VxBSvtcGlJI"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="absolute inset-0 z-10"
+                  title="Watch on YouTube (opens in new tab)"
+                ></a>
+              </div>
 
               <div
                 class="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-black text-black text-center"
               >
-                <p class="text-sm font-bold">Watch InfinityMetrics in action</p>
-              </div>
-            </div>
-
-            <!-- Full-screen modal -->
-            <div
-              id="fullscreenModal"
-              class="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-50 hidden"
-            >
-              <div class="relative w-full h-full max-w-7xl max-h-[90vh] p-4">
-                <button
-                  id="closeFullscreenBtn"
-                  class="absolute top-4 right-4 text-white bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full p-2 z-10 transition-all duration-200"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </button>
-                <div class="w-full h-full">
-                  <iframe
-                    src="https://www.youtube-nocookie.com/embed/VxBSvtcGlJI?autoplay=1&rel=0&modestbranding=1"
-                    title="InfinityMetrics Demo Video - Full Screen"
-                    class="w-full h-full"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-                </div>
+                <p class="text-sm font-bold">Watch InfinityMetrics in action (opens YouTube)</p>
               </div>
             </div>
           </div>
@@ -172,42 +133,4 @@
     }
   </style>
 
-  <script is:inline>
-    document.addEventListener("DOMContentLoaded", () => {
-      const fullscreenBtn = document.getElementById("fullscreenBtn");
-      const fullscreenModal = document.getElementById("fullscreenModal");
-      const closeFullscreenBtn = document.getElementById("closeFullscreenBtn");
-
-      // Open full-screen modal
-      fullscreenBtn.addEventListener("click", () => {
-        fullscreenModal.classList.remove("hidden");
-        document.body.style.overflow = "hidden"; // Prevent background scrolling
-      });
-
-      // Close full-screen modal
-      closeFullscreenBtn.addEventListener("click", () => {
-        fullscreenModal.classList.add("hidden");
-        document.body.style.overflow = ""; // Re-enable scrolling
-      });
-
-      // Close modal when clicking outside the video
-      fullscreenModal.addEventListener("click", (e) => {
-        if (e.target === fullscreenModal) {
-          fullscreenModal.classList.add("hidden");
-          document.body.style.overflow = "";
-        }
-      });
-
-      // Close modal with Escape key
-      document.addEventListener("keydown", (e) => {
-        if (
-          e.key === "Escape" &&
-          !fullscreenModal.classList.contains("hidden")
-        ) {
-          fullscreenModal.classList.add("hidden");
-          document.body.style.overflow = "";
-        }
-      });
-    });
-  </script>
 </section>
