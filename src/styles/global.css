@@ -18,7 +18,7 @@
   }
   
   p, span, a, li, button {
-    @apply font-medium;
+    @apply font-semibold;
     line-height: 1.5;
   }
   
